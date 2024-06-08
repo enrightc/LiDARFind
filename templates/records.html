@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Records</title>
+</head>
+<body>
+    {% for record in records %}
+        {{ record.title }}<br>
+        {{ record.period}}<br>
+        {{ record.site_type }}<br>
+        {{ record.monument }}<br>
+        {{ record.interpretation }}<br>
+        {{ record.location }}<br>
+        {{ record.PRN }}<br>
+        {{ record.created_on }}<br>
+        {{ record.created_by }}<br>
+    {% endfor %}
+</body>
+</html>
