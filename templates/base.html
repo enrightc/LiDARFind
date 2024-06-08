@@ -6,7 +6,7 @@
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/c3713995f0.js" crossorigin="anonymous"></script>
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
     {% endblock %}
@@ -17,34 +17,33 @@
     <header>
 
         <nav>
-          <!-- Main Nav -->
-          <div class="nav-wrapper green darken-1">
-            <a href="#!" class="brand-logo">LiDARFind</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fas fa-bars"></i></a>
-            <ul class="right hide-on-med-and-down">
-              <li><a href="{{ url_for('home') }}">Home</a></li>
-              <li><a href="#">Resources</a></li>
-              <li><a href="#">Explore</a></li>
-              <li><a href="#">Profile</a></li>
-              <li><a href="{{ url_for('add_record') }}">Record</a></li>
-              <li><a href="#">Log Out</a></li>
-              <li><a href="#">Log In</a></li>
-              <li><a href="#">Register</a></li>
-            </ul>
-  
-            <!-- Mobile side nav -->
-            <ul class="side-nav" id="mobile-demo">
-              <li><a href="{{ url_for('home') }}">Home</a></li>
-              <li><a href="#">Resources</a></li>
-              <li><a href="#">Explore</a></li>
-              <li><a href="{{ url_for('add_record') }}">Record</a></li>
-              <li><a href="#">Profile</a></li>
-              <li><a href="#">Log Out</a></li>
-              <li><a href="#">Log In</a></li>
-              <li><a href="#">Register</a></li>
-            </ul>
-          </div>
-        </nav>
+            <div class="nav-wrapper green darken-1">
+              <a href="#!" class="brand-logo">LiDARFind</a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">Explore</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="{{ url_for('add_record') }}">Record</a></li>
+                <li><a href="#">Log Out</a></li>
+                <li><a href="#">Log In</a></li>
+                <li><a href="#">Register</a></li>
+              </ul>
+            </div>
+          </nav>
+          
+          <ul class="sidenav" id="mobile-demo">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">Explore</a></li>
+            <li><a href="{{ url_for('add_record') }}">Record</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Log Out</a></li>
+            <li><a href="#">Log In</a></li>
+            <li><a href="#">Register</a></li>
+          </ul>
+          
   
       </header>
 
@@ -54,7 +53,7 @@
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
     {% block scripts %}
