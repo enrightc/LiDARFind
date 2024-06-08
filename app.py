@@ -16,11 +16,21 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
+
 @app.route("/")
-@app.route("/get_records")
-def get_records():
-    records = mongo.db.records.find()
-    return render_template("records.html", records=records)
+def home():
+    '''
+    Renders home page template
+    '''
+    return render_template("index.html")
+
+
+@app.route("/add_record")
+def add_record():
+    '''
+    Renders page to create new site record
+    '''
+    return render_template("record.html")
 
 
 if __name__ == "__main__":

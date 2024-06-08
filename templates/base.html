@@ -22,11 +22,11 @@
             <a href="#!" class="brand-logo">LiDARFind</a>
             <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fas fa-bars"></i></a>
             <ul class="right hide-on-med-and-down">
-              <li><a href="#">Home</a></li>
+              <li><a href="{{ url_for('home') }}">Home</a></li>
               <li><a href="#">Resources</a></li>
               <li><a href="#">Explore</a></li>
               <li><a href="#">Profile</a></li>
-              <li><a href="#">Record</a></li>
+              <li><a href="{{ url_for('add_record') }}">Record</a></li>
               <li><a href="#">Log Out</a></li>
               <li><a href="#">Log In</a></li>
               <li><a href="#">Register</a></li>
@@ -34,10 +34,10 @@
   
             <!-- Mobile side nav -->
             <ul class="side-nav" id="mobile-demo">
-              <li><a href="#">Home</a></li>
+              <li><a href="{{ url_for('home') }}">Home</a></li>
               <li><a href="#">Resources</a></li>
               <li><a href="#">Explore</a></li>
-              <li><a href="#">Record</a></li>
+              <li><a href="{{ url_for('add_record') }}">Record</a></li>
               <li><a href="#">Profile</a></li>
               <li><a href="#">Log Out</a></li>
               <li><a href="#">Log In</a></li>

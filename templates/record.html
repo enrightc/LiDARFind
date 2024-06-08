@@ -9,19 +9,12 @@
 
     {% block content %} 
 
-        {% for record in records %}
-            {{ record.title }}<br>
-            {{ record.period}}<br>
-            {{ record.site_type }}<br>
-            {{ record.monument }}<br>
-            {{ record.interpretation }}<br>
-            {{ record.location }}<br>
-            {{ record.PRN }}<br>
-            {{ record.created_on }}<br>
-            {{ record.created_by }}<br>
-        {% endfor %}
+        <div class="row">
 
-        <div id="mapid"></div> 
+            <div class="col s3">Record Form</div> 
+            <div class="col s9"><div id="mapid"></div>
+            
+        </div>
 
     {% endblock %}
         
