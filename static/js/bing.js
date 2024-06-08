@@ -1,5 +1,5 @@
 // Bing maps API: https://docs.microsoft.com/en-us/bingmaps/rest-services/
-// Credit: https://github.com/shramov/leaflet-plugins
+// Credit: https://github.com/shramov/leaflet-plugins. Developed by Pavel Shramov.
 
 L.BingLayer = L.TileLayer.extend({
 	options: {

@@ -14,4 +14,13 @@
 # Resources
 
 - For help overriding Materialize default CSS for checkboxes:
-  - [Materialize css Radio buttons not visible] Stackoverflow thread created 10th April, 2018 (https://stackoverflow.com/questions/49757521/materialize-css-radio-buttons-not-visible) [Accessed 8th June, 2024].
+  - [Materialize css Radio buttons not visible](https://stackoverflow.com/questions/49757521/materialize-css-radio-buttons-not-visible) Stackoverflow thread created 10th April, 2018  [Accessed 8th June, 2024].
+
+- For help using leaflet map framework:
+  - [Leaflet: an open-source JavaScript library for mobile-friendly interactive maps](https://leafletjs.com/)   [Accessed 8th June, 2024].
+
+- Adding Bing Satellite imageryto map:
+  - [Mapping API's: Leaflet - Adding Microsoft Bing Basemap Layers](https://store.extension.iastate.edu/product/Mapping-APIs-Leaflet-Adding-Microsoft-Bing-Basemap-Layers)   [Accessed 8th June, 2024].
+
+- Script for bing.js:
+  - [leaflet-plugins](https://github.com/shramov/leaflet-plugins). Developed by Pavel Shramov. [Accessed 8th June, 2024].
