@@ -24,3 +24,10 @@
 
 - Script for bing.js:
   - [leaflet-plugins](https://github.com/shramov/leaflet-plugins). Developed by Pavel Shramov. [Accessed 8th June, 2024].
+
+- For help adding an eventlisterner to dropdown menus
+  - [addEventListener, "change" and option selection](https://stackoverflow.com/questions/24875414/addeventlistener-change-and-option-selection) Stackoverflow thread created 21st July, 2014  [Accessed 8th June, 2024].
+
+  - [Dynamically Populate Second Dropdownlist from a first dropdownlist using Jquery Ajax](https://www.youtube.com/watch?v=xgwsAHeZaX0) YobTube. created 9th August, 2021  [Accessed 8th June, 2024].
+
+   - [How to display ajax get request data to html?](https://stackoverflow.com/questions/62048242/how-to-display-ajax-get-request-data-to-html) Stackoverflow. created 27th May, 2020 by Ian vincent.  [Accessed 5th June, 2024].
