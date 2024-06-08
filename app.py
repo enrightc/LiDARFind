@@ -23,14 +23,16 @@ def home():
     Renders home page template
     '''
     return render_template("index.html")
-
+    
 
 @app.route("/add_record")
 def add_record():
     '''
     Renders page to create new site record
     '''
-    return render_template("record.html")
+    
+    site_types = mongo.db.site_types.find().sort("site_type, 1")
+    return render_template("record.html", site_types=site_types)
 
 
 if __name__ == "__main__":

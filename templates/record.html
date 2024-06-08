@@ -13,14 +13,26 @@
         <!-- Recording Form -->
         <div class="col s3">
             <div class="row">
-                <form class="col s12" method="POST" action="">
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input id="icon_prefix" type="text" class="validate">
-                      <label for="icon_prefix">Title</label>
+                <form class="col s12" method="POST" action="{{ url_for('add_record')}}">
+                    <!-- Title -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <input id="icon_prefix" type="text" class="validate">
+                        <label for="icon_prefix">Title</label>
+                        </div>
                     </div>
-
-                  </div>
+                    <!-- Site Type -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select id="site_type" name="site_type" class="validate" required>
+                                <option value="" disabled selected>Select Site Type</option>
+                                {% for site_type in site_types %}
+                                    <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="site_type">Site type</label>
+                        </div>
+                    </div>
                 </form>
               </div>
         </div> 
@@ -34,9 +46,9 @@
     {% endblock %}
         
     {% block scripts %}
-        <!-- Compiled and minified JavaScript -->
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
+        <!-- Leaflet -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
         <script src="{{ url_for('static', filename='js/bing.js') }}"></script>
         <script src="{{ url_for('static', filename='js/lidar-map.js') }}"></script>
     {% endblock %}
