@@ -1,3 +1,18 @@
 #mapid { 
     height: 100vh;
  } 
+
+ /* ----------------------------------------------------- CSS to override materialize and display radio buttons and checkboxes for overlay layers are displayed */
+/* Specific styles for base map radio buttons */
+.leaflet-control-layers-base input[type="radio"] {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Specific styles for overlay checkboxes */
+.leaflet-control-layers-overlays input[type="checkbox"] {
+    position: relative;
+    opacity: 1;
+    pointer-events: auto;
+}
