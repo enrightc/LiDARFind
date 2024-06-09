@@ -33,7 +33,8 @@ def add_record():
     '''
     
     site_types = mongo.db.site_types.find().sort("site_type, 1")
-    return render_template("record.html", site_types=site_types)
+    periods = mongo.db.periods.find()
+    return render_template("record.html", site_types=site_types, periods=periods)
 
 
 @app.route('/get_monument_types', methods=['POST'])
