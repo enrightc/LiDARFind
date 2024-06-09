@@ -19,22 +19,28 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", { // B
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
 })
 
-// Fetch user locations and add markers to the map
+// Fetch user locations 
 // Adapted from: https://github.com/isntlee/Sagacity/blob/master/templates/home.html
 fetch("/fetch_user_locations")
     .then(response => response.json())
     .then(data => {
-        // Iterate through the location data and add markers to the map
-        data.forEach(location => {
-            const [lat, lng] = location.split(',').map(parseFloat);
-            const marker = L.marker([lat, lng]).addTo(map);
+        userLocations(data);
+    })
 
-            // Add click event listener to each marker
-            marker.on('click', function() {
-                map.setView(marker.getLatLng(), 14); // Zoom to level 14 and center on the marker
-            });
+    
+function userLocations(data) {
+    // Iterate through the location data and add markers to the map
+    data.forEach(location => {
+        const [lat, lng] = location.split(',').map(parseFloat);
+        const marker = L.marker([lat, lng]).addTo(map);
+
+        // Add click event listener to each marker
+        marker.on('click', function() {
+            map.setView(marker.getLatLng(), 14); // Zoom to level 14 and center on the marker
         });
     });
+}
+   
 
 
 // Layer control to toggle between layers
