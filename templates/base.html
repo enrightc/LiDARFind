@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/c3713995f0.js" crossorigin="anonymous"></script>
-    <!-- Compiled and minified CSS -->
+    <!-- Compiled and minified CSS Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     {% block styles %}
@@ -17,38 +17,54 @@
     <header>
 
       <nav>
-        <div class="nav-wrapper green darken-1">
-          <a href="#!" class="brand-logo">LiDARFind</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
-          <ul class="right hide-on-med-and-down">
+          <div class="nav-wrapper green darken-1">
+            <a href="#!" class="brand-logo">LiDARFind</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="{{ url_for('home') }}">Home</a></li>
+              <li><a href="#">Resources</a></li>
+              <li><a href="#">Explore</a></li>
+              <li><a href="#">Profile</a></li>
+              <li><a href="{{ url_for('add_record') }}">Record</a></li>
+              <li><a href="#">Log Out</a></li>
+              <li><a href="#">Log In</a></li>
+              <li><a href="{{ url_for('register') }}">Register</a></li>
+            </ul>
+          </div>
+        
+        
+          <ul class="sidenav" id="mobile-demo">
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="#">Resources</a></li>
             <li><a href="#">Explore</a></li>
-            <li><a href="#">Profile</a></li>
             <li><a href="{{ url_for('add_record') }}">Record</a></li>
+            <li><a href="#">Profile</a></li>
             <li><a href="#">Log Out</a></li>
             <li><a href="#">Log In</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
           </ul>
-        </div>
       </nav>
-      
-      <ul class="sidenav" id="mobile-demo">
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="#">Resources</a></li>
-        <li><a href="#">Explore</a></li>
-        <li><a href="{{ url_for('add_record') }}">Record</a></li>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Log Out</a></li>
-        <li><a href="#">Log In</a></li>
-        <li><a href="{{ url_for('register') }}">Register</a></li>
-      </ul>
-          
-  
-      </header>
+        
+    </header>
 
-    {% block content %}
-    {% endblock %}
+    <section>
+      <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="row flashes">	
+                <h4 class="green center-align">{{ message }}</h4>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </section>
+        
+
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
