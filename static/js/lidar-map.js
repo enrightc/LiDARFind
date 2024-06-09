@@ -14,7 +14,6 @@ var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8o
 });
 */
 
-
 // Adding the WMS layer for LiDAR DSM (hillshade) data
 var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", { // Base URL to the OWS endpoint
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
