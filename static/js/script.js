@@ -34,5 +34,7 @@ siteTypeSelect.on('change', function() {
             $('select').formSelect();
         }
     });
+
+    
 });
 });

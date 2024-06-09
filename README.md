@@ -19,6 +19,9 @@
 - For help using leaflet map framework:
   - [Leaflet: an open-source JavaScript library for mobile-friendly interactive maps](https://leafletjs.com/)   [Accessed 8th June, 2024].
 
+- For help retrieving cooordinates from map
+  - [https://stackoverflow.com/questions/28646317/how-to-remove-all-layers-and-features-from-map](https://stackoverflow.com/questions/28646317/how-to-remove-all-layers-and-features-from-map)  Stack OverFlow, created on 21st Feb, 2015. [Accessed 9th June, 2024].
+
 - Adding Bing Satellite imageryto map:
   - [Mapping API's: Leaflet - Adding Microsoft Bing Basemap Layers](https://store.extension.iastate.edu/product/Mapping-APIs-Leaflet-Adding-Microsoft-Bing-Basemap-Layers)   [Accessed 8th June, 2024].
 

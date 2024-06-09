@@ -1,3 +1,4 @@
+// Initialize the map on create record page
 var map = L.map('mapid').setView([52.4814, -3.9797], 8);
 
 // Base Map Layer: OpenStreetMap
@@ -7,35 +8,55 @@ var openStreetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 }).addTo(map);
 
 // Bing Maps Satellite Layer
+/*
 var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8oCT-n-CeUQLRutNJJXLhpY', {
     type: 'Aerial'  // Use 'AerialWithLabels' if you want satellite images with labels
 });
+*/
+
 
 // Adding the WMS layer for LiDAR DSM (hillshade) data
 var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", { // Base URL to the OWS endpoint
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
 });
 
- // Marker at Swansea
- var marker = L.marker([51.62144, -3.943645]).addTo(map);
- marker.bindPopup("<b>Hello Swansea!</b>").openPopup();
+// Marker at Swansea
+var marker = L.marker([51.62144, -3.943645]).addTo(map);
+marker.bindPopup("<b>Hello Swansea!</b>").openPopup();
 
- // Function to show location map clicked
- function onMapClick(e) {
-    alert("You clicked the map at " + e.latlng);
-}
+// Add click event listener to the Swansea marker
+marker.on('click', function() {
+    map.setView(marker.getLatLng(), 8); // Zoom to level 8 and center on the marker
+});
 
-map.on('click', onMapClick);
+// Variable to store the current marker
+let currentMarker = null;
 
+// Add event listener to map to retreieve coordinates and populate input field on form---------------------------------------------
+map.on('click', function(e) {
+    // Get the clicked coordinates
+    const coords = e.latlng;
+
+    // Update the input field with the coordinates
+    document.getElementById('location').value = `${coords.lat}, ${coords.lng}`;
+
+    // Check to see if there is an existing marker stored in 'current' marker variable. if there is a marker it calls removelayer. 
+    if (currentMarker) {
+        map.removeLayer(currentMarker);
+    }
+
+    // Create a new marker at the clicked coordinates and assigns it to currentmarker and updates the coords. 
+    currentMarker = L.marker(coords).addTo(map);
+});
 
 // Layer control to toggle between layers
 var baseMaps = {
-     "OpenStreetMap": openStreetMap,
-     "Bing Satellite": bingSatellite
- };
+    "OpenStreetMap": openStreetMap,
+    "Bing Satellite": bingSatellite
+};
 
 var overlayMaps = {
-     "LiDAR Data": wmsLayer
+    "LiDAR Data": wmsLayer
 };
 
 L.control.layers(baseMaps, overlayMaps).addTo(map);
