@@ -119,10 +119,9 @@ def profile(username):
     return redirect(url_for("login"))
 
 
-@app.route("/fetch_user_locations", methods=["GET"])
-def fetch_user_locations():
-    '''
-     """
+@app.route("/fetch_user_records", methods=["GET"])
+def fetch_user_records():
+    """
     Retrieve the locations of records created by the logged-in user from the MongoDB collection.
     - Retrieves the username from the session to identify the logged-in user.
     - Queries the MongoDB collection to find records created by the user.
@@ -132,19 +131,18 @@ def fetch_user_locations():
     Returns:
         JSON: A list of location coordinates for records created by the user.
     """
-    '''
     # Retrieve the username from the session
     username = session.get("user")
 
     # Retrieve the user's records from the MongoDB collection and store in a list
-    user_records = list(
-        mongo.db.records.find({'created_by': username}, {'location'}))
+    user_records = list(mongo.db.records.find({'created_by': username}, {'_id': 0}))
 
     # Extract the location data from each record
     locations = [record['location'] for record in user_records]
 
     # Return the location data as JSON
     return jsonify(locations)
+
 
 
 @app.route("/logout")

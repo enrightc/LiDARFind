@@ -21,13 +21,12 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", { // B
 
 // Fetch user locations 
 // Adapted from: https://github.com/isntlee/Sagacity/blob/master/templates/home.html
-fetch("/fetch_user_locations")
+fetch("/fetch_user_records")
     .then(response => response.json())
     .then(data => {
         userLocations(data);
     })
-
-    
+   
 function userLocations(data) {
     // Iterate through the location data and add markers to the map
     data.forEach(location => {
@@ -41,8 +40,6 @@ function userLocations(data) {
     });
 }
    
-
-
 // Layer control to toggle between layers
 var baseMaps = {
     "OpenStreetMap": openStreetMap,
