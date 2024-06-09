@@ -24,12 +24,13 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", { // B
 fetch("/fetch_user_records")
     .then(response => response.json())
     .then(data => {
-        userLocations(data);
+        userRecords(data);
     })
-   
-function userLocations(data) {
-    // Iterate through the location data and add markers to the map
-    data.forEach(location => {
+
+function userRecords(data) {
+    // Iterate through the user records and extract location data
+    data.forEach(record => {
+        const location = record.location;  // Assuming location is a string "lat,lng"
         const [lat, lng] = location.split(',').map(parseFloat);
         const marker = L.marker([lat, lng]).addTo(map);
 
@@ -40,6 +41,7 @@ function userLocations(data) {
     });
 }
    
+
 // Layer control to toggle between layers
 var baseMaps = {
     "OpenStreetMap": openStreetMap,

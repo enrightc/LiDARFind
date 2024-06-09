@@ -137,12 +137,8 @@ def fetch_user_records():
     # Retrieve the user's records from the MongoDB collection and store in a list
     user_records = list(mongo.db.records.find({'created_by': username}, {'_id': 0}))
 
-    # Extract the location data from each record
-    locations = [record['location'] for record in user_records]
-
     # Return the location data as JSON
-    return jsonify(locations)
-
+    return jsonify(user_records)
 
 
 @app.route("/logout")
@@ -191,6 +187,7 @@ def add_record():
     periods = mongo.db.periods.find()
     return render_template(
         "record.html", site_types=site_types, periods=periods)
+
 
 @app.route('/get_monument_types', methods=['POST'])
 def get_monument_types():
