@@ -34,6 +34,16 @@ function userRecords(data) {
         const [lat, lng] = location.split(',').map(parseFloat);
         const marker = L.marker([lat, lng]).addTo(map);
 
+        // Create popup content
+        var popupContent = `
+            <b>Title:</b> ${record.title}<br>
+            <b>Period:</b> ${record.period}<br>
+            <b>Monument Type:</b> ${record.monument_type}
+        `;
+
+        // Bind the popup to the marker
+        marker.bindPopup(popupContent);
+
         // Add click event listener to each marker
         marker.on('click', function() {
             map.setView(marker.getLatLng(), 14); // Zoom to level 14 and center on the marker
