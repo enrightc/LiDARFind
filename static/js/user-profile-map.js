@@ -19,3 +19,14 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", { // B
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
 });
 
+// Make a request to the Flask route to get the user's site locations and display markers on map
+// Adapted from https://github.com/isntlee/Sagacity/blob/master/app.py
+fetch("/fetch_user_locations")
+    .then(response => response.json())
+    .then(data => {
+        // Iterate through the location data and add markers to the map
+        data.forEach(location => {
+            const [lat, lng] = location.split(',').map(parseFloat);
+            L.marker([lat, lng]).addTo(map);
+        });
+    })

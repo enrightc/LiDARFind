@@ -119,6 +119,34 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+@app.route("/fetch_user_locations", methods=["GET"])
+def fetch_user_locations():
+    '''
+     """
+    Retrieve the locations of records created by the logged-in user from the MongoDB collection.
+    - Retrieves the username from the session to identify the logged-in user.
+    - Queries the MongoDB collection to find records created by the user.
+    - Extracts the location data from each record.
+    - Returns the location data as JSON.
+    - Adapted from https://github.com/isntlee/Sagacity/blob/master/app.py
+    Returns:
+        JSON: A list of location coordinates for records created by the user.
+    """
+    '''
+    # Retrieve the username from the session
+    username = session.get("user")
+
+    # Retrieve the user's records from the MongoDB collection and store in a list
+    user_records = list(
+        mongo.db.records.find({'created_by': username}, {'location'}))
+
+    # Extract the location data from each record
+    locations = [record['location'] for record in user_records]
+
+    # Return the location data as JSON
+    return jsonify(locations)
+
+
 @app.route("/logout")
 def logout():
     '''
