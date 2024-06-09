@@ -21,6 +21,16 @@ mongo = PyMongo(app)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    '''
+    Handle the user registration process.
+    - If the request method is POST, check if the username already exists in the database.
+    - If the username exists, flash a message and redirect to the register page.
+    - If the username does not exist, hash the password and confirm_password, 
+        and insert the new user data into the database.
+    - Store the new user's username in the session cookie and flash a message indicating successful 
+        registration.
+    - Render the register template.
+    '''
     if request.method == "POST":
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
@@ -42,6 +52,42 @@ def register():
         session["user"] = request.form.get("username").lower()
         flash("Registration Complete")
     return render_template("register.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    '''
+    Handle user login.
+    If the request method is POST, verify the user's credentials.
+    - Check if the username exists in the database.
+    - If the username exists, verify the password.
+    - If the password is correct, log the user in by adding their username to the session and flash a welcome message.
+    - If the password is incorrect, flash an error message and redirect to the login page.
+    - If the username does not exist, flash an error message and redirect to the login page.
+    Render the login template for GET requests.
+    '''
+    if request.method == "POST":
+        # check if username exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        if existing_user:
+            # ensure hashed password matches user input
+            if check_password_hash(
+                existing_user["password"], request.form.get("password")):
+                    session["user"] = request.form.get("username").lower()
+                    flash("Welcome back, {}".format(request.form.get("username")))
+            else:
+                # Incorrect password
+                flash("Incorrect Username and/or Password")
+                return redirect(url_for("login"))
+
+        else:
+            # username doesn't exist
+            flash("Incorrect Username and/or Password")
+            return redirect(url_for("login"))
+
+    return render_template("login.html")
 
 
 @app.route("/")

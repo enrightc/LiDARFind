@@ -27,7 +27,7 @@
               <li><a href="#">Profile</a></li>
               <li><a href="{{ url_for('add_record') }}">Record</a></li>
               <li><a href="#">Log Out</a></li>
-              <li><a href="#">Log In</a></li>
+              <li><a href="{{ url_for('login') }}">Log In</a></li>
               <li><a href="{{ url_for('register') }}">Register</a></li>
             </ul>
           </div>
@@ -40,7 +40,7 @@
             <li><a href="{{ url_for('add_record') }}">Record</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Log Out</a></li>
-            <li><a href="#">Log In</a></li>
+            <li><a href="{{ url_for('login') }}">Log In</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
           </ul>
       </nav>
