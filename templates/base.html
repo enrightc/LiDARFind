@@ -25,7 +25,7 @@
                 <li><a href="#">Resources</a></li>
                 <li><a href="#">Explore</a></li>
                 <li><a href="#">Profile</a></li>
-                <li><a href="{{ url_for('add_record') }}">Record</a></li>
+                <li><a href="{{ url_for('add_record', username=session['user']) }}">Record</a></li>
                 <li><a href="#">Log Out</a></li>
                 <li><a href="#">Log In</a></li>
                 <li><a href="#">Register</a></li>
@@ -37,7 +37,7 @@
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="#">Resources</a></li>
             <li><a href="#">Explore</a></li>
-            <li><a href="{{ url_for('add_record') }}">Record</a></li>
+            <li><a href="{{ url_for('add_record', username=session['user']) }}">Record</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Log Out</a></li>
             <li><a href="#">Log In</a></li>

@@ -12,20 +12,30 @@
     <div class="row">
         <!-- Recording Form -->
         <div class="col s3">
+            
             <div class="row">
-                <form class="col s12" method="POST" action="{{ url_for('add_record')}}">
+                <form class="col s12" method="POST" action="">
                     <!-- Title -->
                     <div class="row">
                         <div class="input-field col s12">
-                        <input id="icon_prefix" type="text" class="validate">
-                        <label for="icon_prefix">Title</label>
+                        <input id="title" name="title" minlength="5" maxlength="50"
+                                type="text" class="validate" required>
+                        <label for="title">Title</label>
+                        </div>
+                    </div>
+                    <!-- PRN -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <input id="prn" name="prn" minlength="2" maxlength="8"
+                                type="number" class="validate">
+                        <label for="prn">PRN (if known)</label>
                         </div>
                     </div>
                     <!-- Site Type -->
                     <div class="row">
                         <div class="input-field col s12">
                             <select id="site_type" name="site_type" class="validate" required>
-                                <option value="" disabled selected>Select Site Type</option>
+                                <option value="" disabled selected>Select site type</option>
                                 {% for site_type in site_types %}
                                     <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
                                 {% endfor %}
@@ -33,19 +43,66 @@
                             <label for="site_type">Site type</label>
                         </div>
                     </div>
-                    <!-- Monument Type -->
+                     <!-- Monument Type -->
                     <div class="row">
                         <div class="input-field col s12">
                             <select id="monument_type" name="monument_type" class="validate" required disabled>
-                                <option value="" disabled selected>Select monument type</option>
+                                <option value=""  disabled selected>Select monument type</option>
                             </select>
-                            <label for="monument_type">Monument type</label>
+                            <label for="monument_type">monument type</label>
+                        </div>
+                    </div>
+                    <!-- Interpretation -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="interpretation" name="interpretation" minlegnth="5"
+                                maxlength="200" class="materialize-textarea" required></textarea>
+                            <label for="interpretation">Interpretation</label>
+                        </div>
+                    </div>
+                    <!-- Period -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select id="period" name="period" class="validate" required>
+                                <option value="" disabled selected>Select Period</option>
+                                {% for period in periods %}
+                                    <option value="{{ period.period_name }}">{{ period.period_name }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="period">Period</label>
+                        </div>
+                    </div>
+                    <!-- Location -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <input id="location" name="location" minlength="5" maxlength="50"
+                                type="text" class="validate" required readonly>
+                        <label for="location">Location</label>
+                        </div>
+                    </div>
+                    <!-- Date Created -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <input id="created_on" name="created_on" minlength="5" maxlength="50"
+                                type="text" class="validate"
+                                    required readonly>
+                        <label for="created_on"></label>
+                        </div>
+                    </div>
+                    <!-- Created by -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <input id="created_by" name="created_by" minlength="5" maxlength="50"
+                                type="text" class="validate" 
+                                    required readonly value="{{ username }}">
+                        <label for="created_by"></label>
                         </div>
                     </div>
                 </form>
-              </div>
+            </div>
         </div> 
-     
+
+
         <!-- Map Window -->
         <div class="col s9">
             <div id="mapid">
