@@ -143,13 +143,28 @@ def home():
 @app.route("/add_record", methods=["GET", "POST"])
 def add_record():
     '''
-    Renders page to create new site record
+    Function to add a new site record
     '''
-    
-    site_types = mongo.db.site_types.find().sort("site_type, 1")
-    periods = mongo.db.periods.find()
-    return render_template("record.html", site_types=site_types, periods=periods)
+    if request.method == "POST":
+        record = {
+            "title": request.form.get("title"),
+            "prn": request.form.get("prn"),
+            "site_type": request.form.get("site_type"),
+            "monument_type": request.form.get("monument_type"),
+            "interpretation": request.form.get("interpretation"),
+            "period": request.form.get("period"),
+            "location": request.form.get("location"),
+            "created_on": request.form.get("created_on"),
+            "created_by": session["user"]
+        }
+        mongo.db.records.insert_one(record)
+        flash("New Record Created")
+        return redirect(url_for("add_record"))
 
+    site_types = mongo.db.site_types.find().sort("site_type", 1)
+    periods = mongo.db.periods.find()
+    return render_template(
+        "record.html", site_types=site_types, periods=periods)
 
 @app.route('/get_monument_types', methods=['POST'])
 def get_monument_types():

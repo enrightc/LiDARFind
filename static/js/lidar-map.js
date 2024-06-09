@@ -47,7 +47,16 @@ map.on('click', function(e) {
 
     // Create a new marker at the clicked coordinates and assigns it to currentmarker and updates the coords. 
     currentMarker = L.marker(coords).addTo(map);
+
+    
+    // Adapated from https://developers.google.com/maps/documentation/javascript/examples/event-simple
+    //  When the marker is clicked the map will be centred on the markers location and the zoom set to 14.
+    currentMarker.on('click', function() {
+        map.setView(currentMarker.getLatLng(), 14); // Zoom to level 14 and center on the new marker
+    });
 });
+
+
 
 // Layer control to toggle between layers
 var baseMaps = {
