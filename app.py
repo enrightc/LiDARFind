@@ -26,7 +26,7 @@ def home():
     return render_template("index.html")
     
 
-@app.route("/add_record")
+@app.route("/add_record", methods=["GET", "POST"])
 def add_record():
     '''
     Renders page to create new site record
