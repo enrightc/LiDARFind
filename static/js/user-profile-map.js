@@ -55,11 +55,11 @@ function userRecords(data) {
 
         // Add click event listener to each marker
         marker.on('click', function() {
-            map.setView(marker.getLatLng(), 14); // Zoom to level 14 and center on the marker
+            map.setView(marker.getLatLng(), 14); // Zoom to level 14 and center on the marker;
+            displayRecordDetails(record)
         });
     });
 }
-   
 
 // Layer control to toggle between layers
 var baseMaps = {
