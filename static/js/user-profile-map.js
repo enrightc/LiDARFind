@@ -83,6 +83,11 @@ L.control.resetView({
     zoom: 8,
 }).addTo(map);
 
+// Add event listener to reset the map view from site details display box.
+$('#reset-map-view').on('click', function() {
+    map.setView(initialView, initialZoom);
+});
+
 
 // Layer control to toggle between layers
 var baseMaps = {

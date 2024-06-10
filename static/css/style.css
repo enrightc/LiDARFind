@@ -7,8 +7,6 @@
     width: 100%;
  } 
 
-
-
  /*
  /* ----------------------------------------------------- CSS to override materialize and display radio buttons and checkboxes for overlay layers are displayed */
 /* Specific styles for base map radio buttons 
@@ -44,3 +42,8 @@
 .leaflet-popup-content button:hover {
     background-color: #0056b3;
 }
+
+ /* Buttons--------------------------- */
+ .btn-small {
+    margin: 5px;
+ }
