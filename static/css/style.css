@@ -47,3 +47,12 @@
  .btn-small {
     margin: 5px;
  }
+
+  /* User profile page--------------------------- */
+  .hidden{
+    display: none;
+  }
+
+  .hide{
+    display: none;
+  }

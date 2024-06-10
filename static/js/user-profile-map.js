@@ -72,6 +72,10 @@ function displayRecordDetails(record) {
     $('#record-interpretation').text(record.interpretation);
     $('#record-created-on').text(record.created_on);
     $('#record-prn').text(record.prn);
+
+    $('.hidden').removeClass('hidden');
+    $('.hide-on-click').addClass('hide');
+
 }
 
 // Reset map view to initial state
