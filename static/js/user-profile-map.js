@@ -75,7 +75,6 @@ function displayRecordDetails(record) {
 
     $('.hidden').removeClass('hidden');
     $('.hide-on-click').addClass('hide');
-
 }
 
 // Reset map view to initial state

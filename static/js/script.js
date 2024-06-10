@@ -2,7 +2,7 @@ $( document ).ready(function(){
     // Initialize the side navigation and all select elements using Materialize
     $('.sidenav').sidenav();
     $('select').formSelect();
-    
+    $('.modal').modal();
 
 // Get the site type and monument type select elements by their IDs
 const siteTypeSelect = $('#site_type');
@@ -39,3 +39,13 @@ siteTypeSelect.on('change', function() {
     
 });
 });
+
+// Fetch user locations 
+// Adapted from: https://github.com/isntlee/Sagacity/blob/master/templates/home.html
+fetch("/fetch_user_records")
+    .then(response => response.json())
+    .then(data => {
+        existingRecord(data);
+    });
+
+    

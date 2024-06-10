@@ -135,7 +135,12 @@ def fetch_user_records():
     username = session.get("user")
 
     # Retrieve the user's records from the MongoDB collection and store in a list
-    user_records = list(mongo.db.records.find({'created_by': username}, {'_id': 0}))
+    user_records = list(mongo.db.records.find({'created_by': username}))
+
+    # Convert ObjectId to string for JSON serialization
+    # Credit: https://stackoverflow.com/questions/16586180/typeerror-objectid-is-not-json-serializable
+    for record in user_records:
+        record["_id"] = str(record["_id"])
 
     # Return the location data as JSON
     return jsonify(user_records)
@@ -206,6 +211,16 @@ def get_monument_types():
     monument_types = [monument['monument_type'] for monument in site[
         'monument_types']] if site else []
     return jsonify(monument_types)
+
+
+@app.route("/edit_record/<record_id>", methods=["GET", "POST"])
+def edit_record(record_id):      
+    record = mongo.db.records.find_one({"_id": ObjectId(record_id)})
+    
+    site_types = mongo.db.site_types.find().sort("site_type", 1)
+    periods = mongo.db.periods.find()
+    return render_template(
+        "edit_record.html",record.record, site_types=site_types, periods=periods)
 
 
 if __name__ == "__main__":
