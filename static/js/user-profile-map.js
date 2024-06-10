@@ -41,6 +41,15 @@ function userRecords(data) {
             <b>Monument Type:</b> ${record.monument_type}
         `;
 
+        // Credit: https://gis.stackexchange.com/questions/31951/showing-popup-on-mouse-over-not-on-click-using-leaflet
+        marker.bindPopup("Popup content");
+        marker.on('mouseover', function (e) {
+            this.openPopup();
+        });
+        marker.on('mouseout', function (e) {
+            this.closePopup();
+        });
+
         // Bind the popup to the marker
         marker.bindPopup(popupContent);
 

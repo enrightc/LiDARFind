@@ -33,6 +33,9 @@
   - For map functions
     - [Simple Click Events](https://developers.google.com/maps/documentation/javascript/examples/event-simple) [Accessed 9th June, 2024].
 
+  - For Hover popups on map
+    - [Showing popup on mouse-over, not on click using Leaflet?](https://gis.stackexchange.com/questions/31951/showing-popup-on-mouse-over-not-on-click-using-leaflet) Stack OverFlow, created on 22nd August, 2012. [Accessed 10th June, 2024].
+
   [SagaCity](https://github.com/isntlee/Sagacity/blob/master/templates/home.html). [Accessed 9th June, 2024].
 
 - Adding Bing Satellite imageryto map:
@@ -46,4 +49,4 @@
 
   - [Dynamically Populate Second Dropdownlist from a first dropdownlist using Jquery Ajax](https://www.youtube.com/watch?v=xgwsAHeZaX0) YobTube. created 9th August, 2021  [Accessed 8th June, 2024].
 
-   - [How to display ajax get request data to html?](https://stackoverflow.com/questions/62048242/how-to-display-ajax-get-request-data-to-html) Stackoverflow. created 27th May, 2020 by Ian vincent.  [Accessed 5th June, 2024].
+  - [How to display ajax get request data to html?](https://stackoverflow.com/questions/62048242/how-to-display-ajax-get-request-data-to-html) Stackoverflow. created 27th May, 2020 by Ian vincent.  [Accessed 5th June, 2024].
