@@ -17,7 +17,7 @@ var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8o
 // Adding the WMS layer for LiDAR DSM (hillshade) data
 var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", { // Base URL to the OWS endpoint
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
-})
+});
 
 // Fetch user locations 
 // Adapted from: https://github.com/isntlee/Sagacity/blob/master/templates/home.html
@@ -25,7 +25,7 @@ fetch("/fetch_user_records")
     .then(response => response.json())
     .then(data => {
         userRecords(data);
-    })
+    });
 
 function userRecords(data) {
     // Iterate through the user records and extract location data
@@ -59,6 +59,17 @@ function userRecords(data) {
             displayRecordDetails(record)
         });
     });
+}
+
+function displayRecordDetails(record) {
+    // Populate the display with record data
+    $('#record-title').text(record.title);
+    $('#record-period').text(record.period);
+    $('#record-monument-type').text(record.monument_type);
+    $('#record-site-type').text(record.site_type);
+    $('#record-interpretation').text(record.interpretation);
+    $('#record-created-on').text(record.created_on);
+    $('#record-prn').text(record.prn);
 }
 
 // Layer control to toggle between layers
