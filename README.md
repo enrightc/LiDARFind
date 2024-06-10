@@ -36,6 +36,9 @@
   - For Hover popups on map
     - [Showing popup on mouse-over, not on click using Leaflet?](https://gis.stackexchange.com/questions/31951/showing-popup-on-mouse-over-not-on-click-using-leaflet) Stack OverFlow, created on 22nd August, 2012. [Accessed 10th June, 2024].
 
+  - Reset map view to initial state
+    - [Leaflet.ResetView](https://github.com/drustack/Leaflet.ResetView). [Accessed 10th June, 2024].
+
   [SagaCity](https://github.com/isntlee/Sagacity/blob/master/templates/home.html). [Accessed 9th June, 2024].
 
 - Adding Bing Satellite imageryto map:

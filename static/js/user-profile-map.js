@@ -1,5 +1,7 @@
 // Initialize the map
-var map = L.map('user-profile-map').setView([52.4814, -3.9797], 8);
+var initialView = [52.4814, -3.9797];
+var initialZoom = 8;
+var map = L.map('user-profile-map').setView(initialView, initialZoom);
 
 // Base Map Layer: OpenStreetMap
 var openStreetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -71,6 +73,16 @@ function displayRecordDetails(record) {
     $('#record-created-on').text(record.created_on);
     $('#record-prn').text(record.prn);
 }
+
+// Reset map view to initial state
+// Credit: https://github.com/drustack/Leaflet.ResetView
+L.control.resetView({
+    position: "topleft",
+    title: "Reset view",
+    latlng: L.latLng([52.4814, -3.9797]),
+    zoom: 8,
+}).addTo(map);
+
 
 // Layer control to toggle between layers
 var baseMaps = {
