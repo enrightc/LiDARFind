@@ -64,7 +64,7 @@ function userRecords(data) {
 }
 
 function displayRecordDetails(record) {
-    // Populate the display with record data
+    // Populate the site details display box with record data
     $('#record-title').text(record.title);
     $('#record-period').text(record.period);
     $('#record-monument-type').text(record.monument_type);
