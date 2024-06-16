@@ -2,7 +2,7 @@
 
 {% block content%}
 
-    <h3 class="center-align">Register</h3>>
+    <h3 class="center-align">Register</h3>
     
     <div class="row">
         <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
@@ -10,35 +10,35 @@
                 <div class="row">
                     <!-- Username -->
                     <div class="input-field col s12">
-                        <i class="fa-solid fa-user prefix"></i>
+                        <i class="fa-solid fa-user prefix" aria-hidden="true"></i>
                         <input id="username" name="username" type="text" minlength="5"
-                            maxlength="15" pattern="^[a-zA-Z0-9{5,15}]$" class="validate" required>
+                            maxlength="15" pattern="^[a-zA-Z0-9{5,15}]$" class="validate" required aria-label="Username">
                         <label for="username">Username</label>
                     </div>
                 </div>
                 <!-- Password -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fas fa-user-lock prefix"></i>
+                        <i class="fas fa-user-lock prefix" aria-hidden="true"></i>
                         <input id="password" name="password" type="password" minlength="5" maxlength="15" 
-                            pattern="^[a-zA-Z0-9{5,15}]$" class="validate" required>
+                            pattern="^[a-zA-Z0-9{5,15}]$" class="validate" required aria-label="Password">
                         <label for="password">Password</label>
                     </div>
                 </div>
                 <!-- Confirm Password -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fas fa-user-lock prefix"></i>
+                        <i class="fas fa-user-lock prefix" aria-hidden="true"></i>
                         <input id="confirm_password" name="confirm_password" type="password" minlength="5" maxlength="15"
-                            pattern="^[a-zA-Z0-9{5,15}]$" class="validate" required>
+                            pattern="^[a-zA-Z0-9{5,15}]$" class="validate" required aria-label="Confirm Password">
                         <label for="confirm_password">Confirm Password</label>
                     </div>
                 </div>
                 <!-- Skill -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="fa-solid fa-user-tag prefix"></i>
-                        <select id="skill_level" name="skill_level" class="validate" required>
+                        <i class="fa-solid fa-user-tag prefix" aria-hidden="true"></i>
+                        <select id="skill_level" name="skill_level" class="validate" required aria-label="Skill Level">
                             <option value="" disabled selected>Select Skill Level</option>
                             <option value="novice_explorer">Novice Explorer</option>
                             <option value="amateur_archaeologist">Amateur Archaeologist</option>
@@ -49,8 +49,8 @@
                 </div>
                 <!-- Register -->
                 <div class="row">
-                    <button type="submit" class="col s12 btn-large">
-                        Register <i class="fas fa-sign-in-alt"></i>
+                    <button type="submit" class="col s12 btn-large" aria-label="Register">
+                        Register <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
                     </button> 
                 </div>
             </div>
@@ -59,7 +59,7 @@
 
     <div class="row">
         <div class="col s12 center-align">
-            <a href="{{ url_for('login') }}" class="">Already Registered? Log in here.<a/>
+            <a href="{{ url_for('login') }}" aria-label="Already Registered? Log in here.">Already Registered? Log in here.<a/>
         </div>
     </div>
     
