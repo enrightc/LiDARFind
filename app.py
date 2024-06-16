@@ -138,6 +138,9 @@ def fetch_user_records():
     
     Returns:
         JSON: A list of location coordinates for records created by the user.
+
+    Credit:
+        - Adapted from https://github.com/isntlee/Sagacity/blob/master/app.py
     """
     # Retrieve the username from the session
     username = session.get("user")
@@ -146,6 +149,7 @@ def fetch_user_records():
     user_records = list(mongo.db.records.find({'created_by': username}))
 
     # Convert ObjectId to string for JSON serialization
+    # # Credit: https://stackoverflow.com/questions/16586180/typeerror-objectid-is-not-json-serializable
     for record in user_records:
         record["_id"] = str(record["_id"])
 
