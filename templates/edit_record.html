@@ -14,7 +14,7 @@
         <div class="col s3">
             
             <div class="row">
-                <form class="col s12" method="POST" action="{{ url_for('edit_record') }}">
+                <form class="col s12" method="POST" action="{{ url_for('edit_record', record_id=record._id) }}">
                     <!-- Title -->
                     <div class="row">
                         <div class="input-field col s12">
@@ -80,23 +80,6 @@
                         <label for="location"></label>
                         </div>
                     </div>
-                    <!-- Date Created -->
-                    <div class="row">
-                        <div class="input-field col s12">
-                        <input id="created_on" name="created_on" minlength="5" maxlength="50"
-                                type="text" class="validate"
-                                    readonly>
-                        <label for="created_on">Created on</label>
-                        </div>
-                    </div>
-                    <!-- Submit Button -->
-                    <div class="row">
-                        <div class="col s12 center-align">
-                            <button type="submit" class="btn-large">
-                                Create Record
-                            </button>
-                        </div>  
-                     </div>   
                 </form>
             </div>
         </div> 
