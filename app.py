@@ -2,13 +2,14 @@ import os
 from flask import (
     Flask, flash, render_template, 
     redirect, request, session, url_for,
-    jsonify,)
+    jsonify,
+)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+
 if os.path.exists("env.py"): 
     import env
-
 
 app = Flask(__name__)
 
@@ -21,20 +22,21 @@ mongo = PyMongo(app)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    '''
+    """
     Handle the user registration process.
     - If the request method is POST, check if the username already exists in the database.
     - If the username exists, flash a message and redirect to the register page.
     - If the username does not exist, hash the password and confirm_password, 
-        and insert the new user data into the database.
+      and insert the new user data into the database.
     - Store the new user's username in the session cookie and flash a message indicating successful 
-        registration.
+      registration.
     - Render the register template.
-    '''
+    """
     if request.method == "POST":
-        # check if username already exists in db
+        # Check if username already exists in db
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username").lower()}
+        )
 
         if existing_user:
             flash("Username already exists")
@@ -48,7 +50,7 @@ def register():
         }
         mongo.db.users.insert_one(register)
 
-        # put the new user into "session" cookie
+        # Put the new user into "session" cookie
         session["user"] = request.form.get("username").lower()
         flash("Registration Complete")
         return redirect(url_for("profile", username=session["user"]))
@@ -57,7 +59,7 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    '''
+    """
     Handle user login.
     If the request method is POST, verify the user's credentials.
     - Check if the username exists in the database.
@@ -66,56 +68,61 @@ def login():
     - If the password is incorrect, flash an error message and redirect to the login page.
     - If the username does not exist, flash an error message and redirect to the login page.
     Render the login template for GET requests.
-    '''
+    """
     if request.method == "POST":
-        # check if username exists in db
+        # Check if username exists in db
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+            {"username": request.form.get("username").lower()}
+        )
 
         if existing_user:
-            # ensure hashed password matches user input
+            # Ensure hashed password matches user input
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get(
-                        "username").lower()
-                    flash("Welcome back, {}".format(
-                        request.form.get("username")))
-                    return redirect(url_for(
-                        "profile", username=session["user"]))
+                existing_user["password"], request.form.get("password")
+            ):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome back, {}".format(request.form.get("username")))
+                return redirect(url_for("profile", username=session["user"]))
             else:
                 # Incorrect password
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
 
         else:
-            # username doesn't exist
+            # Username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
 
     return render_template("login.html")
 
 
-@app.route("/profile <username>", methods=["GET", "POST"])
+@app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
-    '''
+    """
     Display the user's profile page.
     Retrieve the username from the session and query the 
         database to get the user's information.
     - The route accepts the username as a URL parameter.
     - The username is retrieved from the session to ensure 
         it matches the logged-in user.
-    - Render the profile template with the retrieved username.
+    - Render the profile template with the retrieved username and user records.
+    
     Args:
     username (str): The username of the user whose profile is being accessed.
+    
     Returns:
     - Renders the profile.html template with the username context variable.
-    '''
+    """
     # Retrieve the session user's name from the db
     username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
+        {"username": session["user"]}
+    )["username"]
+    
+    # Retrieve the user's records from the database
+    user_records = list(mongo.db.records.find({"created_by": username}))
 
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("profile.html", username=username, records=user_records)
 
     return redirect(url_for("login"))
 
@@ -128,7 +135,7 @@ def fetch_user_records():
     - Queries the MongoDB collection to find records created by the user.
     - Extracts the location data from each record.
     - Returns the location data as JSON.
-    - Adapted from https://github.com/isntlee/Sagacity/blob/master/app.py
+    
     Returns:
         JSON: A list of location coordinates for records created by the user.
     """
@@ -139,7 +146,6 @@ def fetch_user_records():
     user_records = list(mongo.db.records.find({'created_by': username}))
 
     # Convert ObjectId to string for JSON serialization
-    # Credit: https://stackoverflow.com/questions/16586180/typeerror-objectid-is-not-json-serializable
     for record in user_records:
         record["_id"] = str(record["_id"])
 
@@ -149,12 +155,12 @@ def fetch_user_records():
 
 @app.route("/logout")
 def logout():
-    '''
+    """
     Handle user logout.
     Remove the user from the session cookies, flash a logout message, 
     and redirect the user to the login page.
-    '''
-    # remove user from the session cookies
+    """
+    # Remove user from the session cookies
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
@@ -162,17 +168,17 @@ def logout():
 
 @app.route("/")
 def home():
-    '''
+    """
     Renders home page template
-    '''
+    """
     return render_template("index.html")
     
 
 @app.route("/add_record", methods=["GET", "POST"])
 def add_record():
-    '''
+    """
     Function to add a new site record
-    '''
+    """
     if request.method == "POST":
         record = {
             "title": request.form.get("title"),
@@ -274,9 +280,9 @@ def edit_record(record_id):
 
 @app.route("/delete_record/<record_id>")
 def delete_record(record_id):
-    '''
+    """
     Function to delete a record by _id
-    '''
+    """
     mongo.db.records.delete_one({"_id": ObjectId(record_id)})
     flash("Recorded Deleted")
     return redirect(url_for("profile", username=session["user"]))
