@@ -1,62 +1,36 @@
-#mapid { 
-    height: 100vh;
- } 
-
- #user-profile-map { 
-    height: 500px;
-    width: 100%;
- } 
-
- #edit-record-map { 
-    height: 90vh;
- } 
-
- /*
- /* ----------------------------------------------------- CSS to override materialize and display radio buttons and checkboxes for overlay layers are displayed */
-/* Specific styles for base map radio buttons 
-.leaflet-control-layers-base input[type="radio"] {
-    position: relative;
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* Specific styles for overlay checkboxes 
-.leaflet-control-layers-overlays input[type="checkbox"] {
-    position: relative;
-    opacity: 1;
-    pointer-events: auto;
-}
-*/
-
+ /* General --------------------------- */
+/* Flash messages */
 .flashes {
     line-height: 2;
 }
 
-.leaflet-popup-content button {
-    display: inline-block;
-    margin-top: 5px;
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.leaflet-popup-content button:hover {
-    background-color: #0056b3;
-}
-
- /* Buttons--------------------------- */
- .btn-small {
+/* Buttons */
+.btn-small {
     margin: 5px;
- }
+}
 
-  /* User profile page--------------------------- */
-  .hidden{
-    display: none;
-  }
+/* Map Containers----------------------- */
+#mapid { 
+    height: 100vh;
+} 
 
-  .hide{
+#user-profile-map { 
+    height: 500px;
+    width: 100%;
+} 
+
+#edit-record-map { 
+    height: 90vh;
+} 
+
+/* User profile page --------------------- */
+.hidden {
     display: none;
-  }
+}
+
+.hide {
+    display: none;
+}
+
+
+
