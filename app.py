@@ -113,6 +113,7 @@ def profile(username):
     # Retrieve the session user's name from the db
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+
     if session["user"]:
         return render_template("profile.html", username=username)
 
@@ -269,6 +270,16 @@ def edit_record(record_id):
     monument_types = [monument['monument_type'] for monument in site['monument_types']] 
 
     return render_template("edit_record.html", record=record, site_types=site_types, periods=periods, monument_types=monument_types)
+
+
+@app.route("/delete_record/<record_id>")
+def delete_record(record_id):
+    '''
+    Function to delete a record by _id
+    '''
+    mongo.db.records.delete_one({"_id": ObjectId(record_id)})
+    flash("Recorded Deleted")
+    return redirect(url_for("profile", username=session["user"]))
 
 
 if __name__ == "__main__":

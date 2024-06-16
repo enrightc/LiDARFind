@@ -77,6 +77,8 @@ function displayRecordDetails(record) {
     // Set the value of the href and append the record._id to the URL string.
     $('.edit-button').attr('href', `/edit_record/${record._id}`);
 
+    // Set the href for the delete button
+    $('.delete-button').attr('href', `/delete_record/${record._id}`);
     
     $('.hidden').removeClass('hidden');
     $('.hide-on-click').addClass('hide');
