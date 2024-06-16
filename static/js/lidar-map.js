@@ -1,4 +1,6 @@
-// Initialize the map on create record page
+// Credit: https://leafletjs.com/
+
+// Initialize the map on the create record page
 var map = L.map('mapid').setView([52.4814, -3.9797], 8);
 
 // Base Map Layer: OpenStreetMap
@@ -19,19 +21,11 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", { // B
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
 });
 
-// Marker at Swansea
-var marker = L.marker([51.62144, -3.943645]).addTo(map);
-marker.bindPopup("<b>Hello Swansea!</b>").openPopup();
-
-// Add click event listener to the Swansea marker
-marker.on('click', function() {
-    map.setView(marker.getLatLng(), 8); // Zoom to level 8 and center on the marker
-});
 
 // Variable to store the current marker
 let currentMarker = null;
 
-// Add event listener to map to retreieve coordinates and populate input field on form---------------------------------------------
+// Add event listener to the map to retrieve coordinates and populate input field on form
 map.on('click', function(e) {
     // Get the clicked coordinates
     const coords = e.latlng;
@@ -39,23 +33,20 @@ map.on('click', function(e) {
     // Update the input field with the coordinates
     document.getElementById('location').value = `${coords.lat}, ${coords.lng}`;
 
-    // Check to see if there is an existing marker stored in 'current' marker variable. if there is a marker it calls removelayer. 
+    // Check if there is an existing marker and remove it
     if (currentMarker) {
         map.removeLayer(currentMarker);
     }
 
-    // Create a new marker at the clicked coordinates and assigns it to currentmarker and updates the coords. 
+    // Create a new marker at the clicked coordinates
     currentMarker = L.marker(coords).addTo(map);
 
-    
-    // Adapated from https://developers.google.com/maps/documentation/javascript/examples/event-simple
-    //  When the marker is clicked the map will be centred on the markers location and the zoom set to 14.
+    // When the marker is clicked, center the map on the marker's location and zoom to level 14
+    // Adapted from https://developers.google.com/maps/documentation/javascript/examples/event-simple
     currentMarker.on('click', function() {
         map.setView(currentMarker.getLatLng(), 14); // Zoom to level 14 and center on the new marker
     });
 });
-
-
 
 // Layer control to toggle between layers
 var baseMaps = {
@@ -67,4 +58,5 @@ var overlayMaps = {
     "LiDAR Data": wmsLayer
 };
 
+// Add layer control to the map
 L.control.layers(baseMaps, overlayMaps).addTo(map);
