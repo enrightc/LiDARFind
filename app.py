@@ -135,9 +135,9 @@ def fetch_user_records():
     - Queries the MongoDB collection to find records created by the user.
     - Extracts the location data from each record.
     - Returns the location data as JSON.
-    
+
     Returns:
-        JSON: A list of location coordinates for records created by the user.
+        JSON: A list of location coordinates for all records and user-specific records.
 
     Credit:
         - Adapted from https://github.com/isntlee/Sagacity/blob/master/app.py
@@ -145,18 +145,21 @@ def fetch_user_records():
     # Retrieve the username from the session
     username = session.get("user")
 
-    # Retrieve the user's records from the MongoDB collection and store in a list
+    # Retrieve all records and user-specific records from the MongoDB collection
+    all_records = list(mongo.db.records.find())
     user_records = list(mongo.db.records.find({'created_by': username}))
 
     # Convert ObjectId to string for JSON serialization
-    # # Credit: https://stackoverflow.com/questions/16586180/typeerror-objectid-is-not-json-serializable
+    for record in all_records:
+        record["_id"] = str(record["_id"])
+
     for record in user_records:
         record["_id"] = str(record["_id"])
 
     # Return the location data as JSON
-    return jsonify(user_records)
-    
+    return jsonify({"all_records": all_records, "user_records": user_records})
 
+    
 @app.route("/logout")
 def logout():
     """
