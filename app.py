@@ -214,16 +214,37 @@ def get_monument_types():
 
 
 @app.route("/edit_record/<record_id>", methods=["GET", "POST"])
-def edit_record(record_id):  
-    # gets the record from the database based on record_id.  
-    record = mongo.db.records.find_one({"_id": ObjectId(record_id)})
+def edit_record(record_id):
+    """
+    Handle the editing of a record.
     
-    # handle post request when the user submits the edited record form and creates a new dictionary.
-    # uses update_one methid to uodate the record in MongoDB with the new values.
-    # The {"_id": ObjectId(record_id)} specifies which document is to be updated.
-    # {"$set": updated_record} sets the new values for the document.
-    # Adapted from: https://github.com/emmahewson/mp3-swimmon/blob/main/app.py
+    This route retrieves an existing record from the database for editing and handles the form submission 
+    to update the record in the database. It also populates the edit form with the current data from the 
+    record and fetches the relevant options for site types, monument types, and periods from the database.
 
+    Args:
+        record_id (str): The unique identifier of the record to be edited.
+
+    Methods:
+        GET:
+            - Retrieve the record based on the provided record_id.
+            - Fetch the site types and periods from the database to populate the dropdown options in the form.
+            - Determine the relevant monument types for the selected site type.
+            - Render the edit_record.html template with the current data and dropdown options.
+        
+        POST:
+            - Handle the form submission to update the record.
+            - Retrieve form data and update the record in the database.
+            - Flash a success message and redirect to the user's profile page.
+
+    Returns:
+        Template: Renders the edit_record.html template on GET request.
+        Redirect: Redirects to the profile page on successful POST request.
+    """
+    # Get the record from the database based on record_id.
+    record = mongo.db.records.find_one({"_id": ObjectId(record_id)})
+
+    # Handle post request when the user submits the edited record form
     if request.method == "POST":
         updated_record = {
             "title": request.form.get("title"),
@@ -237,10 +258,17 @@ def edit_record(record_id):
         mongo.db.records.update_one({"_id": ObjectId(record_id)}, {"$set": updated_record})
         flash("Record Updated")
         return redirect(url_for("profile", username=session["user"]))
-    
-    site_types = mongo.db.site_types.find().sort("site_type", 1)
-    periods = mongo.db.periods.find()
-    return render_template("edit_record.html", record=record, site_types=site_types, periods=periods)
+
+    # Retrieve site types and periods from the database
+    site_types = list(mongo.db.site_types.find().sort("site_type", 1))
+    periods = list(mongo.db.periods.find())
+
+    # Retrieve monument types for the selected site type
+    selected_site_type = record['site_type']
+    site = mongo.db.site_types.find_one({"site_type": selected_site_type})
+    monument_types = [monument['monument_type'] for monument in site['monument_types']] 
+
+    return render_template("edit_record.html", record=record, site_types=site_types, periods=periods, monument_types=monument_types)
 
 
 if __name__ == "__main__":
