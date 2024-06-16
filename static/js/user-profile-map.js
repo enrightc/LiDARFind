@@ -73,6 +73,11 @@ function displayRecordDetails(record) {
     $('#record-created-on').text(record.created_on);
     $('#record-prn').text(record.prn);
 
+    // Set the href for the edit button
+    // Set the value of the href and append the record._id to the URL string.
+    $('.edit-button').attr('href', `/edit_record/${record._id}`);
+
+    
     $('.hidden').removeClass('hidden');
     $('.hide-on-click').addClass('hide');
 }
