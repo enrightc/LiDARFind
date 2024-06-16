@@ -5,107 +5,119 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/> 
-    {% endblock %}
+{% endblock %}
 
-    {% block content %} 
-    <h1> Edit Record</h1>
-    <div class="row">
-        <!-- Recording Form -->
-        <div class="col s3">
-            
-            <div class="row">
-                <form class="col s12" method="POST" action="{{ url_for('edit_record', record_id=record._id) }}">
-                    <!-- Title -->
-                    <div class="row">
-                        <div class="input-field col s12">
+{% block content %} 
+<h1>Edit Record</h1>
+<div class="row">
+    <!-- Recording Form -->
+    <div class="col s3">
+        <div class="row">
+            <form class="col s12" method="POST" action="{{ url_for('edit_record', record_id=record._id) }}">
+                <!-- Title -->
+                <div class="row">
+                    <div class="input-field col s12">
                         <input id="title" name="title" minlength="5" maxlength="50"
-                                type="text" class="validate" required>
-                        <label for="title">Title</label>
-                        </div>
+                               type="text" class="validate" required value="{{ record.title }}">
+                        <label for="title" class="active">Title</label>
                     </div>
-                    <!-- PRN -->
-                    <div class="row">
-                        <div class="input-field col s12">
+                </div>
+                <!-- PRN -->
+                <div class="row">
+                    <div class="input-field col s12">
                         <input id="prn" name="prn" minlength="2" maxlength="8"
-                                type="number" class="validate">
-                        <label for="prn">PRN (if known)</label>
-                        </div>
+                               type="number" class="validate" value="{{ record.prn }}">
+                        <label for="prn" class="active">PRN (if known)</label>
                     </div>
-                    <!-- Site Type -->
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <select id="site_type" name="site_type" class="validate" required>
-                                <option value="" disabled selected>Select site type</option>
-                                {% for site_type in site_types %}
+                </div>
+                <!-- Site Type -->
+                <!-- Adapted from: https://github.com/emmahewson/mp3-swimmon/blob/main/templates/edit-event.html -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="site_type" name="site_type" class="validate" required>
+                            <option value="" disabled>Select site type</option>
+                            {% for site_type in site_types %}
+                                {% if site_type.site_type == record.site_type %}
+                                    <option value="{{ site_type.site_type }}" selected>{{ site_type.site_type }}</option>
+                                {% else %}
                                     <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
-                                {% endfor %}
-                            </select>
-                            <label for="site_type">Site type</label>
-                        </div>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <label for="site_type" class="active">Site type</label>
                     </div>
-                     <!-- Monument Type -->
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <select id="monument_type" name="monument_type" class="validate" required disabled>
-                                <option value=""  disabled selected>Select monument type</option>
-                            </select>
-                            <label for="monument_type">monument type</label>
-                        </div>
+                </div>
+                <!-- Monument Type -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="monument_type" name="monument_type" class="validate" required>
+                            <option value="" disabled>Select monument type</option>
+                            {% for monument_type in monument_types %}
+                                {% if monument_type == record.monument_type %}
+                                    <option value="{{ monument_type }}" selected>{{ monument_type }}</option>
+                                {% else %}
+                                    <option value="{{ monument_type }}">{{ monument_type }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <label for="monument_type" class="active">Monument type</label>
                     </div>
-                    <!-- Interpretation -->
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="interpretation" name="interpretation" minlegnth="5"
-                                maxlength="200" class="materialize-textarea" required></textarea>
-                            <label for="interpretation">Interpretation</label>
-                        </div>
+                </div>
+                <!-- Interpretation -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="interpretation" name="interpretation" minlength="5"
+                                  maxlength="200" class="materialize-textarea" required>{{ record.interpretation }}</textarea>
+                        <label for="interpretation" class="active">Interpretation</label>
                     </div>
-                    <!-- Period -->
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <select id="period" name="period" class="validate" required>
-                                <option value="" disabled selected>Select Period</option>
-                                {% for period in periods %}
+                </div>
+                <!-- Period -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="period" name="period" class="validate" required>
+                            <option value="" disabled>Select Period</option>
+                            {% for period in periods %}
+                                {% if period.period_name == record.period %}
+                                    <option value="{{ period.period_name }}" selected>{{ period.period_name }}</option>
+                                {% else %}
                                     <option value="{{ period.period_name }}">{{ period.period_name }}</option>
-                                {% endfor %}
-                            </select>
-                            <label for="period">Period</label>
-                        </div>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <label for="period" class="active">Period</label>
                     </div>
-                    <!-- Location -->
-                    <div class="row">
-                        <div class="input-field col s12">
+                </div>
+                <!-- Location -->
+                <div class="row">
+                    <div class="input-field col s12">
                         <input id="location" name="location" minlength="5" maxlength="50"
-                                type="text" class="validate" required readonly>
-                        <label for="location"></label>
-                        </div>
+                               type="text" class="validate" required value="{{ record.location }}" readonly>
+                        <label for="location" class="active">Location</label>
                     </div>
-                    <!-- Submit Button -->
-                    <div class="row">
-                        <div class="col s12 center-align">
-                            <button type="submit" class="btn-large">
-                                Save Changes
-                            </button>
-                        </div>  
-                     </div>   
-                </form>
-            </div>
-        </div> 
-
-
-        <!-- Map Window -->
-        <div class="col s9">
-            <div id="mapid"></div>
+                </div>
+                <!-- Submit Button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large">
+                            Save Changes
+                        </button>
+                    </div>  
+                </div>   
+            </form>
         </div>
+    </div> 
+
+    <!-- Map Window -->
+    <div class="col s9">
+        <div id="mapid"></div>
     </div>
-
-    {% endblock %}
+</div>
+{% endblock %}
         
-    {% block scripts %}
-        <!-- Leaflet -->
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
-        <script src="{{ url_for('static', filename='js/bing.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/lidar-map.js') }}"></script>
-    {% endblock %}
-
+{% block scripts %}
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+    <script src="{{ url_for('static', filename='js/bing.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/lidar-map.js') }}"></script>
+{% endblock %}
