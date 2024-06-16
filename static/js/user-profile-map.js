@@ -1,4 +1,4 @@
-// Initialize the map
+// Initialize the map with initial view and zoom level
 var initialView = [52.4814, -3.9797];
 var initialZoom = 8;
 var map = L.map('user-profile-map').setView(initialView, initialZoom);
@@ -9,19 +9,20 @@ var openStreetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png'
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-// Bing Maps Satellite Layer (commented out)
-
+// Bing Maps Satellite Layer 
+// Uncomment the following lines to add Bing Maps Satellite Layer
+/*
 var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8oCT-n-CeUQLRutNJJXLhpY', {
     type: 'Aerial'  // Use 'AerialWithLabels' if you want satellite images with labels
 });
-
+*/
 
 // Adding the WMS layer for LiDAR DSM (hillshade) data
-var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", { // Base URL to the OWS endpoint
+var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
 });
 
-// Fetch user locations 
+// Fetch locations for user's records
 // Adapted from: https://github.com/isntlee/Sagacity/blob/master/templates/home.html
 fetch("/fetch_user_records")
     .then(response => response.json())
@@ -29,8 +30,10 @@ fetch("/fetch_user_records")
         userRecords(data);
     });
 
+/**
+ * Function to process user records and add markers to the map
+ */
 function userRecords(data) {
-    // Iterate through the user records and extract location data
     data.forEach(record => {
         const location = record.location;  // Assuming location is a string "lat,lng"
         const [lat, lng] = location.split(',').map(parseFloat);
@@ -44,7 +47,7 @@ function userRecords(data) {
         `;
 
         // Credit: https://gis.stackexchange.com/questions/31951/showing-popup-on-mouse-over-not-on-click-using-leaflet
-        marker.bindPopup("Popup content");
+        marker.bindPopup(popupContent);
         marker.on('mouseover', function (e) {
             this.openPopup();
         });
@@ -52,19 +55,18 @@ function userRecords(data) {
             this.closePopup();
         });
 
-        // Bind the popup to the marker
-        marker.bindPopup(popupContent);
-
-        // Add click event listener to each marker
-        marker.on('click', function() {
-            map.setView(marker.getLatLng(), 14); // Zoom to level 14 and center on the marker;
-            displayRecordDetails(record)
+        // Add click event listener to each marker to display record details
+        marker.on('click', function () {
+            map.setView(marker.getLatLng(), 14);  // Zoom to level 14 and center on the marker
+            displayRecordDetails(record);
         });
     });
 }
 
+/**
+ * Function to display record details in the site details display box
+ */
 function displayRecordDetails(record) {
-    // Populate the site details display box with record data
     $('#record-title').text(record.title);
     $('#record-period').text(record.period);
     $('#record-monument-type').text(record.monument_type);
@@ -74,12 +76,12 @@ function displayRecordDetails(record) {
     $('#record-prn').text(record.prn);
 
     // Set the href for the edit button
-    // Set the value of the href and append the record._id to the URL string.
     $('.edit-button').attr('href', `/edit_record/${record._id}`);
 
     // Set the href for the delete button
     $('.delete-button').attr('href', `/delete_record/${record._id}`);
-    
+
+    // Show the site details display box and hide the instruction
     $('.hidden').removeClass('hidden');
     $('.hide-on-click').addClass('hide');
 }
@@ -93,16 +95,16 @@ L.control.resetView({
     zoom: 8,
 }).addTo(map);
 
-// Add event listener to reset the map view from site details display box.
-$('#reset-map-view').on('click', function() {
+// Add event listener to reset the map view from site details display box
+$('#reset-map-view').on('click', function () {
     map.setView(initialView, initialZoom);
 });
-
 
 // Layer control to toggle between layers
 var baseMaps = {
     "OpenStreetMap": openStreetMap,
-    "Bing Satellite": bingSatellite
+    // Uncomment the following line to add Bing Satellite layer to the layer control
+    // "Bing Satellite": bingSatellite
 };
 
 var overlayMaps = {
