@@ -144,7 +144,7 @@ def fetch_user_records():
 
     # Return the location data as JSON
     return jsonify(user_records)
-
+    
 
 @app.route("/logout")
 def logout():
@@ -214,13 +214,33 @@ def get_monument_types():
 
 
 @app.route("/edit_record/<record_id>", methods=["GET", "POST"])
-def edit_record(record_id):      
+def edit_record(record_id):  
+    # gets the record from the database based on record_id.  
     record = mongo.db.records.find_one({"_id": ObjectId(record_id)})
+    
+    # handle post request when the user submits the edited record form and creates a new dictionary.
+    # uses update_one methid to uodate the record in MongoDB with the new values.
+    # The {"_id": ObjectId(record_id)} specifies which document is to be updated.
+    # {"$set": updated_record} sets the new values for the document.
+    # Adapted from: https://github.com/emmahewson/mp3-swimmon/blob/main/app.py
+
+    if request.method == "POST":
+        updated_record = {
+            "title": request.form.get("title"),
+            "prn": request.form.get("prn"),
+            "site_type": request.form.get("site_type"),
+            "monument_type": request.form.get("monument_type"),
+            "interpretation": request.form.get("interpretation"),
+            "period": request.form.get("period"),
+            "location": request.form.get("location")
+        }
+        mongo.db.records.update_one({"_id": ObjectId(record_id)}, {"$set": updated_record})
+        flash("Record Updated")
+        return redirect(url_for("profile", username=session["user"]))
     
     site_types = mongo.db.site_types.find().sort("site_type", 1)
     periods = mongo.db.periods.find()
-    return render_template(
-        "edit_record.html",record.record, site_types=site_types, periods=periods)
+    return render_template("edit_record.html", record=record, site_types=site_types, periods=periods)
 
 
 if __name__ == "__main__":
