@@ -7,6 +7,10 @@
     width: 100%;
  } 
 
+ #edit-record-map { 
+    height: 90vh;
+ } 
+
  /*
  /* ----------------------------------------------------- CSS to override materialize and display radio buttons and checkboxes for overlay layers are displayed */
 /* Specific styles for base map radio buttons 

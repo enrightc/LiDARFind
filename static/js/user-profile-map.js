@@ -10,11 +10,11 @@ var openStreetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 }).addTo(map);
 
 // Bing Maps Satellite Layer (commented out)
-/*
+
 var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8oCT-n-CeUQLRutNJJXLhpY', {
     type: 'Aerial'  // Use 'AerialWithLabels' if you want satellite images with labels
 });
-*/
+
 
 // Adding the WMS layer for LiDAR DSM (hillshade) data
 var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", { // Base URL to the OWS endpoint
