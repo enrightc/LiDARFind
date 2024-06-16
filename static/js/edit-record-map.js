@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Get the record location 
+    // Get the existing location from the record
     const recordLocation = document.getElementById('location').value;
     const [lat, lng] = recordLocation.split(',').map(parseFloat);
 
@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", function() {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
-// Bing Maps Satellite Layer 
-/*
-var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8oCT-n-CeUQLRutNJJXLhpY', {
-    type: 'Aerial'  // Use 'AerialWithLabels' if you want satellite images with labels
-});
-*/
-   
+    //Bing Maps Satellite Layer
+    /*
+    var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8oCT-n-CeUQLRutNJJXLhpY', {
+        type: 'Aerial'  // Use 'AerialWithLabels' if you want satellite images with labels
+    });
+    */
+
     // Adding the WMS layer for LiDAR DSM (hillshade) data
     var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
         layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
@@ -46,15 +46,16 @@ var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8o
         currentMarker = L.marker(coords).addTo(map);
     });
 
-// Layer control to toggle between layers
-var baseMaps = {
-    "OpenStreetMap": openStreetMap,
-    "Bing Satellite": bingSatellite
-};
+    // Layer control to toggle between base maps and overlays
+    var baseMaps = {
+        "OpenStreetMap": openStreetMap,
+        // Uncomment the following line if using Bing Satellite
+        // "Bing Satellite": bingSatellite
+    };
 
-var overlayMaps = {
-    "LiDAR Data": wmsLayer
-};
+    var overlayMaps = {
+        "LiDAR Data": wmsLayer
+    };
 
     L.control.layers(baseMaps, overlayMaps).addTo(map);
 });
