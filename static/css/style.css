@@ -1,5 +1,12 @@
  /* General --------------------------- */
 /* Flash messages */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+
 .flashes {
     line-height: 2;
 }
@@ -31,6 +38,5 @@
 .hide {
     display: none;
 }
-
 
 

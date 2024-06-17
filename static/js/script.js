@@ -4,6 +4,8 @@ $(document).ready(function() {
     $('select').formSelect();
     $('.modal').modal();
 
+   
+
     // Get the site type and monument type select elements by their IDs
     const siteTypeSelect = $('#site_type');
     const monumentTypeSelect = $('#monument_type');
@@ -39,3 +41,10 @@ $(document).ready(function() {
 });
 
 
+const menu_toggle = document.querySelector('.menu-toggle');
+		const sidebar = document.querySelector('.sidebar');
+
+		menu_toggle.addEventListener('click', () => {
+			menu_toggle.classList.toggle('is-active');
+			sidebar.classList.toggle('is-active');
+		});
