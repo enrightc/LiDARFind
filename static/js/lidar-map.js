@@ -14,6 +14,41 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
 });
 
+var sidebar = L.control.sidebar('sidebar', {
+    closeButton: true,
+    position: 'left'
+});
+map.addControl(sidebar);
+
+setTimeout(function () {
+    sidebar.show();
+}, 500);
+
+
+map.on('click', function () {
+    sidebar.hide();
+})
+
+sidebar.on('show', function () {
+    console.log('Sidebar will be visible.');
+});
+
+sidebar.on('shown', function () {
+    console.log('Sidebar is visible.');
+});
+
+sidebar.on('hide', function () {
+    console.log('Sidebar will be hidden.');
+});
+
+sidebar.on('hidden', function () {
+    console.log('Sidebar is hidden.');
+});
+
+L.DomEvent.on(sidebar.getCloseButton(), 'click', function () {
+    console.log('Close button clicked.');
+});
+
 // Fetch all records
 fetch("/fetch_user_records")
     .then(response => response.json())
