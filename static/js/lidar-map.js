@@ -20,34 +20,19 @@ var sidebar = L.control.sidebar('sidebar', {
 });
 map.addControl(sidebar);
 
-setTimeout(function () {
-    sidebar.show();
-}, 500);
 
+
+
+var sidebar = L.control.sidebar('sidebar', {
+    closeButton: true,
+    position: 'left'
+});
+map.addControl(sidebar);
 
 map.on('click', function () {
     sidebar.hide();
 })
 
-sidebar.on('show', function () {
-    console.log('Sidebar will be visible.');
-});
-
-sidebar.on('shown', function () {
-    console.log('Sidebar is visible.');
-});
-
-sidebar.on('hide', function () {
-    console.log('Sidebar will be hidden.');
-});
-
-sidebar.on('hidden', function () {
-    console.log('Sidebar is hidden.');
-});
-
-L.DomEvent.on(sidebar.getCloseButton(), 'click', function () {
-    console.log('Close button clicked.');
-});
 
 // Fetch all records
 fetch("/fetch_user_records")
@@ -72,6 +57,23 @@ function displayRecords(data) {
 
         // Bind the popup to the marker
         marker.bindPopup(popupContent);
+
+         // Add click event listener to the marker
+         // Adapted from: https://leafletjs.com/reference.html
+         marker.on('click', function () {
+            sidebar.setContent(`
+                <h2>${record.title}</h2>
+                <p><b>PRN:</b> ${record.prn}</p>
+                <p><b>Site Type:</b> ${record.site_type}</p>
+                <p><b>Monument Type:</b> ${record.monument_type}</p>
+                <p><b>Interpretation:</b> ${record.interpretation}</p>
+                <p><b>Period:</b> ${record.period}</p>
+                <p><b>Location:</b> ${record.location}</p>
+                <p><b>Created on:</b> ${record.created_on}</p>
+                <p><b>Created by:</b> ${record.created_by}</p>
+            `);
+            sidebar.show();
+        });
     });
 }
 
