@@ -9,6 +9,13 @@ var openStreetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png'
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+// Bing Maps Satellite Layer
+/*
+var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8oCT-n-CeUQLRutNJJXLhpY', {
+    type: 'Aerial'  // Use 'AerialWithLabels' if you want satellite images with labels
+});
+*/
+
 // Adding the WMS layer for LiDAR DSM (hillshade) data
 var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
@@ -21,15 +28,12 @@ var sidebar = L.control.sidebar('sidebar', {
 });
 map.addControl(sidebar);
 
-var sidebar = L.control.sidebar('sidebar', {
-    closeButton: true,
-    position: 'left'
-});
-map.addControl(sidebar);
-
 map.on('click', function () {
     sidebar.hide();
 })
+
+// Variable to store the current marker
+let currentMarker;
 
 
 // Fetch all records
@@ -84,15 +88,15 @@ function displayRecords(data) {
     });
 }
 
-// Variable to store the current marker
-let currentMarker;
 
 // Add click event listener to the map to place a new marker
 map.on('click', function(e) {
     var coords = e.latlng;
 
+    /*
     // Update the input field with the coordinates
     document.getElementById('location').value = `${coords.lat}, ${coords.lng}`;
+    */
 
     // Check if there is an existing marker and remove it
     if (currentMarker) {
@@ -104,7 +108,10 @@ map.on('click', function(e) {
 });
 
 var baseMaps = {
-    "OpenStreetMap": openStreetMap
+    "OpenStreetMap": openStreetMap,
+    /* uncomment if using 
+    "Bing Satellite": bingSatellite
+    */
 };
 
 var overlayMaps = {
