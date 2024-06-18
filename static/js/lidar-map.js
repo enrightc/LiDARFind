@@ -14,14 +14,12 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
 });
 
+// Sidebar
 var sidebar = L.control.sidebar('sidebar', {
     closeButton: true,
     position: 'left'
 });
 map.addControl(sidebar);
-
-
-
 
 var sidebar = L.control.sidebar('sidebar', {
     closeButton: true,
@@ -54,6 +52,15 @@ function displayRecords(data) {
             <b>Period:</b> ${record.period}<br>
             <b>Monument Type:</b> ${record.monument_type}
         `;
+
+        // Credit: https://gis.stackexchange.com/questions/31951/showing-popup-on-mouse-over-not-on-click-using-leaflet
+        marker.bindPopup("Popup content");
+        marker.on('mouseover', function (e) {
+            this.openPopup();
+        });
+        marker.on('mouseout', function (e) {
+            this.closePopup();
+        });
 
         // Bind the popup to the marker
         marker.bindPopup(popupContent);
