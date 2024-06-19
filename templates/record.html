@@ -8,17 +8,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="row">
-    <!-- Map Window -->
-    <div class="col s12">
-        <div id="mapid"></div>
-    </div>
-</div>
 
-<div id="sidebar">
-    <!-- Recording Form -->
-    <div class="col s3">
-        <div class="row">
+<div class="row">
+     <!-- Record Form -->
+     <div class="col s3">
+        <div id="record-form"></div>
             <form id="create-record-form" class="col s12" method="POST" action="{{ url_for('add_record') }}">
                 <!-- Title -->
                 <div class="row">
@@ -97,9 +91,18 @@
                     </div>
                 </div>
             </form>
-        </div>
+    </div>
+
+    <!-- Map Window -->
+    <div class="col s9">
+        <div id="mapid"></div>
     </div>
 </div>
+
+<div id="sidebar"></div>
+    
+        
+
 
 
 
