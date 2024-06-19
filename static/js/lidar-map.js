@@ -92,8 +92,13 @@ map.on('click', function(e) {
         map.removeLayer(currentMarker);
     }
 
+    // Update the input field with the coordinates
+    document.getElementById('location').value = `${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
+
     // Create a new marker at the clicked coordinates
     currentMarker = L.marker(coords).addTo(map);
+
+    sidebar.hide();
 });
 
 var baseMaps = {
