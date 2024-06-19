@@ -4,15 +4,19 @@
 <!-- Linking Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/L.Control.Sidebar.css') }}" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/L.Control.Sidebar.css') }}" />
 {% endblock %}
 
 {% block content %}
 
-<div class="row">
-     <!-- Record Form -->
-     <div class="col s3">
-        <div id="record-form"></div>
+<!-- Sidebar -->
+ <!-- Adapted from: https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_sidebar_shift -->
+<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+    <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+    <!-- Record Form -->
+    <div class="w3-bar-item">
+        <div id="record-form">
             <form id="create-record-form" class="col s12" method="POST" action="{{ url_for('add_record') }}">
                 <!-- Title -->
                 <div class="row">
@@ -91,20 +95,27 @@
                     </div>
                 </div>
             </form>
-    </div>
-
-    <!-- Map Window -->
-    <div class="col s9">
-        <div id="mapid"></div>
+        </div>
     </div>
 </div>
 
-<div id="sidebar"></div>
+<!-- Page Content -->
+<div id="main" style="margin-left:0">
+    <div class="w3-teal">
+        <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+        <div class="w3-container">
+            
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Map Window -->
+        <div class="col s12">
+            <div id="mapid"></div>
+        </div>
+    </div>
     
-        
-
-
-
+</div>
 
 {% endblock %}
 
@@ -116,4 +127,5 @@
 <script src="{{ url_for('static', filename='js/L.Control.Sidebar.js') }}"></script>
 <script src="{{ url_for('static', filename='js/lidar-map.js') }}"></script>
 
+</script>
 {% endblock %}
