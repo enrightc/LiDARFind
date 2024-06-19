@@ -28,13 +28,8 @@ var sidebar = L.control.sidebar('sidebar', {
 });
 map.addControl(sidebar);
 
-map.on('click', function () {
-    sidebar.hide();
-})
-
 // Variable to store the current marker
 let currentMarker;
-
 
 // Fetch all records
 fetch("/fetch_user_records")
@@ -88,15 +83,9 @@ function displayRecords(data) {
     });
 }
 
-
-// Add click event listener to the map to place a new marker
+// Add click event listener to the map to place a new marker and show sidebar
 map.on('click', function(e) {
     var coords = e.latlng;
-
-    /*
-    // Update the input field with the coordinates
-    document.getElementById('location').value = `${coords.lat}, ${coords.lng}`;
-    */
 
     // Check if there is an existing marker and remove it
     if (currentMarker) {
@@ -105,7 +94,24 @@ map.on('click', function(e) {
 
     // Create a new marker at the clicked coordinates
     currentMarker = L.marker(coords).addTo(map);
+
+    // Show the sidebar and set its content
+    sidebar.setContent(`
+        <h2>Create a New Record</h2>
+        <p>Do you want to create a record at this location?</p>
+        <p>Coordinates: ${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}</p>
+        <button onclick="createRecord(${coords.lat}, ${coords.lng})">Yes</button>
+        <button onclick="sidebar.hide()">No</button>
+    `);
+    sidebar.show();
 });
+
+// Function to handle record creation (you can define the logic here)
+function createRecord(lat, lng) {
+    // Implement the record creation logic here
+    console.log(`Creating record at ${lat}, ${lng}`);
+    sidebar.hide();
+}
 
 var baseMaps = {
     "OpenStreetMap": openStreetMap,
