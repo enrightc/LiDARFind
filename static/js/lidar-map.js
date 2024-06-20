@@ -21,6 +21,15 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
 })
 
+var crosshairIcon = L.icon({
+    iconUrl: 'static/images/crosshair.svg',
+     
+
+    iconSize:     [38, 95], // size of the icon
+    iconAnchor:   [19, 48], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
 // Variable to store the current marker
 let currentMarker;
 
@@ -41,22 +50,15 @@ function displayRecords(data) {
         // Create popup content
         var popupContent = `
             <b>Title:</b> ${record.title}<br>
+            <b>Site Type:</b> ${record.site_type}<br>
+            <b>Monument Type:</b> ${record.monument_type}<br>
+            <b>Interpretation Type:</b> ${record.interpretation}<br>
             <b>Period:</b> ${record.period}<br>
-            <b>Monument Type:</b> ${record.monument_type}
+            <b>Created by:</b> ${record.created_by}<br>
+            <b>Created on:</b> ${record.created_on}<br>
         `;
 
         marker.bindPopup(popupContent);
-
-        // Add click event listener to the marker
-        marker.on('click', function () {
-            console.log('Marker clicked:', record.title);
-            document.getElementById('main').style.marginLeft = "25%";
-            document.getElementById('mySidebar').style.width = "25%";
-            document.getElementById('mySidebar').style.display = "block";
-            document.getElementById('openNav').style.display = 'none';
-
-           
-        });
     });
 }
 
@@ -73,14 +75,7 @@ map.on('click', function (e) {
     document.getElementById('location').value = `${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
 
     // Create a new marker at the clicked coordinates
-    currentMarker = L.marker(coords).addTo(map);
-
-    // Open the form sidebar
-    // Adapted from: https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_sidebar_shift
-    document.getElementById('main').style.marginLeft = "25%";
-    document.getElementById('mySidebar').style.width = "25%";
-    document.getElementById('mySidebar').style.display = "block";
-    document.getElementById('openNav').style.display = 'none';
+    currentMarker = L.marker(coords, {icon: crosshairIcon}).addTo(map);
 });
 
 
