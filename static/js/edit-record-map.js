@@ -24,6 +24,13 @@ document.addEventListener("DOMContentLoaded", function() {
         layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
     });
 
+    var crosshairIcon = L.icon({
+        iconUrl: 'static/images/crosshair.svg',
+        iconSize:     [38, 95], // size of the icon
+        iconAnchor:   [19, 48], // point of the icon which will correspond to marker's location
+        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
     // Add the marker for the record being edited
     var marker = L.marker([lat, lng]).addTo(map);
 
@@ -35,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var coords = e.latlng;
 
         // Update the input field with the coordinates
-        document.getElementById('location').value = `${coords.lat}, ${coords.lng}`;
+        document.getElementById('location').value = `${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
 
         // Check if there is an existing marker and remove it
         if (currentMarker) {

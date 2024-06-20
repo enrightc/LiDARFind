@@ -51,6 +51,11 @@ function userRecords(data) {
         marker.on('click', function() {
             map.setView(marker.getLatLng(), 14); // Zoom to level 14 and center on the marker;
             displayRecordDetails(record);
+            // Adapted from: https://www.w3schools.com/w3css/w3css_sidebar.asp
+            document.getElementById("main").style.marginLeft = "25%";
+            document.getElementById("mySidebar").style.width = "25%";
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("openNav").style.display = 'none';
         });
     });
 }
@@ -70,9 +75,6 @@ function displayRecordDetails(record) {
 
     // Set the href for the delete button
     $('.delete-button').attr('href', `/delete_record/${record._id}`);
-    
-    $('.hidden').removeClass('hidden');
-    $('.hide-on-click').addClass('hide');
 }
 
 // Reset map view to initial state

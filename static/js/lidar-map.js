@@ -23,8 +23,6 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
 
 var crosshairIcon = L.icon({
     iconUrl: 'static/images/crosshair.svg',
-     
-
     iconSize:     [38, 95], // size of the icon
     iconAnchor:   [19, 48], // point of the icon which will correspond to marker's location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
