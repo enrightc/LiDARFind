@@ -104,6 +104,8 @@
                         <button type="submit" class="btn-large" aria-label="Save Changes">
                             Save Changes
                         </button>
+                        <a class="btn-large" href="{{ url_for('profile', username=session['user']) }}">Cancel</a>
+
                     </div>  
                 </div>   
             </form>
