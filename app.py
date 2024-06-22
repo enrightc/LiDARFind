@@ -202,8 +202,8 @@ def add_record():
         flash("New Record Created")
         return redirect(url_for("add_record"))
 
-    site_types = mongo.db.site_types.find().sort("site_type", 1)
-    periods = mongo.db.periods.find()
+    site_types = list(mongo.db.site_types.find().sort("site_type", 1))
+    periods = list(mongo.db.periods.find())
     return render_template(
         "record.html", site_types=site_types, periods=periods)
 
@@ -222,8 +222,8 @@ def get_monument_types():
     """
     selected_site_type = request.json.get('site_type')
     site = mongo.db.site_types.find_one({"site_type": selected_site_type})
-    monument_types = [monument['monument_type'] for monument in site[
-        'monument_types']] if site else []
+    monument_types = list([monument['monument_type'] for monument in site[
+        'monument_types']]) if site else []
     return jsonify(monument_types)
 
 

@@ -19,6 +19,18 @@
 
 **Outcome:** By excluding the _id field the application can successfully return the retrieved data as a JSON response without encountering errors related to the ObjectId type used by MongoDB for the _id field.
 
+### Data Fetching Issue with MongoDB Cursor
+
+**Issue** When fetching data from MongoDB and using it multiple times within the same template, the data did not render correctly. This issue arose because the data was retrieved as a cursor, which can only be iterated over once. After the first use, the cursor was exhausted, making the data unavailable for subsequent uses within the template. This problem particularly impacted the rendering of dropdown options on the record page, where the same data was needed for both the "Create Record" form and the search filters. As a result, the data was only available for the first use, and subsequent attempts to access it resulted in no data being rendered.
+
+**Solution** Convert the cursor to a list immediately after fetching the data. This ensures that the data is fully retrieved and can be used multiple times within the template.
+
+![Converting Cursor to List](readme-images/code-snippets/converting-cursor-list.png)
+
+**Outcome** The data can now be used in more than one dropdown, resolving the issue and ensuring consistent data rendering across the template.
+
+
+
 # Resources
 
 - For help overriding Materialize default CSS for checkboxes:
@@ -53,3 +65,6 @@
   - [Dynamically Populate Second Dropdownlist from a first dropdownlist using Jquery Ajax](https://www.youtube.com/watch?v=xgwsAHeZaX0) YobTube. created 9th August, 2021  [Accessed 8th June, 2024].
 
   - [How to display ajax get request data to html?](https://stackoverflow.com/questions/62048242/how-to-display-ajax-get-request-data-to-html) Stackoverflow. created 27th May, 2020 by Ian vincent.  [Accessed 5th June, 2024].
+
+- W3 Schools sidenav
+  - [Open the Sidebar Navigation Over a Part of the Content](https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_sidebar_over) W3 Schools. [Accessed 19th June, 2024].

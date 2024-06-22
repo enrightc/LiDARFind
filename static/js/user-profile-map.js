@@ -21,44 +21,50 @@ fetch("/fetch_user_records")
         userRecords(data.user_records);
     });
 
-function userRecords(data) {
-    // Iterate through user-specific records and add markers to the map
-    data.forEach(record => {
-        const location = record.location;  // Assuming location is a string "lat,lng"
-        const [lat, lng] = location.split(',').map(parseFloat);
-        const marker = L.marker([lat, lng]).addTo(map);
-
-        // Create popup content
-        var popupContent = `
-            <b>Title:</b> ${record.title}<br>
-            <b>Period:</b> ${record.period}<br>
-            <b>Monument Type:</b> ${record.monument_type}
-        `;
-
-        // Credit: https://gis.stackexchange.com/questions/31951/showing-popup-on-mouse-over-not-on-click-using-leaflet
-        marker.bindPopup("Popup content");
-        marker.on('mouseover', function (e) {
-            this.openPopup();
+    function userRecords(data) {
+        // Iterate through user-specific records and add markers to the map
+        data.forEach(record => {
+            const location = record.location;  // Assuming location is a string "lat,lng"
+            const [lat, lng] = location.split(',').map(parseFloat);
+            const marker = L.marker([lat, lng]).addTo(map);
+    
+            // Create popup content
+            var popupContent = `
+                <b>Title:</b> ${record.title}<br>
+                <b>Period:</b> ${record.period}<br>
+                <b>Monument Type:</b> ${record.monument_type}
+            `;
+    
+            // Credit: https://gis.stackexchange.com/questions/31951/showing-popup-on-mouse-over-not-on-click-using-leaflet
+            marker.bindPopup("Popup content");
+            marker.on('mouseover', function (e) {
+                this.openPopup();
+            });
+            marker.on('mouseout', function (e) {
+                this.closePopup();
+            });
+    
+            // Bind the popup to the marker
+            marker.bindPopup(popupContent);
+    
+            // Add click event listener to each marker
+            marker.on('click', function() {
+                map.setView(marker.getLatLng(), 14); // Zoom to level 14 and center on the marker;
+                displayRecordDetails(record);
+                // Adapted from: https://www.w3schools.com/w3css/w3css_sidebar.asp
+                document.getElementById("main").style.marginLeft = "25%";
+                document.getElementById("mySidebar").style.width = "25%";
+                document.getElementById("mySidebar").style.display = "block";
+                document.getElementById("openNav").style.display = 'none';
+                // Adjust for mobile
+                if (window.innerWidth <= 600) {
+                    document.getElementById("main").style.marginLeft = "50%";
+                    document.getElementById("mySidebar").style.width = "50%";
+                }
+            });
         });
-        marker.on('mouseout', function (e) {
-            this.closePopup();
-        });
-
-        // Bind the popup to the marker
-        marker.bindPopup(popupContent);
-
-        // Add click event listener to each marker
-        marker.on('click', function() {
-            map.setView(marker.getLatLng(), 14); // Zoom to level 14 and center on the marker;
-            displayRecordDetails(record);
-            // Adapted from: https://www.w3schools.com/w3css/w3css_sidebar.asp
-            document.getElementById("main").style.marginLeft = "25%";
-            document.getElementById("mySidebar").style.width = "25%";
-            document.getElementById("mySidebar").style.display = "block";
-            document.getElementById("openNav").style.display = 'none';
-        });
-    });
-}
+    }
+    
 
 function displayRecordDetails(record) {
     // Populate the site details display box with record data

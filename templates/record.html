@@ -4,7 +4,6 @@
 <!-- Linking Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-<link rel="stylesheet" href="{{ url_for('static', filename='css/L.Control.Sidebar.css') }}" />
 {% endblock %}
 
 {% block content %}
@@ -100,8 +99,16 @@
 
 <!-- Page Content -->
 <div id="main" style="margin-left:0">
-    <div class="w3-teal">
+    <div class="w3-teal button-container">
         <button id="openNav" class="w3-button w3-teal w3-large" onclick="w3_open()">Create Record</button>
+        <select id="periodFilter" name="period" class="validate" aria-label="Period">
+            <option value="" disabled selected>Select Period</option>
+            {% for period in periods %}
+            <option value="{{ period.period_name }}">{{ period.period_name }}</option>
+            {% endfor %}
+        </select>
+        <label for="period" class="active">Period</label>
+        
         <div class="w3-container"></div>
     </div>
 

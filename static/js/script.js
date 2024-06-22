@@ -37,11 +37,17 @@ $(document).ready(function() {
     });
 });
 
+// Adapted from W3 Schools sidebar: https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_sidebar_shift
 function w3_open() {
     document.getElementById("main").style.marginLeft = "25%";
     document.getElementById("mySidebar").style.width = "25%";
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("openNav").style.display = 'none';
+    // Adjust for mobile
+    if (window.innerWidth <= 600) {
+        document.getElementById("main").style.marginLeft = "80%";
+        document.getElementById("mySidebar").style.width = "80%";
+    }
   }
   
   function w3_close() {

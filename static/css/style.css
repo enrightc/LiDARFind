@@ -29,14 +29,18 @@
     height: 90vh;
 } 
 
-/* User profile page --------------------- */
-.hidden {
-    display: none;
-}
 
-.hide {
-    display: none;
-}
 
+
+
+/* Filter Options----------------------- */
+  .button-container {
+    display: flex;
+    align-items: center;
+  }
+  .button-container button,
+  .button-container select {
+    margin-right: 250px; /* Adjust spacing between buttons and select box */
+  }
 
 
