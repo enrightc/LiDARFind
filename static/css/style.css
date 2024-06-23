@@ -11,10 +11,35 @@
     line-height: 2;
 }
 
-/* Buttons */
+/* Buttons------------------------------ */
 .btn-small {
     margin: 5px;
 }
+
+.nav-btn {
+    display: flex;
+    padding: 16px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    line-height: 1;
+    height: auto;
+    margin: 8px;
+}
+
+.register-btn {
+    background: #00B05B;
+}
+
+.login-btn {
+    border-radius: 8px;
+    border: 1px solid #FFF;
+    background-color: transparent;
+}
+
+
+
 
 /* Map Containers----------------------- */
 #mapid { 
@@ -38,6 +63,7 @@
     display: flex;
     align-items: center;
   }
+  
   .button-container button,
   .button-container select {
     margin-right: 250px; /* Adjust spacing between buttons and select box */
