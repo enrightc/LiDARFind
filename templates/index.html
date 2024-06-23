@@ -1,5 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1> This will be the home page</h1>
+    <!-- Hero -->
+    <div id="hero" class="hero-container">
+        <div role="img" aria-label="LiDAR image of a hillfort"></div>
+            <div class="hero-text-container">
+                <h1 class="text-uppercase">Discover the Historic Environment from Anywhere</h1>
+                <p class="tagline">Join our community of citizen scientists and professional archaeologists to explore and document archaeological sites discovered through LiDAR technology.</p>
+                <div class="hero-btns">
+                    <button href="{{ url_for('register') }}" class="btn-large nav-btn register-btn">Register Now</button>
+                    <button href="{{ url_for('login') }}" class="btn-large nav-btn login-btn">Log In</button>
+                </div>
+            </div>
+    </div>
+    <!-- /.Hero -->
 {% endblock %}
