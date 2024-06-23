@@ -57,8 +57,21 @@ function displayRecords(data) {
         `;
 
         marker.bindPopup(popupContent);
+
     });
 }
+
+//Event Listeners for dropdown Filters
+document.getElementById('period-filter').addEventListener('change', function () {
+    applyFilters();
+});
+document.getElementById('site_type_filter').addEventListener('change', function () {
+    applyFilters();
+});
+document.getElementById('monument_type_filter').addEventListener('change', function () {
+    applyFilters();
+});
+
 
 // Add click event listener to the map to place a new marker and show sidebar
 map.on('click', function (e) {

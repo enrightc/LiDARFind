@@ -101,7 +101,7 @@
 <div id="main" style="margin-left:0">
     <div class="w3-teal button-container">
         <button id="openNav" class="w3-button w3-teal w3-large" onclick="w3_open()">Create Record</button>
-        <select id="periodFilter" name="period" class="validate" aria-label="Period">
+        <select id="period-filter" name="period" class="validate" aria-label="Period">
             <option value="" disabled selected>Period</option>
             {% for period in periods %}
             <option value="{{ period.period_name }}">{{ period.period_name }}</option>
