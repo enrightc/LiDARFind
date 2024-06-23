@@ -31,14 +31,16 @@ var crosshairIcon = L.icon({
 // Variable to store the current marker
 let currentMarker;
 
+// Array to store markers with associated data for search filters (period, site type, monument type)
+let allMarkers = [];
+
 // Fetch all records and display them on the map
 fetch("/fetch_user_records")
     .then(response => response.json())
     .then(data => {
         displayRecords(data.all_records);
     })
-    .catch(error => console.error('Error fetching records:', error));
-
+    
 function displayRecords(data) {
     data.forEach(record => {
         const location = record.location;  // Assuming location is a string "lat,lng"
@@ -57,6 +59,13 @@ function displayRecords(data) {
         `;
 
         marker.bindPopup(popupContent);
+        // Store marker with its associated data
+        allMarkers.push({
+            marker,
+            period: record.period,
+            site_type: record.site_type,
+            monument_type: record.monument_type
+        });
 
     });
 }
@@ -72,6 +81,24 @@ document.getElementById('monument_type_filter').addEventListener('change', funct
     applyFilters();
 });
 
+// Function to apply filters and display markers accordingly on the map
+function applyFilters() {
+    const selectedPeriod = document.getElementById('period-filter').value;
+    const selectedSiteType = document.getElementById('site_type_filter').value;
+    const selectedMonumentType = document.getElementById('monument_type_filter').value;
+
+    allMarkers.forEach(item => {
+        let matchesPeriod = selectedPeriod === "" || item.period === selectedPeriod;
+        let matchesSiteType = selectedSiteType === "" || item.site_type === selectedSiteType;
+        let matchesMonumentType = selectedMonumentType === "" || item.monument_type === selectedMonumentType;
+
+        if (matchesPeriod && matchesSiteType && matchesMonumentType) {
+            map.addLayer(item.marker); // Show marker
+        } else {
+            map.removeLayer(item.marker); // Hide marker
+        }
+    });
+}
 
 // Add click event listener to the map to place a new marker and show sidebar
 map.on('click', function (e) {
