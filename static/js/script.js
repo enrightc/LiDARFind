@@ -24,7 +24,7 @@ siteTypeFilterSelect.on('change', function() {
         data: JSON.stringify({ site_type: selectedSiteTypeFilter }),  // Send the selected site type as JSON
         success: function(data) {
             // Clear previous options in the monument type dropdown
-            monumentTypeFilterSelect.html('<option value="" disabled selected>Select monument type</option>');
+            monumentTypeFilterSelect.html('<option value="" disabled selected>Monument type</option>');
 
             // Populate the monument type filter dropdown with new options from the server response
             data.forEach(function(monumentTypeFilter) {

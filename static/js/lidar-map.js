@@ -81,6 +81,34 @@ document.getElementById('monument_type_filter').addEventListener('change', funct
     applyFilters();
 });
 
+document.getElementById('reset-filters-btn').addEventListener('click', function () {
+    // Reset the filter dropdowns to their default values
+    const periodElement =  document.getElementById('period-filter');
+    periodElement.selectedIndex = "0";
+
+    let instance = M.FormSelect.getInstance(periodElement);
+    instance.destroy();
+    M.FormSelect.init(periodElement);
+
+
+    const siteTypeFilterElement = document.getElementById('site_type_filter');
+    siteTypeFilterElement.selectedIndex = "0";
+
+    instance = M.FormSelect.getInstance(siteTypeFilterElement);
+    instance.destroy();
+    M.FormSelect.init(siteTypeFilterElement);
+
+    const monumentTypeFilterElement = document.getElementById('monument_type_filter');
+    monumentTypeFilterElement.selectedIndex = "0";
+
+    instance = M.FormSelect.getInstance(monumentTypeFilterElement);
+    instance.destroy();
+    M.FormSelect.init(monumentTypeFilterElement);
+
+    // Re-apply filters to show all markers
+    applyFilters();
+});
+
 // Function to apply filters and display markers accordingly on the map
 function applyFilters() {
     const selectedPeriod = document.getElementById('period-filter').value;
