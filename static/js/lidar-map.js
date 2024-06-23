@@ -57,10 +57,6 @@ function displayRecords(data) {
         `;
 
         marker.bindPopup(popupContent);
-
-        document.getElementById('periodFilter').addEventListener('change',  function(event){
-            console.log(event.target.value);
-        });
     });
 }
 

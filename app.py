@@ -222,8 +222,8 @@ def get_monument_types():
     """
     selected_site_type = request.json.get('site_type')
     site = mongo.db.site_types.find_one({"site_type": selected_site_type})
-    monument_types = list([monument['monument_type'] for monument in site[
-        'monument_types']]) if site else []
+    monument_types = [monument['monument_type'] for monument in site[
+        'monument_types']] if site else []
     return jsonify(monument_types)
 
 
