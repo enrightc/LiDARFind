@@ -11,6 +11,16 @@
     line-height: 2;
 }
 
+.nav-wrappr {
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+nav ul a.btn-large {
+    margin-top: 5px;
+}
+
 /* Buttons------------------------------ */
 .btn-small {
     margin: 5px;
@@ -18,14 +28,12 @@
 
 .nav-btn {
     display: flex;
-    padding: 16px 16px;
+    padding: 4px 16px;
     justify-content: center;
     align-items: center;
     gap: 8px;
     border-radius: 8px;
-    line-height: 1;
-    height: auto;
-    margin: 8px;
+   
 }
 
 .register-btn {
@@ -39,6 +47,7 @@
 }
 
 /* Index.html------------------------------ */
+
 .hero-container {
     background: url(../images/hero-image.webp) no-repeat top center;
     display: flex;
@@ -83,10 +92,6 @@
 #edit-record-map { 
     height: 90vh;
 } 
-
-
-
-
 
 /* Filter Options----------------------- */
   .button-container {
