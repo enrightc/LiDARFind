@@ -9,7 +9,11 @@
 
 .flashes {
     line-height: 2;
+    background-color: #e1eaec;
+    border: 1px solid #6f97a1;
 }
+
+/* nav bar------------------------------ */
 
 .nav-wrappr {
     line-height: 1;
@@ -33,7 +37,6 @@ nav ul a.btn-large {
     align-items: center;
     gap: 8px;
     border-radius: 8px;
-   
 }
 
 .register-btn {
@@ -51,7 +54,7 @@ nav ul a.btn-large {
 .hero-container {
     background: url(../images/hero-image.webp) no-repeat top center;
     display: flex;
-    width: 1440px;
+    width: 100%;
     height: 600px;
     align-items: center;
     position: relative;
@@ -94,14 +97,65 @@ nav ul a.btn-large {
 } 
 
 /* Filter Options----------------------- */
-  .button-container {
+.w3-teal {
+    background-color: #334046 !important;
+}
+
+.button-container {
     display: flex;
     align-items: center;
-  }
-  
-  .button-container button,
-  .button-container select {
-    margin-right: 250px; /* Adjust spacing between buttons and select box */
-  }
+    justify-content: space-between;
+    padding: 10px;
+}
+.filter-container {
+    display: flex;
+    gap: 10px;
+}
+.filter-container select {
+    margin-left: 10px;
+}
+
+#reset-filters-btn {
+    display: flex;
+    padding: 8px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    background-color: #547c86;
+    color: #f3f8f8;
+}
+
+#reset-filters-btn:hover {
+    background-color: #486872;
+}
+
+.select-dropdown {
+    color: #f3f8f8;
+}
+
+.select-wrapper input.select-dropdown {
+    border-bottom: 1px solid #3bba9c;
+}
+
+.select-wrapper .caret {
+    fill: white;
+}
+
+#openNav {
+    display: flex;
+    padding: 8px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    background-color: #547c86 !important;
+    color: #f3f8f8; 
+}
+
+#openNav:hover {
+    background-color: #486872 !important;
+    color:  #f3f8f8 !important;
+}
 
 

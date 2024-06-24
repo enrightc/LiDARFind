@@ -99,27 +99,29 @@
 
 <!-- Page Content -->
 <div id="main" style="margin-left:0">
-    <div class="w3-teal button-container">
+    <div id=""class="w3-teal button-container">
         <button id="openNav" class="w3-button w3-teal w3-large" onclick="w3_open()">Create Record</button>
-        <select id="period-filter" name="period" class="validate" aria-label="Period">
-            <option value=""  selected>Period</option>
-            {% for period in periods %}
-            <option value="{{ period.period_name }}">{{ period.period_name }}</option>
-            {% endfor %}
-        </select>
-        <label for="period" class="active">Period</label>
-        <select id="site_type_filter" name="site_type" class="validate" required aria-label="Site Type">
-            <option value=""  selected>site type</option>
-            {% for site_type in site_types %}
-            <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
-            {% endfor %}
-        </select>
-        <label for="site_type" class="active">Site type</label>
-        <select id="monument_type_filter" name="monument_type" class="validate" required aria-label="Monument Type">
-            <option value=""  selected>Monument type</option>
-        </select>
-        <label for="monument_type" class="active">Monument type</label>
-        <button id="reset-filters-btn" class="btn-large">Reset Filters</button>
+        <div class="filter-container">
+            <select id="period-filter" name="period" class="validate" aria-label="Period">
+                <option value=""  selected>Period</option>
+                {% for period in periods %}
+                <option value="{{ period.period_name }}">{{ period.period_name }}</option>
+                {% endfor %}
+            </select>
+            <label for="period" class="active">Period</label>
+            <select id="site_type_filter" name="site_type" class="validate" required aria-label="Site Type">
+                <option value=""  selected>Site type</option>
+                {% for site_type in site_types %}
+                <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
+                {% endfor %}
+            </select>
+            <label for="site_type" class="active">Site type</label>
+            <select id="monument_type_filter" name="monument_type" class="validate" required aria-label="Monument Type">
+                <option value=""  selected>Monument type</option>
+            </select>
+            <label for="monument_type" class="active">Monument type</label>
+            <button id="reset-filters-btn" class="btn-large">Reset</button>
+        </div>
     </div>
 
     <div class="row">
