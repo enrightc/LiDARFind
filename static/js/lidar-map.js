@@ -139,12 +139,9 @@ map.on('click', function (e) {
 
     // Update the input field with the coordinates
     document.getElementById('location').value = `${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
-    
-       // Add 'active' class to the label to move the placeholder
-       var locationLabel = document.querySelector('label[for="location"]');
-       if (locationLabel) {
-           locationLabel.classList.add('active');
-       }
+
+    // to reinitialize all the Materialize labels on the page when dynamically adding inputs.
+    M.updateTextFields()
 
     // Create a new marker at the clicked coordinates
     currentMarker = L.marker(coords, {icon: crosshairIcon}).addTo(map);
