@@ -17,7 +17,7 @@
         <div id="record-form">
             <form id="create-record-form" class="col s12" method="POST" action="{{ url_for('add_record') }}">
                 <!-- Title -->
-                <div class="row">
+                <div class="row form-text">
                     <div class="input-field col s12">
                         <input id="title" name="title" minlength="5" maxlength="50" type="text" class="validate" required>
                         <label for="title" class="active">Title</label>
@@ -87,7 +87,7 @@
                 <!-- Submit Button -->
                 <div class="row">
                     <div class="col s12 center-align">
-                        <button type="submit" class="btn-large" aria-label="Create Record">
+                        <button type="submit" id="save-btn" class="control-btn btn" aria-label="Create Record">
                             Save
                         </button>
                     </div>
@@ -100,7 +100,7 @@
 <!-- Page Content -->
 <div id="main" style="margin-left:0">
     <div id=""class="w3-teal button-container">
-        <button id="openNav" class="w3-button w3-teal w3-large" onclick="w3_open()">Create Record</button>
+        <button id="openNav" class="control-btn btn create-btn w3-button w3-teal w3-large" onclick="w3_open()">Create Record</button>
         <div class="filter-container">
             <select id="period-filter" name="period" class="validate" aria-label="Period">
                 <option value=""  selected>Period</option>
@@ -120,7 +120,7 @@
                 <option value=""  selected>Monument type</option>
             </select>
             <label for="monument_type" class="active">Monument type</label>
-            <button id="reset-filters-btn" class="btn-large">Reset</button>
+            <button id="reset-filters-btn" class="control-btn btn reset-filters-btn">Reset</button>
         </div>
     </div>
 

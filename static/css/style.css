@@ -21,32 +21,41 @@
     align-items: center;
 }
 
-nav ul a.btn-large {
-    margin-top: 5px;
+.flex-center {
+    display:flex;
+    align-items: center;
 }
+
 
 /* Buttons------------------------------ */
-.btn-small {
-    margin: 5px;
-}
 
-.nav-btn {
+
+.btn {
     display: flex;
-    padding: 4px 16px;
+    padding: 12px 18px;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 200px !important;
     border-radius: 8px;
+    line-height: 1;
+    height: auto;
+    margin-right:8px;
 }
 
 .register-btn {
     background: #00B05B;
+    border:none;
+}
+
+.register-btn:hover {
+    background-color:#019b51;
 }
 
 .login-btn {
     border-radius: 8px;
     border: 1px solid #FFF;
     background-color: transparent;
+    color:white;
 }
 
 /* Index.html------------------------------ */
@@ -78,7 +87,7 @@ nav ul a.btn-large {
     margin-left: 80px;
 }
 
-.hero-btns {
+.btns-group {
     display: flex;
     direction: column;
 }
@@ -96,7 +105,7 @@ nav ul a.btn-large {
     height: 90vh;
 } 
 
-/* Filter Options----------------------- */
+/* Filter buttons on record.html----------------------- */
 .w3-teal {
     background-color: #334046 !important;
 }
@@ -115,18 +124,12 @@ nav ul a.btn-large {
     margin-left: 10px;
 }
 
-#reset-filters-btn {
-    display: flex;
-    padding: 8px 8px;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border-radius: 8px;
+.reset-filters-btn {
     background-color: #547c86;
     color: #f3f8f8;
 }
 
-#reset-filters-btn:hover {
+.reset-filters-btn:hover {
     background-color: #486872;
 }
 
@@ -142,20 +145,37 @@ nav ul a.btn-large {
     fill: white;
 }
 
-#openNav {
-    display: flex;
-    padding: 8px 8px;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border-radius: 8px;
+.control-btn {
     background-color: #547c86 !important;
     color: #f3f8f8; 
 }
 
-#openNav:hover {
+.control-btn:hover {
     background-color: #486872 !important;
     color:  #f3f8f8 !important;
+}
+
+/* Side bar----------------------- */
+.w3-bar-block {
+    background-color: #375159;
+}
+
+.w3-button {
+    color:  #f3f8f8;
+}
+
+.save-btn {
+    background-color: #547c86;
+    color: #f3f8f8;
+}
+
+.save-btn {
+    background-color: #486872 !important;
+}
+
+.w3-button:hover {
+    color: #f3f8f8 !important;
+    background-color: #3f565f !important;
 }
 
 
