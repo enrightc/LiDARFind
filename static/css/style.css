@@ -178,4 +178,16 @@
     background-color: #3f565f !important;
 }
 
+.select-wrapper input.select-dropdown {
+    border-bottom: 1px solid gray;
+}
 
+.input-field {
+    position: relative;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+}
+
+.w3-bar-item {
+    line-height: 1;
+}

@@ -2,7 +2,7 @@ $(document).ready(function() {
     // Initialize the side navigation and all select elements using Materialize
     $('.sidenav').sidenav();
     $('select').formSelect();
-    
+
     // Get the site type and monument type select elements by their IDs
     const siteTypeSelect = $('#site_type');
     const monumentTypeSelect = $('#monument_type');
@@ -77,8 +77,8 @@ function w3_open() {
     document.getElementById("openNav").style.display = 'none';
     // Adjust for mobile
     if (window.innerWidth <= 600) {
-        document.getElementById("main").style.marginLeft = "80%";
-        document.getElementById("mySidebar").style.width = "80%";
+        document.getElementById("main").style.marginLeft = "50%";
+        document.getElementById("mySidebar").style.width = "50%";
     }
   }
   

@@ -10,7 +10,7 @@
 
 <!-- Sidebar -->
  <!-- Adapted from: https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_sidebar_shift -->
-<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+ <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
     <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
     <!-- Record Form -->
     <div class="w3-bar-item">
@@ -26,7 +26,7 @@
                 <!-- PRN -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="prn" name="prn" minlength="2" maxlength="8" type="number" class="validate">
+                        <input id="prn" name="prn" minlength="2" maxlength="8" type="text" class="validate">
                         <label for="prn" class="active">PRN (if known)</label>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                             <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
                             {% endfor %}
                         </select>
-                        <label for="site_type" class="active">Site type</label>
+                        <label for="site_type"></label>
                     </div>
                 </div>
                 <!-- Monument Type -->
@@ -48,13 +48,13 @@
                         <select id="monument_type" name="monument_type" class="validate" required disabled aria-label="Monument Type">
                             <option value="" disabled selected>Select monument type</option>
                         </select>
-                        <label for="monument_type" class="active">Monument type</label>
+                        <label for="monument_type"></label>
                     </div>
                 </div>
                 <!-- Interpretation -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="interpretation" name="interpretation" minlength="5" maxlength="200" class="materialize-textarea" required></textarea>
+                        <textarea id="interpretation" name="interpretation" minlength="5" maxlength="200" class="validate materialize-textarea" required></textarea>
                         <label for="interpretation" class="active">Interpretation</label>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                             <option value="{{ period.period_name }}">{{ period.period_name }}</option>
                             {% endfor %}
                         </select>
-                        <label for="period" class="active">Period</label>
+                        <label for="period"></label>
                     </div>
                 </div>
                 <!-- Location -->
@@ -95,7 +95,9 @@
             </form>
         </div>
     </div>
+    
 </div>
+
 
 <!-- Page Content -->
 <div id="main" style="margin-left:0">

@@ -19,13 +19,13 @@ var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8o
 // Adding the WMS layer for LiDAR DSM (hillshade) data
 var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
-})
+});
 
 var crosshairIcon = L.icon({
     iconUrl: 'static/images/crosshair.svg',
-    iconSize:     [38, 95], // size of the icon
-    iconAnchor:   [19, 48], // point of the icon which will correspond to marker's location
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    iconSize: [38, 95], // size of the icon
+    iconAnchor: [19, 48], // point of the icon which will correspond to marker's location
+    popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
 // Variable to store the current marker
@@ -39,8 +39,8 @@ fetch("/fetch_user_records")
     .then(response => response.json())
     .then(data => {
         displayRecords(data.all_records);
-    })
-    
+    });
+
 function displayRecords(data) {
     data.forEach(record => {
         const location = record.location;  // Assuming location is a string "lat,lng"
@@ -70,7 +70,7 @@ function displayRecords(data) {
     });
 }
 
-//Event Listeners for dropdown Filters
+// Event Listeners for dropdown Filters
 document.getElementById('period-filter').addEventListener('change', function () {
     applyFilters();
 });
@@ -83,13 +83,12 @@ document.getElementById('monument_type_filter').addEventListener('change', funct
 
 document.getElementById('reset-filters-btn').addEventListener('click', function () {
     // Reset the filter dropdowns to their default values
-    const periodElement =  document.getElementById('period-filter');
+    const periodElement = document.getElementById('period-filter');
     periodElement.selectedIndex = "0";
 
     let instance = M.FormSelect.getInstance(periodElement);
     instance.destroy();
     M.FormSelect.init(periodElement);
-
 
     const siteTypeFilterElement = document.getElementById('site_type_filter');
     siteTypeFilterElement.selectedIndex = "0";
@@ -141,12 +140,12 @@ map.on('click', function (e) {
     document.getElementById('location').value = `${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
 
     // to reinitialize all the Materialize labels on the page when dynamically adding inputs.
-    M.updateTextFields()
+    M.updateTextFields();
 
     // Create a new marker at the clicked coordinates
+    // Source: https://pixinvent.com/materialize-material-design-admin-template/documentation/text-inputs.html
     currentMarker = L.marker(coords, {icon: crosshairIcon}).addTo(map);
 });
-
 
 // Base Maps
 var baseMaps = {

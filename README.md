@@ -29,12 +29,25 @@
 
 **Outcome** The data can now be used in more than one dropdown, resolving the issue and ensuring consistent data rendering across the template.
 
+### Prefilling Input Texts
+
+**Issue** When dynamically entering adding coordinate data to the record form the placeholder labels were overlapping the prefilled text. 
+
+**Solution** Call the function M.updateTextFields(); to reinitialize all the Materialize the labels on the page (source: MAterailize).
+
+![Converting Cursor to List](readme-images/code-snippets/updateTextFields-code-snippet.png)
+
+**Outcome** When the input field is auto-populated with the coordinates the placeholder text moves in to the active state and no longer overlaps the input. 
 
 
 # Resources
 
 - For help overriding Materialize default CSS for checkboxes:
   - [Materialize css Radio buttons not visible](https://stackoverflow.com/questions/49757521/materialize-css-radio-buttons-not-visible) Stackoverflow thread created 10th April, 2018  [Accessed 8th June, 2024].
+
+  - Materialize Prefilling Input Texts
+    - [Text Inputs](https://pixinvent.com/materialize-material-design-admin-template/documentation/text-inputs.html) Materialize.  [Accessed 24th June, 2024].
+
 
 - For help using leaflet map framework:
   - [Leaflet: an open-source JavaScript library for mobile-friendly interactive maps](https://leafletjs.com/)   [Accessed 8th June, 2024].
