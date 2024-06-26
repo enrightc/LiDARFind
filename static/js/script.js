@@ -1,7 +1,5 @@
 $(document).ready(function() {
-    // Initialize the side navigation and all select elements using Materialize
-    $('.sidenav').sidenav();
-    $('select').formSelect();
+  
 
     // Get the site type and monument type select elements by their IDs
     const siteTypeSelect = $('#site_type');
@@ -63,7 +61,7 @@ siteTypeFilterSelect.on('change', function() {
 
                 // Enable and re-initialize the monument type select element
                 monumentTypeSelect.prop('disabled', false);
-                $('select').formSelect();
+              
             }
         });
     });

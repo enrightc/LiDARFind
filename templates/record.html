@@ -15,87 +15,63 @@
     <!-- Record Form -->
     <div class="w3-bar-item">
         <div id="record-form">
-            <form id="create-record-form" class="col s12" method="POST" action="{{ url_for('add_record') }}">
+            <form id="create-record-form" method="POST" action="{{ url_for('add_record') }}">
                 <!-- Title -->
-                <div class="row form-text">
-                    <div class="input-field col s12">
-                        <input id="title" name="title" minlength="5" maxlength="50" type="text" class="validate" required>
-                        <label for="title" class="active">Title</label>
-                    </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input id="title" name="title" minlength="5" maxlength="50" type="text" class="form-control" required>
                 </div>
                 <!-- PRN -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="prn" name="prn" minlength="2" maxlength="8" type="text" class="validate">
-                        <label for="prn" class="active">PRN (if known)</label>
-                    </div>
+                <div class="mb-3">
+                    <label for="prn" class="form-label">PRN (if known)</label>
+                    <input id="prn" name="prn" minlength="2" maxlength="8" type="text" class="form-control">
                 </div>
                 <!-- Site Type -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <select id="site_type" name="site_type" class="validate" required aria-label="Site Type">
-                            <option value="" disabled selected>Select site type</option>
-                            {% for site_type in site_types %}
-                            <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
-                            {% endfor %}
-                        </select>
-                        <label for="site_type"></label>
-                    </div>
+                <div class="mb-3">
+                    <select id="site_type" class="form-select" name="site_type" class="form-control" required aria-label="Site Type">
+                        <option value="" disabled selected>Select site type</option>
+                        {% for site_type in site_types %}
+                        <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <!-- Monument Type -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <select id="monument_type" name="monument_type" class="validate" required disabled aria-label="Monument Type">
-                            <option value="" disabled selected>Select monument type</option>
-                        </select>
-                        <label for="monument_type"></label>
-                    </div>
+                <div class="mb-3">
+                    <select id="monument_type" class="form-select" name="monument_type" class="form-control" required disabled aria-label="Monument Type">
+                        <option value="" disabled selected>Select monument type</option>
+                    </select>
                 </div>
                 <!-- Interpretation -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <textarea id="interpretation" name="interpretation" minlength="5" maxlength="200" class="validate materialize-textarea" required></textarea>
-                        <label for="interpretation" class="active">Interpretation</label>
-                    </div>
+                <div class="mb-3">
+                    <label for="interpretation" class="form-label">Interpretation</label>
+                    <textarea id="interpretation" name="interpretation" minlength="5" maxlength="200" class="form-control" required></textarea>
                 </div>
                 <!-- Period -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <select id="period" name="period" class="validate" required aria-label="Period">
-                            <option value="" disabled selected>Select Period</option>
-                            {% for period in periods %}
-                            <option value="{{ period.period_name }}">{{ period.period_name }}</option>
-                            {% endfor %}
-                        </select>
-                        <label for="period"></label>
-                    </div>
+                <div class="mb-3">
+                    <select id="period" class="form-select" name="period" class="form-control" required aria-label="Period">
+                        <option value="" disabled selected>Select Period</option>
+                        {% for period in periods %}
+                        <option value="{{ period.period_name }}">{{ period.period_name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <!-- Location -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="location" name="location" minlength="5" maxlength="50" type="text" class="validate" required disabled>
-                        <label for="location" class="active">Click map area for coordinates</label>
-                    </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Click map area for coordinates</label>
+                    <input id="location" name="location" minlength="5" maxlength="50" type="text" class="form-control" required readonly>
                 </div>
                 <!-- Date Created -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="created_on" name="created_on" minlength="5" maxlength="50" type="text" class="validate" readonly>
-                        <label for="created_on" class="active">Created on</label>
-                    </div>
+                <div class="mb-3">
+                    <label for="created_on" class="form-label">Created on</label>
+                    <input id="created_on" name="created_on" minlength="5" maxlength="50" type="text" class="form-control" readonly>
                 </div>
                 <!-- Submit Button -->
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <button type="submit" id="save-btn" class="control-btn btn" aria-label="Create Record">
-                            Save
-                        </button>
-                    </div>
+                <div class="mb-3 text-center">
+                    <button type="submit" id="save-btn" class="control-btn btn btn-primary" aria-label="Create Record">Save</button>
                 </div>
             </form>
         </div>
     </div>
-    
 </div>
 
 

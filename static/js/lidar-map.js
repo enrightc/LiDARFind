@@ -138,8 +138,7 @@ map.on('click', function (e) {
 
     // Update the input field with the coordinates
     document.getElementById('location').value = `${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
-    var locationField = document.getElementById('location');
-    locationField.disabled = false; 
+    
    
 
     // to reinitialize all the Materialize labels on the page when dynamically adding inputs and preventing labels overlapping input.
