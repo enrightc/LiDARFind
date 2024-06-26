@@ -83,26 +83,10 @@ document.getElementById('monument_type_filter').addEventListener('change', funct
 
 document.getElementById('reset-filters-btn').addEventListener('click', function () {
     // Reset the filter dropdowns to their default values
-    const periodElement = document.getElementById('period-filter');
-    periodElement.selectedIndex = "0";
-
-    let instance = M.FormSelect.getInstance(periodElement);
-    instance.destroy();
-    M.FormSelect.init(periodElement);
-
-    const siteTypeFilterElement = document.getElementById('site_type_filter');
-    siteTypeFilterElement.selectedIndex = "0";
-
-    instance = M.FormSelect.getInstance(siteTypeFilterElement);
-    instance.destroy();
-    M.FormSelect.init(siteTypeFilterElement);
-
-    const monumentTypeFilterElement = document.getElementById('monument_type_filter');
-    monumentTypeFilterElement.selectedIndex = "0";
-
-    instance = M.FormSelect.getInstance(monumentTypeFilterElement);
-    instance.destroy();
-    M.FormSelect.init(monumentTypeFilterElement);
+    // Reset the filter dropdowns to their default values
+    document.getElementById('period-filter').selectedIndex = 0;
+    document.getElementById('site_type_filter').selectedIndex = 0;
+    document.getElementById('monument_type_filter').selectedIndex = 0;
 
     // Re-apply filters to show all markers
     applyFilters();
@@ -139,9 +123,6 @@ map.on('click', function (e) {
     // Update the input field with the coordinates
     document.getElementById('location').value = `${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
     
-   
-
-
     // Create a new marker at the clicked coordinates
     currentMarker = L.marker(coords, {icon: crosshairIcon}).addTo(map);
 });
