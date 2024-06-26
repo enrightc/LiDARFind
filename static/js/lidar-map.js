@@ -141,9 +141,6 @@ map.on('click', function (e) {
     
    
 
-    // to reinitialize all the Materialize labels on the page when dynamically adding inputs and preventing labels overlapping input.
-    // Source: https://pixinvent.com/materialize-material-design-admin-template/documentation/text-inputs.html
-    M.updateTextFields();
 
     // Create a new marker at the clicked coordinates
     currentMarker = L.marker(coords, {icon: crosshairIcon}).addTo(map);
