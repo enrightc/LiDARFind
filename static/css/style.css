@@ -57,6 +57,10 @@
     color:white;
 }
 
+.btn-spacing {
+    margin-right: 25px;
+}
+
 /* Index.html------------------------------ */
 
 .hero-container {
