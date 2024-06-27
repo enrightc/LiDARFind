@@ -29,11 +29,8 @@
           </div>
           <!-- PRN -->
           <div class="form-floating mb-3">
-            <input id="floatingInputPRN" name="prn" minlength="2" maxlength="8" type="text" class="form-control" placeholder="PRN">
-            <label for="floatingInputPRN" class="form-label">PRN (if known)</label>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
+            <input id="floatingInputPrn" name="prn" minlength="2" maxlength="8" type="text" class="form-control" placeholder="PRN" pattern='^\d+$'>
+            <label for="floatingInputPrn" class="form-label">PRN (if known)</label>
             <div class="invalid-feedback">
               Please provide a valid PRN.
             </div>
@@ -93,7 +90,7 @@
           </div>
           <!-- Location -->
           <div class="mb-3">
-            <input id="location" name="location" minlength="5" maxlength="50" type="text" class="form-control" placeholder="Click map area for coordinates" required readonly>
+            <input id="location" name="location" minlength="5" maxlength="50" type="text" class="form-control" pattern="^-?\d{1,2}\.\d{5},\s-?\d{1,3}\.\d{5}$" placeholder="Click map area for coordinates" required>
             <label for="location" class="form-label">Click map area for coordinates</label>
             <div class="valid-feedback">
               Looks good!

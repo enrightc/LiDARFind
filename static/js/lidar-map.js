@@ -21,6 +21,7 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
 });
 
+// Custom icon for current marker
 var crosshairIcon = L.icon({
     iconUrl: 'static/images/crosshair.svg',
     iconSize: [38, 95], // size of the icon
@@ -70,6 +71,7 @@ function displayRecords(data) {
     });
 }
 
+// Functions for filtering and displaying map markers based on user search parameters
 // Event Listeners for dropdown Filters
 document.getElementById('period-filter').addEventListener('change', function () {
     applyFilters();
@@ -123,6 +125,10 @@ map.on('click', function (e) {
     // Update the input field with the coordinates
     document.getElementById('location').value = `${coords.lat.toFixed(5)}, ${coords.lng.toFixed(5)}`;
     
+
+    // Make the location input field readonly after it has been filled
+    document.getElementById('location').classList.add('readonly');
+    
     // Create a new marker at the clicked coordinates
     currentMarker = L.marker(coords, {icon: crosshairIcon}).addTo(map);
 });
@@ -153,6 +159,7 @@ L.control.layers(baseMaps, overlayMaps).addTo(map);
     // Loop over them and prevent submission
     Array.from(forms).forEach(form => {
       form.addEventListener('submit', event => {
+        
         if (!form.checkValidity()) {
           event.preventDefault()
           event.stopPropagation()
