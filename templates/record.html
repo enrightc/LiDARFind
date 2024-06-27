@@ -12,67 +12,109 @@
  <!-- Adapted from: https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_sidebar_shift -->
  <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
     <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
-    <!-- Record Form -->
+    <!-- Record Form (Bootstrap) -->
     <div class="w3-bar-item">
-        <div id="record-form">
-            <form id="create-record-form" method="POST" action="{{ url_for('add_record') }}">
-                <!-- Title -->
-                <div class="mb-3">
-                    <label for="title" class="form-label">Title</label>
-                    <input id="title" name="title" minlength="5" maxlength="50" type="text" class="form-control" required>
-                </div>
-                <!-- PRN -->
-                <div class="mb-3">
-                    <label for="prn" class="form-label">PRN (if known)</label>
-                    <input id="prn" name="prn" minlength="2" maxlength="8" type="text" class="form-control">
-                </div>
-                <!-- Site Type -->
-                <div class="mb-3">
-                    <select id="site_type" class="form-select" name="site_type" class="form-control" required aria-label="Site Type">
-                        <option value="" disabled selected>Select site type</option>
-                        {% for site_type in site_types %}
-                        <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <!-- Monument Type -->
-                <div class="mb-3">
-                    <select id="monument_type" class="form-select" name="monument_type" class="form-control" required disabled aria-label="Monument Type">
-                        <option value="" disabled selected>Select monument type</option>
-                    </select>
-                </div>
-                <!-- Interpretation -->
-                <div class="mb-3">
-                    <label for="interpretation" class="form-label">Interpretation</label>
-                    <textarea id="interpretation" name="interpretation" minlength="5" maxlength="200" class="form-control" required></textarea>
-                </div>
-                <!-- Period -->
-                <div class="mb-3">
-                    <select id="period" class="form-select" name="period" class="form-control" required aria-label="Period">
-                        <option value="" disabled selected>Select Period</option>
-                        {% for period in periods %}
-                        <option value="{{ period.period_name }}">{{ period.period_name }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <!-- Location -->
-                <div class="mb-3">
-                    <label for="location" class="form-label">Click map area for coordinates</label>
-                    <input id="location" name="location" minlength="5" maxlength="50" type="text" class="form-control" required readonly>
-                </div>
-                <!-- Date Created -->
-                <div class="mb-3">
-                    <label for="created_on" class="form-label">Created on</label>
-                    <input id="created_on" name="created_on" minlength="5" maxlength="50" type="text" class="form-control" readonly>
-                </div>
-                <!-- Submit Button -->
-                <div class="mb-3 text-center">
-                    <button type="submit" id="save-btn" class="control-btn btn btn-primary" aria-label="Create Record">Save</button>
-                </div>
-            </form>
-        </div>
+      <div id="record-form">
+        <form id="create-record-form" class="needs-validation" method="POST" action="{{ url_for('add_record') }}" novalidate>
+          <!-- Title -->
+          <div class="form-floating mb-3">
+            <input id="floatingInputTitle" name="title" minlength="5" maxlength="50" class="form-control" placeholder="Title" required>
+            <label for="floatingInputTitle" class="form-label">Title</label>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please provide a title.
+            </div>
+          </div>
+          <!-- PRN -->
+          <div class="form-floating mb-3">
+            <input id="floatingInputPRN" name="prn" minlength="2" maxlength="8" type="text" class="form-control" placeholder="PRN">
+            <label for="floatingInputPRN" class="form-label">PRN (if known)</label>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please provide a valid PRN.
+            </div>
+          </div>
+          <!-- Site Type -->
+          <div class="mb-3">
+            <select id="site_type" class="form-select" name="site_type" required aria-label="Site Type">
+              <option value="" disabled selected>Select site type</option>
+              {% for site_type in site_types %}
+              <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
+              {% endfor %}
+            </select>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please select a site type.
+            </div>
+          </div>
+          <!-- Monument Type -->
+          <div class="mb-3">
+            <select id="monument_type" class="form-select" name="monument_type" required disabled aria-label="Monument Type">
+              <option value="" disabled selected>Select monument type</option>
+            </select>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please select a monument type.
+            </div>
+          </div>
+          <!-- Interpretation -->
+          <div class="form-floating mb-3">
+            <textarea id="floatingInputInterpretation" name="interpretation" minlength="5" maxlength="200" class="form-control" placeholder="Interpretation" required></textarea>
+            <label for="floatingInputInterpretation" class="form-label">Interpretation</label>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please provide an interpretation.
+            </div>
+          </div>
+          <!-- Period -->
+          <div class="mb-3">
+            <select id="period" class="form-select" name="period" required aria-label="Period">
+              <option value="" disabled selected>Select Period</option>
+              {% for period in periods %}
+              <option value="{{ period.period_name }}">{{ period.period_name }}</option>
+              {% endfor %}
+            </select>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please select a period.
+            </div>
+          </div>
+          <!-- Location -->
+          <div class="mb-3">
+            <input id="location" name="location" minlength="5" maxlength="50" type="text" class="form-control" placeholder="Click map area for coordinates" required readonly>
+            <label for="location" class="form-label">Click map area for coordinates</label>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please provide a location.
+            </div>
+          </div>
+          <!-- Date Created -->
+          <div class="mb-3">
+            <input id="created_on" name="created_on" minlength="5" maxlength="50" type="text" class="form-control" placeholder="Created on" readonly>
+            <label for="created_on" class="form-label">Created on</label>
+          </div>
+          <!-- Submit Button -->
+          <div class="mb-3 text-center">
+            <button type="submit" id="save-btn" class="control-btn btn btn-primary" aria-label="Create Record">Save</button>
+          </div>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
 
 
 <!-- Page Content -->
@@ -86,18 +128,18 @@
                 <option value="{{ period.period_name }}">{{ period.period_name }}</option>
                 {% endfor %}
             </select>
-            <label for="period" class="active">Period</label>
+            <label for="period" class="active"></label>
             <select id="site_type_filter" name="site_type" class="validate" required aria-label="Site Type">
                 <option value=""  selected>Site type</option>
                 {% for site_type in site_types %}
                 <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
                 {% endfor %}
             </select>
-            <label for="site_type" class="active">Site type</label>
+            <label for="site_type" class="active"></label>
             <select id="monument_type_filter" name="monument_type" class="validate" required aria-label="Monument Type">
                 <option value=""  selected>Monument type</option>
             </select>
-            <label for="monument_type" class="active">Monument type</label>
+            <label for="monument_type" class="active"></label>
             <button id="reset-filters-btn" class="control-btn btn reset-filters-btn">Reset</button>
         </div>
     </div>

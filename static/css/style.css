@@ -29,7 +29,6 @@
 
 /* Buttons------------------------------ */
 
-
 .btn {
     display: flex;
     padding: 12px 18px;
@@ -189,5 +188,31 @@
 }
 
 .w3-bar-item {
-    line-height: 1;
+    color: #6f97a1;
 }
+
+.w3-bar-item .w3-button {
+    color: white !important;
+}
+
+/* Bootstrap form----------------------- */
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #3f616a;
+    background-clip: padding-box;
+    border: none;
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+
+
