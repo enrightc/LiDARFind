@@ -14,16 +14,16 @@
 }
 
 /* nav bar------------------------------ */
-
-.nav-wrappr {
-    line-height: 1;
-    display: flex;
-    align-items: center;
+.bg-body-tertiary {
+    background-color: #263238 !important; 
 }
 
-.flex-center {
-    display:flex;
-    align-items: center;
+.navbar-brand {
+    color: white;
+}
+
+.navbar-nav .nav-link.active {
+    color: white;
 }
 
 
