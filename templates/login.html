@@ -2,42 +2,40 @@
 
 {% block content %}
 
-<h3 class="center-align">Log In</h3>
+<h3 class="d-flex justify-content-center align-items-center">Log In</h3>
 
-<div class="row">
-    <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
-        <div class="card-panel">
-            <div class="row">
-                <!-- Username -->
-                <div class="input-field col s12">
-                    <i class="fa-solid fa-user prefix"></i>
-                    <input id="username" name="username" type="text" minlength="5" maxlength="15"
-                        pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required aria-label="Username">
-                    <label for="username">Username</label>
-                </div>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="col-12 col-md-6 col-lg-4 login-container bg-light p-4 rounded">
+      <form method="POST" action="{{ url_for('login') }}">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
             </div>
-            <!-- Password -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fas fa-user-lock prefix"></i>
-                    <input id="password" name="password" type="password" minlength="5" maxlength="15"
-                        pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required aria-label="Password">
-                    <label for="password">Password</label>
-                </div>
-            </div>
-
-            <!-- Log In -->
-            <div class="row">
-                <button type="submit" class="col s12 btn-large" aria-label="Log In">
-                    Log In <i class="fas fa-sign-in-alt"></i>
-                </button>
-            </div>
+            <input type="text" class="form-control" id="username" name="username" minlength="5" maxlength="15"
+                   pattern="^[a-zA-Z0-9]{5,15}$" required aria-label="Username">
+          </div>
         </div>
-    </form>
-</div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user-lock"></i></span>
+            </div>
+            <input type="password" class="form-control" id="password" name="password" minlength="5" maxlength="15"
+                   pattern="^[a-zA-Z0-9]{5,15}$" required aria-label="Password">
+          </div>
+        </div>
+        <button type="submit" class="text-center btn btn-primary" aria-label="Log In">
+          <span>Log In <i class="fas fa-sign-in-alt"></i></span>
+        </button>
+      </form>
+    </div>
+  </div>
 
 <div class="row">
-    <div class="col s12 center-align">
+    <div class="d-flex justify-content-center align-items-center">
         <a href="{{ url_for('register') }}" class="" aria-label="Need to Register?">Need to Register?</a>
     </div>
 </div>
