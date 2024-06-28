@@ -168,9 +168,8 @@ def logout():
     and redirect the user to the login page.
     """
     # Remove user from the session cookies
-    flash("You have been logged out")
-    session.pop("user")
-    return redirect(url_for("login"))
+    session.pop("user", None)
+    return render_template("logout.html")
 
 
 @app.route("/")
