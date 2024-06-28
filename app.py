@@ -46,7 +46,7 @@ def register():
         password = request.form.get("password")
         confirm_password = request.form.get("confirm_password")
         if password != confirm_password:
-            flash("Passwords do not match")
+            flash("Passwords must match", "danger")
             return redirect(url_for("register"))
 
         register = {
@@ -59,7 +59,7 @@ def register():
 
         # Put the new user into "session" cookie
         session["user"] = request.form.get("username").lower()
-        flash("Registration Complete")
+        flash("You are registered and now logged in. Welcome!", "success")
         return redirect(url_for("profile", username=session["user"]))
     return render_template("register.html")
 
