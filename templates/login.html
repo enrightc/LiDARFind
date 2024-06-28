@@ -2,37 +2,44 @@
 
 {% block content %}
 
-<h3 class="d-flex justify-content-center align-items-center">Log In</h3>
-
-<div class="container d-flex justify-content-center align-items-center">
-    <div class="col-12 col-md-6 col-lg-4 login-container bg-light p-4 rounded">
-      <form method="POST" action="{{ url_for('login') }}">
-        <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+<div class="container mb-4">
+  <div class="row justify-content-center align-items-center mt-5">
+    <div class="col-12 col-md-6 col-lg-4 rounded p-0 login-box">
+      <div class="login-title rounded p-3"> 
+        <h3 class="d-flex justify-content-center align-items-center"><span>Log in</i></span></h3>
+      </div>
+      <div class="p-4 mb-3">
+        <form class="needs-validation" novalidate method="POST" action="{{ url_for('login') }}">
+          <div class="mb-5 position-relative">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control login-form-input" id="username" name="username" minlength="5" 
+              maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required aria-label="Username">
+            <div class="invalid-tooltip">
+              Please provide a valid username (5-15 alphanumeric characters).
             </div>
-            <input type="text" class="form-control" id="username" name="username" minlength="5" maxlength="15"
-                   pattern="^[a-zA-Z0-9]{5,15}$" required aria-label="Username">
           </div>
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-user-lock"></i></span>
+          <div class="mb-5 position-relative">
+            <label for="password" class="form-label ">Password</label>
+            <input type="password" class="form-control login-form-input mb-3" id="password" name="password" minlength="5" maxlength="15"
+                  pattern="^[a-zA-Z0-9]{5,15}$" required aria-label="Password">
+            <div class="invalid-tooltip">
+              Please provide a valid password (5-15 alphanumeric characters).
             </div>
-            <input type="password" class="form-control" id="password" name="password" minlength="5" maxlength="15"
-                   pattern="^[a-zA-Z0-9]{5,15}$" required aria-label="Password">
           </div>
-        </div>
-        <button type="submit" class="text-center btn btn-primary" aria-label="Log In">
-          <span>Log In <i class="fas fa-sign-in-alt"></i></span>
-        </button>
-      </form>
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-lg btn-primary login-btn" aria-label="Log in">
+              Log In
+            </button>
+          </div>
+        </form>
+    </div>
     </div>
   </div>
+</div>
+
+
+
+
 
 <div class="row">
     <div class="d-flex justify-content-center align-items-center">

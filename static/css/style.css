@@ -8,10 +8,13 @@
 }
 
 .flashes {
+    position: absolute;
+    width: 100%;
     line-height: 2;
     background-color: #e1eaec;
     border: 1px solid #6f97a1;
 }
+
 
 /* nav bar------------------------------ */
 .bg-body-tertiary {
@@ -41,16 +44,16 @@
     margin-right:8px;
 }
 
-.register-btn {
+.navbar-register-btn {
     background: #00B05B;
     border:none;
 }
 
-.register-btn:hover {
+.nav-bar-register-btn:hover {
     background-color:#019b51;
 }
 
-.login-btn {
+.navbar-login-btn {
     border-radius: 8px;
     border: 1px solid #FFF;
     background-color: transparent;
@@ -60,6 +63,30 @@
 .btn-spacing {
     margin-right: 25px;
 }
+
+/*Logout.html btns*/
+.login-btn {
+    background: #547c86;
+    border:none;
+    width: 100%;
+}
+
+.login-btn:hover {
+    background-color: #486872;
+}
+
+.home-btn {
+    border-radius: 8px;
+    border: 1px solid black;
+    background-color: transparent;
+    color: black;
+}
+
+
+
+
+    
+
 
 /* Index.html------------------------------ */
 
@@ -230,3 +257,18 @@
     background-color: #e9ecef; /* Match the disabled input background */
   }
 
+  /* Login.html----------------------- */
+.login-box {
+    background-color: #375159;
+    color: white;
+}
+
+.login-title {
+    background-color: #263238;
+    color: white;
+}
+
+.login-form-input {
+    background-color: white;
+    height: 48px;
+}
