@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container text-center justify-content-center align-items-center mt-5">
+<h3 class="mb-3">You've been successfully logged out</h3>
+<p>Simply click the button below to log back in and continue from where you left off. Alternatively, if you prefer to return to the home page, just click the button below.</p>
+</div>
+
+<div class="container d-flex justify-content-center align-items-center btns-group mt-5">
+  <div class="row gap-5">
+    <a href="{{ url_for('login') }}" class="btn login-btn">Log In</a>
+    <a href="{{ url_for('home') }}" class="btn home-btn">return to home page<a>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

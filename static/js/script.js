@@ -1,5 +1,12 @@
 $(document).ready(function() {
   
+    // Function to fadeout Flash messages
+    setTimeout(function() {
+        $(".flashes").fadeOut("slow", function() {
+        $(this).alert('close');
+        });
+    }, 5000); 
+    
 
     // Get the site type and monument type select elements by their IDs
     const siteTypeSelect = $('#site_type');
@@ -86,4 +93,23 @@ function w3_open() {
     document.getElementById("openNav").style.display = "inline-block";
   }
 
+// Function for bootstrap form validation
+(() => {
+    'use strict'
 
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()

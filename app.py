@@ -107,31 +107,62 @@ def login():
 def profile(username):
     """
     Display the user's profile page.
-    Retrieve the username from the session and query the 
-        database to get the user's information.
-    - The route accepts the username as a URL parameter.
-    - The username is retrieved from the session to ensure 
-        it matches the logged-in user.
-    - Render the profile template with the retrieved username and user records.
-    
+    This function handles requests to view a user's profile. it
+    implements security checks to ensure only logged in user's
+    can view their own profiles. 
+    The function retrieve the username from the session and queries 
+    the database to get the user's information.
+
+    Process:
+    1. The function is called when a user naviagtes to the profile
+        page.
+    2. The 'username parameter in the URL is passed to the function.
+    3. It checks if there is a logged in user by looking for the 
+        'user' in the session.
+    4. If there is no logged in user it immediately redirects to the
+        login page and the function ends.
+    5. If there is a logged in user it queries the dataase to find the
+        user.
+    6). If no user is found in the database it aborts with a 404 error 
+        message.
+    7). if the user is found it assigns the username from the database to 
+        the 'username' variable.
+    8). It compares the username with the one in session. If they do
+        not match it aborts with a 403 error.
+    9). If all checks pass it queries the database for all records
+        created by the user.m 
+
     Args:
     username (str): The username of the user whose profile is being accessed.
     
     Returns:
-    - Renders the profile.html template with the username context variable.
+    1. If successful: Renders profile.html template with the username and 
+        records.
+    2. If not logged in: redirects to the login page.
+    3. If user not found: Aborts with 404 error.
+    4. If unauthorised access: Aborts with 403 error.
     """
+    # Check if user is logged in. 
+    # If no user is logged in they are redirected to the login page. 
+    if session.get("user") is None:
+        return redirect(url_for("login"))
+
     # Retrieve the session user's name from the db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]}
-    )["username"]
+    user = mongo.db.users.find_one({"username": session["user"]})
+    if not user:
+        abort(404)  # User not found
+
+    username = user["username"]
+    
+    # Check if the requested profile matches the logged in user.
+    # This ensures that only users can access their own profile. 
+    if username != session["user"]:
+        abort(403)  # Forbidden access
     
     # Retrieve the user's records from the database
     user_records = list(mongo.db.records.find({"created_by": username}))
 
-    if session["user"]:
-        return render_template("profile.html", username=username, records=user_records)
-
-    return redirect(url_for("login"))
+    return render_template("profile.html", username=username, records=user_records)
 
 
 @app.route("/fetch_user_records", methods=["GET"])
