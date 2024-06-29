@@ -1,5 +1,4 @@
 /* General --------------------------- */
-/* Flash messages */
 * {
     margin: 0;
     padding: 0;
@@ -7,6 +6,15 @@
     font-family: sans-serif;
 }
 
+body {
+    padding-top: 50px;
+}
+
+.text-wrap-balance {
+    text-wrap: balance;
+}
+
+/* Flash messages */
 .flashes {
     position: absolute;
     width: 100%;
@@ -28,6 +36,24 @@
 .navbar-nav .nav-link.active {
     color: white;
 }
+
+.navbar { 
+    position: absolute; 
+    top: 0;
+    width: 100%; 
+    z-index: 1999; 
+} 
+
+.navbar-toggler {
+    color: white;
+    border: none;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  box-shadow: none;
+}
+
 
 
 /* Buttons------------------------------ */
@@ -81,12 +107,6 @@
     background-color: transparent;
     color: black;
 }
-
-
-
-
-    
-
 
 /* Index.html------------------------------ */
 
@@ -257,7 +277,7 @@
     background-color: #e9ecef; /* Match the disabled input background */
   }
 
-  /* Login.html----------------------- */
+/* Login.html----------------------- */
 .login-box {
     background-color: #375159;
     color: white;
@@ -272,3 +292,11 @@
     background-color: white;
     height: 48px;
 }
+
+/* Logout.html----------------------- */
+
+.successful-logout {
+    background-color: #d1e7dd;
+}
+
+
