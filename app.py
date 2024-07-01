@@ -162,7 +162,11 @@ def profile(username):
     # Retrieve the user's records from the database
     user_records = list(mongo.db.records.find({"created_by": username}))
 
-    return render_template("profile.html", username=username, records=user_records)
+    # Retrieve site types and periods for the filters
+    site_types = list(mongo.db.site_types.find().sort("site_type", 1))
+    periods = list(mongo.db.periods.find())
+
+    return render_template("profile.html", username=username, records=user_records, site_types=site_types, periods=periods)
 
 
 @app.route("/fetch_user_records", methods=["GET"])
