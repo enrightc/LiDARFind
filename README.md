@@ -33,11 +33,21 @@
 
 **Issue** When dynamically entering adding coordinate data to the record form the placeholder labels were overlapping the prefilled text. 
 
-**Solution** Call the function M.updateTextFields(); to reinitialize all the Materialize the labels on the page (source: MAterailize).
+**Solution** Call the function M.updateTextFields(); to reinitialize all the Materialize the labels on the page (source: Materailize).
 
 ![Converting Cursor to List](readme-images/code-snippets/updateTextFields-code-snippet.png)
 
 **Outcome** When the input field is auto-populated with the coordinates the placeholder text moves in to the active state and no longer overlaps the input. 
+
+### Navbar Pushed Page Content Down on Smaller Screens
+
+**Issue** When the navbar is expanded on smaller screens, it pushes the page content down instead of overlaying it. This causes the layout to shift unexpectedly, affecting the user experience.
+
+**Solution** To resolve the issue, the CSS for the navbar was updated to use position: absolute, ensuring the navbar overlays the page content instead of pushing it down. Additionally, padding was added to the body to prevent content from being hidden behind the navbar. The following CSS was added:
+
+![CSS to prevent navbar pushing page content down](readme-images/code-snippets/navbar-css.png)
+
+**Outcome**  By applying the position: absolute property to the navbar and adding padding-top to the body, the navbar now overlays the page content when expanded on smaller screens. This prevents the content from being pushed down and ensures it is not hidden behind the navbar, maintaining a consistent layout and improving the overall user experience.
 
 
 # Resources
