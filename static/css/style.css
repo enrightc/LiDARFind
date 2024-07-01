@@ -218,11 +218,11 @@ return-home {
 
 
 /* Filter buttons on record.html----------------------- */
-.w3-teal {
+.filter-menu {
     background-color: #334046 !important;
 }
 
-.button-container {
+.filters-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -245,66 +245,51 @@ return-home {
     background-color: #486872;
 }
 
-.select-dropdown {
-    color: #f3f8f8;
+/* Side bar (Create Record)----------------------- */
+.w3-bar-block { /* Sidebar background color */
+    background-color: #375159; 
 }
 
-.select-wrapper input.select-dropdown {
-    border-bottom: 1px solid #3bba9c;
+.w3-button { /* Close Button */
+    color:  #f3f8f8; 
 }
 
-.select-wrapper .caret {
-    fill: white;
-}
-
-/* Side bar----------------------- */
-.w3-bar-block {
-    background-color: #375159;
-}
-
-.w3-button {
-    color:  #f3f8f8;
-}
-
-.save-btn {
-    background-color: #547c86;
-    color: #f3f8f8;
-}
-
-.save-btn {
-    background-color: #486872 !important;
-}
-
-.w3-button:hover {
+.w3-button:hover { 
     color: #f3f8f8 !important;
     background-color: #3f565f !important;
 }
 
-.select-wrapper input.select-dropdown {
-    border-bottom: 1px solid gray;
+.form-control, .form-select { /* Input fields */
+    background-color: #4A6A78; 
+    color: #FFFFFF; 
+    border: 1px solid #2E4B55;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.input-field {
-    position: relative;
-    margin-top: 0rem;
-    margin-bottom: 0rem;
+.form-select:disabled { 
+    background-color: #3A5058; 
+    color: #B0C4DE; 
+    border: 1px solid #2E4B55; 
+    opacity: 0.6;
 }
 
-.w3-bar-item {
-    color: #6f97a1;
+.form-control::placeholder, textarea::placeholder { /* Click for location input colour */
+    color: #B0C4DE; 
 }
 
-.w3-bar-item .w3-button {
-    color: white !important;
+.form-label { /* Placeholder text */
+    color: #FFFFFF; 
 }
 
-/* Bootstrap form----------------------- */
+.form-floating>.form-control:not(:placeholder-shown)~label::after { /* Placeholder text after text input */
+    background-color:transparent;
+}
 
-
-#location.readonly {
+#location.readonly { /* disable pointers to make it non clickable after input */
     pointer-events: none;
-    background-color: #e9ecef; /* Match the disabled input background */
-  }
+}
+
 
 /* Login.html----------------------- */
 .login-box {
