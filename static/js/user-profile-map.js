@@ -34,6 +34,7 @@ fetch("/fetch_user_records")
                 <b>Period:</b> ${record.period}<br>
                 <b>Monument Type:</b> ${record.monument_type}
             `;
+            
     
             // Credit: https://gis.stackexchange.com/questions/31951/showing-popup-on-mouse-over-not-on-click-using-leaflet
             marker.bindPopup("Popup content");
@@ -77,10 +78,10 @@ function displayRecordDetails(record) {
     $('#record-prn').text(record.prn);
 
     // Set the href for the edit button
-    $('.edit-button').attr('href', `/edit_record/${record._id}`);
+    $('.edit-btn').attr('href', `/edit_record/${record._id}`);
 
     // Set the href for the delete button
-    $('.delete-button').attr('href', `/delete_record/${record._id}`);
+    $('.delete-btn').attr('href', `/delete_record/${record._id}`);
 }
 
 // Reset map view to initial state
@@ -105,4 +106,3 @@ var overlayMaps = {
 };
 
 L.control.layers(baseMaps, overlayMaps).addTo(map);
-

@@ -71,6 +71,13 @@ function displayRecords(data, currentUser) {
             <b>Created on:</b> ${record.created_on}<br>
         `;
 
+        // Edit and delete buttons for user's records.
+        if (record.created_by === currentUser) {
+            popupContent += `
+                <a href="/edit_record/${record._id}" class="btn edit-btn">Edit</a>
+            `;
+        }
+
         marker.bindPopup(popupContent);
 
         // Store marker with its associated data
@@ -80,6 +87,49 @@ function displayRecords(data, currentUser) {
             site_type: record.site_type,
             monument_type: record.monument_type
         });
+    });
+}
+
+
+// Functions for filtering and displaying map markers based on user search parameters
+// Event Listeners for dropdown Filters
+document.getElementById('period-filter').addEventListener('change', function () {
+    applyFilters();
+});
+document.getElementById('site_type_filter').addEventListener('change', function () {
+    applyFilters();
+});
+document.getElementById('monument_type_filter').addEventListener('change', function () {
+    applyFilters();
+});
+
+document.getElementById('reset-filters-btn').addEventListener('click', function () {
+    // Reset the filter dropdowns to their default values
+    // Reset the filter dropdowns to their default values
+    document.getElementById('period-filter').selectedIndex = 0;
+    document.getElementById('site_type_filter').selectedIndex = 0;
+    document.getElementById('monument_type_filter').selectedIndex = 0;
+
+    // Re-apply filters to show all markers
+    applyFilters();
+});
+
+// Function to apply filters and display markers accordingly on the map
+function applyFilters() {
+    const selectedPeriod = document.getElementById('period-filter').value;
+    const selectedSiteType = document.getElementById('site_type_filter').value;
+    const selectedMonumentType = document.getElementById('monument_type_filter').value;
+
+    allMarkers.forEach(item => {
+        let matchesPeriod = selectedPeriod === "" || item.period === selectedPeriod;
+        let matchesSiteType = selectedSiteType === "" || item.site_type === selectedSiteType;
+        let matchesMonumentType = selectedMonumentType === "" || item.monument_type === selectedMonumentType;
+
+        if (matchesPeriod && matchesSiteType && matchesMonumentType) {
+            map.addLayer(item.marker); // Show marker
+        } else {
+            map.removeLayer(item.marker); // Hide marker
+        }
     });
 }
 
