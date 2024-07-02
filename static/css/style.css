@@ -28,11 +28,21 @@ body {
 
 /* Flash messages */
 .flashes {
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 60px; 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; 
     width: 100%;
-    line-height: 2;
-    background-color: #e1eaec;
-    border: 1px solid #6f97a1;
+    max-width: 800px; 
+}
+.alert {
+    width: 100%;
+    max-width: 800px; 
 }
 
 /* nav bar------------------------------ */
@@ -94,6 +104,14 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+    margin-top: 10px; 
+}
+
+
 .primary-btn {
     background-color: #4CAF50 !important;
     color: white !important;
@@ -130,7 +148,7 @@ return-home {
 .edit-btn {
     background-color: #4CAF50; 
     border: none; 
-    color: white; 
+    color: white !important; 
     padding: 10px 20px; 
     text-align: center; 
     text-decoration: none; 
@@ -145,19 +163,24 @@ return-home {
 .delete-btn {
     background-color: #f44336; 
     border: none; 
-    color: white; 
+    color: white !important; 
     padding: 10px 20px; 
     text-align: center; 
     text-decoration: none;
- 
     font-size: 12px; 
     margin: 4px 2px; 
     cursor: pointer; 
     border-radius: 5px; 
 }
 
-.edit-btn:hover, .delete-btn:hover {
-    opacity: 0.8; 
+.delete-btn:hover {
+    opacity: 0.8;
+    background-color: #f44336;  
+}
+
+.edit-btn:hover {
+    opacity: 0.8;
+    background-color:#4CAF50 ;  
 }
 
 .btn-spacing {
@@ -195,6 +218,7 @@ return-home {
     background-color: #558a96 !important; /* Slightly darker for hover effect */
     color: #ffffff !important; /* Ensure text remains white on hover */
 }
+
 
 /* Index.html------------------------------ */
 

@@ -43,7 +43,6 @@ var otherUserIcon = L.icon({
     popupAnchor: [1, -34] 
 });
 
-
 // Array to store markers with associated data for search filters (period, site type, monument type)
 allMarkers = [];
 
@@ -75,8 +74,10 @@ function displayRecords(data, currentUser) {
         // Edit and delete buttons for user's records.
         if (record.created_by === currentUser) {
             popupContent += `
-                <a href="/edit_record/${record._id}" class="btn edit-btn">Edit</a>
-                <a href="#" class="btn delete-btn" onclick="openDeleteModal('${record._id}')">Delete</a>
+                 <div class="button-container">
+                    <a href="/edit_record/${record._id}" class="btn edit-btn">Edit</a>
+                    <a href="#" class="btn delete-btn" onclick="openDeleteModal('${record._id}')">Delete</a>
+                </div>
             `;
         }
 

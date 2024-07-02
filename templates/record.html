@@ -9,8 +9,8 @@
 {% block content %}
 
  <!-- Flash Messages first time registration and login only -->
- <div class="container">
-  <div class="alert-success">
+ <div class="container flash-container">
+  <div class="flashes alert-success">
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         {% for message in messages %}
