@@ -170,6 +170,15 @@ map.on('click', function (e) {
     currentMarker = L.marker(coords, {icon: crosshairIcon}).addTo(map);
 });
 
+// Reset map view to initial state
+// Credit: https://github.com/drustack/Leaflet.ResetView
+L.control.resetView({
+    position: "topleft",
+    title: "Reset view",
+    latlng: L.latLng([52.4814, -3.9797]),
+    zoom: 8,
+}).addTo(map);
+
 // Base Maps
 var baseMaps = {
     "OpenStreetMap": openStreetMap,
