@@ -199,7 +199,7 @@ def fetch_user_records():
         record["_id"] = str(record["_id"])
 
     # Return the location data as JSON
-    return jsonify({"all_records": all_records, "user_records": user_records})
+    return jsonify({"all_records": all_records, "user_records": user_records, "current_user": username})
 
     
 @app.route("/logout")
@@ -332,8 +332,15 @@ def delete_record(record_id):
     Function to delete a record by _id
     """
     mongo.db.records.delete_one({"_id": ObjectId(record_id)})
-    flash("Recorded Deleted")
-    return redirect(url_for("profile", username=session["user"]))
+    flash("Record Deleted")
+
+    # Fetch necessary data to render the record page again
+    username = session["user"]
+    user_records = list(mongo.db.records.find({"created_by": username}))  # Correct query
+    site_types = list(mongo.db.site_types.find().sort("site_type", 1))
+    periods = list(mongo.db.periods.find())
+
+    return render_template("record.html", username=username, records=user_records, site_types=site_types, periods=periods)
 
 
 if __name__ == "__main__":

@@ -23,25 +23,26 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
 
 // Custom icons
 var crosshairIcon = L.icon({
-    iconUrl: 'static/images/crosshair.svg',
+    iconUrl: '/static/images/crosshair.svg',
     iconSize: [38, 95], // size of the icon
     iconAnchor: [19, 48], // point of the icon which will correspond to marker's location
     popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
 var currentUserIcon = L.icon({
-    iconUrl: 'static/images/current-user-marker.png',
+    iconUrl: '/static/images/current-user-marker.png',
     iconSize: [21, 36], 
     iconAnchor: [12, 41], 
     popupAnchor: [1, -34] 
 });
 
 var otherUserIcon = L.icon({
-    iconUrl: 'static/images/other-user-marker.png',
+    iconUrl: '/static/images/other-user-marker.png',
     iconSize: [21, 36], 
     iconAnchor: [12, 41], 
     popupAnchor: [1, -34] 
 });
+
 
 // Array to store markers with associated data for search filters (period, site type, monument type)
 allMarkers = [];
