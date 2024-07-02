@@ -44,7 +44,7 @@ var otherUserIcon = L.icon({
 });
 
 // Array to store markers with associated data for search filters (period, site type, monument type)
-window.allMarkers = [];
+allMarkers = [];
 
 // Fetch all records and display them on the map
 fetch("/fetch_user_records")
@@ -75,7 +75,7 @@ function displayRecords(data, currentUser) {
         if (record.created_by === currentUser) {
             popupContent += `
                 <a href="/edit_record/${record._id}" class="btn edit-btn">Edit</a>
-                <a href="/delete_record/${record._id}" class="btn delete-btn">Delete</a>
+                <a href="#" class="btn delete-btn" onclick="openDeleteModal('${record._id}')">Delete</a>
             `;
         }
 
@@ -91,6 +91,19 @@ function displayRecords(data, currentUser) {
     });
 }
 
+// Function to open the delete modal
+// This function confirms the user wants to delete the record and then deletes it by triggering the delete_record function. 
+function openDeleteModal(recordId) {
+    const confirmDelete = document.getElementById("confirmDeleteBtn");
+
+    // Set the href for the confirm button
+    confirmDelete.href = `/delete_record/${recordId}`;
+
+    // Show the modal
+    // adapted from: https://stackoverflow.com/questions/62827002/bootstrap-v5-manually-call-a-modal-mymodal-show-not-working-vanilla-javascrip
+    const deleteModal = new bootstrap.Modal(document.getElementById('confirmDelete'));
+    deleteModal.show();
+}
 
 // Functions for filtering and displaying map markers based on user search parameters
 // Event Listeners for dropdown Filters
@@ -105,7 +118,6 @@ document.getElementById('monument_type_filter').addEventListener('change', funct
 });
 
 document.getElementById('reset-filters-btn').addEventListener('click', function () {
-    // Reset the filter dropdowns to their default values
     // Reset the filter dropdowns to their default values
     document.getElementById('period-filter').selectedIndex = 0;
     document.getElementById('site_type_filter').selectedIndex = 0;
