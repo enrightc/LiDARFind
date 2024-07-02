@@ -75,6 +75,7 @@ function displayRecords(data, currentUser) {
         if (record.created_by === currentUser) {
             popupContent += `
                 <a href="/edit_record/${record._id}" class="btn edit-btn">Edit</a>
+                <a href="/delete_record/${record._id}" class="btn delete-btn">Delete</a>
             `;
         }
 
