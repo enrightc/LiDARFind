@@ -112,6 +112,18 @@ body {
     }
 }
 
+#homePageMap { 
+    height: 500px;
+    max-width: 100%;;
+}
+
+@media screen and (max-width: 576px) {
+    #homePageMap {
+        height: 50svh; 
+    }
+}
+
+
 /* Buttons------------------------------ */
 .btn {
     display: flex;
@@ -290,6 +302,11 @@ body {
         margin-right: auto;
         margin-top: 25px;
     }
+}
+
+.about {
+    max-width: 900px;
+    margin: 77px auto;
 }
 
 /* Filter buttons on record.html----------------------- */
