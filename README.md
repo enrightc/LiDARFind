@@ -91,3 +91,6 @@
 
 - W3 Schools sidenav
   - [Open the Sidebar Navigation Over a Part of the Content](https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_sidebar_over) W3 Schools. [Accessed 19th June, 2024].
+
+- To manually triiger Bootstrap Modal using JS
+  - [Open the Sidebar Navigation Over a Part of the Content](https://stackoverflow.com/questions/62827002/bootstrap-v5-manually-call-a-modal-mymodal-show-not-working-vanilla-javascrip) Stack Overflow. [Accessed 2nd July, 2024, 2024].
