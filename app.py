@@ -310,9 +310,15 @@ def edit_record(record_id):
             "period": request.form.get("period"),
             "location": request.form.get("location")
         }
+
+        username = session["user"]
+        user_records = list(mongo.db.records.find({"created_by": username}))  # Correct query
+        site_types = list(mongo.db.site_types.find().sort("site_type", 1))
+        periods = list(mongo.db.periods.find())
+
         mongo.db.records.update_one({"_id": ObjectId(record_id)}, {"$set": updated_record})
         flash("Record Updated")
-        return redirect(url_for("profile", username=session["user"]))
+        return render_template("record.html", username=username, records=user_records, site_types=site_types, periods=periods)
 
     # Retrieve site types and periods from the database
     site_types = list(mongo.db.site_types.find().sort("site_type", 1))
@@ -332,7 +338,7 @@ def delete_record(record_id):
     Function to delete a record by _id
     """
     mongo.db.records.delete_one({"_id": ObjectId(record_id)})
-    flash("Record Deleted")
+    flash("Record Deleted", "Success")
 
     # Fetch necessary data to render the record page again
     username = session["user"]
