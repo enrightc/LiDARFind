@@ -45,6 +45,11 @@ body {
     max-width: 800px; 
 }
 
+footer {
+    background-color: #263238 !important;
+    color: white;
+}
+
 /* nav bar------------------------------ */
 .bg-body-tertiary {
     background-color: #263238 !important; 
@@ -102,9 +107,7 @@ body {
     }
 }
 
-#edit-record-map { 
-    height: 100vh;
-}
+
 
 @media screen and (max-width: 576px) {
     #mapid {
@@ -122,6 +125,7 @@ body {
         height: 50svh; 
     }
 }
+
 
 
 /* Buttons------------------------------ */
@@ -279,7 +283,6 @@ body {
     background: url(../images/hero-image.webp) no-repeat center center;
     background-size: cover;
     padding: 50px 0;
-    text-align: center;
     color: white;
     height: 500px;
 }
@@ -290,6 +293,7 @@ body {
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    
 }
 
 @media screen and (max-width: 835px) {
@@ -304,9 +308,20 @@ body {
     }
 }
 
-.about {
+.content-section {
     max-width: 900px;
     margin: 77px auto;
+}
+
+.card {
+    background-color: #263238!important;
+    color:white;
+    
+}
+
+.panel-icon {
+    font-size: 26px;
+    margin-bottom:8px;
 }
 
 /* Filter buttons on record.html----------------------- */
@@ -367,7 +382,7 @@ body {
     }
 }
 
-/* Side bar (Create Record)----------------------- */
+/* Side bar Form----------------------- */
 .w3-bar-block { /* Sidebar background color */
     background-color: #375159; 
 }
@@ -381,7 +396,7 @@ body {
     background-color: #3f565f !important;
 }
 
-.form-control, .form-select { /* Input fields */
+.form-control, .form-select, .edit-form { /* Input fields */
     background-color: #4A6A78; 
     color: #FFFFFF; 
     border: 1px solid #2E4B55;
@@ -462,4 +477,50 @@ body {
 .leaflet-popup-close-button {
     color: #e1eaec !important; 
     font-size: 24px !important; 
+}
+
+
+/* edit_record.html----------------------- */
+.edit-page-grid {
+    display: grid;
+    height: calc(100vh - 54px);
+    grid-template-columns: minmax(0, 400px) 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.edit-form {
+    height: calc(100vh - 54px);
+    max-width: 400px;
+    width: 100%;
+    border-radius: 0px;
+    overflow: auto;
+}
+
+.edit-map {
+    width: 100%;
+}
+
+#edit-record-map { 
+    height: calc(100vh - 54px);
+    width: 100%;
+}
+
+@media screen and (max-width: 835px) {
+    .edit-page-grid {
+        display: flex;
+        height: calc(100vh - 54px);
+        flex-direction: column-reverse;
+    }
+
+    #edit-record-map { 
+        height: calc(55vh - 54px);
+        width: 100%;
+    }
+
+    .edit-form {
+        height: 100%;
+        max-width: 100%;
+        width: 100%;
+    }
 }

@@ -8,117 +8,126 @@
 {% endblock %}
 
 {% block content %}
-<h1>Edit Record</h1>
-<div class="row">
-    <!-- Recording Form -->
-    <div class="col s3">
-        <div class="row">
-            <form class="col s12" method="POST" action="{{ url_for('edit_record', record_id=record._id) }}">
-                <!-- Title -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="title" name="title" minlength="5" maxlength="50"
-                               type="text" class="validate" required value="{{ record.title }}"
-                               aria-label="Title">
-                        <label for="title" class="active">Title</label>
-                    </div>
+<div class="edit-page-grid">
+    <div class="edit-form">
+        <h2>Edit Record</h2>
+        <form id="edit-record-form" class="needs-validation" method="POST" action="{{ url_for('add_record') }}" novalidate>
+            <!-- Title -->
+            <div class="form-floating mb-4">
+                <input id="InputTitle" name="title" minlength="5" maxlength="50" class="form-control" placeholder="Title" required value="{{ record.title }}">
+                <label for="InputTitle" class="form-label">Title</label>
+                <div class="valid-feedback">
+                    Looks good!
                 </div>
-                <!-- PRN -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="prn" name="prn" minlength="2" maxlength="8"
-                               type="number" class="validate" value="{{ record.prn }}"
-                               aria-label="PRN">
-                        <label for="prn" class="active">PRN (if known)</label>
-                    </div>
+                <div class="invalid-feedback">
+                    Please provide a title.
                 </div>
-                <!-- Site Type -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <select id="site_type" name="site_type" class="validate" required aria-label="Site Type">
-                            <option value="" disabled>Select site type</option>
-                            {% for site_type in site_types %}
-                                {% if site_type.site_type == record.site_type %}
-                                    <option value="{{ site_type.site_type }}" selected>{{ site_type.site_type }}</option>
-                                {% else %}
-                                    <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                        <label for="site_type" class="active">Site type</label>
-                    </div>
+            </div>
+            <!-- PRN -->
+            <div class="form-floating mb-4">
+                <input id="InputPrn" name="prn" minlength="2" maxlength="8" type="text" class="form-control" placeholder="PRN" pattern='^\d+$' value="{{ record.prn }}">
+                <label for="InputPrn" class="form-label">PRN (if known)</label>
+                <div class="invalid-feedback">
+                    Please provide a valid PRN.
                 </div>
-                <!-- Monument Type -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <select id="monument_type" name="monument_type" class="validate" required aria-label="Monument Type">
-                            <option value="" disabled>Select monument type</option>
-                            {% for monument_type in monument_types %}
-                                {% if monument_type == record.monument_type %}
-                                    <option value="{{ monument_type }}" selected>{{ monument_type }}</option>
-                                {% else %}
-                                    <option value="{{ monument_type }}">{{ monument_type }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                        <label for="monument_type" class="active">Monument type</label>
-                    </div>
+            </div>
+            <!-- Site Type -->
+            <div class="mb-4">
+                <select id="site_type" class="form-select" name="site_type" required aria-label="Site Type">
+                    <option value="" disabled>Select site type</option>
+                    {% for site_type in site_types %}
+                        {% if site_type.site_type == record.site_type %}
+                            <option value="{{ site_type.site_type }}" selected>{{ site_type.site_type }}</option>
+                        {% else %}
+                            <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <label for="site_type" class="active">Site type</label>
+                <div class="valid-feedback">
+                    Looks good!
                 </div>
-                <!-- Interpretation -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <textarea id="interpretation" name="interpretation" minlength="5"
-                                  maxlength="200" class="materialize-textarea validate" required
-                                  aria-label="Interpretation">{{ record.interpretation }}</textarea>
-                        <label for="interpretation" class="active">Interpretation</label>
-                    </div>
+                <div class="invalid-feedback">
+                    Please select a site type.
                 </div>
-                <!-- Period -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <select id="period" name="period" class="validate" required aria-label="Period">
-                            <option value="" disabled>Select Period</option>
-                            {% for period in periods %}
-                                {% if period.period_name == record.period %}
-                                    <option value="{{ period.period_name }}" selected>{{ period.period_name }}</option>
-                                {% else %}
-                                    <option value="{{ period.period_name }}">{{ period.period_name }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                        <label for="period" class="active">Period</label>
-                    </div>
+            </div>
+            <!-- Monument Type -->
+            <div class="mb-4">
+                <select id="monument_type" class="form-select" name="monument_type" required aria-label="Monument Type">
+                    <option value="" disabled>Select monument type</option>
+                    {% for monument_type in monument_types %}
+                        {% if monument_type == record.monument_type %}
+                            <option value="{{ monument_type }}" selected>{{ monument_type }}</option>
+                        {% else %}
+                            <option value="{{ monument_type }}">{{ monument_type }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <label for="monument_type" class="active">Monument type</label>
+                <div class="valid-feedback">
+                    Looks good!
                 </div>
-                <!-- Location -->
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="location" name="location" minlength="5" maxlength="50"
-                               type="text" class="validate" required value="{{ record.location }}" readonly
-                               aria-label="Location">
-                        <label for="location" class="active">Location</label>
-                    </div>
+                <div class="invalid-feedback">
+                    Please select a monument type.
                 </div>
-                <!-- Submit Button -->
-                <div class="row">
-                    <div class="col s12 center-align">
-                        <button type="submit" class="btn-large" aria-label="Save Changes">
-                            Save Changes
-                        </button>
-                        <a class="btn-large" href="{{ url_for('profile', username=session['user']) }}">Cancel</a>
-
-                    </div>  
-                </div>   
-            </form>
-        </div>
+            </div>
+            <!-- Interpretation -->
+            <div class="form-floating mb-4">
+                <textarea id="interpretation" name="interpretation" minlength="5" maxlength="200" class="form-control" required aria-label="Interpretation">{{ record.interpretation }}</textarea>
+                <label for="interpretation" class="form-label">Interpretation</label>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please provide an interpretation.
+                </div>
+            </div>
+            <!-- Period -->
+            <div class="mb-4">
+                <select id="period" class="form-select" name="period" required aria-label="Period">
+                    <option value="" disabled>Select Period</option>
+                    {% for period in periods %}
+                        {% if period.period_name == record.period %}
+                            <option value="{{ period.period_name }}" selected>{{ period.period_name }}</option>
+                        {% else %}
+                            <option value="{{ period.period_name }}">{{ period.period_name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <label for="period" class="active">Period</label>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please select a period.
+                </div>
+            </div>
+            <!-- Location -->
+            <div class="mb-4">
+                <input id="location" name="location" minlength="5" maxlength="50" type="text" class="form-control" required value="{{ record.location }}" readonly aria-label="Location">
+                <label for="location" class="form-label"></label>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please provide a location by clicking on the map.
+                </div>
+            </div>
+            <!-- Submit Button -->
+            <div class="mb-4 d-flex flex-row">
+                <a class="secondary-btn btn" href="{{ url_for('profile', username=session['user']) }}">Cancel</a>
+                <button type="submit" class="primary-btn btn btn-spacing" aria-label="Save Changes">Save Changes</button>
+            </div>
+        </form>
     </div>
-
-    <!-- Map Window -->
-    <div class="col s9">
+    <!-- Map -->
+    <div class="edit-map">
         <div id="edit-record-map"></div>
     </div>
 </div>
+
 {% endblock %}
-        
+
 {% block scripts %}
     <!-- Leaflet -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
