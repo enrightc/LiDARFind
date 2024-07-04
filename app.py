@@ -317,7 +317,7 @@ def edit_record(record_id):
         periods = list(mongo.db.periods.find())
 
         mongo.db.records.update_one({"_id": ObjectId(record_id)}, {"$set": updated_record})
-        flash("Record Updated")
+        flash("Record successfully updated", "success")
         return render_template("record.html", username=username, records=user_records, site_types=site_types, periods=periods)
 
     # Retrieve site types and periods from the database
