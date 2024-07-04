@@ -8,45 +8,88 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Hero -->
-    <div id="hero" class="container-fluid hero-container">
-        <div role="img" aria-label="LiDAR image of a hillfort">
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="hero-text-container">
-                    <h1 class="text-uppercase">Discover the Historic Environment from Anywhere</h1>
-                    <p class="tagline">Join our community of citizen scientists and professional archaeologists to explore and document archaeological sites discovered through LiDAR technology.</p>
-                    <div class="btns-container-row">
-                        <a href="{{ url_for('register') }}" class="primary-btn btn">Register Now</a>
-                        <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
-                    </div>
+<!-- Hero -->
+<div id="hero" class="container-fluid hero-container">
+    <div role="img" aria-label="LiDAR image of a hillfort">
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="hero-text-container">
+                <h1 class="text-uppercase">Discover the Historic Environment from Anywhere</h1>
+                <p class="tagline">Join our community of citizen scientists and professional archaeologists to explore and document archaeological sites discovered through LiDAR technology.</p>
+                <div class="btns-container-row">
+                    <a href="{{ url_for('register') }}" class="primary-btn btn">Register Now</a>
+                    <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- /.Hero -->
+</div>
+<!-- /.Hero -->
 
-     <!-- About-->
-     <div class="container-fluid about text-align-center">
-        
-        <p>
-            Discover and share archaeological finds through our LiDAR data analysis platform. 
-            Join our community to contribute, explore, and discuss hidden historical sites. 
-            Whether you're an enthusiast or a professional, our user-friendly interface makes it easy to uncover 
-            the past and enrich our understanding of history. Start exploring today!
-        </p>
+    <!-- About-->
+    <div class="container-fluid about justify-content-center">
+    <p>
+        Discover and share archaeological finds through our LiDAR data analysis platform. 
+        Join our community to contribute, explore, and discuss hidden historical sites. 
+        Whether you're an enthusiast or a professional, our user-friendly interface makes it easy to uncover 
+        the past and enrich our understanding of history. Start exploring today!
+    </p>
+</div>
+<!-- /.About -->
+
+
+<div class="row justify-content-center">
+<!-- Map Window -->
+    <div class="col s12 col-md-8">
+        <div id="homePageMap"></div>
     </div>
-    <!-- /.About -->
+</div>
 
-
+<!-- Footer -->
+<footer class="container-fluid">
     <div class="row justify-content-center">
-        <!-- Map Window -->
-        <div class="col s12 col-md-8">
-            <div id="homePageMap"></div>
+        <div class="col-12 text-center mt-4">
+            <ul class="list-inline social-links">
+                <li class="list-inline-item">
+                    <a target="_blank" href="https://www.facebook.com" aria-label="Go to our facebook page (opens in new tab)" rel="noopener">
+                        <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                        <span class="sr-only">Facebook</span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a target="_blank" href="https://www.twitter.com" aria-label="Go to our twitter page (opens in new tab)" rel="noopener">
+                        <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+                        <span class="sr-only">Twitter</span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a target="_blank" href="https://www.instagram.com" aria-label="Go to our instagram (opens in new tab)" rel="noopener">
+                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                        <span class="sr-only">Instagram</span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a target="_blank" href="https://www.youtube.com" aria-label="Go to our youtube channel (opens in new tab)" rel="noopener">
+                        <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                        <span class="sr-only">YouTube</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-      </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <p>This website was made by Charlie Enright as part of the Code Institute Milestone three Project.</p>
+        </div>
+    </div>
+</footer>
+<!-- /.Footer -->
+
 {% endblock %}
+
+
+  
 
 {% block scripts %}
 <!-- Leaflet -->
@@ -54,6 +97,6 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.js"></script>
 <script src="{{ url_for('static', filename='js/bing.js') }}"></script>
-<script src="{{ url_for('static', filename='js/user-profile-map.js') }}"></script>
+<script src="{{ url_for('static', filename='js/homepage-map.js') }}"></script>
 </script>
 {% endblock %}
