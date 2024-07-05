@@ -55,8 +55,6 @@ function displayRecords(data) {
             <b>Monument Type:</b> ${record.monument_type}<br>
             <b>Interpretation Type:</b> ${record.interpretation}<br>
             <b>Period:</b> ${record.period}<br>
-            <b>Created by:</b> ${record.created_by}<br>
-            <b>Created on:</b> ${record.created_on}<br>
         `;
 
         marker.bindPopup(popupContent);
