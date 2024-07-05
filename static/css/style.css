@@ -324,6 +324,12 @@ footer {
     margin-bottom:8px;
 }
 
+.lidarfind-image {
+    max-width: 500px;
+}
+
+
+
 /* Filter buttons on record.html----------------------- */
 .filter-menu {
     background-color: #334046 !important;
