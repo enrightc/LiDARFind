@@ -181,7 +181,8 @@ def profile(username):
                             site_types=site_types, 
                             periods=periods,  
                             member_since=member_since,
-                            total_records=len(user_records),)
+                            total_records=len(user_records),
+                            user_records=user_records)
 
 
 @app.route("/fetch_user_records", methods=["GET"])
