@@ -4,6 +4,7 @@ from flask import (
     redirect, request, session, url_for,
     jsonify,
 )
+import datetime
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -52,8 +53,8 @@ def register():
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
-            "confirm_password": generate_password_hash(request.form.get("confirm_password")),
-            "skill_level": request.form.get("skill_level")
+            "skill_level": request.form.get("skill_level"),
+            "member_since": datetime.datetime.now()
         }
         mongo.db.users.insert_one(register)
 
@@ -166,7 +167,17 @@ def profile(username):
     site_types = list(mongo.db.site_types.find().sort("site_type", 1))
     periods = list(mongo.db.periods.find())
 
-    return render_template("profile.html", username=username, records=user_records, site_types=site_types, periods=periods)
+     # Retrieve member since date
+    member_since = user.get("member_since", None)
+    if member_since:
+        member_since = member_since.strftime('%d/%m/%Y')
+
+    return render_template("profile.html", 
+                            username=username, 
+                            records=user_records, 
+                            site_types=site_types, 
+                            periods=periods,  
+                            member_since=member_since)
 
 
 @app.route("/fetch_user_records", methods=["GET"])
