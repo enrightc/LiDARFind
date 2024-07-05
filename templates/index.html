@@ -8,34 +8,27 @@
 {% endblock %}
 
 {% block content %}
+
 <!-- Hero -->
-<section class="hero">
-    <div id="hero" class="container-fluid hero-container">
-        <div role="img" aria-label="LiDAR image of a hillfort">
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="hero-text-container">
-                    <h1 class="text-uppercase">Discover the Historic Environment from Anywhere</h1>
-                    <p class="tagline">Join our community of citizen scientists and professional archaeologists to explore and document archaeological sites discovered through LiDAR technology.</p>
-                    <div class="btns-container-row">
-                        <a href="{{ url_for('register') }}" class="primary-btn btn">Register Now</a>
-                        <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
-                    </div>
-                </div>
-            </div>
+<section class="hero overlay">
+    <div class="hero-header-container">
+        <h1 class="title-text">Discover the Historic Environment from Anywhere</h1>
+    </div>
+    <div class="hero-text-container">
+        <p class="tagline">Join our community of citizen scientists and professional archaeologists to explore and document archaeological sites discovered through LiDAR technology.</p>
+        <div class="btns-container-row">
+            <a href="{{ url_for('register') }}" class="primary-btn btn">Register Now</a>
+            <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
         </div>
     </div>
 </section>
-
-
 
 <!-- About-->
 <section class="content about">
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center mt-5 mb-5">
             <div class="col-12 col-md-6 my-5">
-                <h2 class="text-uppercase mb-4">LiDARFind</h2>
+                <h2 class="mb-4">LiDARFind</h2>
                 <p>
                     Discover and share archaeological finds through our LiDAR data analysis platform. 
                     Join our community to contribute, explore, and discuss hidden historical sites. 
