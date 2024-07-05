@@ -111,8 +111,6 @@ footer {
     }
 }
 
-
-
 @media screen and (max-width: 576px) {
     #mapid {
         height: 50svh; 
@@ -121,7 +119,9 @@ footer {
 
 #homePageMap { 
     height: 500px;
-    max-width: 100%;;
+    width: 100%;
+    border-radius: 16px;
+
 }
 
 @media screen and (max-width: 576px) {
@@ -365,16 +365,17 @@ footer {
     width: 100%;
 }
 
-/* About Section */
 .content {
     background-color: #f9f9f9;
-    padding: 60px 0;
+    padding: 60px 24px;
     border-radius: 32px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     max-width: 1180px;
     margin: 32px auto;
 }
+
+
 
 section h2 {
     font-size: 2.5rem;
@@ -438,7 +439,20 @@ section h2 {
     max-width: 500px;
 }
 
+section.map-browse {
+    background-color: #263238;
+    padding: 20px;
+    border-radius: 32px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    max-width: 1180px;
+    margin: 32px auto;
+}
 
+.filters-homepage {
+    margin-left: auto;
+    color: white;
+}
 
 
 /* Filter buttons on record.html----------------------- */
