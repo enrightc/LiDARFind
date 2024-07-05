@@ -172,12 +172,16 @@ def profile(username):
     if member_since:
         member_since = member_since.strftime('%d/%m/%Y')
 
+    # Calculate total records by a user
+    total_records = len(user_records)
+
     return render_template("profile.html", 
                             username=username, 
                             records=user_records, 
                             site_types=site_types, 
                             periods=periods,  
-                            member_since=member_since)
+                            member_since=member_since,
+                            total_records=len(user_records),)
 
 
 @app.route("/fetch_user_records", methods=["GET"])
