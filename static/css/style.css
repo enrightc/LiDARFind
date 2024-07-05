@@ -26,6 +26,10 @@ body {
     text-wrap: balance;
 }
 
+.justify-center {
+    justify-content: center;
+}
+
 /* Flash messages */
 .flashes {
     display: flex;
@@ -142,6 +146,12 @@ footer {
     margin-right:8px;
     transition: background-color 0.3s ease;
     width:auto;
+}
+
+@media screen and (max-width: 576px) {
+    .btn {
+        width:100%;
+    }
 }
 
 .button-container {
@@ -276,11 +286,16 @@ footer {
     align-items: center; 
 }
 
+@media screen and (max-width: 576px) {
+    .btns-container-row {
+        flex-direction:column;
+        gap:8px;
+    }
+}
+
 
 /* Index.html------------------------------ */
-
-
-  .hero {
+.hero {
     background-image: url(../images/hero-image.webp);
     background-size: cover;
     background-repeat: no-repeat;
@@ -295,16 +310,15 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 45px;
-  }
+}
 
 .hero-header-container {
     max-width: 740px;
   }
   
-  .title-text {
+.title-text {
     font-size: 56px;
-  }
+}
 
   /* Media Queries */
 @media (max-width: 570px) {
@@ -316,23 +330,35 @@ footer {
 .hero-text-container {
     max-width: 780px;;
     padding: 20px;
-    background-color: #263238;
     border-radius: 10px; 
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 18px;
 }
 
 @media screen and (max-width: 835px) {
-    .hero-container {
+    .hero {
         padding: 20px 0;
     }
 
     .hero-text-container {
         margin-left: auto;
         margin-right: auto;
-        margin-top: 25px;
     }
+}
+
+.signin {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #263238;
+    border-radius: 10px;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 32px;
 }
 
 .homepage-img {
@@ -445,7 +471,7 @@ section h2 {
     background-color: #486872;
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 645px) {
     .filter-menu {
         flex-direction: column;
         align-items: flex-start;
