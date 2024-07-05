@@ -219,7 +219,9 @@ def home():
     """
     Renders home page template
     """
-    return render_template("index.html")
+    periods = list(mongo.db.periods.find())
+    site_types = list(mongo.db.site_types.find().sort("site_type", 1))
+    return render_template("index.html", site_types=site_types, periods=periods)
     
 
 @app.route("/add_record", methods=["GET", "POST"])
