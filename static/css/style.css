@@ -308,25 +308,35 @@ footer {
     }
 }
 
-.content-section {
-    max-width: 900px;
-    margin: 77px auto;
+/* Cards */
+.card {
+    background-color: #ffffff;
+    color: #263238;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card {
-    background-color: #263238!important;
-    color:white;
-    
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-title {
+    font-size: 2rem;
+    color: #4CAF50;
 }
 
 .panel-icon {
     font-size: 26px;
-    margin-bottom:8px;
+    margin-bottom: 15px;
 }
 
 .lidarfind-image {
     max-width: 500px;
 }
+
 
 
 
