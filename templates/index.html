@@ -9,129 +9,140 @@
 
 {% block content %}
 <!-- Hero -->
-<div id="hero" class="container-fluid hero-container">
-    <div role="img" aria-label="LiDAR image of a hillfort">
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="hero-text-container">
-                <h1 class="text-uppercase">Discover the Historic Environment from Anywhere</h1>
-                <p class="tagline">Join our community of citizen scientists and professional archaeologists to explore and document archaeological sites discovered through LiDAR technology.</p>
-                <div class="btns-container-row">
-                    <a href="{{ url_for('register') }}" class="primary-btn btn">Register Now</a>
-                    <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
+<section class="hero">
+    <div id="hero" class="container-fluid hero-container">
+        <div role="img" aria-label="LiDAR image of a hillfort">
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="hero-text-container">
+                    <h1 class="text-uppercase">Discover the Historic Environment from Anywhere</h1>
+                    <p class="tagline">Join our community of citizen scientists and professional archaeologists to explore and document archaeological sites discovered through LiDAR technology.</p>
+                    <div class="btns-container-row">
+                        <a href="{{ url_for('register') }}" class="primary-btn btn">Register Now</a>
+                        <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+
 
 
 <!-- About-->
-<div class="container about">
-    <div class="row mt-5 mb-5">
-        <div class="col-12 col-md-6 my-5">
-            <h2 class="text-uppercase">LiDARFind</h2>
-            <p>
-                Discover and share archaeological finds through our LiDAR data analysis platform. 
-                Join our community to contribute, explore, and discuss hidden historical sites. 
-                Whether you're an enthusiast or a professional, our user-friendly interface makes it easy to uncover 
-                the past and enrich our understanding of history. Start exploring today!
-            </p>
-        </div>
-        <div class="col-12 col-md-6">
-            <img class="lidarfind-image" src="static/js/LiDARFind-map-screen.webp" 
-                alt=" A screenshot of the map screen from LiDARFind." loading="lazy">
-        </div>
+<section class="content about">
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center mt-5 mb-5">
+            <div class="col-12 col-md-6 my-5">
+                <h2 class="text-uppercase mb-4">LiDARFind</h2>
+                <p>
+                    Discover and share archaeological finds through our LiDAR data analysis platform. 
+                    Join our community to contribute, explore, and discuss hidden historical sites. 
+                    Whether you're an enthusiast or a professional, our user-friendly interface makes it easy to uncover 
+                    the past and enrich our understanding of history. Start exploring today!
+                </p>
+            </div>
+            <div class="col-12 col-md-6 text-center">
+                <img class="lidarfind-image homepage-img shadow-lg rounded" src="static/js/LiDARFind-map-screen.webp" 
+                    alt=" A screenshot of the map screen from LiDARFind." loading="lazy">
+            </div>
+        </div> 
     </div>
-</div>
+</section>
 
 <!-- Getting Started -->
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="panel-icon fa-regular fa-user"></i></h5>
-                    <h6 class="card-subtitle mb-2">Register</h6>
-                    <p class="card-text">Join our community of archaeology enthusiasts and professionals. 
-                        Sign up today to start exploring and contributing to our extensive database of LiDAR discoveries.</p>
+<section class="content getting-started">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="panel-icon fa-regular fa-user"></i></h5>
+                        <h6 class="card-subtitle mb-2">Register</h6>
+                        <p class="card-text">Join our community of archaeology enthusiasts and professionals. 
+                            Sign up today to start exploring and contributing to our extensive database of LiDAR discoveries.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="panel-icon fa-solid fa-magnifying-glass"></i></h5>
-                    <h6 class="card-subtitle mb-2">Explore</h6>
-                    <p class="card-text">Dive into our comprehensive collection of archaeological sites uncovered through LiDAR technology. 
-                        Discover hidden histories and expand your knowledge.</p>
+            <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="panel-icon fa-solid fa-magnifying-glass"></i></h5>
+                        <h6 class="card-subtitle mb-2">Explore</h6>
+                        <p class="card-text">Dive into our comprehensive collection of archaeological sites uncovered through LiDAR technology. 
+                            Discover hidden histories and expand your knowledge.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><i class="panel-icon fa-solid fa-map-location-dot"></i></h5>
-                    <h6 class="card-subtitle mb-2">Record</h6>
-                    <p class="card-text">Contribute your own findings and expand our knowledge on this historic environment. 
-                        Record and share new archaeological sites with the community using our easy-to-use platform.</p>
+            <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="panel-icon fa-solid fa-map-location-dot"></i></h5>
+                        <h6 class="card-subtitle mb-2">Record</h6>
+                        <p class="card-text">Contribute your own findings and expand our knowledge on this historic environment. 
+                            Record and share new archaeological sites with the community using our easy-to-use platform.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- Tutorial -->
-<div class="container about">
-    <div class="row mt-5 mb-5">
-        <div class="col-12 col-md-6 my-5">
-            <h2 class="text-uppercase">Getting Started with LiDARFind</h2>
-            <p>
-                Watch our quick tutorial video to learn how to navigate and make the most of our platform. 
-                From registering and exploring archaeological sites to recording your own findings, 
-                this guide will help you get started and become an active member of our community. 
-                Dive in and discover the historic environment like never before!
-            </p>
-        </div>
-        <div class="col-12 col-md-6">
-            <img class="lidarfind-image" src="static/js/LiDARFind-map-screen.webp" 
-                alt=" A screenshot of the map screen from LiDARFind." loading="lazy">
-        </div>
-    </div>
-</div>
-
-<div class="container  d-flex flex-column align-items-center">
-    <div class="grid ">
-        <div class="filter-menu filters-container">
-            <div class="filter-container">
-                <select id="period-filter" name="period" class="validate" aria-label="Period">
-                    <option value="" selected>Period</option>
-                    {% for period in periods %}
-                    <option value="{{ period.period_name }}">{{ period.period_name }}</option>
-                    {% endfor %}
-                </select>
-                <label for="period" class="active"></label>
-                <select id="site_type_filter" name="site_type" class="validate" required aria-label="Site Type">
-                    <option value="" selected>Site type</option>
-                    {% for site_type in site_types %}
-                    <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
-                    {% endfor %}
-                </select>
-                <label for="site_type" class="active"></label>
-                <select id="monument_type_filter" name="monument_type" class="validate" required aria-label="Monument Type">
-                    <option value="" selected>Monument type</option>
-                </select>
-                <label for="monument_type" class="active"></label>
-                <button id="reset-filters-btn" class="tertiary-btn btn">Reset</button>
+<section class="content tutorial">
+    <div class="container-fluid">
+        <div class="row mt-5 mb-5">
+            <div class="col-12 col-md-6 my-5">
+                <h2 class="text-uppercase">Getting Started with LiDARFind</h2>
+                <p>
+                    Watch our quick tutorial video to learn how to navigate and make the most of our platform. 
+                    From registering and exploring archaeological sites to recording your own findings, 
+                    this guide will help you get started and become an active member of our community. 
+                    Dive in and discover the historic environment like never before!
+                </p>
+            </div>
+            <div class=" col-12 col-md-6">
+                <img class="lidarfind-image homepage-img" src="static/js/LiDARFind-map-screen.webp" 
+                    alt=" A screenshot of the map screen from LiDARFind." loading="lazy">
             </div>
         </div>
     </div>
-    <!-- Map Window -->
-    <div class="col s12 col-md-8">
-        <div id="homePageMap"></div>
+</section>
+
+<section class="content map-browse">
+    <div class="container d-flex flex-column align-items-center">
+        <div class="grid ">
+            <div class="filter-menu filters-container">
+                <div class="filter-container">
+                    <select id="period-filter" name="period" class="validate" aria-label="Period">
+                        <option value="" selected>Period</option>
+                        {% for period in periods %}
+                        <option value="{{ period.period_name }}">{{ period.period_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="period" class="active"></label>
+                    <select id="site_type_filter" name="site_type" class="validate" required aria-label="Site Type">
+                        <option value="" selected>Site type</option>
+                        {% for site_type in site_types %}
+                        <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="site_type" class="active"></label>
+                    <select id="monument_type_filter" name="monument_type" class="validate" required aria-label="Monument Type">
+                        <option value="" selected>Monument type</option>
+                    </select>
+                    <label for="monument_type" class="active"></label>
+                    <button id="reset-filters-btn" class="tertiary-btn btn">Reset</button>
+                </div>
+            </div>
+        </div>
+        <!-- Map Window -->
+        <div class="col s12 col-md-8">
+            <div id="homePageMap"></div>
+        </div>
     </div>
-</div>
+</section>
 
 <!-- Footer -->
 <footer class="container-fluid mt-5">
