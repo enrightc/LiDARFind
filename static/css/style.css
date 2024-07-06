@@ -15,7 +15,7 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-        font-family: "Fira Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-weight: 700;
         font-style: normal;
 }
@@ -47,6 +47,7 @@ body {
     width: 100%;
     max-width: 800px; 
 }
+
 .alert {
     width: 100%;
     max-width: 800px; 
@@ -103,6 +104,11 @@ footer {
     }
 }
 
+.nav-brand {
+    width: 50px;
+    height: auto;
+}
+
 /* Map Containers----------------------- */
 #mapid { 
     height: 100vh;
@@ -132,8 +138,6 @@ footer {
         height: 50svh; 
     }
 }
-
-
 
 /* Buttons------------------------------ */
 .btn {
@@ -296,7 +300,6 @@ footer {
     }
 }
 
-
 /* Index.html------------------------------ */
 .hero {
     background-image: url(../images/hero-image.webp);
@@ -364,10 +367,6 @@ footer {
     padding: 32px;
 }
 
-.homepage-img {
-    width: 100%;
-}
-
 .content {
     background-color: #f9f9f9;
     padding: 60px 24px;
@@ -377,8 +376,6 @@ footer {
     max-width: 1180px;
     margin: 32px auto;
 }
-
-
 
 section h2 {
     font-size: 2.5rem;
@@ -394,12 +391,6 @@ section h2 {
 .lidarfind-image {
     max-width: 100%;
     border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.lidarfind-image:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Media Queries */
