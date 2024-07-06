@@ -454,6 +454,22 @@ section.map-browse {
     color: white;
 }
 
+/* profile.html------------------------------ */
+
+.accordion-button {
+    background-color: white;
+    color: #000;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: white;
+    color: #000;
+}
+
+.accordion-button:hover {
+    background-color: #263238;
+    color: white;
+}
 
 /* Filter buttons on record.html----------------------- */
 .filter-menu {
