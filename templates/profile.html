@@ -25,113 +25,93 @@
   </div>
 </div>
 
-<div class="container mb-5 mt-5">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-8">
-        <div class="card p-4">
-          <h3 class="text-center text-dark">
-            {{ username|upper }}'S PROFILE
-          </h3>
-          <p><strong>Member since:</strong> {{ member_since }}</p>
-          <p><strong>Total Records:</strong> {{ total_records }}</p>
-          <p><strong>Skill Level:</strong> {{ skill_level }}</p>
-          <a href="{{ url_for('add_record') }}" class="primary-btn btn create-btn">Create a Record<a></a>
-        </div>
-      </div>
-    </div>
-</div>
-
-<!-- List of User's Records -->
-<!-- Bootstrap Accordion -->
-<!-- Adapted from: https://stackoverflow.com/questions/45884780/using-jinja2-flask-to-loop-through-a-bootstrap-accordian -->
-<!-- Bootstrap Accordion -->
-<!-- Delete modal adapted from: https://github.com/emmahewson/mp3-swimmon/blob/main/templates/my-profile.html -->
-<!-- List of User's Records -->
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class=" p-4 mb-4">
-        <h3 class="text-center">My Records</h3>
-        <div class="accordion accordion-flush" id="accordionExample">
-          {% for record in user_records %}
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="heading{{ loop.index }}">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" aria-expanded="false" aria-controls="collapse{{ loop.index }}">
-                {{ record.title }}
-              </button>
-            </h2>
-            <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p><strong>Title:</strong> {{ record.title }}</p>
-                <p><strong>Site Type:</strong> {{ record.site_type }}</p>
-                <p><strong>Monument Type:</strong> {{ record.monument_type }}</p>
-                <p><strong>Interpretation:</strong> {{ record.interpretation }}</p>
-                <p><strong>Period:</strong> {{ record.period }}</p>
-                <p><strong>Location:</strong> {{ record.location }}</p>
-                <div class="btns-container-row justify-center">
-                  <a href="{{ url_for('edit_record', record_id=record._id) }}" class="btn edit-btn">Edit</a>
-                  <!-- Trigger modal and pass record ID -->
-                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDelete{{ loop.index }}">Delete</button>
-                </div>
-              </div>
-            </div>
+<section class="content profile-details">
+  <div class="container-fluid">
+      <div class="row justify-content-center align-items-center">
+          <div class="text-center col-12 col-md-6">
+            <h3 class="text-dark">
+              {{ username|upper }}'S PROFILE
+            </h3>
+            <p><strong>Member since:</strong> {{ member_since }}</p>
+            <p><strong>Total Records:</strong> {{ total_records }}</p>
+            <p><strong>Skill Level:</strong> {{ skill_level }}</p>
+            <a href="{{ url_for('add_record') }}" class="primary-btn btn create-btn">Create a Record<a></a>
           </div>
-        
-          <!-- Bootstrap Modal inside the loop for each record -->
-          <div class="modal fade" id="confirmDelete{{ loop.index }}" tabindex="-1" aria-labelledby="deleteRecordConfirmation{{ loop.index }}" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="deleteRecordConfirmation{{ loop.index }}">Delete Record</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>Are you certain you want to delete this site record?</p>
-                  <p>WARNING: THIS ACTION CANNOT BE REVERSED</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn tertiary-btn" data-bs-dismiss="modal">Cancel</button>
-                  <a href="{{ url_for('delete_record', record_id=record._id) }}" class="btn delete-btn">Delete</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        <a href="{{ url_for('add_record') }}" class="btn primary-btn mt-4">Create a New Record</a>
-      </div>
-    </div>
+      </div> 
   </div>
-</div>
+</section>
 
-<!-- Sidebar -->
- <!-- Adapted from: https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_sidebar_shift -->
- <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
-    <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
-    <!-- Record Form -->
-    <div class="w3-bar-item">
-        <div>
-            <h4>Site Record</h4>
-            <div id="DisplayrecordDetails">
-                <p><b>Title:</b> <span id="record-title" aria-label="Record Title"></span></p>
-                <p><b>PRN:</b> <span id="record-prn" aria-label="Record PRN"></span></p>
-                <p><b>Period:</b> <span id="record-period" aria-label="Record Period"></span></p>
-                <p><b>Site Type:</b> <span id="record-site-type" aria-label="Record Site Type"></span></p>
-                <p><b>Monument Type:</b> <span id="record-monument-type" aria-label="Record Monument Type"></span></p>
-                <p><b>Interpretation:</b> <span id="record-interpretation" aria-label="Record Interpretation"></span></p>
-                <p><b>Created on:</b> <span id="record-created-on" aria-label="Record Created On"></span></p>
+<section class="content profile-details">
+  <div class="container-fluid">
+    <div class="row justify-content-center align-items-center">
+      <div class="text-center col-12">
+        <!-- List of User's Records -->
+        <!-- Bootstrap Accordion -->
+        <!-- Adapted from: https://stackoverflow.com/questions/45884780/using-jinja2-flask-to-loop-through-a-bootstrap-accordian -->
+        <!-- Delete modal adapted from: https://github.com/emmahewson/mp3-swimmon/blob/main/templates/my-profile.html -->
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="p-4 mb-4">
+                <h3 class="text-center">My Records</h3>
+                <div class="accordion accordion-flush" id="accordionExample">
+                  {% for record in user_records %}
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ loop.index }}">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" aria-expanded="false" aria-controls="collapse{{ loop.index }}">
+                        {{ record.title }}
+                      </button>
+                    </h2>
+                    <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <p><strong>Title:</strong> {{ record.title }}</p>
+                        <p><strong>Site Type:</strong> {{ record.site_type }}</p>
+                        <p><strong>Monument Type:</strong> {{ record.monument_type }}</p>
+                        <p><strong>Interpretation:</strong> {{ record.interpretation }}</p>
+                        <p><strong>Period:</strong> {{ record.period }}</p>
+                        <p><strong>Location:</strong> {{ record.location }}</p>
+                        <div class="btns-container-row justify-center">
+                          <a href="{{ url_for('edit_record', record_id=record._id) }}" class="btn edit-btn">Edit</a>
+                          <!-- Trigger modal and pass record ID -->
+                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDelete{{ loop.index }}">Delete</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Bootstrap Modal inside the loop for each record -->
+                  <div class="modal fade" id="confirmDelete{{ loop.index }}" tabindex="-1" aria-labelledby="deleteRecordConfirmation{{ loop.index }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="deleteRecordConfirmation{{ loop.index }}">Delete Record</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Are you certain you want to delete this site record?</p>
+                          <p>WARNING: THIS ACTION CANNOT BE REVERSED</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn tertiary-btn" data-bs-dismiss="modal">Cancel</button>
+                          <a href="{{ url_for('delete_record', record_id=record._id) }}" class="btn delete-btn">Delete</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+                <a href="{{ url_for('add_record') }}" class="btn primary-btn mt-4">Create a New Record</a>
+              </div>
             </div>
-            <div class="mb-3 d-flex flex-row justify-content-center">
-                <a href="#" class="btn edit-btn" aria-label="Edit Record">Edit</a>
-              <!-- Button trigger modal -->
-                <button type="button" class="btn delete-btn" data-bs-toggle="modal" data-bs-target="#confirmDelete">
-                  Delete
-                </button>
-            </div>
-            <button id="reset-map-view" class="btn tertiary-btn" aria-label="Reset Map View">Reset Map View</button>
           </div>
-    </div>
-</div>
+        </div>
+
+      </div>
+    </div> 
+  </div>
+</section>
+
+
+
 
 <!-- Footer -->
 <footer class="container-fluid">

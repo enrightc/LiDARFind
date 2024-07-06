@@ -108,8 +108,8 @@ footer {
     }
 }
 
-.nav-brand {
-    width: 50px;
+.navbar-brand img {
+    width: 116px;
     height: auto;
 }
 
@@ -157,6 +157,7 @@ footer {
     margin-right:8px;
     transition: background-color 0.3s ease;
     width:auto;
+    transition: ease 0.2s;
 }
 
 @media screen and (max-width: 576px) {
@@ -187,7 +188,6 @@ footer {
     border-radius: 8px; 
     background-color: transparent;
     color:white!important;
-    width:auto;
 }
 
 @media screen and (max-width: 785px) {
@@ -211,49 +211,32 @@ footer {
     
 .edit-btn {
     background-color: #007bff;
-    color: #fff;
+    color: #fff!important;
     border: none;
     font-size: 16px;
     cursor: pointer;  
 }
-
-/* Style for the edit button */
-.edit-btn {
-    background-color: #4CAF50; 
-    border: none; 
-    color: white !important; 
-    padding: 10px 20px; 
-    text-align: center; 
-    text-decoration: none; 
-    display: inline-block; 
-    font-size: 14px; 
-    margin: 4px 2px; 
-    cursor: pointer; 
-    border-radius: 5px; 
+.edit-btn:hover {
+    opacity: 0.8;
+    background-color:#007bff ;
+    color:white;
+  
 }
+
+.leaflet-container a {
+    color:white;
+}
+
 
 /* Style for the delete button */
 .delete-btn {
     background-color: #f44336; 
-    border: none; 
-    color: white !important; 
-    padding: 10px 20px; 
-    text-align: center; 
-    text-decoration: none;
-    font-size: 12px; 
-    margin: 4px 2px; 
-    cursor: pointer; 
-    border-radius: 5px; 
+    color: white !important;  
 }
 
 .delete-btn:hover {
     opacity: 0.8;
     background-color: #f44336;  
-}
-
-.edit-btn:hover {
-    opacity: 0.8;
-    background-color:#4CAF50 ;  
 }
 
 .btn-spacing {
@@ -274,6 +257,12 @@ footer {
 
 .clear-btn:hover {
     background-color: #e68900; /
+}
+
+@media screen and (max-width: 785px) {
+    .clear-btn {
+        width:100%;
+    }
 }
 
 .tertiary-btn {
@@ -467,9 +456,14 @@ section.map-browse {
     }
 }
 
-
-
 /* profile.html------------------------------ */
+.profile-details {
+    background-color: #ffffff;
+    color: #263238;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
 .accordion-button {
     background-color: white;
@@ -482,8 +476,8 @@ section.map-browse {
 }
 
 .accordion-button:hover {
-    background-color: #263238;
-    color: white;
+    background-color: #e1eaec;
+    color: #000;
 }
 
 /* Filter buttons on record.html----------------------- */
