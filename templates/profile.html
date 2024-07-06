@@ -66,8 +66,8 @@
                 <p><strong>Period:</strong> {{ record.period }}</p>
                 <p><strong>Location:</strong> {{ record.location }}</p>
                 <div class="btns-container-row justify-center">
-                  <a href="{{ url_for('edit_record', record_id=record.id) }}" class="btn edit-btn">Edit</a>
-                  <a href="{{ url_for('delete_record', record_id=record.id) }}" class="btn delete-btn">Delete</a>
+                  <a href="{{ url_for('edit_record', record_id=record._id) }}" class="btn edit-btn">Edit</a>
+                  <a href="{{ url_for('delete_record', record_id=record._id) }}" class="btn delete-btn">Delete</a>
                 </div>
               </div>
             </div>
