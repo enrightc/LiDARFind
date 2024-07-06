@@ -175,6 +175,8 @@ def profile(username):
     # Calculate total records by a user
     total_records = len(user_records)
 
+    skill_level = user.get("skill_level")
+
     return render_template("profile.html", 
                             username=username, 
                             records=user_records, 
@@ -182,7 +184,8 @@ def profile(username):
                             periods=periods,  
                             member_since=member_since,
                             total_records=len(user_records),
-                            user_records=user_records)
+                            user_records=user_records,
+                            skill_level=skill_level)
 
 
 @app.route("/fetch_user_records", methods=["GET"])
