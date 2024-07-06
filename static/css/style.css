@@ -58,6 +58,10 @@ footer {
     color: white;
 }
 
+.footer-spacer {
+    padding: 200px;
+}
+
 /* nav bar------------------------------ */
 .bg-body-tertiary {
     background-color: #263238 !important; 
@@ -183,6 +187,13 @@ footer {
     border-radius: 8px; 
     background-color: transparent;
     color:white!important;
+    width:auto;
+}
+
+@media screen and (max-width: 785px) {
+    .secondary-btn {
+        width:100%;
+    }
 }
 
 .return-btn {
@@ -293,7 +304,7 @@ footer {
     align-items: center; 
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 785px) {
     .btns-container-row {
         flex-direction:column;
         gap:8px;
@@ -389,7 +400,8 @@ section h2 {
 }
 
 .lidarfind-image {
-    max-width: 100%;
+    width: 100%;
+    height:auto;
     border-radius: 10px;
 }
 
@@ -448,6 +460,15 @@ section.map-browse {
     color: white;
 }
 
+@media screen and (max-width: 785px) {
+    .filters-homepage {
+        margin-left: 0px;
+        width:100%;
+    }
+}
+
+
+
 /* profile.html------------------------------ */
 
 .accordion-button {
@@ -484,6 +505,9 @@ section.map-browse {
 
 .filter-container select {
     margin-left: 10px;
+    padding:8px;
+    border-radius:8px;
+    min-height:40px;
 }
 
 .reset-filters-btn {
@@ -495,7 +519,7 @@ section.map-browse {
     background-color: #486872;
 }
 
-@media screen and (max-width: 645px) {
+@media screen and (max-width: 785px) {
     .filter-menu {
         flex-direction: column;
         align-items: flex-start;
