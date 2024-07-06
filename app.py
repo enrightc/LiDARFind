@@ -179,7 +179,6 @@ def profile(username):
 
     return render_template("profile.html", 
                             username=username, 
-                            records=user_records, 
                             site_types=site_types, 
                             periods=periods,  
                             member_since=member_since,

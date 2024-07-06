@@ -93,4 +93,12 @@
   - [Open the Sidebar Navigation Over a Part of the Content](https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_sidebar_over) W3 Schools. [Accessed 19th June, 2024].
 
 - To manually triiger Bootstrap Modal using JS
-  - [Open the Sidebar Navigation Over a Part of the Content](https://stackoverflow.com/questions/62827002/bootstrap-v5-manually-call-a-modal-mymodal-show-not-working-vanilla-javascrip) Stack Overflow. [Accessed 2nd July, 2024, 2024].
+  - [Open the Sidebar Navigation Over a Part of the Content](https://stackoverflow.com/questions/62827002/bootstrap-v5-manually-call-a-modal-mymodal-show-not-working-vanilla-javascrip) Stack Overflow. [Accessed 2nd July, 2024].
+
+- To loop through user's records and display in accordion
+  - [Using Jinja2 (flask) to loop through a bootstrap accordian](https://stackoverflow.com/questions/45884780/using-jinja2-flask-to-loop-through-a-bootstrap-accordian) Stack Overflow. [Accessed 6th July, 2024].
+
+- Formatting dates
+  - [Formatting Time as %d-%m-%y](https://stackoverflow.com/questions/17245612/formatting-time-as-d-m-y) Stack Overflow. [Accessed 5th July, 2024].
+
+ 
