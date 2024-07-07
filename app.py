@@ -2,7 +2,7 @@ import os
 from flask import (
     Flask, flash, render_template, 
     redirect, request, session, url_for,
-    jsonify,
+    jsonify, abort
 )
 import datetime
 from flask_pymongo import PyMongo
@@ -143,23 +143,19 @@ def profile(username):
     3. If user not found: Aborts with 404 error.
     4. If unauthorised access: Aborts with 403 error.
     """
-    # Check if user is logged in. 
-    # If no user is logged in they are redirected to the login page. 
-    if session.get("user") is None:
-        return redirect(url_for("login"))
-
-    # Retrieve the session user's name from the db
-    user = mongo.db.users.find_one({"username": session["user"]})
+   # Retrieve the session user's information from the database
+    user = mongo.db.users.find_one({"username": username})
     if not user:
         abort(404)  # User not found
 
-    username = user["username"]
-    
-    # Check if the requested profile matches the logged in user.
-    # This ensures that only users can access their own profile. 
+    # Check if user is logged in
+    if "user" not in session:
+        return redirect(url_for("login"))
+
+    # Check if the requested profile matches the logged-in user
     if username != session["user"]:
         abort(403)  # Forbidden access
-    
+
     # Retrieve the user's records from the database
     user_records = list(mongo.db.records.find({"created_by": username}))
 
@@ -167,7 +163,7 @@ def profile(username):
     site_types = list(mongo.db.site_types.find().sort("site_type", 1))
     periods = list(mongo.db.periods.find())
 
-     # Retrieve member since date
+    # Retrieve member since date
     member_since = user.get("member_since", None)
     if member_since:
         member_since = member_since.strftime('%d/%m/%Y')
@@ -177,14 +173,16 @@ def profile(username):
 
     skill_level = user.get("skill_level")
 
-    return render_template("profile.html", 
-                            username=username, 
-                            site_types=site_types, 
-                            periods=periods,  
-                            member_since=member_since,
-                            total_records=len(user_records),
-                            user_records=user_records,
-                            skill_level=skill_level)
+    return render_template(
+        "profile.html",
+        username=username,
+        site_types=site_types,
+        periods=periods,
+        member_since=member_since,
+        total_records=total_records,
+        user_records=user_records,
+        skill_level=skill_level
+    )
 
 
 @app.route("/fetch_user_records", methods=["GET"])
@@ -367,6 +365,16 @@ def delete_record(record_id):
     periods = list(mongo.db.periods.find())
 
     return render_template("record.html", username=username, records=user_records, site_types=site_types, periods=periods)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(403)
+def page_not_found(e):
+    return render_template('403.html'), 403
 
 
 if __name__ == "__main__":
