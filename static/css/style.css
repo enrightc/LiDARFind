@@ -470,7 +470,7 @@ section.map-browse {
     width: 280px;
     z-index: 1999;
   }
-  
+
   /* The popup form - hidden by default */
   .form-popup {
     display: none;

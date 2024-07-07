@@ -114,10 +114,20 @@ function w3_open() {
     })
   })()
 
-  function openForm() {
-    document.getElementById("myForm").style.display = "block";
+
+
+  function openCreateForm() {
+    document.getElementById("create-form-mobile").style.display = "block";
   }
   
-  function closeForm() {
-    document.getElementById("myForm").style.display = "none";
+  function closeCreateForm() {
+    document.getElementById("create-form-mobile").style.display = "none";
+  }
+
+  function openFilter() {
+    document.getElementById("filter-mobile").style.display = "block";
+  }
+  
+  function closeFilters() {
+    document.getElementById("filter-mobile").style.display = "none";
   }
