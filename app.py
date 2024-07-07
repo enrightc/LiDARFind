@@ -150,6 +150,7 @@ def profile(username):
 
     # Check if user is logged in
     if "user" not in session:
+        flash("You must be logged in to view that page", "warning")
         return redirect(url_for("login"))
 
     # Check if the requested profile matches the logged-in user
