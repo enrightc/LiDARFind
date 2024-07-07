@@ -114,4 +114,10 @@ function w3_open() {
     })
   })()
 
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
   
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
