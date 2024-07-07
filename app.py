@@ -255,7 +255,6 @@ def add_record():
             "interpretation": request.form.get("interpretation"),
             "period": request.form.get("period"),
             "location": request.form.get("location"),
-            "created_on": request.form.get("created_on"),
             "created_by": session["user"]
         }
         mongo.db.records.insert_one(record)
