@@ -49,6 +49,13 @@
 
 **Outcome**  By applying the position: absolute property to the navbar and adding padding-top to the body, the navbar now overlays the page content when expanded on smaller screens. This prevents the content from being pushed down and ensures it is not hidden behind the navbar, maintaining a consistent layout and improving the overall user experience.
 
+### Referrer Parameter Not Carried Over in Form Submission
+
+**Issue:** When editing a record, the referrer parameter (`ref`) was not being carried over during the form submission, causing the application to redirect to the wrong page after saving or canceling the edit. The `ref` parameter, included in the query string, was not available in the POST request.
+
+**Solution:** To resolve this issue, the `ref` parameter needs to be included as a hidden input field within the form. This ensures that the `ref` value is part of the form data sent during the POST request. The `edit_record` route was updated to retrieve the `ref` value from the form data instead of the query string.
+
+**Outcome:** By adding the `ref` parameter as a hidden input field in the form and retrieving it from the form data in the `edit_record` route, the application can correctly determine the referrer and redirect users to the appropriate page (profile or add_record) after editing a record. This ensures that users are redirected back to the page they originated from, improving the user experience.
 
 # Resources
 
@@ -100,5 +107,8 @@
 
 - Formatting dates
   - [Formatting Time as %d-%m-%y](https://stackoverflow.com/questions/17245612/formatting-time-as-d-m-y) Stack Overflow. [Accessed 5th July, 2024].
+
+- Redirect user depending on source
+  - [How do i redirect using flask with an if function depending on the input of the user?](https://stackoverflow.com/questions/65097431/how-do-i-redirect-using-flask-with-an-if-function-depending-on-the-input-of-the) Stack Overflow. [Accessed 8th July, 2024].
 
  

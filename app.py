@@ -375,7 +375,19 @@ def delete_record(record_id):
     site_types = list(mongo.db.site_types.find().sort("site_type", 1))
     periods = list(mongo.db.periods.find())
 
-    return render_template("record.html", username=username, records=user_records, site_types=site_types, periods=periods)
+    # Determine where to redirect based on the referrer
+    # retrieve ref from form
+    ref = request.args.get('ref')
+    if ref == 'profile':
+        return redirect(url_for("profile", username=session["user"]))
+    else:
+        return redirect(url_for('add_record'))
+
+    return render_template("record.html", 
+                            username=username, 
+                            records=user_records, 
+                            site_types=site_types, 
+                            periods=periods)
 
 
 @app.errorhandler(404)

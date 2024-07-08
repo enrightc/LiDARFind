@@ -38,7 +38,7 @@
 <button class="btn secondary-btn" onclick="openFilter()"><i class="fa-solid fa-filter"></i>Filters</button>
 </div>
 <!-- Create Record Form -->
-<div class="form-popup" id="create-form-mobile">
+<div class="form-popup" id="create-form">
   <div class="popup-title-wrapper">
     <h5 class="no-wrap">Create Record</h5>
     <button type="button" class="popup-close-btn" onclick="closeCreateForm()"><i class="fa-regular fa-circle-xmark"></i></button>
@@ -138,12 +138,11 @@
       </div>
 </div>
 <!-- Filter options -->
-<div class="form-popup filter-popup" id="filter-mobile">
+<div class="form-popup filter-popup" id="filter">
   <div class="popup-title-wrapper">
     <h5>Filters</h5>
  <button type="button" class="popup-close-btn" onclick="closeFilters()"><i class="fa-regular fa-circle-xmark"></i></button>
   </div>
-  <form action="/action_page.php">
     <div class="filter-container">
       <select id="period-filter" name="period" aria-label="Period" class="validate">
           <option value="" selected>Period</option>
@@ -165,7 +164,6 @@
       <label for="monument_type" class="active"></label>
       <button id="reset-filters-btn" class="tertiary-btn btn" type="button">Reset</button>  
     </div>
-  </form>
   </div>
 </div>
 
