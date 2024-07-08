@@ -241,6 +241,15 @@ def home():
     return render_template("index.html", site_types=site_types, periods=periods)
     
 
+@app.route("/resources")
+def resources():
+    """
+    Renders resources page template
+    """
+    return render_template("resources.html")
+
+
+
 @app.route("/add_record", methods=["GET", "POST"])
 def add_record():
     """
