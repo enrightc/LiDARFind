@@ -68,9 +68,10 @@
                         <p><strong>Title:</strong> {{ record.title }}</p>
                         <p><strong>Site Type:</strong> {{ record.site_type }}</p>
                         <p><strong>Monument Type:</strong> {{ record.monument_type }}</p>
-                        <p><strong>Interpretation:</strong> {{ record.interpretation }}</p>
+                        <p><strong>Description:</strong> {{ record.description }}</p>
                         <p><strong>Period:</strong> {{ record.period }}</p>
                         <p><strong>Location:</strong> {{ record.location }}</p>
+                        <p><strong>Created on:</strong> {{ record.created_on }}</p>
                         <div class="btns-container-row justify-center">
                           <a href="{{ url_for('edit_record', record_id=record._id, ref='profile') }}" class="btn edit-btn">Edit</a>
                           <!-- Trigger modal and pass record ID -->

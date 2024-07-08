@@ -73,15 +73,15 @@
                     Please select a monument type.
                 </div>
             </div>
-            <!-- Interpretation -->
+            <!-- description -->
             <div class="form-floating mb-4">
-                <textarea id="interpretation" name="interpretation" minlength="5" maxlength="200" class="form-control" required aria-label="Interpretation">{{ record.interpretation }}</textarea>
-                <label for="interpretation" class="form-label">Interpretation</label>
+                <textarea id="description" name="description" minlength="5" maxlength="200" class="form-control" required aria-label="Description">{{ record.description }}</textarea>
+                <label for="description" class="form-label">Description</label>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
                 <div class="invalid-feedback">
-                    Please provide an interpretation.
+                    Please provide a description.
                 </div>
             </div>
             <!-- Period -->
@@ -123,7 +123,7 @@
             </div>
         </form>
     </div>
-    <!-- Map -->å
+    <!-- Map -->
     <div class="edit-map">
         <div id="edit-record-map"></div>
     </div>

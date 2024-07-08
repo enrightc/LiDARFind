@@ -252,10 +252,11 @@ def add_record():
             "prn": request.form.get("prn"),
             "site_type": request.form.get("site_type"),
             "monument_type": request.form.get("monument_type"),
-            "interpretation": request.form.get("interpretation"),
+            "description": request.form.get("description"),
             "period": request.form.get("period"),
             "location": request.form.get("location"),
-            "created_by": session["user"]
+            "created_by": session["user"],
+            "created_on": datetime.datetime.utcnow().strftime('%d/%m/%Y')
         }
         mongo.db.records.insert_one(record)
         flash("New Record Created")
@@ -324,7 +325,7 @@ def edit_record(record_id):
             "prn": request.form.get("prn"),
             "site_type": request.form.get("site_type"),
             "monument_type": request.form.get("monument_type"),
-            "interpretation": request.form.get("interpretation"),
+            "description": request.form.get("description"),
             "period": request.form.get("period"),
             "location": request.form.get("location")
         }

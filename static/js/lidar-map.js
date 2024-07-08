@@ -65,7 +65,7 @@ function displayRecords(data, currentUser) {
             <b>Title:</b> ${record.title}<br>
             <b>Site Type:</b> ${record.site_type}<br>
             <b>Monument Type:</b> ${record.monument_type}<br>
-            <b>Interpretation:</b> ${record.interpretation}<br>
+            <b>Description:</b> ${record.description}<br>
             <b>Period:</b> ${record.period}<br>
             <b>Created by:</b> ${record.created_by}<br>
             <b>Created on:</b> ${record.created_on}<br>
