@@ -116,13 +116,14 @@
                 </div>
             </div>
             <!-- Submit Button -->
-            <div class="mb-4 d-flex flex-row">
-                <a class="secondary-btn btn" href="{{ url_for('profile', username=session['user']) }}">Cancel</a>
+            <div class="btns-container-row justify-center">
+                <!-- Credit: W3 schools, Window history.back() -->
+                <a class="secondary-btn btn" href="javascript:history.back();" class="my-button is-white-outline w-button">Cancel</a>
                 <button type="submit" class="primary-btn btn btn-spacing" aria-label="Save Changes">Save Changes</button>
             </div>
         </form>
     </div>
-    <!-- Map -->
+    <!-- Map -->å
     <div class="edit-map">
         <div id="edit-record-map"></div>
     </div>

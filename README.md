@@ -111,4 +111,7 @@
 - Redirect user depending on source
   - [How do i redirect using flask with an if function depending on the input of the user?](https://stackoverflow.com/questions/65097431/how-do-i-redirect-using-flask-with-an-if-function-depending-on-the-input-of-the) Stack Overflow. [Accessed 8th July, 2024].
 
+  - Window history.back()
+  - [Window history.back()](https://www.w3schools.com/jsref/met_his_back.asp) W3 Schools. [Accessed 8th July, 2024].
+
  
