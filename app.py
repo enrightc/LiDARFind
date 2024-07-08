@@ -336,7 +336,14 @@ def edit_record(record_id):
 
         mongo.db.records.update_one({"_id": ObjectId(record_id)}, {"$set": updated_record})
         flash("Record successfully updated", "success")
-        return render_template("record.html", username=username, records=user_records, site_types=site_types, periods=periods)
+
+        # Determine where to redirect based on the referrer
+        # retrieve ref from form
+        ref = request.form.get('ref')
+        if ref == 'profile':
+            return redirect(url_for("profile", username=session["user"]))
+        else:
+            return redirect(url_for('add_record'))
 
     # Retrieve site types and periods from the database
     site_types = list(mongo.db.site_types.find().sort("site_type", 1))
@@ -347,7 +354,11 @@ def edit_record(record_id):
     site = mongo.db.site_types.find_one({"site_type": selected_site_type})
     monument_types = [monument['monument_type'] for monument in site['monument_types']] 
 
-    return render_template("edit_record.html", record=record, site_types=site_types, periods=periods, monument_types=monument_types)
+    return render_template("edit_record.html", 
+                            record=record, 
+                            site_types=site_types, 
+                            periods=periods, 
+                            monument_types=monument_types)
 
 
 @app.route("/delete_record/<record_id>")
