@@ -12,6 +12,8 @@
     <div class="edit-form">
         <h2>Edit Record</h2>
         <form id="edit-record-form" class="needs-validation" method="POST" action="{{ url_for('edit_record', record_id=record._id) }}" novalidate>
+             <!-- referrer parameter included as a hidden input field so it is passed to the function -->
+            <input type="hidden" name="ref" value="{{ request.args.get('ref') }}">
             <!-- Title -->
             <div class="form-floating mb-4">
                 <input id="InputTitle" name="title" minlength="5" maxlength="50" class="form-control" placeholder="Title" required value="{{ record.title }}">
