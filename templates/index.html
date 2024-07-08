@@ -110,8 +110,15 @@
                 </p>
             </div>
             <div class=" col-12 col-md-6">
-                <img class="lidarfind-image homepage-img" src="static/images/lidarfind-map-screen.webp" 
-                    alt=" A screenshot of the map screen from LiDARFind." loading="lazy">
+                <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+                    <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+                        <div class="wistia_embed wistia_async_xp5ce1ltgc seo=true videoFoam=true" style="height:100%;position:relative;width:100%">
+                            <div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+                                <img src="https://fast.wistia.com/embed/medias/xp5ce1ltgc/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>                
             </div>
         </div>
     </div>
@@ -244,7 +251,8 @@
 <!-- Leaflet -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <script src="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.js"></script>
+<script src="https://fast.wistia.com/embed/medias/xp5ce1ltgc.jsonp" async>
+</script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
 <script src="{{ url_for('static', filename='js/bing.js') }}"></script>
 <script src="{{ url_for('static', filename='js/homepage-map.js') }}"></script>
 </script>
