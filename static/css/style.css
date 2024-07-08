@@ -670,6 +670,12 @@ opacity: 1;
     top:10px!important;
 }
 
+.fa-circle-info {
+    color: #729fad;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
 /* profile.html------------------------------ */
 .card {
     background-color: #e1eaec;
