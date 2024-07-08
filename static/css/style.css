@@ -37,6 +37,14 @@ body {
     white-space: nowrap;
 }
 
+.is-absolute {
+    position:absolute!important;
+}
+
+.is-relative {
+    position:relative;
+}
+
 
 /* Flash messages */
 .flashes {
@@ -141,6 +149,7 @@ footer {
         height: 50svh; 
     }
 }
+
 
 /* Buttons------------------------------ */
 .btn {
@@ -467,7 +476,6 @@ section.map-browse {
         margin: 0px;
     }
 }
-
 
 .form-popup {
     display: none;

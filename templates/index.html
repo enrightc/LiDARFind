@@ -119,33 +119,68 @@
 
 <!-- Map browse -->
 <section class="content map-browse">
-    <div class="container d-flex flex-column align-items-center">
-        <div class="filters-homepage filters-container">
-            <div class="filter-container"> 
-                <h5 class="filters-title">Filters:</h5>
-                <select id="period-filter" name="period" class="validate" aria-label="Period">
-                    <option value="" selected>Period</option>
-                    {% for period in periods %}
-                    <option value="{{ period.period_name }}">{{ period.period_name }}</option>
-                    {% endfor %}
-                </select>
-                <label for="period" class="active"></label>
-                <select id="site_type_filter" name="site_type" class="validate" required aria-label="Site Type">
-                    <option value="" selected>Site type</option>
-                    {% for site_type in site_types %}
-                    <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
-                    {% endfor %}
-                </select>
-                <label for="site_type" class="active"></label>
-                <select id="monument_type_filter" name="monument_type" class="validate" required aria-label="Monument Type">
-                    <option value="" selected>Monument type</option>
-                </select>
-                <label for="monument_type" class="active"></label>
-                <button id="reset-filters-btn" class="tertiary-btn btn">Reset</button>
-            </div>
-        </div>
+    <div class="is-relative">
+        
         <!-- Map Window -->
-        <div id="homePageMap"></div>
+        <div id="homePageMap">
+            
+        </div>
+
+<!-- A button to open the popups -->
+<div class="is-absolute popup-buttons-wrapper">
+    <button class="btn secondary-btn" onclick="openFilter()"><i class="fa-solid fa-filter"></i>Filters</button>
+    </div>
+
+        <!-- Filter options -->
+<div class="is-absolute form-popup filter-popup" id="filter">
+    <div class="popup-title-wrapper">
+      <h5>Filters</h5>
+   <button type="button" class="popup-close-btn" onclick="closeFilters()"><i class="fa-regular fa-circle-xmark"></i></button>
+    </div>
+      <div class="filter-container">
+        <select id="period-filter" name="period" aria-label="Period" class="validate">
+            <option value="" selected>Period</option>
+            {% for period in periods %}
+            <option value="{{ period.period_name }}">{{ period.period_name }}</option>
+            {% endfor %}
+        </select>
+        <label for="period" class="active"></label>
+        <select id="site_type_filter" name="site_type" aria-label="Site Type" class="validate">
+            <option value="" selected>Site type</option>
+            {% for site_type in site_types %}
+            <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
+            {% endfor %}
+        </select>
+        <label for="site_type" class="active"></label>
+        <select id="monument_type_filter" name="monument_type" aria-label="Monument Type" class="validate">
+            <option value="" selected>Monument type</option>
+        </select>
+        <label for="monument_type" class="active"></label>
+        <button id="reset-filters-btn" class="tertiary-btn btn" type="button">Reset</button>  
+      </div>
+    </div>
+  </div>
+  
+  <!-- Delete Confirmation -->
+  <!-- Bootstrap Modal -->
+  <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="deleteRecordConfirmation" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="deleteRecordConfirmation">Delete Record</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you certain you want to delete this site record?</p>
+          <p>WARNING: THIS ACTION CANNOT BE REVERSED</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn tertiary-btn" data-bs-dismiss="modal">Cancel</button>
+          <a href="#" class="btn delete-btn" id="confirmDeleteBtn">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
     </div>
 </section>
 
