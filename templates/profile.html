@@ -72,7 +72,7 @@
                         <p><strong>Period:</strong> {{ record.period }}</p>
                         <p><strong>Location:</strong> {{ record.location }}</p>
                         <div class="btns-container-row justify-center">
-                          <a href="{{ url_for('edit_record', record_id=record._id) }}" class="btn edit-btn">Edit</a>
+                          <a href="{{ url_for('edit_record', record_id=record._id, ref='profile') }}" class="btn edit-btn">Edit</a>
                           <!-- Trigger modal and pass record ID -->
                           <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDelete{{ loop.index }}">Delete</button>
                         </div>
