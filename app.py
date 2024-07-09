@@ -55,7 +55,7 @@ def register():
             "password": generate_password_hash(request.form.get("password")),
             "skill_level": request.form.get("skill_level"),
             "member_since": datetime.datetime.now(),
-            "is_admin": False # Add is_admin boolean field with default set to false. Manually change to true for admin credentials. 
+            "is_admin": False #Manually change to true for admin credentials. 
         }
         mongo.db.users.insert_one(register)
 
@@ -257,6 +257,31 @@ def home():
     periods = list(mongo.db.periods.find())
     site_types = list(mongo.db.site_types.find().sort("site_type", 1))
     return render_template("index.html", site_types=site_types, periods=periods)
+
+
+@app.route("/admin_dashbaord")
+def admin_dashboard():
+    """
+    Renders admin dashboard template
+    Only accessible to admin userse
+    """
+    #check if the user in session is admin
+    if "user" not in session or not session.get("is_admin", False):
+        abort(403)  # Forbidden access
+
+    is_admin = session.get('is_admin', False)
+    
+    if is_admin:
+        # If admin, retrieve all records
+        records = list(mongo.db.records.find())
+
+    periods = list(mongo.db.periods.find())
+    site_types = list(mongo.db.site_types.find().sort("site_type", 1))
+    
+    return render_template("admin-dashboard.html", 
+                            site_types=site_types, 
+                            periods=periods,
+                            all_records=records)
     
 
 @app.route("/resources")

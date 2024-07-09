@@ -42,6 +42,11 @@
 						<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="{{ url_for('add_record') }}">Record</a>
 						</li>
+						{% if session.is_admin %}
+						<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+						</li>
+						{% endif %}
 						<li class="nav-item">
 						<a class="nav-link active" aria-current="page" href="{{ url_for('logout') }}">Logout</a>
 						</li>
