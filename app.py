@@ -54,7 +54,8 @@ def register():
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
             "skill_level": request.form.get("skill_level"),
-            "member_since": datetime.datetime.now()
+            "member_since": datetime.datetime.now(),
+            "is_admin": False # Add is_admin boolean field with default set to false. Manually change to true for admin credentials. 
         }
         mongo.db.users.insert_one(register)
 
