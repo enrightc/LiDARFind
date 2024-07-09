@@ -259,7 +259,7 @@ def home():
     return render_template("index.html", site_types=site_types, periods=periods)
 
 
-@app.route("/admin_dashbaord")
+@app.route("/admin_dashboard")
 def admin_dashboard():
     """
     Renders admin dashboard template
@@ -269,11 +269,13 @@ def admin_dashboard():
     if "user" not in session or not session.get("is_admin", False):
         abort(403)  # Forbidden access
 
-    is_admin = session.get('is_admin', False)
-    
-    if is_admin:
-        # If admin, retrieve all records
-        records = list(mongo.db.records.find())
+    # If admin, retrieve all records
+    records = list(mongo.db.records.find())
+    users = list(mongo.db.users.find())
+
+    for user in users:
+        if "member_since" in user:
+            user["member_since"] = user["member_since"].strftime('%d/%m/%Y')
 
     periods = list(mongo.db.periods.find())
     site_types = list(mongo.db.site_types.find().sort("site_type", 1))
@@ -281,7 +283,8 @@ def admin_dashboard():
     return render_template("admin-dashboard.html", 
                             site_types=site_types, 
                             periods=periods,
-                            all_records=records)
+                            all_records=records,
+                            all_users=users)
     
 
 @app.route("/resources")

@@ -80,16 +80,60 @@
                   </div>
                   {% endfor %}
                 </div>
-                <a href="{{ url_for('add_record') }}" class="btn primary-btn mt-4">Create a New Record</a>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div> 
   </div>
 </section>
+
+
+
+<section class="content profile-details">
+  <div class="container-fluid">
+    <div class="row justify-content-center align-items-center">
+      <div class="text-center col-12">
+        <!-- List of User's Records -->
+        <!-- Bootstrap Accordion -->
+        <!-- Adapted from: https://stackoverflow.com/questions/45884780/using-jinja2-flask-to-loop-through-a-bootstrap-accordian -->
+        <!-- Delete modal adapted from: https://github.com/emmahewson/mp3-swimmon/blob/main/templates/my-profile.html -->
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="p-4 mb-4">
+                <h3 class="text-center">All Users</h3>
+                <div class="accordion accordion-flush" id="accordionExample">
+                  {% for user in all_users %}
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ loop.index }}">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" aria-expanded="false" aria-controls="collapse{{ loop.index }}">
+                        {{ user.username }}
+                      </button>
+                    </h2>
+                    <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <p><strong>Username:</strong> {{ user.username }}</p>
+                        <p><strong>Skill Level:</strong> {{ user.skill_level }}</p>
+                        <p><strong>Member Since:</strong> {{ user.member_since }}</p>
+                        <p><strong>Admin Status:</strong> {{ user.is_admin }}</p>        
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</section>
+
+
+
 
 
 
