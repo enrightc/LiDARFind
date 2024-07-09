@@ -81,32 +81,36 @@ def login():
     - If the username does not exist, flash an error message and redirect to the login page.
     Render the login template for GET requests.
     """
-    if request.method == "POST":
-        # Check if username exists in db
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()}
-        )
 
-        if existing_user:
-            # Ensure hashed password matches user input
-            if check_password_hash(
-                existing_user["password"], request.form.get("password")
-            ):
-                session["user"] = request.form.get("username").lower()
-                session["is_admin"] = existing_user.get("is_admin", False)
-                flash("Welcome back, {}".format(request.form.get("username")))
-                print(f"User logged in: {session['user']}")
-                print(f"Admin status: {session['is_admin']}")
-                return redirect(url_for("profile", username=session["user"]))
+    # Check that the user is not already logged in
+    if "user" not in session:
+
+        if request.method == "POST":
+            # Check if username exists in db
+            existing_user = mongo.db.users.find_one(
+                {"username": request.form.get("username").lower()}
+            )
+
+            if existing_user:
+                # Ensure hashed password matches user input
+                if check_password_hash(
+                    existing_user["password"], request.form.get("password")
+                ):
+                    session["user"] = request.form.get("username").lower()
+                    session["is_admin"] = existing_user.get("is_admin", False)
+                    flash("Welcome back, {}".format(request.form.get("username")))
+                    print(f"User logged in: {session['user']}")
+                    print(f"Admin status: {session['is_admin']}")
+                    return redirect(url_for("profile", username=session["user"]))
+                else:
+                    # Incorrect password
+                    flash("Incorrect Username and/or Password")
+                    return redirect(url_for("login"))
+
             else:
-                # Incorrect password
+                # Username doesn't exist
                 flash("Incorrect Username and/or Password")
                 return redirect(url_for("login"))
-
-        else:
-            # Username doesn't exist
-            flash("Incorrect Username and/or Password")
-            return redirect(url_for("login"))
 
     return render_template("login.html")
 
@@ -236,8 +240,12 @@ def logout():
     Remove the user from the session cookies, flash a logout message, 
     and redirect the user to the login page.
     """
-    # Remove user from the session cookies
-    session.pop("user", None)
+    # check that the user is logged in
+    if "user" in session:
+
+        # Remove user from the session cookies
+        session.pop("user", None)
+
     return render_template("logout.html")
 
 
@@ -390,6 +398,18 @@ def delete_record(record_id):
     """
     Function to delete a record by _id
     """
+    if "user" not in session:
+        abort(403)
+
+    # Fetch the record first
+    record = mongo.db.records.find_one({"_id": ObjectId(record_id)})
+
+    if not record:
+        abort(404)  # Record not found
+
+    if record["created_by"] != session["user"] and not session.get("is_admin", False):
+        abort(403)
+
     mongo.db.records.delete_one({"_id": ObjectId(record_id)})
     flash("Record Deleted", "Success")
 
@@ -407,13 +427,7 @@ def delete_record(record_id):
     else:
         return redirect(url_for('add_record'))
 
-    return render_template("record.html", 
-                            username=username, 
-                            records=user_records, 
-                            site_types=site_types, 
-                            periods=periods)
-
-
+    
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404

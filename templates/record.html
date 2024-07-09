@@ -218,7 +218,7 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.js"></script>
 <script src="{{ url_for('static', filename='js/bing.js') }}"></script>
-<script>
+<script type="text/javascript">
   var isAdmin = {{ is_admin|tojson }};
 </script>
 <script src="{{ url_for('static', filename='js/lidar-map.js') }}"></script>

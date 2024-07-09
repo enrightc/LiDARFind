@@ -124,4 +124,4 @@
 - Understanding date format
   - [Format datetime.utcnow() time](https://stackoverflow.com/questions/25406565/format-datetime-utcnow-time) Stack Overflow. [Accessed 8th July, 2024].
 
- 
+  - [Passing variables from Flask to JavaScript](https://stackoverflow.com/questions/37259740/passing-variables-from-flask-to-javascript) Stack Overflow. [Accessed 9th July, 2024].
