@@ -346,8 +346,18 @@ def edit_record(record_id):
         Template: Renders the edit_record.html template on GET request.
         Redirect: Redirects to the profile page on successful POST request.
     """
+    if "user" not in session:
+        flash("You must be logged in to edit a record", "warning")
+        return redirect(url_for("login"))
+
     # Get the record from the database based on record_id.
     record = mongo.db.records.find_one({"_id": ObjectId(record_id)})
+
+    if not record:
+        abort(404)  # Record not found
+
+    if record["created_by"] != session["user"] and not session.get("is_admin", False):
+        abort(403)  # User is not authorised to edit this record
 
     # Handle post request when the user submits the edited record form
     if request.method == "POST":
@@ -360,11 +370,6 @@ def edit_record(record_id):
             "period": request.form.get("period"),
             "location": request.form.get("location")
         }
-
-        username = session["user"]
-        user_records = list(mongo.db.records.find({"created_by": username}))  
-        site_types = list(mongo.db.site_types.find().sort("site_type", 1))
-        periods = list(mongo.db.periods.find())
 
         mongo.db.records.update_one({"_id": ObjectId(record_id)}, {"$set": updated_record})
         flash("Record successfully updated", "success")
