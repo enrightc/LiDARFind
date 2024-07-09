@@ -681,7 +681,7 @@ opacity: 1;
     background-color: #e1eaec;
 }
 
-.profile-details {
+.profile-details, .all-user-details {
     background-color: #ffffff;
     color: #263238;
     border: none;
