@@ -61,7 +61,10 @@ def register():
 
         # Put the new user into "session" cookie
         session["user"] = request.form.get("username").lower()
+        session["is_admin"] = False
         flash("You are registered and now logged in. Welcome!", "success")
+        print(f"New user registered: {session['user']}")
+        print(f"Admin status: {session['is_admin']}")
         return redirect(url_for("profile", username=session["user"]))
     return render_template("register.html")
 
@@ -90,7 +93,10 @@ def login():
                 existing_user["password"], request.form.get("password")
             ):
                 session["user"] = request.form.get("username").lower()
+                session["is_admin"] = existing_user.get("is_admin", False)
                 flash("Welcome back, {}".format(request.form.get("username")))
+                print(f"User logged in: {session['user']}")
+                print(f"Admin status: {session['is_admin']}")
                 return redirect(url_for("profile", username=session["user"]))
             else:
                 # Incorrect password
@@ -172,8 +178,10 @@ def profile(username):
 
     # Calculate total records by a user
     total_records = len(user_records)
-
     skill_level = user.get("skill_level")
+
+    print(f"Profile accessed: {session['user']}")
+    print(f"Admin status: {session['is_admin']}")
 
     return render_template(
         "profile.html",
@@ -248,7 +256,6 @@ def resources():
     Renders resources page template
     """
     return render_template("resources.html")
-
 
 
 @app.route("/add_record", methods=["GET", "POST"])
