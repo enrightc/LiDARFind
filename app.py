@@ -191,7 +191,8 @@ def profile(username):
         member_since=member_since,
         total_records=total_records,
         user_records=user_records,
-        skill_level=skill_level
+        skill_level=skill_level,
+        is_admin=session.get('is_admin', False)
     )
 
 
@@ -278,11 +279,16 @@ def add_record():
         mongo.db.records.insert_one(record)
         flash("New Record Created")
         return redirect(url_for("add_record"))
+        
 
     site_types = list(mongo.db.site_types.find().sort("site_type", 1))
     periods = list(mongo.db.periods.find())
     return render_template(
-        "record.html", site_types=site_types, periods=periods)
+                            "record.html", 
+                            site_types=site_types, 
+                            periods=periods,
+                            is_admin=session.get('is_admin', False)
+                         )
 
 
 @app.route('/get_monument_types', methods=['POST'])
@@ -348,7 +354,7 @@ def edit_record(record_id):
         }
 
         username = session["user"]
-        user_records = list(mongo.db.records.find({"created_by": username}))  # Correct query
+        user_records = list(mongo.db.records.find({"created_by": username}))  
         site_types = list(mongo.db.site_types.find().sort("site_type", 1))
         periods = list(mongo.db.periods.find())
 

@@ -71,8 +71,7 @@ function displayRecords(data, currentUser) {
             <b>Created on:</b> ${record.created_on}<br>
         `;
 
-        // Edit and delete buttons for user's records.
-        if (record.created_by === currentUser) {
+        if (record.created_by === currentUser || isAdmin) {
             popupContent += `
                  <div class="button-container">
                     <a href="/edit_record/${record._id}" class="btn edit-btn">Edit</a>
