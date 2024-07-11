@@ -53,6 +53,28 @@ LiDARFind is designed with inclusivity in mind, catering to both newcomers and s
 4. **As an administrator of the site:**
 4.1: I want to manage the database of archaeological discoveries, including adding, editing, or deleting entries.
 
+## Scope
+### Features:
+#### General:
+  - Responsive Design
+  - Database to store records
+  - Navigation
+
+#### All Users
+- Interactive map for exploring records
+- Filter records based on search criteria
+- Toggle between various map layers (satellite imagery, openStreetMap and LiDAR)
+- Registration form
+- Login form
+
+#### Registered Users
+- Ability to create, edit and delete own records
+- A profile page displaying own records
+
+#### Administrators
+- Ability to edit and delete records of any user
+- An admin dashboard to display a lsit of all users and their records
+
 
 # TECHNOLOGY USED
 [ElevanLabs] (https://elevenlabs.io/app/voiceover-studio)
