@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 
 body {
     padding-top: 50px;
-    background-color: #e1eaec
+    background-color: #e1eaec;
 }
 
 .text-wrap-balance {
@@ -765,3 +765,5 @@ opacity: 1;
         width: 100%;
     }
 }
+
+

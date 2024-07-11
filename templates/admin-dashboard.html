@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 
 {% block styles %}
-<!-- Linking Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
- integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/> 
 {% endblock %}
 
 {% block content %}
@@ -67,7 +64,7 @@
                                 <p><strong>Created on:</strong> {{ record.created_on }}</p>
                                 <p><strong>Created by:</strong> {{ record.created_by }}</p>
                                 <div class="btns-container-row justify-center">
-                                  <a href="{{ url_for('edit_record', record_id=record._id, ref='profile') }}" class="btn edit-btn">Edit</a>
+                                  <a href="{{ url_for('edit_record', record_id=record._id, ref='admin-dashboard') }}" class="btn edit-btn">Edit</a>
                                   <!-- Trigger modal and pass record ID -->
                                   <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDelete{{ loop.index }}">Delete</button>
                                 </div>
@@ -88,7 +85,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn tertiary-btn" data-bs-dismiss="modal">Cancel</button>
-                                  <a href="{{ url_for('delete_record', record_id=record._id, ref='profile') }}" class="btn delete-btn">Delete</a>
+                                  <a href="{{ url_for('delete_record', record_id=record._id, ref='admin-dashboard') }}" class="btn delete-btn">Delete</a>
                                 </div>
                               </div>
                             </div>
@@ -108,13 +105,6 @@
     </div> 
   </div>
 </section>
-
-
-
-
-
-
-
 
 <!-- Footer -->
 <footer class="container-fluid">
@@ -182,7 +172,4 @@
 {% endblock %}
 
 {% block scripts %}
-    <!-- Leaflet -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 {% endblock %}

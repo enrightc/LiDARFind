@@ -1,3 +1,59 @@
+# LiDARFind
+## Overview
+**LiDARFind** is a web application designed for enthusiasts and professionals to explore and discover archaeological sites using LiDAR data. The platform allows users to view, interact with, and edit LiDAR data on an interactive map interface.  The live website can be found here.
+
+## Introduction
+LiDARFind is a web application dedicated to documenting and sharing archaeological discoveries made through LiDAR data analysis. Our platform provides a collaborative space for users to contribute their findings, engage with the community, and contribute to the preservation and understanding of the historic environment through citizen science.
+
+Whether you're an archaeology enthusiast, a hobbyist, or a professional researcher, LiDARFind offers a user-friendly interface to explore and document archaeological sites discovered using LiDAR technology. our database aims to showcase the rich heritage of Wales hidden beneath the surface.
+
+## User Experience UX
+### Strategy
+#### Project Rationale
+The LiDARFind project was conceived to address the need for a more engaging platform that encourages the exploration and redocumentation of archaeological sites using the extensive LiDAR coverage available for Wales. While there are several websites that allow users to view LiDAR data, they typically offer limited engagement beyond passive exploration. LiDARFind addresses this gap by  empowering users to actively record their own archaeological sites in a database, facilitating their personal research and contributing to collective knowledge.
+
+LiDAR data is an invaluable resource for archaeologists, providing detailed insights into the historic environment of Wales. By leveraging this open-source resource, LiDARFind enables anyone to access and engage with the data, fostering a community of citizen scientists dedicated to uncovering and preserving our shared heritage. Through this platform, users can collaboratively document findings, enhance their understanding of the past, and contribute to the preservation of archaeological sites across Wales.
+
+LiDARFind has significant real-world applications, including:
+- **Enhanced Archaeological Research:** Accelerating the identification and study of archaeological sites, contributing to academic research and historical knowledge.
+- **Conservation Efforts:** Informing conservation strategies by mapping and documenting sites at risk due to climate change and other environmental factors.
+- **Public Engagement:** Encouraging public participation in archaeology, fostering a deeper connection to cultural heritage and history.
+- **Policy and Planning:** Assisting in land management and planning decisions by providing detailed records of archaeological assets.
+
+### Target Audience
+LiDARFind is designed with inclusivity in mind, catering to both newcomers and seasoned experts. Whether you are an archaeology enthusiast just starting out or a professional researcher with years of experience, LiDARFiind offers intuitive features that make it accessible and valuable to all users.
+
+### Website Owners Goals
+1. To provide a platform for users to document and share archaeological discoveries made through LiDAR data analysis.
+2. To facilitate collaboration and community engagement in archaeological research.
+3. To contribute to the preservation and understanding of the historic environment through citizen science.
+
+### External User Goals
+1. **Discover New Sites:** Users want to explore LiDAR data to identify potential archaeological sites that have not been documented before.
+2. **Document Findings:** Users aim to record their discoveries, adding detailed descriptions to create a comprehensive record.
+3. **Learn and Educate:** Users seek to learn more about archaeology through LiDARFind and educate others by sharing their knowledge and discoveries.
+4. **Contribute to Research:** Users want to participate in archaeological research by contributing their documented findings to the database, aiding both amateur and professional research efforts.
+5. **Track Personal Discoveries:** Users want to keep a personal log of the sites they have discovered and documented, allowing them to track their contributions over time.
+
+### User Stories
+1. **As a user:**
+1.1: I want to quickly grasp the essence of LiDARFind and understand how it caters to me. 
+1.2: I want to navigate the website effortlessly, ensuring a positive and enjoyable experience and find relevant information.
+1.3: I want the website to be accessible on any device and have a responsive design.
+2. **As a visitor without an account:**
+2.1: I want to understand the purpose of the website immediately upon arrival.
+2.2: I want to browse and explore documented archaeological discoveries made through LiDAR data analysis.
+2.3: I want to browse and search for documented archaeological discoveries based on various criteria.
+2.4: I want to be able to register for an account to contribute my own discoveries.
+3. **As a registered user:**
+3.1: I want to be able to log in to my account securely.
+3.2: I want to be able to submit my own archaeological discoveries to the database.
+3.3: I want to be able to edit or delete the discoveries I have submitted.
+3.4: I want to easily log out of my account when needed.
+4. **As an administrator of the site:**
+4.1: I want to manage the database of archaeological discoveries, including adding, editing, or deleting entries.
+
+
 # TECHNOLOGY USED
 [ElevanLabs] (https://elevenlabs.io/app/voiceover-studio)
 [Wistia] (https://wistia.com/home)
@@ -88,7 +144,7 @@
   - Reset map view to initial state
     - [Leaflet.ResetView](https://github.com/drustack/Leaflet.ResetView). [Accessed 10th June, 2024].
 
-  - SagaCity](https://github.com/isntlee/Sagacity/blob/master/templates/home.html). [Accessed 9th June, 2024].
+  - [SagaCity](https://github.com/isntlee/Sagacity/blob/master/templates/home.html). [Accessed 9th June, 2024].
 
 - Adding Bing Satellite imageryto map:
   - [Mapping API's: Leaflet - Adding Microsoft Bing Basemap Layers](https://store.extension.iastate.edu/product/Mapping-APIs-Leaflet-Adding-Microsoft-Bing-Basemap-Layers)   [Accessed 8th June, 2024].
@@ -115,6 +171,8 @@
 - Formatting dates
   - [Formatting Time as %d-%m-%y](https://stackoverflow.com/questions/17245612/formatting-time-as-d-m-y) Stack Overflow. [Accessed 5th July, 2024].
 
+- [how to redirect to a external 404 page python flask](https://stackoverflow.com/questions/29516093/how-to-redirect-to-a-external-404-page-python-flask) Stack Overflow. [Accessed 8th July, 2024].
+
 - Redirect user depending on source
   - [How do i redirect using flask with an if function depending on the input of the user?](https://stackoverflow.com/questions/65097431/how-do-i-redirect-using-flask-with-an-if-function-depending-on-the-input-of-the) Stack Overflow. [Accessed 8th July, 2024].
 
@@ -124,4 +182,6 @@
 - Understanding date format
   - [Format datetime.utcnow() time](https://stackoverflow.com/questions/25406565/format-datetime-utcnow-time) Stack Overflow. [Accessed 8th July, 2024].
 
-  - [Passing variables from Flask to JavaScript](https://stackoverflow.com/questions/37259740/passing-variables-from-flask-to-javascript) Stack Overflow. [Accessed 9th July, 2024].
+- [Passing variables from Flask to JavaScript](https://stackoverflow.com/questions/37259740/passing-variables-from-flask-to-javascript) Stack Overflow. [Accessed 9th July, 2024].
+
+- [UPPBEAT] (https://uppbeat.io/browse/artist/qube)found at (https://uppbeat.io/browse/music/inspiring)  [Accessed 9th July, 2024].
