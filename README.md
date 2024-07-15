@@ -75,6 +75,186 @@ LiDARFind is designed with inclusivity in mind, catering to both newcomers and s
 - Ability to edit and delete records of any user
 - An admin dashboard to display a lsit of all users and their records
 
+## Structure
+### Site Structure
+This section outlines a typical user experience through the website, from landing on the homepage to logging out.
+
+**Landing on the Homepage:**
+- User visits the homepage of the website.
+- They see an overview of what the website offers (e.g., discovering archaeological sites through LiDAR).
+
+**Registration:**
+- If the user is new, they click on the "Register" button.
+- They are taken to the registration page where they fill in their username, password, confirm password, and skill level.
+- After completing the form, they submit it to create an account.
+- If the registration is successful, they are redirected to their profile page with a flash message confirming successful registration.
+
+**Login:**
+- Returning users click on the "Login" button.
+- They are taken to the login page where they enter their username and password.
+- Upon successful login, they are redirected to their profile page with a flash message confirming successful login.
+
+**Exploring the Profile Page:**
+- On the profile page, users can view their details and records.
+The profile page might displays any user-specific records they have created, listed with details like title, period, site type, etc.
+
+**Creating a New Record:**
+- Users can click on the "Create a Record" button.
+- This takes them to a form where they can fill out details about a new site record (title, PRN, site type, monument type, interpretation, period, location).
+- The location is selected by clicking on a map, which autofills the coordinates.
+- Once the form is completed, they submit it to save the record.
+- The new record is then displayed in their profile and on the map.
+
+**Interacting with Records on the Map:**
+- Users can explore records on an interactive map.
+- Clicking on markers on the map shows popups with details about the records.
+- They can edit or delete records using options provided in the popups or profile page.
+
+**Editing a Record:**
+- Users can select a record to edit from their profile or map.
+- They are taken to a form similar to the create record form, pre-filled with the record's existing details.
+- They can make changes and submit the form to update the record.
+
+**Deleting a Record:**
+- Users can select a record to delete from their profile or map.
+- A confirmation modal appears asking if they are sure they want to delete the record.
+- If confirmed, the record is deleted from the database.
+
+**Logging Out:**
+- Users can click the "Logout" button to end their session.
+- They are redirected to a logout confirmation page.
+- From here, they can choose to log back in or return to the homepage.
+
+### Database Structure
+#### Collections
+**1. Users**
+  - Stores information about the users of the system.
+  - Fields:
+    - `_id`: Unique identifier for each user.
+    - `username`: The name of the user.
+    - `password`: The hashed password of the user.
+    - `skill_level`: The skill level of the user (e.g., "novice explorer").
+    - `password`: The hashed password of the user.
+    - `member_since`: The date the user registered.
+    - `is_admin`: if true the user has admin rights (set to default on regitration and requires manually editing). 
+
+{<br>
+  "_id": "6661ab47a1676de37943eaf5",<br>
+  "username": "charlie",<br>
+  "password": "scrypt:32768:8:1$4P1FLzuOMPUrpdlV$c5a84187baf5a545f2ad1a51aba9d41f916e…",<br>
+  "skill_level": "novice explorer",<br>
+  "member_since": 024-07-09T17:46:42.245+00:00,<br>
+  "is_admin": "True"<br>
+}
+
+**3. Site_types**
+  - Stores different types of information along with related monument types.
+  - Fields:
+    - `_id`: Unique identifier for each site type.
+    - `site_type`: The type of the site (e.g. "Bank").
+    - `monument_types`: An array of objects representing related monument types.
+  
+{<br>
+  "_id": "6662cc170b191595ccd03bf8",<br>
+  "site_type": "Bank",<br>
+  "monument_types": [<br>
+    { "monument_type": "Curvilinear" },<br>
+    { "monument_type": "Linear" }<br>
+  ]<br>
+}
+
+**3. Periods**
+  - Stores information about the different historical periods.
+  - Fields:
+    - `_id`: Unique identifier for each period.
+    - `period_name`: The name of the period (e.g. "Prehistoric").
+
+{<br>
+  "_id": "665d8f160462f486c49228dd",<br>
+  "period_name": "Prehistoric"<br>
+}
+
+**3. Records**
+  - Stores records of archaeologicaL sites.
+  - Fields:
+    - `_id`: Unique identifier for each record.
+    - `title`: The title of each record.
+    - `prn`: A unique identifier for the site if available.
+    - `site_type`: The type of the site (e.g., "Mound").
+    - `monument_type`: The type of monument found at the site (e.g. "Motte").
+    - `description`: Description or interpretation of the site.
+    - `period`: The historical period of the site (e.g. "Medieval").
+    - `location`: The geographic coordinates of the site.
+    - `created_on`: Timestamp of when the record was created.
+    - `created_by`: Username of the user who created the record.
+
+{<br>
+  "_id": "6662d7eb2eec3c460959a099",<br>
+  "title": "Penlle'r Castell",<br>
+  "prn": "",<br>
+  "site_type": "Mound",<br>
+  "monument_type": "Motte",<br>
+  "interpretation": "Medieval Castle near Swansea",<br>
+  "period": "Medieval",<br>
+  "location": "51.76914868643818, -3.9355631592453166",<br>
+  "created_on": "07/06/2024, 10:39:44",<br>
+  "created_by": "charlie"<br>
+}
+
+#### Relationships
+**User to Records:**
+Each user (in Users collection) can create multiple records (in Records collection).  
+The `created_by` field in the Records collection references the `username` in the Users collection.
+
+**Records to Site_types:**
+Each record in the Records collection references a `site_type` from the Site_types collection.  
+The `site_type` field in the Records collection matches the `site_type` in the Site_types collection.
+
+**Records to Periods:**
+Each record in the Records collection references a `period` from the Periods collection.  
+The `period` field in the Records collection matches the `period_name` in the Periods collection.
+
+**Site_types to Monument_types:** 
+Each site type in the Site_types collection contains multiple related monument types.  
+The `monument_types` array within the Site_types collection holds this nested relationship.
+
+#### Example Use Case
+
+**Registration**
+
+A new user registers and their details are stored in the Users collection.
+
+**Create Record**
+
+The user creates a new record by selecting a site type and monument type from the Site_types collection and a period from the Periods collection.  
+The record is then stored in the Records collection with references to the selected `site_type` and `period`.
+
+**View Records**
+
+The user can view records they created by fetching documents from the Records collection where the `created_by` field matches their username.
+
+#### Why MongoDB
+MongoDB, a non-relational database, was chosen for this project because of its flexibility and scalability. Unlike traditional relational databases, MondoFB allows for a flexible schema design, which is particularly beneficial for handling varied and evolving data structures like archaeological records. 
+  - Flexible Schema: MongoDB allows for a flexible schema design, meaning new fields can be added to documents without affecting existing ones. This is useful for dealing with diverse and evolving data types.
+  - Document-Based Model: MongoDB's document-based model allows related data to be stored together in a single document, which simplifies data retrieval and improves performance. For example, site types and their associated monument types are stored together.
+  - Scalability: MongoDB can handle large volumes of data and supports horizontal scaling, which is beneficial as the project grows and more records are added.
+  - Performance: MongoDB allows for efficient data retrieval and manipulation, ensuring a responsive user experience when dealing with large datasets.
+
+
+**Entity-Relationship Diagram (ERD)**
+To illustrate the structure and relationships of the collections in the MongoDB database, an Entity-Relationship Diagram (ERD) has been created. The ERD visually represents the relationships between users, site types, periods, and records, making it easier to understand how the data is interconnected.
+
+![Entity-relationship Diagram](readme-images/databse-diagram.png)
+
+
+## Skeleton Plane
+Prior to commencing the website coding process, comprehensive wireframes were produced for each page using Figma - a design tool used for creating user interfaces, prototypes, and wireframes. These wireframes served as the initial blueprints, providing a visual roadmap for the website's layout and structure on both desktop and mobile devices.
+
+It's important to note that while the final web pages evolved from these early plans, some deviations were intentionally made to enhance the user experience and align better with the project's goals. The website design relied heavily on using Leaflet frames, and much of the development involved adapting and optimizing these frames to meet the site's objectives. This required significant modifications and iterations as the project progressed.
+
+This iterative process allowed for flexibility in adapting to evolving project requirements, ultimately contributing to the development of a more refined and user-friendly website.
+
+[Add Wireframes here]
 
 # TECHNOLOGY USED
 [ElevanLabs] (https://elevenlabs.io/app/voiceover-studio)
