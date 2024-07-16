@@ -125,6 +125,12 @@ The profile page might displays any user-specific records they have created, lis
 - They are redirected to a logout confirmation page.
 - From here, they can choose to log back in or return to the homepage.
 
+The user flow diamgram below illustrates the typical path a user may take through LiDARFind:
+
+![User Flow Diagram](readme-images/user-flow-diagram.png)
+
+
+
 ### Database Structure
 #### Collections
 **1. Users**
