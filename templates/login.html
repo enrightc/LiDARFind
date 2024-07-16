@@ -2,104 +2,103 @@
 
 {% block content %}
 
-<!-- Flash Messages first time registration and login only -->
-<div class="container flash-container">
-  <div class="flashes alert-danger">
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-danger alert-dismissible mt-2 text-center" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-  </div>
-</div>
-
-<div class="container mb-4">
-  <div class="row justify-content-center align-items-center mt-5">
-    <div class="col-12 col-md-6 col-lg-4 rounded p-0 login-box">
-      <div class="login-title rounded p-3"> 
-        <h3 class="d-flex justify-content-center align-items-center"><span>Log in</i></span></h3>
-      </div>
-      <div class="p-4 mb-3">
-        <form class="needs-validation" novalidate method="POST" action="{{ url_for('login') }}">
-          <div class="mb-5 position-relative">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" name="username" minlength="5" 
-              maxlength="15" pattern="^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,15}$" required aria-label="Username">
-            <div class="invalid-tooltip">
-              Please provide a valid username.
+  <!-- Flash Messages first time registration and login only -->
+  <div class="container flash-container">
+    <div class="flashes alert-danger">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible mt-2 text-center" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-          </div>
-          <div class="mb-5 position-relative">
-            <label for="password" class="form-label ">Password</label>
-            <input type="password" class="form-control mb-3" id="password" name="password" minlength="5" maxlength="15"
-                  pattern="^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,15}$" required aria-label="Password">
-            <div class="invalid-tooltip">
-              Please provide a valid password.
-            </div>
-          </div>
-          <div class="d-flex justify-content-center">
-            <button type="submit" class="btn primary-btn" aria-label="Log in">
-              Log In
-            </button>
-          </div>
-        </form>
-    </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
     </div>
   </div>
-</div>
 
-<div class="row">
-    <div class="d-flex justify-content-center align-items-center">
-        <a href="{{ url_for('register') }}" class="" aria-label="Need to Register?">Need to Register?</a>
-    </div>
-</div>
-
-<div class="footer-spacer">
-</div>
-
-<!-- Footer -->
-<footer class="container-fluid">
-  <div class="row justify-content-center">
-      <div class="col-12 text-center mt-4">
-          <ul class="list-inline social-links">
-              <li class="list-inline-item">
-                  <a target="_blank" href="https://www.facebook.com" aria-label="Go to our facebook page (opens in new tab)" rel="noopener">
-                      <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-                      <span class="sr-only">Facebook</span>
-                  </a>
-              </li>
-              <li class="list-inline-item">
-                  <a target="_blank" href="https://www.twitter.com" aria-label="Go to our twitter page (opens in new tab)" rel="noopener">
-                      <i class="fa-brands fa-twitter" aria-hidden="true"></i>
-                      <span class="sr-only">Twitter</span>
-                  </a>
-              </li>
-              <li class="list-inline-item">
-                  <a target="_blank" href="https://www.instagram.com" aria-label="Go to our instagram (opens in new tab)" rel="noopener">
-                      <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                      <span class="sr-only">Instagram</span>
-                  </a>
-              </li>
-              <li class="list-inline-item">
-                  <a target="_blank" href="https://www.youtube.com" aria-label="Go to our youtube channel (opens in new tab)" rel="noopener">
-                      <i class="fa-brands fa-youtube" aria-hidden="true"></i>
-                      <span class="sr-only">YouTube</span>
-                  </a>
-              </li>
-          </ul>
+  <div class="footer-fix">
+    <div class="container mb-4">
+      <div class="row justify-content-center mt-5">
+        <div class="col-12 col-md-6 col-lg-4 rounded p-0 login-box">
+          <div class="login-title rounded p-3"> 
+            <h3 class="d-flex justify-content-center align-items-center"><span>Log in</i></span></h3>
+          </div>
+          <div class="p-4 mb-3">
+            <form class="needs-validation" novalidate method="POST" action="{{ url_for('login') }}">
+              <div class="mb-5 position-relative">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" minlength="5" 
+                  maxlength="15" pattern="^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,15}$" required aria-label="Username">
+                <div class="invalid-tooltip">
+                  Please provide a valid username.
+                </div>
+              </div>
+              <div class="mb-5 position-relative">
+                <label for="password" class="form-label ">Password</label>
+                <input type="password" class="form-control mb-3" id="password" name="password" minlength="5" maxlength="15"
+                      pattern="^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,15}$" required aria-label="Password">
+                <div class="invalid-tooltip">
+                  Please provide a valid password.
+                </div>
+              </div>
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn primary-btn" aria-label="Log in">
+                  Log In
+                </button>
+              </div>
+            </form>
+        </div>
+        </div>
       </div>
-  </div>
-  <div class="row justify-content-center">
-      <div class="col-12 text-center">
-          <p>This website was made by Charlie Enright as part of the Code Institute Milestone three Project.</p>
-      </div>
-  </div>
-</footer>
-<!-- /.Footer -->
+    </div>
 
+    <div class="row">
+        <div class="d-flex justify-content-center">
+            <a href="{{ url_for('register') }}" class="" aria-label="Need to Register?">Need to Register?</a>
+        </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="container-fluid">
+      <div class="row justify-content-center">
+          <div class="col-12 text-center mt-4">
+              <ul class="list-inline social-links">
+                  <li class="list-inline-item">
+                      <a target="_blank" href="https://www.facebook.com" aria-label="Go to our facebook page (opens in new tab)" rel="noopener">
+                          <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                          <span class="sr-only">Facebook</span>
+                      </a>
+                  </li>
+                  <li class="list-inline-item">
+                      <a target="_blank" href="https://www.twitter.com" aria-label="Go to our twitter page (opens in new tab)" rel="noopener">
+                          <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+                          <span class="sr-only">Twitter</span>
+                      </a>
+                  </li>
+                  <li class="list-inline-item">
+                      <a target="_blank" href="https://www.instagram.com" aria-label="Go to our instagram (opens in new tab)" rel="noopener">
+                          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                          <span class="sr-only">Instagram</span>
+                      </a>
+                  </li>
+                  <li class="list-inline-item">
+                      <a target="_blank" href="https://www.youtube.com" aria-label="Go to our youtube channel (opens in new tab)" rel="noopener">
+                          <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                          <span class="sr-only">YouTube</span>
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      <div class="row justify-content-center">
+          <div class="col-12 text-center">
+              <p>This website was made by Charlie Enright as part of the Code Institute Milestone three Project.</p>
+          </div>
+      </div>
+    </footer>
+  </div>
 {% endblock %}

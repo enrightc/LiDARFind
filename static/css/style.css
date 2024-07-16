@@ -71,9 +71,20 @@ footer {
     color: white;
 }
 
-.footer-spacer {
-    padding: 200px;
+/* Ensure footer sticks to bottom of page*/
+/* Source: https://www.youtube.com/watch?v=AVPR_WuDw8o&list=PLx6XTedFrvFICl8XTWKE6mDst8FPo5ZRn&index=3*/
+.footer-fix {
+    min-height: calc(100dvh - 50px);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
+
+.footer-fix.error-page {
+    min-height: calc(100dvh - 50px);
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+}
+
 
 /* nav bar------------------------------ */
 .bg-body-tertiary {
@@ -763,7 +774,4 @@ opacity: 1;
         width: 100%;
     }
 }
-
-/* registration.html----------------------- */
-
 

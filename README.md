@@ -435,4 +435,8 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
 
 - [Passing variables from Flask to JavaScript](https://stackoverflow.com/questions/37259740/passing-variables-from-flask-to-javascript) Stack Overflow. [Accessed 9th July, 2024].
 
-- [UPPBEAT] (https://uppbeat.io/browse/artist/qube)found at (https://uppbeat.io/browse/music/inspiring)  [Accessed 9th July, 2024].
+- For music for intro video
+  - [UPPBEAT] (https://uppbeat.io/browse/artist/qube)found at (https://uppbeat.io/browse/music/inspiring)  [Accessed 9th July, 2024].
+
+- For sticking footer to bottom of page
+- [The EASIEST Way To Push That Footer Down With CSS](https://www.youtube.com/watch?v=AVPR_WuDw8o&list=PLx6XTedFrvFICl8XTWKE6mDst8FPo5ZRn&index=3) YouTube, uploaded 12th July, 2024. [Accessed 16th July, 2024].
