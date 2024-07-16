@@ -407,6 +407,8 @@ def edit_record(record_id):
         ref = request.form.get('ref')
         if ref == 'profile':
             return redirect(url_for("profile", username=session["user"]))
+        elif ref == 'admin_dashboard':
+            return redirect(url_for('admin_dashboard'))
         else:
             return redirect(url_for('add_record'))
 
@@ -457,6 +459,8 @@ def delete_record(record_id):
     ref = request.args.get('ref')
     if ref == 'profile':
         return redirect(url_for("profile", username=session["user"]))
+    elif ref == 'admin_dashboard':
+            return redirect(url_for('admin_dashboard'))
     else:
         return redirect(url_for('add_record'))
 
