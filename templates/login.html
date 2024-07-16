@@ -29,7 +29,7 @@
           <div class="mb-5 position-relative">
             <label for="username" class="form-label">Username</label>
             <input type="text" class="form-control" id="username" name="username" minlength="5" 
-              maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" required aria-label="Username">
+              maxlength="15" pattern="^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,15}$" required aria-label="Username">
             <div class="invalid-tooltip">
               Please provide a valid username.
             </div>
@@ -37,7 +37,7 @@
           <div class="mb-5 position-relative">
             <label for="password" class="form-label ">Password</label>
             <input type="password" class="form-control mb-3" id="password" name="password" minlength="5" maxlength="15"
-                  pattern="^[a-zA-Z0-9]{5,15}$" required aria-label="Password">
+                  pattern="^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,15}$" required aria-label="Password">
             <div class="invalid-tooltip">
               Please provide a valid password.
             </div>

@@ -519,8 +519,7 @@ section.map-browse {
     margin-bottom:18px;
 }
 
-
-  .popup-close-btn {
+.popup-close-btn {
     width:100%;
     background-color:transparent;
     color:white;
@@ -528,7 +527,6 @@ section.map-browse {
     text-align: right;
     font-size: 26px;
 }
-
 
 /* Button used to open the contact form - fixed at the bottom of the page */
 /* Source: https://www.w3schools.com/howto/howto_js_popup_form.asp */ 
@@ -765,5 +763,7 @@ opacity: 1;
         width: 100%;
     }
 }
+
+/* registration.html----------------------- */
 
 

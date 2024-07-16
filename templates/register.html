@@ -14,10 +14,12 @@
             <!-- Username -->
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
+                <i class="fa-solid fa-circle-info large" data-bs-toggle="tooltip" data-bs-title="Your username must be 5-15 characters 
+                  long and can include uppercase letters, lowercase letters, and digits."></i>
                 <div class="input-group">
                     <span class="input-group-text prefix"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
                     <input type="text" class="form-control" id="username" name="username" minlength="5" maxlength="15"
-                           pattern="^[a-zA-Z0-9]{5,15}$" required aria-label="Username">
+                           pattern="^[a-zA-Z0-9]{4,15}$" required aria-label="Username">
                 </div>
             </div>
           </div> 
@@ -25,10 +27,12 @@
             <!-- Password -->
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
+              <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="Your password must be 5-15 characters 
+                long and can include uppercase letters, lowercase letters, digits, and special characters like !@#$%^&*()_+."></i>
               <div class="input-group">
                   <span class="input-group-text prefix"><i class="fas fa-user-lock" aria-hidden="true"></i></span>
                   <input type="password" class="form-control" id="password" name="password" minlength="5" maxlength="15"
-                         pattern="^[a-zA-Z0-9]{5,15}$" required aria-label="Password">
+                         pattern="^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,15}$" required aria-label="Password">
               </div>
             </div>
           </div> 
@@ -39,7 +43,7 @@
               <div class="input-group">
                   <span class="input-group-text prefix"><i class="fas fa-user-lock" aria-hidden="true"></i></span>
                   <input type="password" class="form-control" id="confirm_password" name="confirm_password" minlength="5" maxlength="15"
-                         pattern="^[a-zA-Z0-9]{5,15}$" required aria-label="Confirm Password">
+                         pattern="^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,15}$" required aria-label="Confirm Password">
               </div>
             </div>
           </div> 
