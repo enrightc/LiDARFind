@@ -1,258 +1,255 @@
 {% extends "base.html" %}
 
 {% block styles %}
-<!-- Linking Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Linking Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 {% endblock %}
 
 {% block content %}
-
-<!-- Hero -->
-<section class="hero overlay">
-    <div class="hero-header-container">
-        <h1 class="title-text">Discover the Historic Environment from Anywhere</h1>
-    </div>
-    <div class="hero-text-container">
-        <p class="tagline">Join our community of citizen scientists and professional archaeologists to explore and document archaeological sites discovered through LiDAR technology.</p>
-    </div>
-</section>
-
-<!-- signin -->
- <section class="signin">
-    <div class="sign-in-textbox">
-        <p>Sign in to LiDARFind to save your discoveries and revisit them anytime.</p>
-        <div class="btns-container-row justify-center">
-            <a href="{{ url_for('register') }}" class="primary-btn btn">Register</a>
-            <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
+    <!-- Hero -->
+    <section class="hero overlay">
+        <div class="hero-header-container">
+            <h1 class="title-text">Discover the Historic Environment from Anywhere</h1>
         </div>
-    </div>
-</section>
+        <div class="hero-text-container">
+            <p class="tagline">Join our community of citizen scientists and professional archaeologists to explore and document 
+                archaeological sites discovered through LiDAR technology.
+            </p>
+        </div>
+    </section>
 
-<!-- About-->
-<section class="content about">
-    <div class="container-fluid">
-        <div class="row justify-content-center align-items-center">
-            <div class="about-text col-12 col-md-6">
-                <h2 class="mb-4">ABOUT LiDARFind</h2>
-                <p>
-                    Discover and share archaeological finds through our unique LiDAR data viewing platform, 
-                    dedicated to uncovering the hidden historical treasures of Wales. 
-                    LiDARFind allows you to search and explore Welsh LiDAR data, 
-                    revealing archaeological sites that have remained hidden for centuries.
-                </p>
-                <P>
-                    Our user-friendly interface ensures that both novices and experts can easily navigate and
-                    utilise the platform to uncover the past and enrich our understanding of Welsh heritage. 
-                    Whether you're passionate about history or a professional archaeologist, 
-                    LiDARFind offers you the tools to make meaningful discoveries about Wales' unique historic 
-                    environment.
-                </P>
-            </div>
-            <div class="col-12 col-md-6 text-center">
-                <img class="lidarfind-image homepage-img shadow-lg rounded" src="static/images/lidarfind-map-screen.webp" 
-                    alt=" A screenshot of the map screen from LiDARFind." loading="lazy">
-            </div>
-        </div> 
-    </div>
-</section>
-
-<!-- Getting Started -->
-<section class="content getting-started">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="panel-icon fa-regular fa-user"></i></h5>
-                        <h5 class="card-subtitle mb-2">Register</h5>
-                        <p class="card-text">Join our community of archaeology enthusiasts and professionals. 
-                            Sign up today to start exploring and contributing to our extensive database of LiDAR discoveries.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="panel-icon fa-solid fa-magnifying-glass"></i></h5>
-                        <h5 class="card-subtitle mb-2">Explore</h5>
-                        <p class="card-text">Dive into our comprehensive collection of archaeological sites uncovered through LiDAR technology. 
-                            Discover hidden histories and expand your knowledge.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><i class="fa-regular fa-map"></i></h5>
-                        <h5 class="card-subtitle mb-2">Record</h5>
-                        <p class="card-text">Contribute your own findings and expand our knowledge on this historic environment. 
-                            Record and share new archaeological sites with the community using our easy-to-use platform.</p>
-                    </div>
-                </div>
+    <!-- signin -->
+    <section class="signin">
+        <div class="sign-in-textbox">
+            <p>Sign in to LiDARFind to save your discoveries and revisit them anytime.</p>
+            <div class="btns-container-row justify-center">
+                <a href="{{ url_for('register') }}" class="primary-btn btn">Register</a>
+                <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Tutorial -->
-<section class="content tutorial">
-    <div class="container-fluid">
-        <div class="row mt-5 mb-5">
-            <div class="col-12 col-md-6 my-5">
-                <h2>Getting Started with LiDARFind</h2>
-                <p>
-                    Watch our quick tutorial video to learn how to navigate and make the most of our platform. 
-                    From registering and exploring archaeological sites to recording your own findings, 
-                    this guide will help you get started and become an active member of our community. 
-                    Dive in and discover the historic environment like never before!
-                </p>
-            </div>
-            <div class=" col-12 col-md-6">
-                <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
-                    <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-                        <div class="wistia_embed wistia_async_xp5ce1ltgc seo=true videoFoam=true" style="height:100%;position:relative;width:100%">
-                            <div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
-                                <img src="https://fast.wistia.com/embed/medias/xp5ce1ltgc/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" />
-                            </div>
+    <!-- About-->
+    <section class="content about">
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center">
+                <div class="about-text col-12 col-md-6">
+                    <h2 class="mb-4">ABOUT LiDARFind</h2>
+                    <p>
+                        Discover and share archaeological finds through our unique LiDAR data viewing platform, 
+                        dedicated to uncovering the hidden historical treasures of Wales. 
+                        LiDARFind allows you to search and explore Welsh LiDAR data, 
+                        revealing archaeological sites that have remained hidden for centuries.
+                    </p>
+                    <P>
+                        Our user-friendly interface ensures that both novices and experts can easily navigate and
+                        utilise the platform to uncover the past and enrich our understanding of Welsh heritage. 
+                        Whether you're passionate about history or a professional archaeologist, 
+                        LiDARFind offers you the tools to make meaningful discoveries about Wales' unique historic 
+                        environment.
+                    </P>
+                </div>
+                <div class="col-12 col-md-6 text-center">
+                    <img class="lidarfind-image homepage-img shadow-lg rounded" src="static/images/lidarfind-map-screen.webp" 
+                        alt=" A screenshot of the map screen from LiDARFind." loading="lazy">
+                </div>
+            </div> 
+        </div>
+    </section>
+
+    <!-- Getting Started -->
+    <section class="content getting-started">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="panel-icon fa-regular fa-user"></i></h5>
+                            <h5 class="card-subtitle mb-2">Register</h5>
+                            <p class="card-text">Join our community of archaeology enthusiasts and professionals. 
+                                Sign up today to start exploring and contributing to our extensive database of LiDAR discoveries.
+                            </p>
                         </div>
                     </div>
-                </div>                
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="panel-icon fa-solid fa-magnifying-glass"></i></h5>
+                            <h5 class="card-subtitle mb-2">Explore</h5>
+                            <p class="card-text">Dive into our comprehensive collection of archaeological sites uncovered through LiDAR technology. 
+                                Discover hidden histories and expand your knowledge.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fa-regular fa-map"></i></h5>
+                            <h5 class="card-subtitle mb-2">Record</h5>
+                            <p class="card-text">Contribute your own findings and expand our knowledge on this historic environment. 
+                                Record and share new archaeological sites with the community using our easy-to-use platform.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorial -->
+    <section class="content tutorial">
+        <div class="container-fluid">
+            <div class="row mt-5 mb-5">
+                <div class="col-12 col-md-6 my-5">
+                    <h2>Getting Started with LiDARFind</h2>
+                    <p>
+                        Watch our quick tutorial video to learn how to navigate and make the most of our platform. 
+                        From registering and exploring archaeological sites to recording your own findings, 
+                        this guide will help you get started and become an active member of our community. 
+                        Dive in and discover the historic environment like never before!
+                    </p>
+                </div>
+                <div class=" col-12 col-md-6">
+                    <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+                        <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+                            <div class="wistia_embed wistia_async_xp5ce1ltgc seo=true videoFoam=true" style="height:100%;position:relative;width:100%">
+                                <div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+                                    <img src="https://fast.wistia.com/embed/medias/xp5ce1ltgc/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map browse -->
+    <section class="content map-browse">
+        <div class="is-relative">
+            <!-- Map Window -->
+            <div id="homePageMap">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- A button to open the popups -->
+    <div class="is-absolute popup-buttons-wrapper">
+        <button class="btn secondary-btn" onclick="openFilter()"><i class="fa-solid fa-filter"></i>Filters</button>
+    </div>
+
+    <!-- Filter options -->
+    <div class="is-absolute form-popup filter-popup" id="filter">
+        <div class="popup-title-wrapper">
+            <h5>Filters</h5>
+            <button type="button" class="popup-close-btn" onclick="closeFilters()"><i class="fa-regular fa-circle-xmark"></i></button>
+        </div>
+        <div class="filter-container">
+            <select id="period-filter" name="period" aria-label="Period" class="validate">
+                <option value="" selected>Period</option>
+                {% for period in periods %}
+                <option value="{{ period.period_name }}">{{ period.period_name }}</option>
+                {% endfor %}
+            </select>
+            <label for="period" class="active"></label>
+            <select id="site_type_filter" name="site_type" aria-label="Site Type" class="validate">
+                <option value="" selected>Site type</option>
+                {% for site_type in site_types %}
+                <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
+                {% endfor %}
+            </select>
+            <label for="site_type" class="active"></label>
+            <select id="monument_type_filter" name="monument_type" aria-label="Monument Type" class="validate">
+                <option value="" selected>Monument type</option>
+            </select>
+            <label for="monument_type" class="active"></label>
+            <button id="reset-filters-btn" class="tertiary-btn btn" type="button">Reset</button>  
+        </div>
+    </div>
+
+    
+    <!-- Delete Confirmation -->
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="deleteRecordConfirmation" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteRecordConfirmation">Delete Record</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you certain you want to delete this site record?</p>
+                    <p>WARNING: THIS ACTION CANNOT BE REVERSED</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn tertiary-btn" data-bs-dismiss="modal">Cancel</button>
+                    <a href="#" class="btn delete-btn" id="confirmDeleteBtn">Delete</a>
+                </div>
             </div>
         </div>
     </div>
-</section>
+    
+    <!-- signin -->
+    <section class="signin">
+        <div class="sign-in-textbox">
+            <p>Sign in to LiDARFind to save your discoveries and revisit them anytime.</p>
+            <div class="btns-container-row justify-center">
+                <a href="{{ url_for('register') }}" class="primary-btn btn">Register</a>
+                <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
+            </div>
+        </div>
+    </section>
 
-<!-- Map browse -->
-<section class="content map-browse">
-    <div class="is-relative">
-        
-        <!-- Map Window -->
-        <div id="homePageMap">
-            
+    <!-- Footer -->
+    <footer class="container-fluid mt-5">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center mt-4">
+                <ul class="list-inline social-links">
+                    <li class="list-inline-item">
+                        <a target="_blank" href="https://www.facebook.com" aria-label="Go to our facebook page (opens in new tab)" rel="noopener">
+                            <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                            <span class="sr-only">Facebook</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a target="_blank" href="https://www.twitter.com" aria-label="Go to our twitter page (opens in new tab)" rel="noopener">
+                            <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+                            <span class="sr-only">Twitter</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a target="_blank" href="https://www.instagram.com" aria-label="Go to our instagram (opens in new tab)" rel="noopener">
+                            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                            <span class="sr-only">Instagram</span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a target="_blank" href="https://www.youtube.com" aria-label="Go to our youtube channel (opens in new tab)" rel="noopener">
+                            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                            <span class="sr-only">YouTube</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-
-<!-- A button to open the popups -->
-<div class="is-absolute popup-buttons-wrapper">
-    <button class="btn secondary-btn" onclick="openFilter()"><i class="fa-solid fa-filter"></i>Filters</button>
-    </div>
-
-        <!-- Filter options -->
-<div class="is-absolute form-popup filter-popup" id="filter">
-    <div class="popup-title-wrapper">
-      <h5>Filters</h5>
-   <button type="button" class="popup-close-btn" onclick="closeFilters()"><i class="fa-regular fa-circle-xmark"></i></button>
-    </div>
-      <div class="filter-container">
-        <select id="period-filter" name="period" aria-label="Period" class="validate">
-            <option value="" selected>Period</option>
-            {% for period in periods %}
-            <option value="{{ period.period_name }}">{{ period.period_name }}</option>
-            {% endfor %}
-        </select>
-        <label for="period" class="active"></label>
-        <select id="site_type_filter" name="site_type" aria-label="Site Type" class="validate">
-            <option value="" selected>Site type</option>
-            {% for site_type in site_types %}
-            <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
-            {% endfor %}
-        </select>
-        <label for="site_type" class="active"></label>
-        <select id="monument_type_filter" name="monument_type" aria-label="Monument Type" class="validate">
-            <option value="" selected>Monument type</option>
-        </select>
-        <label for="monument_type" class="active"></label>
-        <button id="reset-filters-btn" class="tertiary-btn btn" type="button">Reset</button>  
-      </div>
-    </div>
-  </div>
-  
-  <!-- Delete Confirmation -->
-  <!-- Bootstrap Modal -->
-  <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="deleteRecordConfirmation" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="deleteRecordConfirmation">Delete Record</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <p>This website was made by Charlie Enright as part of the Code Institute Milestone three Project.</p>
+            </div>
         </div>
-        <div class="modal-body">
-          <p>Are you certain you want to delete this site record?</p>
-          <p>WARNING: THIS ACTION CANNOT BE REVERSED</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn tertiary-btn" data-bs-dismiss="modal">Cancel</button>
-          <a href="#" class="btn delete-btn" id="confirmDeleteBtn">Delete</a>
-        </div>
-      </div>
-    </div>
-  </div>
-    </div>
-</section>
-
-<!-- signin -->
-<section class="signin">
-    <div class="sign-in-textbox">
-        <p>Sign in to LiDARFind to save your discoveries and revisit them anytime.</p>
-        <div class="btns-container-row justify-center">
-            <a href="{{ url_for('register') }}" class="primary-btn btn">Register</a>
-            <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="container-fluid mt-5">
-    <div class="row justify-content-center">
-        <div class="col-12 text-center mt-4">
-            <ul class="list-inline social-links">
-                <li class="list-inline-item">
-                    <a target="_blank" href="https://www.facebook.com" aria-label="Go to our facebook page (opens in new tab)" rel="noopener">
-                        <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-                        <span class="sr-only">Facebook</span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a target="_blank" href="https://www.twitter.com" aria-label="Go to our twitter page (opens in new tab)" rel="noopener">
-                        <i class="fa-brands fa-twitter" aria-hidden="true"></i>
-                        <span class="sr-only">Twitter</span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a target="_blank" href="https://www.instagram.com" aria-label="Go to our instagram (opens in new tab)" rel="noopener">
-                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                        <span class="sr-only">Instagram</span>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a target="_blank" href="https://www.youtube.com" aria-label="Go to our youtube channel (opens in new tab)" rel="noopener">
-                        <i class="fa-brands fa-youtube" aria-hidden="true"></i>
-                        <span class="sr-only">YouTube</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-12 text-center">
-            <p>This website was made by Charlie Enright as part of the Code Institute Milestone three Project.</p>
-        </div>
-    </div>
-</footer>
-<!-- /.Footer -->
-
+    </footer>
 {% endblock %}
-
-
-  
 
 {% block scripts %}
 <!-- Leaflet -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="https://fast.wistia.com/embed/medias/xp5ce1ltgc.jsonp" async>
-</script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+<script src="https://fast.wistia.com/embed/medias/xp5ce1ltgc.jsonp" async></script>
+<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
 <script src="{{ url_for('static', filename='js/bing.js') }}"></script>
 <script src="{{ url_for('static', filename='js/homepage-map.js') }}"></script>
-</script>
 {% endblock %}
