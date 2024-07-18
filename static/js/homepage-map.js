@@ -144,4 +144,4 @@ var overlayMaps = {
     "LiDAR Data": wmsLayer
 };
 
-L.control.layers(baseMaps, overlayMaps).addTo(map);
+L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map)

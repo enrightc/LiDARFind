@@ -439,4 +439,7 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
   - [UPPBEAT] (https://uppbeat.io/browse/artist/qube)found at (https://uppbeat.io/browse/music/inspiring)  [Accessed 9th July, 2024].
 
 - For sticking footer to bottom of page
-- [The EASIEST Way To Push That Footer Down With CSS](https://www.youtube.com/watch?v=AVPR_WuDw8o&list=PLx6XTedFrvFICl8XTWKE6mDst8FPo5ZRn&index=3) YouTube, uploaded 12th July, 2024. [Accessed 16th July, 2024].
+  - [The EASIEST Way To Push That Footer Down With CSS](https://www.youtube.com/watch?v=AVPR_WuDw8o&list=PLx6XTedFrvFICl8XTWKE6mDst8FPo5ZRn&index=3) YouTube, uploaded 12th July, 2024. [Accessed 16th July, 2024].
+
+- Making leaflet layers toggle control always open
+  - [Making leaflet control open by default](https://gis.stackexchange.com/questions/64385/making-leaflet-control-open-by-default) Stack Overflow, [Accessed 18th July, 2024].
