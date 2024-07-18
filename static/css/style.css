@@ -273,6 +273,14 @@ footer {
     }
 }
 
+.delete-user {
+    background-color: transparent;
+    border: none;
+    padding: 10px; 
+    cursor: pointer;
+    font-size: 24px; 
+    color: red; 
+}
 .tertiary-btn {
     background-color: #61a0ac !important; /* Brighter blue-green */
     color: #ffffff; /* Pure white text for better contrast */
