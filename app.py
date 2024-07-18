@@ -457,7 +457,27 @@ def delete_record(record_id):
     else:
         return redirect(url_for('add_record'))
 
-    
+
+@app.route("/delete_user/<user_id>")
+def delete_user(user_id):
+    """
+    Function to delete a user by _id
+    """
+    if not session.get("is_admin"):
+        abort(403)
+
+    # Fetch the user first
+    user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
+
+    if not user:
+        abort(404)  # Record not found
+
+    mongo.db.users.delete_one({"_id": ObjectId(user_id)})
+    flash("User Deleted", "Success")
+
+    return redirect(url_for('admin_dashboard'))
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
