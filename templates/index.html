@@ -9,21 +9,50 @@
     <!-- Hero -->
     <section class="hero overlay">
         <div class="hero-header-container">
-            <h1 class="title-text">Discover the Historic Environment from Anywhere</h1>
+            <h1 class="title-text">Discover Wales Through LiDARFind</h1>
         </div>
         <div class="hero-text-container">
-            <p class="tagline">Join our community of citizen scientists and professional archaeologists to explore and document archaeological sites discovered through LiDAR technology.</p>
+            <p class="tagline">Uncover the hidden landscape of Wales using our portal to
+                access LiDAR data at your fingertips</p>
         </div>
     </section>
 
     <!-- Signin -->
     <section class="signin">
-        <div class="sign-in-textbox">
-            <p>Sign in to LiDARFind to save your discoveries and revisit them anytime.</p>
+        <div class="sign-in-textbox text-center">
+            <p>Join our community of citizen scientists and professional archaeologists to explore and
+                document archaeological sites discovered through LiDAR technology.</p>
             <div class="btns-container-row justify-center">
                 <a href="{{ url_for('register') }}" class="primary-btn btn">Register</a>
                 <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
             </div>
+        </div>
+    </section>
+
+    <!-- What is LiDAR -->
+    <section class="content what-is">
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center">
+                <div class="about-text col-12 col-md-6">
+                    <h2 class="mb-4">What is LiDAR</h2>
+                    <p>
+                        Light Detection and Ranging (LiDAR) is a remote sensing technology that uses laser 
+                        pulses to create detailed 3D maps of the Earth's surface. 
+                        By measuring the time it takes for laser light to bounce 
+                        back from the ground, LiDAR can produce highly accurate models of terrain and surface features.
+                    </p>
+                    <p>
+                        Archaeologists can use LiDAR to reveal subtle ground changes, exposing historical sites that may not 
+                        be visible to the naked eye. 
+                        This powerful tool allows researchers to discover and map extensive archaeological sites quickly, 
+                        even in challenging environments such as beneath trees.
+                    </p>
+                </div>
+                <div class="col-12 col-md-6 text-center">
+                    <img class="lidarfind-image homepage-img shadow-lg rounded" src="static/images/lidarfind-map-screen.webp" 
+                        alt="A screenshot of the map screen from LiDARFind." loading="lazy">
+                </div>
+            </div> 
         </div>
     </section>
 
@@ -34,17 +63,21 @@
                 <div class="about-text col-12 col-md-6">
                     <h2 class="mb-4">ABOUT LiDARFind</h2>
                     <p>
-                        Discover and share archaeological finds through our unique LiDAR data viewing platform, 
-                        dedicated to uncovering the hidden historical treasures of Wales. 
-                        LiDARFind allows you to search and explore Welsh LiDAR data, 
-                        revealing archaeological sites that have remained hidden for centuries.
+                        LiDARFind allows you to explore Wales, 
+                        revealing hidden archaeological sites.
+                        Our user-friendly platform allows both novices and experts to easily search, view, 
+                        and contribute to a growing database of historical discoveries.
                     </p>
                     <p>
-                        Our user-friendly interface ensures that both novices and experts can easily navigate and
-                        utilise the platform to uncover the past and enrich our understanding of Welsh heritage. 
-                        Whether you're passionate about history or a professional archaeologist, 
-                        LiDARFind offers you the tools to make meaningful discoveries about Wales' unique historic 
-                        environment.
+                        Using our interactive map, you can navigate through LiDAR imagery of Wales, 
+                        identify potential archaeological sites, and save your discoveries. 
+                        Whether you're a history enthusiast or a professional archaeologist, 
+                        LiDARFind provides the tools to uncover, document, and share meaningful 
+                        insights about Wales' unique historic landscape.
+                    </p>
+                    <p>
+                        Every discovery you make and save contributes to a comprehensive map of 
+                        Wales' hidden archaeological treasures.
                     </p>
                 </div>
                 <div class="col-12 col-md-6 text-center">
