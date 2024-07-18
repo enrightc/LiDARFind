@@ -1,226 +1,225 @@
 {% extends "base.html" %}
 
 {% block styles %}
-<!-- Linking Leaflet CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <!-- Linking Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 {% endblock %}
 
 {% block content %}
-
- <!-- Flash Messages first time registration and login only -->
- <div class="container flash-container">
-  <div class="flashes alert-success">
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages %}
-          <div class="alert alert-success alert-dismissible mt-2 text-center" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+  <!-- Flash Messages first time registration and login only -->
+  <div class="container flash-container">
+    <div class="flashes alert-success">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-success alert-dismissible mt-2 text-center" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
   </div>
-</div>
 
-<!-- Map Window -->
-<div class="col s12">
-    <div id="mapid"></div>
-</div>
-
-<!-- Create form and filter options -->
- <!-- Adapted from: https://www.w3schools.com/howto/howto_js_popup_form.asp -->
-<!-- A button to open the popups -->
-<div class="popup-buttons-wrapper">
-<button class="btn primary-btn" onclick="openCreateForm()"><i class="fa-solid fa-circle-plus"></i>Create</button>
-<button class="btn secondary-btn" onclick="openFilter()"><i class="fa-solid fa-filter"></i>Filters</button>
-</div>
-<!-- Create Record Form -->
-<div class="form-popup" id="create-form">
-  <div class="popup-title-wrapper">
-    <h5 class="no-wrap">Create Record</h5>
-    <button type="button" class="popup-close-btn" onclick="closeCreateForm()"><i class="fa-regular fa-circle-xmark"></i></button>
+  <!-- Map Window -->
+  <div class="col s12">
+      <div id="mapid"></div>
   </div>
+
+  <!-- Create form and filter options -->
+  <!-- Adapted from: https://www.w3schools.com/howto/howto_js_popup_form.asp -->
+  <!-- A button to open the popups -->
+  <div class="popup-buttons-wrapper">
+    <button class="btn primary-btn" onclick="openCreateForm()"><i class="fa-solid fa-circle-plus"></i>Create</button>
+    <button class="btn secondary-btn" onclick="openFilter()"><i class="fa-solid fa-filter"></i>Filters</button>
+  </div>
+
+  <!-- Create Record Form -->
+  <div class="form-popup" id="create-form">
+    <div class="popup-title-wrapper">
+      <h5 class="no-wrap">Create Record</h5>
+      <button type="button" class="popup-close-btn" onclick="closeCreateForm()"><i class="fa-regular fa-circle-xmark"></i></button>
+    </div>
     <!-- Record Form (Bootstrap) -->    
-      <div id="record-form">
-        <form id="create-record-form" class="needs-validation" method="POST" action="{{ url_for('add_record') }}" novalidate>
-          <!-- Title -->
-          <div class="form-floating mb-4">
-            <input id="InputTitle" name="title" minlength="5" maxlength="50" class="form-control" placeholder="Title" required>
-            <label for="InputTitle" class="form-label">Title</label>
-            <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="Provide a detailed and engaging title. Instead of 
-              just 'Round Barrow,' use something like 'Round Barrow near Greenwood Forest' to make it more descriptive and interesting. 
-              Including location or notable features helps others easily identify and find your record."></i>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-            <div class="invalid-feedback">
-              Please provide a title.
-            </div>
+    <div id="record-form">
+      <form id="create-record-form" class="needs-validation" method="POST" action="{{ url_for('add_record') }}" novalidate>
+        <!-- Title -->
+        <div class="form-floating mb-4">
+          <input id="InputTitle" name="title" minlength="5" maxlength="50" class="form-control" placeholder="Title" required>
+          <label for="InputTitle" class="form-label">Title</label>
+          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="Provide a detailed and engaging title. Instead of 
+            just 'Round Barrow,' use something like 'Round Barrow near Greenwood Forest' to make it more descriptive and interesting. 
+            Including location or notable features helps others easily identify and find your record."></i>
+          <div class="valid-feedback">
+            Looks good!
           </div>
-          <!-- PRN -->
-          <div class="form-floating mb-4">
-            <input id="InputPrn" name="prn" minlength="2" maxlength="8" type="text" class="form-control" placeholder="PRN" pattern='^\d+$'>
-            <label for="InputPrn" class="form-label">PRN (if known)</label>
-            <div class="invalid-feedback">
-              Please provide a valid PRN.
-            </div>
-            <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="If the feature is already recorded on the Historic Environment Record (HER), 
-              it will have a PRN number. Enter it here if you know it."></i>
+          <div class="invalid-feedback">
+            Please provide a title.
           </div>
-          <!-- Site Type -->
-          <div class="mb-4">
-            <select id="site_type" class="form-select" name="site_type" required aria-label="Site Type">
-              <option value="" disabled selected>Select site type</option>
-              {% for site_type in site_types %}
-              <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
-              {% endfor %}
-            </select>
-            <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="The site type refers to the broad classification of the feature, 
-              such as ditch, mound, or enclosure. Choose the most appropriate category for the site you are recording."></i>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-            <div class="invalid-feedback">
-              Please select a site type.
-            </div>
+        </div>
+        <!-- PRN -->
+        <div class="form-floating mb-4">
+          <input id="InputPrn" name="prn" minlength="2" maxlength="8" type="text" class="form-control" placeholder="PRN" pattern='^\d+$'>
+          <label for="InputPrn" class="form-label">PRN (if known)</label>
+          <div class="invalid-feedback">
+            Please provide a valid PRN.
           </div>
-          <!-- Monument Type -->
-          <div class="mb-4">
-            <select id="monument_type" class="form-select" name="monument_type" required disabled aria-label="Monument Type">
-              <option value="" disabled selected>Select monument type</option>
-            </select>
-            <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="The monument type is a more specific classification than site type.
-               It includes detailed categories like round barrow, hillfort, or Roman villa. Select the specific monument type that best describes the feature."></i>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-            <div class="invalid-feedback">
-              Please select a monument type.
-            </div>
+          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="If the feature is already recorded on the Historic Environment Record (HER), 
+            it will have a PRN number. Enter it here if you know it."></i>
+        </div>
+        <!-- Site Type -->
+        <div class="mb-4">
+          <select id="site_type" class="form-select" name="site_type" required aria-label="Site Type">
+            <option value="" disabled selected>Select site type</option>
+            {% for site_type in site_types %}
+            <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
+            {% endfor %}
+          </select>
+          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="The site type refers to the broad classification of the feature, 
+            such as ditch, mound, or enclosure. Choose the most appropriate category for the site you are recording."></i>
+          <div class="valid-feedback">
+            Looks good!
           </div>
-          <!-- Description -->
-          <div class="mb-4">
-            <textarea id="InputDescription" name="description" minlength="5" maxlength="200" class="form-control" placeholder="Description" required></textarea>
-            <label for="InputDescription" class="form-label">Description</label>
-            <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="In the description, detail the character, shape, and form of the site. 
-              Include dimensions if possible, and draw parallels with similar sites. This helps provide a comprehensive understanding of the feature."></i>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-            <div class="invalid-feedback">
-              Please provide an description.
-            </div>
+          <div class="invalid-feedback">
+            Please select a site type.
           </div>
-          <!-- Period -->
-          <div class="mb-4">
-            <select id="period" class="form-select" name="period" required aria-label="Period">
-              <option value="" disabled selected>Select Period</option>
-              {% for period in periods %}
-              <option value="{{ period.period_name }}">{{ period.period_name }}</option>
-              {% endfor %}
-            </select>
-            <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="Select the historical period of the site. Options include:
-                - Prehistoric: Up to AD 43
-                - Roman (Romano-British): AD 43 - c. AD 410
-                - Post-Roman / Early Medieval: c. AD 410 - AD 1086
-                - Medieval: 1086 - 1536
-                - Post-Medieval: 1536 - 1750
-                - Industrial: 1750 - 1899
-                - Modern: 20th century onwards."></i>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-            <div class="invalid-feedback">
-              Please select a period.
-            </div>
+        </div>
+        <!-- Monument Type -->
+        <div class="mb-4">
+          <select id="monument_type" class="form-select" name="monument_type" required disabled aria-label="Monument Type">
+            <option value="" disabled selected>Select monument type</option>
+          </select>
+          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="The monument type is a more specific classification than site type.
+            It includes detailed categories like round barrow, hillfort, or Roman villa. Select the specific monument type that best describes the feature."></i>
+          <div class="valid-feedback">
+            Looks good!
           </div>
-          <!-- Location -->
-          <div class="mb-4">
-            <input id="location" name="location" minlength="5" maxlength="50" type="text" class="form-control" pattern="^-?\d{1,2}\.\d{5},\s-?\d{1,3}\.\d{5}$" 
-              placeholder="Click map area for coordinates" required>
-            <label for="location" class="form-label"></label>
-            <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="Left-click on the map to place the crosshair. 
-              The location box will automatically populate with the coordinates."></i>
-            <div class="valid-feedback">
-              Looks good!
-            </div>
-            <div class="invalid-feedback">
-              Please provide a location by clicking on the map.
-            </div>
+          <div class="invalid-feedback">
+            Please select a monument type.
           </div>
-          <!-- Submit Button -->
-          <div class="btns-container-row justify-center">
-            <button type="reset" id="reset-form-btn" class="btn clear-btn">Clear</button>
-            <button type="submit" id="save-btn" class="primary-btn btn btn-spacing" aria-label="Create Record">Save</button>
+        </div>
+        <!-- Description -->
+        <div class="mb-4">
+          <textarea id="InputDescription" name="description" minlength="5" maxlength="200" class="form-control" placeholder="Description" required></textarea>
+          <label for="InputDescription" class="form-label">Description</label>
+          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="In the description, detail the character, shape, and form of the site. 
+            Include dimensions if possible, and draw parallels with similar sites. This helps provide a comprehensive understanding of the feature."></i>
+          <div class="valid-feedback">
+            Looks good!
           </div>
-        </form>
-      </div>
-</div>
-<!-- Filter options -->
-<div class="form-popup filter-popup" id="filter">
-  <div class="popup-title-wrapper">
-    <h5>Filters</h5>
- <button type="button" class="popup-close-btn" onclick="closeFilters()"><i class="fa-regular fa-circle-xmark"></i></button>
+          <div class="invalid-feedback">
+            Please provide a description.
+          </div>
+        </div>
+        <!-- Period -->
+        <div class="mb-4">
+          <select id="period" class="form-select" name="period" required aria-label="Period">
+            <option value="" disabled selected>Select Period</option>
+            {% for period in periods %}
+            <option value="{{ period.period_name }}">{{ period.period_name }}</option>
+            {% endfor %}
+          </select>
+          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="Select the historical period of the site. Options include:
+              - Prehistoric: Up to AD 43
+              - Roman (Romano-British): AD 43 - c. AD 410
+              - Post-Roman / Early Medieval: c. AD 410 - AD 1086
+              - Medieval: 1086 - 1536
+              - Post-Medieval: 1536 - 1750
+              - Industrial: 1750 - 1899
+              - Modern: 20th century onwards."></i>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please select a period.
+          </div>
+        </div>
+        <!-- Location -->
+        <div class="mb-4">
+          <input id="location" name="location" minlength="5" maxlength="50" type="text" class="form-control" pattern="^-?\d{1,2}\.\d{5},\s-?\d{1,3}\.\d{5}$" 
+            placeholder="Click map area for coordinates" required>
+          <label for="location" class="form-label"></label>
+          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="Left-click on the map to place the crosshair. 
+            The location box will automatically populate with the coordinates."></i>
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please provide a location by clicking on the map.
+          </div>
+        </div>
+        <!-- Submit Button -->
+        <div class="btns-container-row justify-center">
+          <button type="reset" id="reset-form-btn" class="btn clear-btn">Clear</button>
+          <button type="submit" id="save-btn" class="primary-btn btn btn-spacing" aria-label="Create Record">Save</button>
+        </div>
+      </form>
+    </div>
   </div>
+
+  <!-- Filter options -->
+  <div class="form-popup filter-popup" id="filter">
+    <div class="popup-title-wrapper">
+      <h5>Filters</h5>
+      <button type="button" class="popup-close-btn" onclick="closeFilters()"><i class="fa-regular fa-circle-xmark"></i></button>
+    </div>
     <div class="filter-container">
       <select id="period-filter" name="period" aria-label="Period" class="validate">
-          <option value="" selected>Period</option>
-          {% for period in periods %}
-          <option value="{{ period.period_name }}">{{ period.period_name }}</option>
-          {% endfor %}
+        <option value="" selected>Period</option>
+        {% for period in periods %}
+        <option value="{{ period.period_name }}">{{ period.period_name }}</option>
+        {% endfor %}
       </select>
       <label for="period" class="active"></label>
       <select id="site_type_filter" name="site_type" aria-label="Site Type" class="validate">
-          <option value="" selected>Site type</option>
-          {% for site_type in site_types %}
-          <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
-          {% endfor %}
+        <option value="" selected>Site type</option>
+        {% for site_type in site_types %}
+        <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
+        {% endfor %}
       </select>
       <label for="site_type" class="active"></label>
       <select id="monument_type_filter" name="monument_type" aria-label="Monument Type" class="validate">
-          <option value="" selected>Monument type</option>
+        <option value="" selected>Monument type</option>
       </select>
       <label for="monument_type" class="active"></label>
       <button id="reset-filters-btn" class="tertiary-btn btn" type="button">Reset</button>  
     </div>
   </div>
-</div>
 
-<!-- Delete Confirmation -->
-<!-- Bootstrap Modal -->
-<div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="deleteRecordConfirmation" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="deleteRecordConfirmation">Delete Record</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Are you certain you want to delete this site record?</p>
-        <p>WARNING: THIS ACTION CANNOT BE REVERSED</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn tertiary-btn" data-bs-dismiss="modal">Cancel</button>
-        <a href="#" class="btn delete-btn" id="confirmDeleteBtn">Delete</a>
+  <!-- Delete Confirmation -->
+  <!-- Bootstrap Modal -->
+  <div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="deleteRecordConfirmation" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="deleteRecordConfirmation">Delete Record</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you certain you want to delete this site record?</p>
+          <p>WARNING: THIS ACTION CANNOT BE REVERSED</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn tertiary-btn" data-bs-dismiss="modal">Cancel</button>
+          <a href="#" class="btn delete-btn" id="confirmDeleteBtn">Delete</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 {% endblock %}
 
 {% block scripts %}
-<!-- Leaflet -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.js"></script>
-<script src="{{ url_for('static', filename='js/bing.js') }}"></script>
-<script type="text/javascript">
-  var isAdmin = {{ is_admin|tojson }};
-</script>
-<script src="{{ url_for('static', filename='js/lidar-map.js') }}"></script>
-</script>
+  <!-- Leaflet -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.js"></script>
+  <script src="{{ url_for('static', filename='js/bing.js') }}"></script>
+  <script type="text/javascript">
+    var isAdmin = {{ is_admin|tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='js/lidar-map.js') }}"></script>
+  </script>
 {% endblock %}
