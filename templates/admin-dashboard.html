@@ -57,8 +57,9 @@
                           <p><strong>Skill Level:</strong> {{ user.skill_level }}</p>
                           <p><strong>Member Since:</strong> {{ user.member_since }}</p>
                           <p><strong>Admin Status:</strong> {{ user.is_admin }}</p>
-                          <button type="button" class="delete-user" data-bs-toggle="modal" data-bs-target="#userDelete{{ user._id }}" aria-label="Delete User">
-                            <i class="fa-solid fa-trash"></i>
+                          <button type="button" class="delete-user" data-bs-toggle="modal" data-bs-target="#userDelete{{ user._id }}" aria-label="Delete User {{ user.username }}">
+                            <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                            <span class="sr-only">Delete user {{ user.username }}</span>
                           </button>
 
                           <!-- Secondary Accordion for User's Records -->

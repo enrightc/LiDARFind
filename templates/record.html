@@ -33,7 +33,7 @@
   <!-- Adapted from: https://www.w3schools.com/howto/howto_js_popup_form.asp -->
   <!-- A button to open the popups -->
   <div class="popup-buttons-wrapper">
-    <button class="btn primary-btn" onclick="openCreateForm()"><i class="fa-solid fa-circle-plus"></i>Create</button>
+    <button class="btn primary-btn" onclick="openCreateForm()"><i class="fa-solid fa-circle-plus" aria-hidden="true"></i>Create</button>
     <button class="btn secondary-btn" onclick="openFilter()"><i class="fa-solid fa-filter"></i>Filters</button>
   </div>
 
@@ -41,7 +41,10 @@
   <div class="form-popup" id="create-form">
     <div class="popup-title-wrapper">
       <h5 class="no-wrap">Create Record</h5>
-      <button type="button" class="popup-close-btn" onclick="closeCreateForm()"><i class="fa-regular fa-circle-xmark"></i></button>
+      <button type="button" class="popup-close-btn" onclick="closeCreateForm()" aria-label="Close create record form"><i class="fa-regular fa-circle-xmark" 
+        aria-hidden="true"></i>
+        <span class="sr-only">Close</span>
+      </button>
     </div>
     <!-- Record Form (Bootstrap) -->    
     <div id="record-form">
@@ -50,9 +53,10 @@
         <div class="form-floating mb-4">
           <input id="InputTitle" name="title" minlength="5" maxlength="50" class="form-control" placeholder="Title" required>
           <label for="InputTitle" class="form-label">Title</label>
-          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="Provide a detailed and engaging title. Instead of 
+          <i class="fa-solid fa-circle-info" aria-hidden="true" data-bs-toggle="tooltip" data-bs-title="Provide a detailed and engaging title. Instead of 
             just 'Round Barrow,' use something like 'Round Barrow near Greenwood Forest' to make it more descriptive and interesting. 
             Including location or notable features helps others easily identify and find your record."></i>
+            <span class="sr-only">(Hover for more information about creating a title)</span>
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -67,8 +71,9 @@
           <div class="invalid-feedback">
             Please provide a valid PRN.
           </div>
-          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="If the feature is already recorded on the Historic Environment Record (HER), 
-            it will have a PRN number. Enter it here if you know it."></i>
+          <i class="fa-solid fa-circle-info" aria-hidden="true" data-bs-toggle="tooltip" data-bs-title="A PRN is a unique identifer given to each site in the Historic Environment Record (HER). 
+            If your site is already recorded in the HER and you know the PRN number, please provide it here. "></i>
+            <span class="sr-only">(Hover for more information about PRNs)</span>
         </div>
         <!-- Site Type -->
         <div class="mb-4">
@@ -78,8 +83,9 @@
             <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
             {% endfor %}
           </select>
-          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="The site type refers to the broad classification of the feature, 
+          <i class="fa-solid fa-circle-info" aria-hidden="true" data-bs-toggle="tooltip" data-bs-title="The site type refers to the broad classification of the feature, 
             such as ditch, mound, or enclosure. Choose the most appropriate category for the site you are recording."></i>
+            <span class="sr-only">(Hover for more information about site types)</span>
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -92,8 +98,9 @@
           <select id="monument_type" class="form-select" name="monument_type" required disabled aria-label="Monument Type">
             <option value="" disabled selected>Select monument type</option>
           </select>
-          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="The monument type is a more specific classification than site type.
+          <i class="fa-solid fa-circle-info" aria-hidden="true" data-bs-toggle="tooltip" data-bs-title="The monument type is a more specific classification than site type.
             It includes detailed categories like round barrow, hillfort, or Roman villa. Select the specific monument type that best describes the feature."></i>
+            <span class="sr-only">(Hover for more information about monument types)</span>
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -105,8 +112,9 @@
         <div class="mb-4">
           <textarea id="InputDescription" name="description" minlength="5" maxlength="200" class="form-control" placeholder="Description" required></textarea>
           <label for="InputDescription" class="form-label">Description</label>
-          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="In the description, detail the character, shape, and form of the site. 
+          <i class="fa-solid fa-circle-info" aria-hidden="true" data-bs-toggle="tooltip" data-bs-title="In the description, detail the character, shape, and form of the site. 
             Include dimensions if possible, and draw parallels with similar sites. This helps provide a comprehensive understanding of the feature."></i>
+            <span class="sr-only">(Hover for more information about providing a description)</span>
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -122,7 +130,7 @@
             <option value="{{ period.period_name }}">{{ period.period_name }}</option>
             {% endfor %}
           </select>
-          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="Select the historical period of the site. Options include:
+          <i class="fa-solid fa-circle-info" aria-hidden="true" data-bs-toggle="tooltip" data-bs-title="Select the historical period of the site. Options include:
               - Prehistoric: Up to AD 43
               - Roman (Romano-British): AD 43 - c. AD 410
               - Post-Roman / Early Medieval: c. AD 410 - AD 1086
@@ -130,6 +138,7 @@
               - Post-Medieval: 1536 - 1750
               - Industrial: 1750 - 1899
               - Modern: 20th century onwards."></i>
+              <span class="sr-only">(Hover for more information about providing a period)</span>
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -142,8 +151,9 @@
           <input id="location" name="location" minlength="5" maxlength="50" type="text" class="form-control" pattern="^-?\d{1,2}\.\d{5},\s-?\d{1,3}\.\d{5}$" 
             placeholder="Click map area for coordinates" required>
           <label for="location" class="form-label"></label>
-          <i class="fa-solid fa-circle-info" data-bs-toggle="tooltip" data-bs-title="Left-click on the map to place the crosshair. 
+          <i class="fa-solid fa-circle-info" aria-hidden="true" data-bs-toggle="tooltip" data-bs-title="Left-click on the map to place the crosshair. 
             The location box will automatically populate with the coordinates."></i>
+            <span class="sr-only">(Hover for more information about providing a site location)</span>
           <div class="valid-feedback">
             Looks good!
           </div>
@@ -164,7 +174,8 @@
   <div class="form-popup filter-popup" id="filter">
     <div class="popup-title-wrapper">
       <h5>Filters</h5>
-      <button type="button" class="popup-close-btn" onclick="closeFilters()"><i class="fa-regular fa-circle-xmark"></i></button>
+      <button type="button" class="popup-close-btn" onclick="closeFilters()"><i class="fa-regular fa-circle-xmark" ria-hidden="true"></i>
+        <span class="sr-only">Close</span>>
     </div>
     <div class="filter-container">
       <select id="period-filter" name="period" aria-label="Period" class="validate">
