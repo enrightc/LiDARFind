@@ -25,13 +25,15 @@ mongo = PyMongo(app)
 def register():
     """
     Handle the user registration process.
-    - If the request method is POST, check if the username already exists in the database.
-    - If the username exists, flash a message and redirect to the register page.
-    - If the username does not exist, hash the password and confirm_password, 
-      and insert the new user data into the database.
-    - Store the new user's username in the session cookie and flash a message indicating successful 
-      registration.
-    - Render the register template.
+    1. If the request method is POST:
+        - check if the username already exists in the database.
+        - If the username exists, flash a message and redirect to the register page.
+        - If the username does not exist, hash the password and create a dictionary with the user's information.
+        - Insert the new user data into the database.
+        - Store the new user's username and admin status in the session cookie.
+        - Flash a success message and redirect to the user's profile page.
+    2. If the request method is GET:
+        - Render the register template.
     """
     if request.method == "POST":
         # Check if username already exists in db
@@ -39,6 +41,7 @@ def register():
             {"username": request.form.get("username").lower()}
         )
 
+        # If the username exists, flash a message and redirect to the register page
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
@@ -50,6 +53,7 @@ def register():
             flash("Passwords must match", "danger")
             return redirect(url_for("register"))
 
+        # Create a dictionary for the new user
         register = {
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password")),
@@ -57,13 +61,21 @@ def register():
             "member_since": datetime.datetime.now(),
             "is_admin": False #Manually change to true for admin credentials. 
         }
+
+        # Insert the new user into the database
         mongo.db.users.insert_one(register)
 
         # Put the new user into "session" cookie
         session["user"] = request.form.get("username").lower()
         session["is_admin"] = False
+
+        # Flash a message indicating successful registration
         flash("You are registered and now logged in. Welcome!", "success")
+
+        # Redirect to the user's profile page after successful registration
         return redirect(url_for("profile", username=session["user"]))
+    
+    # Render the register template if the request method is GET
     return render_template("register.html")
 
 
@@ -71,13 +83,18 @@ def register():
 def login():
     """
     Handle user login.
-    If the request method is POST, verify the user's credentials.
-    - Check if the username exists in the database.
-    - If the username exists, verify the password.
-    - If the password is correct, log the user in by adding their username to the session and flash a welcome message.
-    - If the password is incorrect, flash an error message and redirect to the login page.
-    - If the username does not exist, flash an error message and redirect to the login page.
-    Render the login template for GET requests.
+    1. Check if the user is already logged in:
+        - If the user. is already in session, skip the login process. 
+    
+    2. If the request method is POST:
+        - Check if the username already exists in the database.
+        - If the username exists, verify the password.
+            - If the password is correct, log the user in by storing their 
+               username and admin status in the session.
+            - Flash a welcome message and redirect to the user's profile page.
+            - If the password is incorrect, flash an error message and redirect to the login page.
+            - If the username does not exist, flash an error message and redirect to the login page.
+    3. If the request method is GET Render the login template.
     """
 
     # Check that the user is not already logged in
@@ -122,23 +139,16 @@ def profile(username):
     the database to get the user's information.
 
     Process:
-    1. The function is called when a user naviagtes to the profile
-        page.
-    2. The 'username parameter in the URL is passed to the function.
-    3. It checks if there is a logged in user by looking for the 
-        'user' in the session.
-    4. If there is no logged in user it immediately redirects to the
-        login page and the function ends.
-    5. If there is a logged in user it queries the dataase to find the
-        user.
-    6). If no user is found in the database it aborts with a 404 error 
-        message.
-    7). if the user is found it assigns the username from the database to 
-        the 'username' variable.
-    8). It compares the username with the one in session. If they do
-        not match it aborts with a 403 error.
-    9). If all checks pass it queries the database for all records
-        created by the user.m 
+    1.  Retrieve the user information from the database using the provided username.
+       - If the user is not found, abort with a 404 error.
+    2. Check if a user is logged in by verifying the session.
+       - If no user is logged in, flash a warning message and redirect to the login page.
+    3. Ensure the logged-in user is viewing their own profile.
+       - If the username in the session does not match the requested profile, abort with a 403 error.
+    4. Retrieve the user's records from the database.
+    5. Format the member since date for display.
+    6. Calculate the total number of records created by the user.
+    7. Render the profile.html template with user-specific data.
 
     Args:
     username (str): The username of the user whose profile is being accessed.
@@ -148,7 +158,7 @@ def profile(username):
         records.
     2. If not logged in: redirects to the login page.
     3. If user not found: Aborts with 404 error.
-    4. If unauthorised access: Aborts with 403 error.
+    4. If unauthorised access (User tries to access another users profile): Aborts with 403 error.
     """
    # Retrieve the session user's information from the database
     user = mongo.db.users.find_one({"username": username})
@@ -167,24 +177,20 @@ def profile(username):
     # Retrieve the user's records from the database
     user_records = list(mongo.db.records.find({"created_by": username}))
 
-    # Retrieve site types and periods for the filters
-    site_types = list(mongo.db.site_types.find().sort("site_type", 1))
-    periods = list(mongo.db.periods.find())
-
-    # Retrieve member since date
+    # Retrieve member since date and format
     member_since = user.get("member_since", None)
     if member_since:
         member_since = member_since.strftime('%d/%m/%Y')
 
     # Calculate total records by a user
     total_records = len(user_records)
+
+    #Retrieve skill level
     skill_level = user.get("skill_level")
 
     return render_template(
         "profile.html",
         username=username,
-        site_types=site_types,
-        periods=periods,
         member_since=member_since,
         total_records=total_records,
         user_records=user_records,
@@ -196,14 +202,22 @@ def profile(username):
 @app.route("/fetch_user_records", methods=["GET"])
 def fetch_user_records():
     """
-    Retrieve the locations of records created by the logged-in user from the MongoDB collection.
+    This function dynamically fetches and displays records on the map.
+    It retrieves the locations of records created by the logged-in user from the MongoDB collection.
+    
+    Process:
     - Retrieves the username from the session to identify the logged-in user.
     - Queries the MongoDB collection to find records created by the user.
-    - Extracts the location data from each record.
-    - Returns the location data as JSON.
+    - Extracts and converts the location data from each record.
+    - Returns the location data as JSON, including both all records and user-specific records.
 
     Returns:
-        JSON: A list of location coordinates for all records and user-specific records.
+        JSON: A list of location coordinates for all records and user-specific records, 
+              along with the current user's username.
+
+    Map Display:
+    - The returned JSON data is fetched by JavaScript to dynamically display markers on the map.
+    - Each marker is associated with the relevant record data and displayed interactively with site details.
 
     Credit:
         - Adapted from https://github.com/isntlee/Sagacity/blob/master/app.py
@@ -215,7 +229,7 @@ def fetch_user_records():
     all_records = list(mongo.db.records.find())
     user_records = list(mongo.db.records.find({'created_by': username}))
 
-    # Convert ObjectId to string for JSON serialization
+    # Convert ObjectId to string for JSON serialisation
     for record in all_records:
         record["_id"] = str(record["_id"])
 
@@ -246,9 +260,21 @@ def logout():
 def home():
     """
     Renders home page template
+    This function handles requests to the root URL ("/"). It retrieves
+    data needed for the home page and renders the template.
+
+    Process:
+    - Queries the MongoDB collection to retrieve all periods.
+    - Queries the MongoDB collection to retrieve all site types, sorted alphabetically.
+    - Passes the retrieved periods and site types to the template for rendering.
     """
+    # Retrieve all periods from the database for displaying in filter
     periods = list(mongo.db.periods.find())
-    site_types = list(mongo.db.site_types.find().sort("site_type", 1))
+
+    # Retrieve all site types from the database for the filter
+    site_types = list(mongo.db.site_types.find())
+
+    # Render the home page template with the retrieved periods and site types
     return render_template("index.html", site_types=site_types, periods=periods)
 
 
@@ -257,25 +283,35 @@ def admin_dashboard():
     """
     Renders admin dashboard template
     Only accessible to admin userse
+
+    This function handles requests to the admin dashboard URL ("/admin_dashboard").
+    It checks if the user in the session is an admin and retrieves necessary data
+    to be displayed on the admin dashboard.
+
+    Process:
+    - Check if a user is logged in and is an admin. If not, abort with a 403 error.
+    - If the user is an admin, retrieve all records and users from the MongoDB collections.
+    - Format the 'member_since' date for each user.
+    - Render the admin dashboard template with the retrieved data.
+
+    Returns:
+        Rendered HTML template for the admin dashboard with users and records.
     """
     #check if the user in session is admin
     if "user" not in session or not session.get("is_admin", False):
         abort(403)  # Forbidden access
 
-    # If admin, retrieve all records
+    # If admin, retrieve all records and users from the database
     records = list(mongo.db.records.find())
     users = list(mongo.db.users.find())
 
+    # Format the 'member_since' date for each user
     for user in users:
         if "member_since" in user:
             user["member_since"] = user["member_since"].strftime('%d/%m/%Y')
 
-    periods = list(mongo.db.periods.find())
-    site_types = list(mongo.db.site_types.find().sort("site_type", 1))
-    
+    # Render the admin dashboard template with the retrieved data
     return render_template("admin-dashboard.html", 
-                            site_types=site_types, 
-                            periods=periods,
                             all_records=records,
                             all_users=users)
     
@@ -291,9 +327,26 @@ def resources():
 @app.route("/add_record", methods=["GET", "POST"])
 def add_record():
     """
-    Function to add a new site record
+    Function to add a new site record.
+    This function handles both displaying the form for adding a new site record (GET request)
+    and processing the form submission to create a new record in the database (POST request).
+
+    Process:
+    - For GET requests:
+        - Retrieve site types and periods from the MongoDB collections to populate the dropdown options in the form.
+        - Render the "record.html" template with the site types, periods for dropdown options.
+    - For POST requests:
+        - Retrieve form data to create a new record dictionary.
+        - Insert the new record into the MongoDB collection.
+        - Flash a success message indicating that the record has been created.
+        - Redirect to the "add_record" page to allow the user to add another record.
+
+    Returns:
+        - For GET requests: Rendered "record.html" template with site types, periods, and admin status.
+        - For POST requests: Redirect to the "add_record" page with a success message.
     """
     if request.method == "POST":
+        # Create a new record dictionary from the form data
         record = {
             "title": request.form.get("title"),
             "prn": request.form.get("prn"),
@@ -305,13 +358,16 @@ def add_record():
             "created_by": session["user"],
             "created_on": datetime.datetime.utcnow().strftime('%d/%m/%Y')
         }
+
+        # Insert the new record into the MongoDB collection
         mongo.db.records.insert_one(record)
         flash("New Record Created")
         return redirect(url_for("add_record"))
-        
-
-    site_types = list(mongo.db.site_types.find().sort("site_type", 1))
+    
+    # Retrieve site types and periods from the MongoDB collections for the form
+    site_types = list(mongo.db.site_types.find())
     periods = list(mongo.db.periods.find())
+
     return render_template(
                             "record.html", 
                             site_types=site_types, 
@@ -331,15 +387,34 @@ def get_monument_types():
     a 'site_type' key. The function looks up the monument types 
     for that site type in the 
     MongoDB database and sends them back as a JSON response.
+
+    This function works in conjunction with the JavaScript code, 
+    which dynamically updates the monument type dropdown based on the selected site type.
+
+    Process:
+    - Retrieve the 'site_type' value from the incoming JSON request.
+    - Query the MongoDB collection 'site_types' to find the document that matches 
+      the provided 'site_type'.
+    - Extract the 'monument_types' field from the found document.
+    - If the document exists, extract and list the monument types; otherwise, 
+      return an empty list.
+    - Return the list of monument types as a JSON response.
     """
+    # Retrieve the selected site type from the JSON request
     selected_site_type = request.json.get('site_type')
+
+    # Find the document in the 'site_types' collection that matches the selected site type
     site = mongo.db.site_types.find_one({"site_type": selected_site_type})
+
+    # Extract the monument types from the document, or return an empty list if not found
     monument_types = [monument['monument_type'] for monument in site[
         'monument_types']] if site else []
+    
+    # Return the monument types as a JSON response
     return jsonify(monument_types)
 
 
-@app.route("/edit_record/<record_id>", methods=["GET", "POST"])
+@app.route("/edit-record/<record_id>", methods=["GET", "POST"])
 def edit_record(record_id):
     """
     Handle the editing of a record.
@@ -351,22 +426,28 @@ def edit_record(record_id):
     Args:
         record_id (str): The unique identifier of the record to be edited.
 
-    Methods:
+    Process:
         GET:
+            - Check if the user is logged in. If not, redirect to the login page.
             - Retrieve the record based on the provided record_id.
+            - If the record is not found, abort with a 404 error.
+            - Check if the logged-in user is the creator of the record or an admin. If not, abort with a 403 error.
             - Fetch the site types and periods from the database to populate the dropdown options in the form.
             - Determine the relevant monument types for the selected site type.
             - Render the edit_record.html template with the current data and dropdown options.
-        
         POST:
-            - Handle the form submission to update the record.
-            - Retrieve form data and update the record in the database.
-            - Flash a success message and redirect to the user's profile page.
+            - Check if the user is logged in. If not, redirect to the login page.
+            - Retrieve form data and create an updated record dictionary.
+            - Update the record in the MongoDB collection with the new data.
+            - Flash a success message indicating that the record has been successfully updated.
+            - Redirect to the appropriate page based on the referrer (profile page, admin dashboard, or add_record page).
 
     Returns:
         Template: Renders the edit_record.html template on GET request.
-        Redirect: Redirects to the profile page on successful POST request.
+        Redirect: Redirects to the profile page, admin dashboard, or add_record page on successful POST request.
     """
+
+    # Check if the user is logged in
     if "user" not in session:
         flash("You must be logged in to edit a record", "warning")
         return redirect(url_for("login"))
@@ -374,14 +455,17 @@ def edit_record(record_id):
     # Get the record from the database based on record_id.
     record = mongo.db.records.find_one({"_id": ObjectId(record_id)})
 
+    # If the record is not found, abort with a 404 error
     if not record:
         abort(404)  # Record not found
 
+    # Check if the logged-in user is the creator of the record or an admin
     if record["created_by"] != session["user"] and not session.get("is_admin", False):
         abort(403)  # User is not authorised to edit this record
 
     # Handle post request when the user submits the edited record form
     if request.method == "POST":
+        # Create an updated record dictionary from the form data
         updated_record = {
             "title": request.form.get("title"),
             "prn": request.form.get("prn"),
@@ -392,6 +476,7 @@ def edit_record(record_id):
             "location": request.form.get("location")
         }
 
+        # Update the record in the MongoDB collection with the new data
         mongo.db.records.update_one({"_id": ObjectId(record_id)}, {"$set": updated_record})
         flash("Record successfully updated", "success")
 
@@ -405,7 +490,7 @@ def edit_record(record_id):
         else:
             return redirect(url_for('add_record'))
 
-    # Retrieve site types and periods from the database
+    # Retrieve site types and periods from the database for the form
     site_types = list(mongo.db.site_types.find().sort("site_type", 1))
     periods = list(mongo.db.periods.find())
 
@@ -414,7 +499,7 @@ def edit_record(record_id):
     site = mongo.db.site_types.find_one({"site_type": selected_site_type})
     monument_types = [monument['monument_type'] for monument in site['monument_types']] 
 
-    return render_template("edit_record.html", 
+    return render_template("edit-record.html", 
                             record=record, 
                             site_types=site_types, 
                             periods=periods, 
@@ -424,20 +509,39 @@ def edit_record(record_id):
 @app.route("/delete_record/<record_id>")
 def delete_record(record_id):
     """
-    Function to delete a record by _id
-    """
-    if "user" not in session:
-        abort(403)
+    Handle the deletion of a site record by its unique identifier (_id).
 
-    # Fetch the record first
+    Process:
+    - Verify if the user is logged in.
+    - Fetch the record from the database using the provided record_id.
+    - Check if the record exists in the database.
+    - Confirm if the logged-in user is authorised to delete the record (either the creator or an admin).
+    - Delete the record from the database.
+    - Flash a success message indicating that the record has been deleted.
+    - Redirect the user to the appropriate page based on the referrer (profile page, admin dashboard, or add_record page).
+
+    Args:
+        record_id (str): The unique identifier of the record to be deleted.
+
+    Returns:
+        Redirect: Redirects to the profile page, admin dashboard, 
+    """
+    # Check if the user is logged in
+    if "user" not in session:
+        abort(403) # Forbidden access if the user is not logged in
+
+    # Fetch the record from the database using the record_id
     record = mongo.db.records.find_one({"_id": ObjectId(record_id)})
 
+    # If the record does not exist, abort with a 404 error
     if not record:
         abort(404)  # Record not found
 
+    # Check if the logged-in user is the creator of the record or an admin
     if record["created_by"] != session["user"] and not session.get("is_admin", False):
-        abort(403)
+        abort(403) # Forbidden access if the user is not authorised to delete this record
 
+    # Delete the record from the database
     mongo.db.records.delete_one({"_id": ObjectId(record_id)})
     flash("Record Deleted", "Success")
 
@@ -461,30 +565,75 @@ def delete_record(record_id):
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
     """
-    Function to delete a user by _id
-    """
-    if not session.get("is_admin"):
-        abort(403)
+    Handle the deletion of a user by their unique identifier (_id).
+    Only Admin can perform this function. 
 
-    # Fetch the user first
+    Process:
+    - Verify if the current session belongs to an admin user.
+    - Fetch the user from the database using the provided user_id.
+    - Check if the user exists in the database.
+    - Delete the user from the database.
+    - Flash a success message indicating that the user has been deleted.
+    - Redirect to the admin dashboard.
+
+    Args:
+        user_id (str): The unique identifier of the user to be deleted.
+
+    Returns:
+        Redirect: Redirects to the admin dashboard after the user is deleted.
+    """
+    # Check if the current session belongs to an admin user
+    if not session.get("is_admin"):
+        abort(403)  # Forbidden access if the user is not an admin
+
+    # Fetch the user from the database using the user_id
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
 
+    # If the user does not exist, abort with a 404 error
     if not user:
-        abort(404)  # Record not found
+        abort(404)  # User not found
 
+    # Delete the user from the database
     mongo.db.users.delete_one({"_id": ObjectId(user_id)})
     flash("User Deleted", "Success")
 
+    # Redirect to the admin dashboard
     return redirect(url_for('admin_dashboard'))
 
 
 @app.errorhandler(404)
 def page_not_found(e):
+    """
+    Handle 404 Not Found errors.
+
+    This function is called when a 404 error (Page Not Found) occurs.
+    It renders a custom 404 error page (404.html) to inform the user
+    that the requested resource could not be found.
+
+    Args:
+        e (Exception): The exception object containing error details.
+
+    Returns:
+        Tuple: Rendered template for 404 error page and the error code 404.
+    """
     return render_template('404.html'), 404
 
 
 @app.errorhandler(403)
 def page_not_found(e):
+    """
+    Handle 403 Forbidden errors.
+
+    This function is called when a 403 error (Forbidden Access) occurs.
+    It renders a custom 403 error page (403.html) to inform the user
+    that they do not have the necessary permissions to access the requested resource.
+
+    Args:
+        e (Exception): The exception object containing error details.
+
+    Returns:
+        Tuple: Rendered template for 403 error page and the error code 403.
+    """
     return render_template('403.html'), 403
 
 

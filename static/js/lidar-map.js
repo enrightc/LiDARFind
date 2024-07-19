@@ -74,7 +74,7 @@ function displayRecords(data, currentUser) {
         if (record.created_by === currentUser || isAdmin) {
             popupContent += `
                  <div class="button-container">
-                    <a href="/edit_record/${record._id}" class="btn edit-btn">Edit</a>
+                    <a href="/edit-record/${record._id}" class="btn edit-btn">Edit</a>
                     <a href="#" class="btn delete-btn" onclick="openDeleteModal('${record._id}')">Delete</a>
                 </div>
             `;
