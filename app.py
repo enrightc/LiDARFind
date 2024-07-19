@@ -260,14 +260,17 @@ def logout():
 @app.route("/")
 def home():
     """
-    Renders home page template
+    Renders home page template.
     This function handles requests to the root URL ("/"). It retrieves
     data needed for the home page and renders the template.
 
     Process:
     - Queries the MongoDB collection to retrieve all periods.
-    - Queries the MongoDB collection to retrieve all site types, sorted alphabetically.
+    - Queries the MongoDB collection to retrieve all site types.
     - Passes the retrieved periods and site types to the template for rendering.
+
+    Returns:
+        Rendered HTML template for the home page with site types and periods.
     """
     # Retrieve all periods from the database for displaying in filter
     periods = list(mongo.db.periods.find())
@@ -362,7 +365,7 @@ def add_record():
 
         # Insert the new record into the MongoDB collection
         mongo.db.records.insert_one(record)
-        flash("New Record Created")
+        flash("New Record Created", "success")
         return redirect(url_for("add_record"))
     
     # Retrieve site types and periods from the MongoDB collections for the form
