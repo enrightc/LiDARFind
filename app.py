@@ -603,7 +603,7 @@ def delete_user(user_id):
 
 
 @app.errorhandler(404)
-def page_not_found(e):
+def forbidden_access(e):
     """
     Handle 404 Not Found errors.
 
