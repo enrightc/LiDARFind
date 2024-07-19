@@ -252,6 +252,7 @@ def logout():
 
         # Remove user from the session cookies
         session.pop("user", None)
+        session.pop("is_admin", None) # Ensure admin privileges are cleared from session. 
 
     return render_template("logout.html")
 
