@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/* global L */
+
 // Initialize the map
 var initialView = [52.4814, -3.9797];
 var initialZoom = 8;
@@ -144,4 +147,4 @@ var overlayMaps = {
     "LiDAR Data": wmsLayer
 };
 
-L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map)
+L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map);
