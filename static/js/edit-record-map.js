@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/* global L */
+
 document.addEventListener("DOMContentLoaded", function() {
     // Get the existing location from the record
     const recordLocation = document.getElementById('location').value;
@@ -22,13 +25,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Adding the WMS layer for LiDAR DSM (hillshade) data
     var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
         layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
-    });
-
-    var crosshairIcon = L.icon({
-        iconUrl: 'static/images/crosshair.svg',
-        iconSize:     [38, 95], // size of the icon
-        iconAnchor:   [19, 48], // point of the icon which will correspond to marker's location
-        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
 
     // Add the marker for the record being edited
@@ -64,5 +60,5 @@ document.addEventListener("DOMContentLoaded", function() {
         "LiDAR Data": wmsLayer
     };
 
-    L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map)
+    L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map);
 });
