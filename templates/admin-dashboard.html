@@ -71,7 +71,7 @@
                                   {{ record.title }}
                                 </button>
                               </h2>
-                              <div id="collapseRecord{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="headingRecord{{ loop.index }}" data-bs-parent="#accordionRecords{{ loop.index }}">
+                              <div id="collapseRecord{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="recordName{{ loop.index }}" data-bs-parent="#accordionRecords{{ loop.index }}">
                                 <div class="accordion-body">
                                   <p><strong>Title:</strong> {{ record.title }}</p>
                                   <p><strong>Site Type:</strong> {{ record.site_type }}</p>
@@ -90,7 +90,7 @@
                               </div>
                             </div>
                             <!-- Bootstrap Modal inside the loop for each record -->
-                            <div class="modal fade" id="confirmDelete{{ record._id }}" tabindex="-1" aria-labelledby="deleteRecordConfirmation{{ loop.index }}" aria-hidden="true">
+                            <div class="modal fade" id="confirmDelete{{ record._id }}" tabindex="-1" aria-labelledby="deleteRecordConfirmation{{ record.index }}" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -140,7 +140,8 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="container-fluid">
