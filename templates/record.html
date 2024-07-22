@@ -4,7 +4,7 @@
   <!-- Linking Leaflet CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 {% endblock %}
 
 {% block content %}
@@ -173,9 +173,10 @@
   <!-- Filter options -->
   <div class="form-popup filter-popup" id="filter">
     <div class="popup-title-wrapper">
-      <h5>Filters</h5>
-      <button type="button" class="popup-close-btn" onclick="closeFilters()"><i class="fa-regular fa-circle-xmark" ria-hidden="true"></i>
-        <span class="sr-only">Close</span>>
+      <button type="button" class="popup-close-btn" onclick="closeFilters()">
+        <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
+        <span class="sr-only">Close</span>
+    </button>    
     </div>
     <div class="filter-container">
       <select id="period-filter" name="period" aria-label="Period" class="validate">
@@ -228,9 +229,8 @@
       integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="https://cdn.jsdelivr.net/npm/@drustack/leaflet.resetview/dist/L.Control.ResetView.min.js"></script>
   <script src="{{ url_for('static', filename='js/bing.js') }}"></script>
-  <script type="text/javascript">
+  <script>
     var isAdmin = {{ is_admin|tojson }};
   </script>
   <script src="{{ url_for('static', filename='js/lidar-map.js') }}"></script>
-  </script>
 {% endblock %}
