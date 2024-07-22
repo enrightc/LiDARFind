@@ -42,7 +42,7 @@ var currentUserIcon = L.icon({
     popupAnchor: [1, -34] 
 });
 
-// Maap markers of other users
+// Map markers of other users
 var otherUserIcon = L.icon({
     iconUrl: '/static/images/other-user-marker.png',
     iconSize: [21, 36], 
@@ -118,7 +118,10 @@ function openDeleteModal(recordId) {
     deleteModal.show();
 }
 
-// Event Listeners for dropdown Filters
+/**
+ * Adds event listeners to filter dropdowns and a reset button to filter 
+ * and display markers based on user input.
+ */
 document.getElementById('period-filter').addEventListener('change', function () {
     applyFilters();
 });
@@ -129,10 +132,6 @@ document.getElementById('monument_type_filter').addEventListener('change', funct
     applyFilters();
 });
 
-/**
- * Adds event listeners to filter dropdowns and a reset button to filter 
- * and display markers based on user input.
- */
 document.getElementById('reset-filters-btn').addEventListener('click', function () {
     // Reset the filter dropdowns to their default values
     document.getElementById('period-filter').selectedIndex = 0;
@@ -151,6 +150,15 @@ function applyFilters() {
     const selectedSiteType = document.getElementById('site_type_filter').value;
     const selectedMonumentType = document.getElementById('monument_type_filter').value;
 
+    /**
+    * Iterating over rach item in the 'allMarkers' array using .foreach method. 
+    * For each item it is performing three checks:
+    * 1. if the selected period mathes the item's period.
+    * 2. if the selected site type mathces the item's site type.
+    * 3. if the selected monument type matches the item's monument type.
+    * In each case it will be true if either nothing is selected (e.g. period ==""),
+    * or the item matches the selection (e.g.item.monument_type === selectedMonumentType)
+    */
     allMarkers.forEach(item => {
         let matchesPeriod = selectedPeriod === "" || item.period === selectedPeriod;
         let matchesSiteType = selectedSiteType === "" || item.site_type === selectedSiteType;

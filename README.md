@@ -304,13 +304,7 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
 
 **Font Selection:** Emphasising simplicity and readability, the fonts chosen are clear and easy to read. This choice ensures that the content remains legible for users with different visual abilities, fostering an inclusive user experience.
 
-
-# TECHNOLOGY USED
-[ElevanLabs] (https://elevenlabs.io/app/voiceover-studio)
-[Wistia] (https://wistia.com/home)
-
-
-
+# FEATURES
 
 # BUGS
 ## Fixed Bugs
@@ -380,80 +374,181 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
 **Outcome:** By making the location field read-only after entry, users can no longer remove essential location information post-validation, ensuring that all records display their markers correctly on the map and maintaining the integrity of the map rendering process.
 
 
-# Resources
+# TECHNOLOGY USED
+### Languages
+- HTML
+- CSS
+- JavaScript
+- Python
 
-- For help overriding Materialize default CSS for checkboxes:
-  - [Materialize css Radio buttons not visible](https://stackoverflow.com/questions/49757521/materialize-css-radio-buttons-not-visible) Stackoverflow thread created 10th April, 2018  [Accessed 8th June, 2024].
+### Frameworks
+- Flask
+- Materialize (initially used, later switched to Bootstrap)
+- Bootstrap
 
-  - Materialize Prefilling Input Texts
-    - [Text Inputs](https://pixinvent.com/materialize-material-design-admin-template/documentation/text-inputs.html) Materialize.  [Accessed 24th June, 2024].
+### Libraries
+- jQuery
+- Font Awesome
+- Google Fonts
+- Jinja
+- JS Hint
 
-- For help using leaflet map framework:
-  - [Leaflet: an open-source JavaScript library for mobile-friendly interactive maps](https://leafletjs.com/)   [Accessed 8th June, 2024].
+### Programs
+- Figma
+- Chrome Dev Tools
+- Gitpod
+- Heroku
 
-- For help retrieving cooordinates from map
-  - [https://stackoverflow.com/questions/28646317/how-to-remove-all-layers-and-features-from-map](https://stackoverflow.com/questions/28646317/how-to-remove-all-layers-and-features-from-map)  Stack OverFlow, created on 21st Feb, 2015. [Accessed 9th June, 2024].
+### Tools/Services
+- Elevanlabs
+- Squoosh
+- Responsinator
+- W3C
+- GitHub Pages
+- Wistia
 
-  - For map functions
-    - [Simple Click Events](https://developers.google.com/maps/documentation/javascript/examples/event-simple) [Accessed 9th June, 2024].
 
-  - For Hover popups on map
-    - [Showing popup on mouse-over, not on click using Leaflet?](https://gis.stackexchange.com/questions/31951/showing-popup-on-mouse-over-not-on-click-using-leaflet) Stack OverFlow, created on 22nd August, 2012. [Accessed 10th June, 2024].
+### Databases
+- MongoDB
 
-  - Reset map view to initial state
-    - [Leaflet.ResetView](https://github.com/drustack/Leaflet.ResetView). [Accessed 10th June, 2024].
+# DEPLOYMENT
+### MongoDB Non-Relational Database
+This project uses [MongoDB](https://www.mongodb.com/) for the non-relational database. 
 
-  - [SagaCity](https://github.com/isntlee/Sagacity/blob/master/templates/home.html). [Accessed 9th June, 2024].
+To obtain your own MongoDB Database URI, sign-up on their site, then follow these steps:
 
-- Adding Bing Satellite imagery to map:
-  - [Mapping API's: Leaflet - Adding Microsoft Bing Basemap Layers](https://store.extension.iastate.edu/product/Mapping-APIs-Leaflet-Adding-Microsoft-Bing-Basemap-Layers)   [Accessed 8th June, 2024].
+1. Name the database should be **lidar_find**
+2. The collections needed for this database should are **"users", "periods", "site_type", "monument_type" and "records" .
+3. Click on the database name name created for the project (LiDARFind).
+4. Click on the Connect button.
+5. Click Connect Your Application.
+6. Copy the connection string, and replace password with your own password (also remove the angle-brackets).
 
-- Leaflet Custom icons for markers
-  - [Leaflet: Markers With Custom Icons](https://leafletjs.com/examples/custom-icons/).
+### Deploying on Heroku
+This project uses Heroku, a platform as a service (PaaS) that allows developers to build, deploy, and manage applications entirely in the cloud. Using a PaaS removes the need for building and maintaining the infrastructure typically associated with developing and launcing an app. 
 
-- Script for bing.js:
-  - [leaflet-plugins](https://github.com/shramov/leaflet-plugins). Developed by Pavel Shramov. [Accessed 8th June, 2024].
+Once an account has been registered the following deployment steps can be followed:
 
-- For help adding an eventlisterner to dropdown menus
-  - [addEventListener, "change" and option selection](https://stackoverflow.com/questions/24875414/addeventlistener-change-and-option-selection) Stackoverflow thread created 21st July, 2014  [Accessed 8th June, 2024].
+1. In the top-right corner of your Heroku Dashboard, click "New" and choose "Create new app" from the dropdown menu.
+2. Enter a unique name for your app, select the region closest to your location (EU or USA), and then click "Create App".
+3. Navigate to the Settings tab of your newly created app, click on "Reveal Config Vars," and configure your environment variables accordingly.
 
-  - [Dynamically Populate Second Dropdownlist from a first dropdownlist using Jquery Ajax](https://www.youtube.com/watch?v=xgwsAHeZaX0) YobTube. created 9th August, 2021  [Accessed 8th June, 2024].
+| Key          | Value            |
+|--------------|------------------|
+| DATABASE_URL | user's own value |
+| IP           | 0.0.0.0          |
+| MONGO_DBNAME | user's own value |
+| MONGO_URI    | user's own value |
+| PORT         | 5000             |
+| SECRET_KEY   | user's own value |
 
-  - [How to display ajax get request data to html?](https://stackoverflow.com/questions/62048242/how-to-display-ajax-get-request-data-to-html) Stackoverflow. created 27th May, 2020 by Ian vincent.  [Accessed 5th June, 2024].
+To deploy your project on Heroku, you need to include two essential files:
 
-- W3 Schools sidenav
-  - [Open the Sidebar Navigation Over a Part of the Content](https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_sidebar_over) W3 Schools. [Accessed 19th June, 2024].
+  - requirements.txt
+  - Procfile
 
-- To manually triiger Bootstrap Modal using JS
-  - [Open the Sidebar Navigation Over a Part of the Content](https://stackoverflow.com/questions/62827002/bootstrap-v5-manually-call-a-modal-mymodal-show-not-working-vanilla-javascrip) Stack Overflow. [Accessed 2nd July, 2024].
+To install the project's dependencies (if applicable), run the following command:
+`pip3 install -r requirements.txt`
 
-- To loop through user's records and display in accordion
-  - [Using Jinja2 (flask) to loop through a bootstrap accordian](https://stackoverflow.com/questions/45884780/using-jinja2-flask-to-loop-through-a-bootstrap-accordian) Stack Overflow. [Accessed 6th July, 2024].
+If you've installed additional packages, update the requirements file with:
+`pip3 freeze --local > requirements.txt`
 
-- Formatting dates
-  - [Formatting Time as %d-%m-%y](https://stackoverflow.com/questions/17245612/formatting-time-as-d-m-y) Stack Overflow. [Accessed 5th July, 2024].
+Create the Procfile with this command:
+`echo web: python app.py > Procfile`
 
-- [how to redirect to a external 404 page python flask](https://stackoverflow.com/questions/29516093/how-to-redirect-to-a-external-404-page-python-flask) Stack Overflow. [Accessed 8th July, 2024].
+Replace app.py with the name of your main Flask application file located at the root level.
 
-- Redirect user depending on source
-  - [How do i redirect using flask with an if function depending on the input of the user?](https://stackoverflow.com/questions/65097431/how-do-i-redirect-using-flask-with-an-if-function-depending-on-the-input-of-the) Stack Overflow. [Accessed 8th July, 2024].
+Note: Ensure the Procfile starts with an uppercase 'P' and has no file extension.
 
-- Window history.back()
-  - [Window history.back()](https://www.w3schools.com/jsref/met_his_back.asp) W3 Schools. [Accessed 8th July, 2024].
+For connecting your GitHub repository to your Heroku app, follow these steps:
 
-- Understanding date format
-  - [Format datetime.utcnow() time](https://stackoverflow.com/questions/25406565/format-datetime-utcnow-time) Stack Overflow. [Accessed 8th July, 2024].
+**Option 1:** Use Automatic Deployment from the Heroku app dashboard.
 
-- [Passing variables from Flask to JavaScript](https://stackoverflow.com/questions/37259740/passing-variables-from-flask-to-javascript) Stack Overflow. [Accessed 9th July, 2024].
+**Option 2:**
 
-- For music for intro video
-  - [UPPBEAT] (https://uppbeat.io/browse/artist/qube)found at (https://uppbeat.io/browse/music/inspiring)  [Accessed 9th July, 2024].
+In your terminal or command-line interface (CLI), log in to Heroku:
+`heroku login -i`
 
-- For sticking footer to bottom of page
-  - [The EASIEST Way To Push That Footer Down With CSS](https://www.youtube.com/watch?v=AVPR_WuDw8o&list=PLx6XTedFrvFICl8XTWKE6mDst8FPo5ZRn&index=3) YouTube, uploaded 12th July, 2024. [Accessed 16th July, 2024].
+Set Heroku as a remote repository:
+`heroku git:remote -a app_name`
+Replace app_name with your actual app name.
 
-- Making leaflet layers toggle control always open
-  - [Making leaflet control open by default](https://gis.stackexchange.com/questions/64385/making-leaflet-control-open-by-default) Stack Overflow, [Accessed 18th July, 2024].
+After staging and committing your changes to GitHub, push your code to Heroku:
+`git push heroku main`
 
-- For creating user flow diagrams
-- [Creating Flowcharts To Enhance Workflows With AI](https://blog.openreplay.com/creating-flowcharts-to-enhance-workflows/?ref=dailydev) Stack Overflow, [Accessed 19th July, 2024].
+Your project should now be connected and deployed on Heroku.
+
+### Local Deployment
+You can either clone or fork this project to create a local copy on your system.
+
+After doing so, you need to install the necessary packages listed in the requirements.txt file by running:
+`pip3 install -r requirements.txt`
+
+Create a new file named env.py at the root level of your project. Include the environment variables mentioned in the Heroku deployment steps.
+
+```
+import os
+
+os.environ.setdefault("IP", "0.0.0.0")
+os.environ.setdefault("Port", "5000")
+os.environ.setdefault("SECRET_KEY", "user's own value")
+os.environ.setdefault("MONGO_URI", "user's own value")
+os.environ.setdefault("MONGO_DB", "lidar_find")
+```
+
+### How to Fork
+Forking a GitHub repository creates a copy of the original repository in your GitHub account, allowing you to view and make changes without affecting the original project. Follow these steps to fork the repository:
+
+1. Log in to GitHub and find the repository you want to fork.
+2. At the top of the repository page, just above the "Settings" button, click on the "Fork" button.
+3. After clicking, you will have a copy of the repository in your own GitHub account.
+
+### How to Clone
+Cloning a repository allows you to create a local copy on your computer. Here’s how to do it:
+
+1. Navigate to the GitHub repository you want to clone.
+2. Click on the "Code" button above the list of files.
+3. Choose whether you want to clone using HTTPS, SSH, or GitHub CLI, and click the copy button to copy the URL.
+4. Open your Git shell or terminal.
+5. Navigate to the directory where you want to store the cloned repository.
+6. In your terminal, type the following command to clone the repository:
+`git clone https://github.com/Melody-Lisa/blissboost.git`
+7. Press Enter to create your local clone.
+
+
+
+# RESOURCES
+### Resources
+
+| Topic                                              | Description                                                                                     | Source                                                                                                           | Accessed          |
+|----------------------------------------------------|-------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|-------------------|
+| Overriding Materialize CSS for Checkboxes          | Materialize CSS Radio buttons not visible                                                       | [Stack Overflow](https://stackoverflow.com/questions/49757521/materialize-css-radio-buttons-not-visible)         | 8th June, 2024    |
+| Prefilling Input Texts                             | Text Inputs                                                                                     | [Materialize](https://pixinvent.com/materialize-material-design-admin-template/documentation/text-inputs.html)    | 24th June, 2024   |
+| Using Leaflet Map Framework                        | Leaflet: an open-source JavaScript library for mobile-friendly interactive maps                 | [Leaflet](https://leafletjs.com/)                                                                                | 8th June, 2024    |
+| Retrieving Coordinates from Map                    | How to remove all layers and features from map                                                  | [Stack Overflow](https://stackoverflow.com/questions/28646317/how-to-remove-all-layers-and-features-from-map)     | 9th June, 2024    |
+| Map Functions                                      | Simple Click Events                                                                             | [Google Maps](https://developers.google.com/maps/documentation/javascript/examples/event-simple)                  | 9th June, 2024    |
+| Hover Popups on Map                                | Showing popup on mouse-over, not on click using Leaflet                                         | [Stack Overflow](https://gis.stackexchange.com/questions/31951/showing-popup-on-mouse-over-not-on-click-using-leaflet) | 10th June, 2024   |
+| Reset Map View                                     | Leaflet.ResetView                                                                               | [GitHub](https://github.com/drustack/Leaflet.ResetView)                                                          | 10th June, 2024   |
+| For fetch requests and displaying data on a map                                  | SagaCity                                                                                        | [GitHub](https://github.com/isntlee/Sagacity/blob/master/templates/home.html)                                    | 9th June, 2024    |
+| Adding Bing Satellite Imagery to Map               | Mapping API's: Leaflet - Adding Microsoft Bing Basemap Layers                                   | [Iowa State University Extension and Outreach](https://store.extension.iastate.edu/product/Mapping-APIs-Leaflet-Adding-Microsoft-Bing-Basemap-Layers) | 8th June, 2024    |
+| Leaflet Custom Icons for Markers                   | Markers With Custom Icons                                                                       | [Leaflet](https://leafletjs.com/examples/custom-icons/)                                                          | 8th June, 2024    |
+| Script for bing.js                                 | leaflet-plugins                                                                                  | [GitHub](https://github.com/shramov/leaflet-plugins)                                                             | 8th June, 2024    |
+| Adding Event Listener to Dropdown Menus            | addEventListener, "change" and option selection                                                 | [Stack Overflow](https://stackoverflow.com/questions/24875414/addeventlistener-change-and-option-selection)      | 8th June, 2024    |
+| Populating Dropdowns Dynamically                   | Dynamically Populate Second Dropdownlist from a First Dropdownlist using jQuery Ajax            | [YouTube](https://www.youtube.com/watch?v=xgwsAHeZaX0)                                                            | 8th June, 2024    |
+| Displaying AJAX GET Request Data                   | How to display AJAX GET request data to HTML?                                                   | [Stack Overflow](https://stackoverflow.com/questions/62048242/how-to-display-ajax-get-request-data-to-html)      | 5th June, 2024    |
+| W3 Schools Sidenav                                 | Open the Sidebar Navigation Over a Part of the Content                                          | [W3 Schools](https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_sidebar_over)                          | 19th June, 2024   |
+| Manually Triggering Bootstrap Modal Using JS       | Bootstrap v5 Manually Call a Modal                                                              | [Stack Overflow](https://stackoverflow.com/questions/62827002/bootstrap-v5-manually-call-a-modal-mymodal-show-not-working-vanilla-javascrip) | 2nd July, 2024    |
+| Looping Through User's Records in Accordion        | Using Jinja2 (Flask) to Loop Through a Bootstrap Accordion                                      | [Stack Overflow](https://stackoverflow.com/questions/45884780/using-jinja2-flask-to-loop-through-a-bootstrap-accordian) | 6th July, 2024    |
+| Formatting Dates                                   | Formatting Time as %d-%m-%y                                                                     | [Stack Overflow](https://stackoverflow.com/questions/17245612/formatting-time-as-d-m-y)                          | 5th July, 2024    |
+| Redirecting to External 404 Page in Flask          | How to Redirect to an External 404 Page in Python Flask                                         | [Stack Overflow](https://stackoverflow.com/questions/29516093/how-to-redirect-to-a-external-404-page-python-flask) | 8th July, 2024    |
+| Redirecting User Based on Input                    | How do I Redirect Using Flask with an If Function Depending on User Input?                      | [Stack Overflow](https://stackoverflow.com/questions/65097431/how-do-i-redirect-using-flask-with-an-if-function-depending-on-the-input-of-the) | 8th July, 2024    |
+| Window History Back                                | Window history.back()                                                                           | [W3 Schools](https://www.w3schools.com/jsref/met_his_back.asp)                                                   | 8th July, 2024    |
+| Understanding Date Format                          | Format datetime.utcnow() Time                                                                   | [Stack Overflow](https://stackoverflow.com/questions/25406565/format-datetime-utcnow-time)                       | 8th July, 2024    |
+| Passing Variables from Flask to JavaScript         | Passing Variables from Flask to JavaScript                                                      | [Stack Overflow](https://stackoverflow.com/questions/37259740/passing-variables-from-flask-to-javascript)         | 9th July, 2024    |
+| Music for Intro Video                              | UPPBEAT                                                                                        | [UPPBEAT](https://uppbeat.io/browse/artist/qube) found at [UPPBEAT Music Inspiring](https://uppbeat.io/browse/music/inspiring) | 9th July, 2024    |
+| Sticking Footer to Bottom of Page                  | The EASIEST Way To Push That Footer Down With CSS                                               | [YouTube](https://www.youtube.com/watch?v=AVPR_WuDw8o&list=PLx6XTedFrvFICl8XTWKE6mDst8FPo5ZRn&index=3)           | 16th July, 2024   |
+| Making Leaflet Layers Toggle Control Always Open   | Making Leaflet Control Open by Default                                                          | [Stack Overflow](https://gis.stackexchange.com/questions/64385/making-leaflet-control-open-by-default)            | 18th July, 2024   |
+| Creating User Flow Diagrams                        | Creating Flowcharts To Enhance Workflows With AI                                                | [OpenReplay Blog](https://blog.openreplay.com/creating-flowcharts-to-enhance-workflows/?ref=dailydev)            | 19th July, 2024   |
+
+
+
