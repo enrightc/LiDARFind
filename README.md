@@ -371,6 +371,15 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
 
 **Outcome:** By adding the `ref` parameter as a hidden input field in the form and retrieving it from the form data in the `edit_record` route, the application can correctly determine the referrer and redirect users to the appropriate page (profile or add_record) after editing a record. This ensures that users are redirected back to the page they originated from, improving the user experience.
 
+### Location Field Editable After Validation Causes Map Rendering Issues
+
+**Issue:** When creating a new record, the location field is required as it is essential for creating a marker. However, after the form is validated, users were able to edit the location field, including removing it completely, and then submit the form. This causes the record to lack a marker due to missing location information, and subsequent records, even with valid locations, did not display on the map. Deleting the record with the missing location information from the database restored the map rendering for subsequent records.
+
+**Solution:** To resolve the issue, JavaScript was used to make the location field 'read-only' after the location information had been entered. This prevents users from removing the location after form validation.
+
+**Outcome:** By making the location field read-only after entry, users can no longer remove essential location information post-validation, ensuring that all records display their markers correctly on the map and maintaining the integrity of the map rendering process.
+
+
 # Resources
 
 - For help overriding Materialize default CSS for checkboxes:
@@ -378,7 +387,6 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
 
   - Materialize Prefilling Input Texts
     - [Text Inputs](https://pixinvent.com/materialize-material-design-admin-template/documentation/text-inputs.html) Materialize.  [Accessed 24th June, 2024].
-
 
 - For help using leaflet map framework:
   - [Leaflet: an open-source JavaScript library for mobile-friendly interactive maps](https://leafletjs.com/)   [Accessed 8th June, 2024].
@@ -397,8 +405,11 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
 
   - [SagaCity](https://github.com/isntlee/Sagacity/blob/master/templates/home.html). [Accessed 9th June, 2024].
 
-- Adding Bing Satellite imageryto map:
+- Adding Bing Satellite imagery to map:
   - [Mapping API's: Leaflet - Adding Microsoft Bing Basemap Layers](https://store.extension.iastate.edu/product/Mapping-APIs-Leaflet-Adding-Microsoft-Bing-Basemap-Layers)   [Accessed 8th June, 2024].
+
+- Leaflet Custom icons for markers
+  - [Leaflet: Markers With Custom Icons](https://leafletjs.com/examples/custom-icons/).
 
 - Script for bing.js:
   - [leaflet-plugins](https://github.com/shramov/leaflet-plugins). Developed by Pavel Shramov. [Accessed 8th June, 2024].
@@ -443,3 +454,6 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
 
 - Making leaflet layers toggle control always open
   - [Making leaflet control open by default](https://gis.stackexchange.com/questions/64385/making-leaflet-control-open-by-default) Stack Overflow, [Accessed 18th July, 2024].
+
+- For creating user flow diagrams
+- [Creating Flowcharts To Enhance Workflows With AI](https://blog.openreplay.com/creating-flowcharts-to-enhance-workflows/?ref=dailydev) Stack Overflow, [Accessed 19th July, 2024].

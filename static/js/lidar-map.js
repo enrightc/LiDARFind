@@ -1,4 +1,4 @@
-// Initialize the map
+// Initialise the map with the specified initial view and zoom level (centered over Wales)
 var initialView = [52.4814, -3.9797];
 var initialZoom = 8;
 var map = L.map('mapid').setView(initialView, initialZoom);
@@ -16,12 +16,17 @@ var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8o
 });
 */
 
-// Adding the WMS layer for LiDAR DSM (hillshade) data
+// Adding the WMS layer for LiDAR DSM (hillshade) data. provided by Welsh Gov on an Open Government Licence.
 var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
 });
 
-// Custom icons
+/**
+ * Custom icons for fir different types of map markers
+ * Adapted from: https://leafletjs.com/examples/custom-icons/
+ */
+
+//Crosshair marker
 var crosshairIcon = L.icon({
     iconUrl: '/static/images/crosshair.svg',
     iconSize: [38, 95], // size of the icon
@@ -29,6 +34,7 @@ var crosshairIcon = L.icon({
     popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
+// Logged in users map markers
 var currentUserIcon = L.icon({
     iconUrl: '/static/images/current-user-marker.png',
     iconSize: [21, 36], 
@@ -36,6 +42,7 @@ var currentUserIcon = L.icon({
     popupAnchor: [1, -34] 
 });
 
+// Maap markers of other users
 var otherUserIcon = L.icon({
     iconUrl: '/static/images/other-user-marker.png',
     iconSize: [21, 36], 
@@ -46,13 +53,16 @@ var otherUserIcon = L.icon({
 // Array to store markers with associated data for search filters (period, site type, monument type)
 allMarkers = [];
 
-// Fetch all records and display them on the map
+// Fetch all records from the DB and display them on the map
 fetch("/fetch_user_records")
     .then(response => response.json())
     .then(data => {
         displayRecords(data.all_records, data.current_user);
     });
 
+// Function to display all records on the map
+// data = records to be displayed
+// currentUSer = The username of the logged in user
 function displayRecords(data, currentUser) {
     data.forEach(record => {
         const location = record.location;  // Assuming location is a string "lat,lng"
@@ -60,7 +70,7 @@ function displayRecords(data, currentUser) {
         const icon = record.created_by === currentUser ? currentUserIcon : otherUserIcon;
         const marker = L.marker([lat, lng], { icon }).addTo(map);
 
-        // Create popup content
+        // Create popup content for each map marker
         var popupContent = `
             <b>Title:</b> ${record.title}<br>
             <b>Site Type:</b> ${record.site_type}<br>
@@ -71,6 +81,7 @@ function displayRecords(data, currentUser) {
             <b>Created on:</b> ${record.created_on}<br>
         `;
 
+        // Add edit and delete button if the marker is made by the current user or current user is an admin
         if (record.created_by === currentUser || isAdmin) {
             popupContent += `
                  <div class="button-container">
@@ -82,7 +93,7 @@ function displayRecords(data, currentUser) {
 
         marker.bindPopup(popupContent);
 
-        // Store marker with its associated data
+        // Store marker with its associated data for filtering
         window.allMarkers.push({
             marker,
             period: record.period,
@@ -94,19 +105,19 @@ function displayRecords(data, currentUser) {
 
 // Function to open the delete modal
 // This function confirms the user wants to delete the record and then deletes it by triggering the delete_record function. 
+// recordId = The unique ID of the record to be deleted
 function openDeleteModal(recordId) {
     const confirmDelete = document.getElementById("confirmDeleteBtn");
 
-    // Set the href for the confirm button
+    // Set the href for the confirm button to trigger the delete action
     confirmDelete.href = `/delete_record/${recordId}`;
 
-    // Show the modal
+    // Show the delete confirmation modal
     // adapted from: https://stackoverflow.com/questions/62827002/bootstrap-v5-manually-call-a-modal-mymodal-show-not-working-vanilla-javascrip
     const deleteModal = new bootstrap.Modal(document.getElementById('confirmDelete'));
     deleteModal.show();
 }
 
-// Functions for filtering and displaying map markers based on user search parameters
 // Event Listeners for dropdown Filters
 document.getElementById('period-filter').addEventListener('change', function () {
     applyFilters();
@@ -118,6 +129,10 @@ document.getElementById('monument_type_filter').addEventListener('change', funct
     applyFilters();
 });
 
+/**
+ * Adds event listeners to filter dropdowns and a reset button to filter 
+ * and display markers based on user input.
+ */
 document.getElementById('reset-filters-btn').addEventListener('click', function () {
     // Reset the filter dropdowns to their default values
     document.getElementById('period-filter').selectedIndex = 0;
@@ -128,7 +143,9 @@ document.getElementById('reset-filters-btn').addEventListener('click', function 
     applyFilters();
 });
 
-// Function to apply filters and display markers accordingly on the map
+/**
+ * Function to  Apply the selected filters to show or hide markers on the map
+ */
 function applyFilters() {
     const selectedPeriod = document.getElementById('period-filter').value;
     const selectedSiteType = document.getElementById('site_type_filter').value;
@@ -150,7 +167,11 @@ function applyFilters() {
 // Ensure `currentMarker` is defined
 let currentMarker;
 
-// Add click event listener to the map to place a new marker and show sidebar
+/**
+ * Adds a marker on the map at the location clicked by the user and updates 
+ * the input field with the coordinates. 
+ */
+// click event listener to the map to place a new marker when creating records
 map.on('click', function (e) {
     var coords = e.latlng;
 
@@ -178,6 +199,7 @@ L.control.resetView({
     zoom: 8,
 }).addTo(map);
 
+// controls to switch between base maps and overlay maps.
 // Base Maps
 var baseMaps = {
     "OpenStreetMap": openStreetMap,
