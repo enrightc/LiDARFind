@@ -3,7 +3,7 @@
 {% block styles %}
 <!-- Linking Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 {% endblock %}
 {% block content %}
     <!-- Hero -->
@@ -18,7 +18,7 @@
     </section>
 
     <!-- Signin -->
-    <section class="signin">
+    <div class="signin">
         <div class="sign-in-textbox text-center">
             <p>Join our community of citizen scientists and professional archaeologists to explore and
                 document archaeological sites discovered through LiDAR technology.</p>
@@ -27,7 +27,7 @@
                 <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- What is LiDAR -->
     <section class="content what-is">
@@ -95,7 +95,10 @@
                 <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="panel-icon fa-regular fa-user"></i></h5>
+                            <h5 class="card-title">
+                                <i class="panel-icon fa-regular fa-user"></i>
+                                <span class="sr-only">User Icon</span>
+                            </h5>
                             <h5 class="card-subtitle mb-2">Register</h5>
                             <p class="card-text">Join our community of archaeology enthusiasts and professionals. 
                                 Sign up today to start exploring and contributing to our extensive database of LiDAR discoveries.</p>
@@ -105,7 +108,10 @@
                 <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="panel-icon fa-solid fa-magnifying-glass"></i></h5>
+                            <h5 class="card-title">
+                                <i class="panel-icon fa-solid fa-magnifying-glass"></i>
+                                <span class="sr-only">Magnifying Glass Icon</span>
+                            </h5>
                             <h5 class="card-subtitle mb-2">Explore</h5>
                             <p class="card-text">Dive into our comprehensive collection of archaeological sites uncovered through LiDAR technology. 
                                 Discover hidden histories and expand your knowledge.</p>
@@ -115,7 +121,10 @@
                 <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><i class="fa-regular fa-map"></i></h5>
+                            <h5 class="card-title">
+                                <i class="fa-regular fa-map"></i>
+                                <span class="sr-only">Map Icon</span>
+                            </h5>
                             <h5 class="card-subtitle mb-2">Record</h5>
                             <p class="card-text">Contribute your own findings and expand our knowledge on this historic environment. 
                                 Record and share new archaeological sites with the community using our easy-to-use platform.</p>
@@ -140,11 +149,12 @@
                     </p>
                 </div>
                 <div class="col-12 col-md-6">
-                    <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;" aria-label="Video: Introduction to LiDARFind">
+                    <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
                         <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
                             <div class="wistia_embed wistia_async_xp5ce1ltgc seo=true videoFoam=true" style="height:100%;position:relative;width:100%">
                                 <div class="wistia_swatch" style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
-                                    <img src="https://fast.wistia.com/embed/medias/xp5ce1ltgc/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;" />
+                                    <img src="https://fast.wistia.com/embed/medias/xp5ce1ltgc/swatch" style="filter:blur(5px);height:100%;object-fit:contain;width:100%;" 
+                                        alt="" aria-hidden="true" onload="this.parentNode.style.opacity=1;">
                                 </div>
                             </div>
                         </div>
@@ -159,7 +169,7 @@
         <div class="is-relative">
             
             <!-- Map Window -->
-            <div id="homePageMap" aria-label="Interactive map of archaeological sites">
+            <div id="homePageMap">
                 <p class="sr-only">This map shows the locations of various archaeological sites. 
                     Use the filter options to narrow down the sites displayed.</p>
             </div>
@@ -174,28 +184,33 @@
             <div class="is-absolute form-popup filter-popup" id="filter">
                 <div class="popup-title-wrapper">
                     <h5>Filters</h5>
-                    <button type="button" class="popup-close-btn" onclick="closeFilters()"><i class="fa-regular fa-circle-xmark" ria-hidden="true"></i>
+                    <button type="button" class="popup-close-btn" onclick="closeFilters()">
+                        <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                         <span class="sr-only">Close</span>
+                    </button>
                 </div>
                 <div class="filter-container">
+                    <label for="period-filter" class="active">Period</label>
                     <select id="period-filter" name="period" aria-label="Period" class="validate">
                         <option value="" selected>Period</option>
                         {% for period in periods %}
                         <option value="{{ period.period_name }}">{{ period.period_name }}</option>
                         {% endfor %}
                     </select>
-                    <label for="period" class="active"></label>
+                    
+                    <label for="site_type_filter" class="active">Site type</label>
                     <select id="site_type_filter" name="site_type" aria-label="Site Type" class="validate">
                         <option value="" selected>Site type</option>
                         {% for site_type in site_types %}
                         <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
                         {% endfor %}
                     </select>
-                    <label for="site_type" class="active"></label>
+                    
+                    <label for="monument_type_filter" class="active">Monument type</label>
                     <select id="monument_type_filter" name="monument_type" aria-label="Monument Type" class="validate">
                         <option value="" selected>Monument type</option>
                     </select>
-                    <label for="monument_type" class="active"></label>
+                    
                     <button id="reset-filters-btn" class="tertiary-btn btn" type="button">Reset</button>  
                 </div>
             </div>
@@ -203,7 +218,7 @@
     </section>
 
     <!-- Signin -->
-    <section class="signin">
+    <div class="signin">
         <div class="sign-in-textbox">
             <p>Sign in to LiDARFind to save your discoveries and revisit them anytime.</p>
             <div class="btns-container-row justify-center">
@@ -211,7 +226,7 @@
                 <a href="{{ url_for('login') }}" class="secondary-btn btn">Log In</a>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer class="container-fluid mt-5">
@@ -253,16 +268,12 @@
     </footer>
 {% endblock %}
 
-
-  
-
 {% block scripts %}
 <!-- Leaflet -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="https://fast.wistia.com/embed/medias/xp5ce1ltgc.jsonp" async>
-</script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+<script src="https://fast.wistia.com/embed/medias/xp5ce1ltgc.jsonp" async></script>
+<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
 <script src="{{ url_for('static', filename='js/bing.js') }}"></script>
 <script src="{{ url_for('static', filename='js/homepage-map.js') }}"></script>
-</script>
 {% endblock %}

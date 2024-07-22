@@ -411,6 +411,9 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
 ### Databases
 - MongoDB
 
+# TESTING
+Please see [TESTING.md](TESTING.md).
+
 # DEPLOYMENT
 ### MongoDB Non-Relational Database
 This project uses [MongoDB](https://www.mongodb.com/) for the non-relational database. 
