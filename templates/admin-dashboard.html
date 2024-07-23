@@ -46,12 +46,13 @@
                   <div class="accordion accordion-flush" id="accordionExample">
                     {% for user in all_users %}
                     <div class="accordion-item">
-                      <h2 class="accordion-header" id="userName{{ loop.index }}">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUser{{ loop.index }}" aria-expanded="false" aria-controls="collapseUser{{ loop.index }}">
+                      <h2 class="accordion-header" id="userName{{ user._id }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUser{{ user._id }}"
+                          aria-expanded="false" aria-controls="collapseUser{{ user._id }}">
                           {{ user.username }}
                         </button>
                       </h2>
-                      <div id="collapseUser{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="userName{{ loop.index }}" data-bs-parent="#accordionExample">
+                      <div id="collapseUser{{ user._id }}" class="accordion-collapse collapse" aria-labelledby="userName{{ user._id }}" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                           <p><strong>Username:</strong> {{ user.username }}</p>
                           <p><strong>Skill Level:</strong> {{ user.skill_level }}</p>
@@ -63,15 +64,17 @@
                           </button>
 
                           <!-- Secondary Accordion for User's Records -->
-                          <div class="accordion accordion-flush" id="usersRecords{{ loop.index }}">
+                          <div class="accordion accordion-flush" id="usersRecords{{ user._id }}">
                             {% for record in all_records if record.created_by == user.username %}
                             <div class="accordion-item">
-                              <h2 class="accordion-header" id="recordName{{ loop.index }}">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRecord{{ loop.index }}" aria-expanded="false" aria-controls="collapseRecord{{ loop.index }}">
+                              <h2 class="accordion-header" id="recordName{{ record._id }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRecord{{ record._id }}" 
+                                  aria-expanded="false" aria-controls="collapseRecord{{ record._id }}">
                                   {{ record.title }}
                                 </button>
                               </h2>
-                              <div id="collapseRecord{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="recordName{{ loop.index }}" data-bs-parent="#accordionRecords{{ loop.index }}">
+                              <div id="collapseRecord{{ record._id }}" class="accordion-collapse collapse" aria-labelledby="recordName{{ record._id }}" 
+                                data-bs-parent="#accordionRecords{{ record._id }}">
                                 <div class="accordion-body">
                                   <p><strong>Title:</strong> {{ record.title }}</p>
                                   <p><strong>Site Type:</strong> {{ record.site_type }}</p>
@@ -90,7 +93,7 @@
                               </div>
                             </div>
                             <!-- Bootstrap Modal inside the loop for each record -->
-                            <div class="modal fade" id="confirmDelete{{ record._id }}" tabindex="-1" aria-labelledby="deleteRecordConfirmation{{ record.index }}" aria-hidden="true">
+                            <div class="modal fade" id="confirmDelete{{ record._id }}" tabindex="-1" aria-labelledby="deleteRecordConfirmation{{ record._id }}" aria-hidden="true">
                               <div class="modal-dialog">
                                 <div class="modal-content">
                                   <div class="modal-header">
@@ -114,7 +117,7 @@
                       </div>
                     </div>
                     <!-- Bootstrap Modal to delete user -->
-                    <div class="modal fade" id="userDelete{{ user._id }}" tabindex="-1" aria-labelledby="confirmUserDelete{{ loop._id }}" aria-hidden="true">
+                    <div class="modal fade" id="userDelete{{ user._id }}" tabindex="-1" aria-labelledby="confirmUserDelete{{ user._id }}" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
