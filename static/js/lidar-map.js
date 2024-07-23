@@ -1,3 +1,6 @@
+/*jshint esversion: 6 */
+/* global L, bootstrap */
+
 // Initialise the map with the specified initial view and zoom level (centered over Wales)
 var initialView = [52.4814, -3.9797];
 var initialZoom = 8;
@@ -51,7 +54,7 @@ var otherUserIcon = L.icon({
 });
 
 // Array to store markers with associated data for search filters (period, site type, monument type)
-allMarkers = [];
+var allMarkers = [];
 
 // Fetch all records from the DB and display them on the map
 fetch("/fetch_user_records")
@@ -221,4 +224,4 @@ var overlayMaps = {
     "LiDAR Data": wmsLayer
 };
 
-L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map)
+L.control.layers(baseMaps, overlayMaps, {collapsed: false}).addTo(map);
