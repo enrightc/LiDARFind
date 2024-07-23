@@ -164,3 +164,18 @@ This warning occurs because the `L` variable, provided by the Leaflet library, i
 To resolve this warning `/* global L*/` is added to the directive at the top of the JavaScript file. 
 This directive informs JSHint that `L` and `bootstrap` are globally defined variables, preventing the tool from flagging them as undefined. 
 This ensures that the code is correctly validated without unnecessary warnings, while maintaining the functionality provided by these libraries.
+
+# MANUAL TESTING
+
+### Feature Testing:
+
+For each feature the expected outcomes and actual outcomes are clearly defined for each feature, making it easy to assess whether the application meets the requirements. This process makes it easier to identify and address any issues or discrepancies that may arise and also serves as a reference point for other developers to understand the expected behaviour of a feature. The results are recorded in the following tables:
+
+### Browser Compatibility:
+- Expected: Consistent appearance and functionality across major browsers.
+- Testing: Test site on Chrome, Mozilla, Safari, and Edge browsers.
+- Outcome: The site renders as expected with good responsiveness and compatibility across different browsers.
+
+### Responsiveness Test:
+Expected: Site should render appropriately on various devices with different screen sizes. Testing: Test responsiveness on iPhone 12, iPad 12, and desktop (1024px). Outcome: The site displays responsively across different devices, maintaining functionality and appearance as intended.
+
