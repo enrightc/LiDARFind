@@ -56,3 +56,111 @@ The property `font-optical-sizing: auto;` was removed from the CSS to resolve th
 This ensures that the CSS code is fully compliant with web standards and free of validation errors.
 
 
+## JSHint
+
+### script.js Testing Report
+
+| Metric                                      | Value                                    |
+|---------------------------------------------|------------------------------------------|
+| **Total number of functions**               | 18                                       |
+| **Function with the largest signature**       | 1 argument                               |
+| **Median number of arguments per function** | 0                                        |
+| **Largest function (statements)**           | 7 statements                             |
+| **Median number of statements per function**  | 2 statements                             |
+| **Most complex function (cyclomatic)**      | Cyclomatic complexity value of 2          |
+| **Median cyclomatic complexity**            | 1                                        |
+
+**Unused Variables**
+
+The following variables were initially flagged by JSHint as unused but are actually used in the HTML for functionality:
+- `tooltipList`: Used for initialising Bootstrap tooltips.
+- `openCreateForm`: Used to open the create record form.
+- `closeCreateForm`: Used to close the create record form.
+- `openFilter`: Used to open the filter section.
+- `closeFilters`: Used to close the filter section.
+
+These were fixed by adding the `/* exported ... */` directive at the top of the JavaScript file to inform JSHint that these variables are used externally.
+
+
+### lidar-map.js Testing Report
+
+| Metric                                      | Value                                    |
+|---------------------------------------------|------------------------------------------|
+| **Total number of functions**               | 12                                       |
+| **Function with the largest signature**     | 2 argument                               |
+| **Median number of arguments per function**    | 1                                        |
+| **Largest function (statements)**           | 9 statements                             |
+| **Median number of statements per function**  | 2.5 statements                           |
+| **Most complex function (cyclomatic)**      | Cyclomatic complexity value of 7             |
+| **Median cyclomatic complexity**            | 1                                        |
+
+**Unused Variables**
+
+The following variables were initially flagged by JSHint as unused but are actually used in the HTML for functionality:
+- `openDeleteModal`: Used for opening the confirmation delete modal
+
+These were fixed by adding the `/* exported ... */` directive at the top of the JavaScript file to inform JSHint that these variables are used externally.
+
+**Undefined Variable**
+- **One undefined variable**: `isAdmin` on line 89.
+
+This warning occurs because the `isAdmin` variable is declared in the HTML template and not directly within the JavaScript file. 
+
+To manage the isAdmin variable effectively and ensure it reflects the user's actual status, I am declaring it in the HTML using server-side templating. This approach allows the backend to pass the isAdmin status dynamically based on the authenticated user's role. Here’s the declaration in the HTML:
+
+html
+Copy code
+`<script>
+    var isAdmin = {{ is_admin|tojson }};
+</script>`
+
+By doing this, isAdmin is available globally in our JavaScript files without the need to redeclare it, ensuring it accurately represents the user's admin status. Despite JSHint flagging isAdmin as an undefined variable in the JavaScript files, the script works as expected because the variable is defined in the HTML before any JavaScript execution.
+
+This method ensures the isAdmin variable is dynamic and secure, reflecting the actual status of the user logged in, and avoids hardcoding it to true or false within the JavaScript code. This approach maintains the integrity of our application by ensuring that only users with the correct admin privileges can access certain functionalities.
+
+To suppress the JSHint warning,  /* global isAdmin */  is added to the directive at the top of the JavaScript file. 
+
+This informs JSHint that isAdmin is a globally defined variable, resolving the warning while ensuring the code remains functional and clear.
+
+### homepage-map.js Testing Report
+
+| Metric                                      | Value                                    |
+|---------------------------------------------|------------------------------------------|
+| **Total number of functions**               | 11                                       |
+| **Function with the largest signature**     | 1 argument                               |
+| **Median number of arguments per function**    | 1                                        |
+| **Largest function (statements)**           | 6 statements                             |
+| **Median number of statements per function**  | 1 statements                           |
+| **Most complex function (cyclomatic)**      | Cyclomatic complexity value of 7             |
+| **Median cyclomatic complexity**            | 1                                        |
+
+
+**Undefined Variable**
+- **One undefined variable**: `L`
+
+This warning occurs because the `L` variable, provided by the Leaflet library, is defined globally and not within the JavaScript file itself. 
+
+To resolve this warning `/* global L*/` is added to the directive at the top of the JavaScript file. 
+This directive informs JSHint that `L` and `bootstrap` are globally defined variables, preventing the tool from flagging them as undefined. 
+This ensures that the code is correctly validated without unnecessary warnings, while maintaining the functionality provided by these libraries.
+
+### edit-page.js Testing Report
+
+| Metric                                      | Value                                    |
+|---------------------------------------------|------------------------------------------|
+| **Total number of functions**               | 2                                       |
+| **Function with the largest signature**     | 1 argument                               |
+| **Median number of arguments per function**    | 0.5                                        |
+| **Largest function (statements)**           | 11 statements                             |
+| **Median number of statements per function**  | 8 statements                           |
+| **Most complex function (cyclomatic)**      | Cyclomatic complexity value of 2             |
+| **Median cyclomatic complexity**            | 1.5                                        |
+
+**Undefined Variable**
+- **One undefined variable**: `L`
+
+This warning occurs because the `L` variable, provided by the Leaflet library, is defined globally and not within the JavaScript file itself. 
+
+To resolve this warning `/* global L*/` is added to the directive at the top of the JavaScript file. 
+This directive informs JSHint that `L` and `bootstrap` are globally defined variables, preventing the tool from flagging them as undefined. 
+This ensures that the code is correctly validated without unnecessary warnings, while maintaining the functionality provided by these libraries.

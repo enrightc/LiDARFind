@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
-/* global L, bootstrap */
+/* global L, bootstrap, isAdmin */
+/* exported openDeleteModal */
 
 // Initialise the map with the specified initial view and zoom level (centered over Wales)
 var initialView = [52.4814, -3.9797];

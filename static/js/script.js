@@ -1,3 +1,7 @@
+/*jshint esversion: 6 */
+/* global bootstrap, $ */
+/* exported openCreateForm, closeCreateForm, openFilter, closeFilters, tooltipList */
+
 $(document).ready(function() {
 
     // Function to fadeout Flash messages after 5 seconds
@@ -94,10 +98,10 @@ $(document).ready(function() {
  * Code provided by Bootstrap. 
  */
 (() => {
-    'use strict'
+    'use strict';
 
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
+    const forms = document.querySelectorAll('.needs-validation');
 
     // Loop over each form and prevent submission if the form is invalid
     Array.from(forms).forEach(form => {
@@ -106,14 +110,14 @@ $(document).ready(function() {
             // Check if the form is valid
             if (!form.checkValidity()) {
                 // Prevent form submission if invalid
-                event.preventDefault()
-                event.stopPropagation()
+                event.preventDefault();
+                event.stopPropagation();
             }
             // Add the was-validated class to show validation feedback
-            form.classList.add('was-validated')
-        }, false)
-    })
-})()
+            form.classList.add('was-validated');
+        }, false);
+    });
+})();
 
 // Function to open the create record form by setting its display style to "block".
 function openCreateForm() {
