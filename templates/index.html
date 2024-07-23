@@ -164,59 +164,7 @@
         </div>
     </section>
 
-    <!-- Map browse -->
-    <section class="content map-browse">
-        <div class="is-relative">
-            
-            <!-- Map Window -->
-            <div id="homePageMap">
-                <p class="sr-only">This map shows the locations of various archaeological sites. 
-                    Use the filter options to narrow down the sites displayed.</p>
-            </div>
-
-            <!-- A button to open the popups -->
-            <div class="is-absolute popup-buttons-wrapper">
-                <button class="btn secondary-btn" onclick="openFilter()" aria-expanded="false" aria-controls="filter">
-                    <i class="fa-solid fa-filter" aria-hidden="true"></i>Filters</button>
-            </div>
-
-            <!-- Filter options -->
-            <div class="is-absolute form-popup filter-popup" id="filter">
-                <div class="popup-title-wrapper">
-                    <h5>Filters</h5>
-                    <button type="button" class="popup-close-btn" onclick="closeFilters()">
-                        <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
-                        <span class="sr-only">Close</span>
-                    </button>
-                </div>
-                <div class="filter-container">
-                    <label for="period-filter" class="active">Period</label>
-                    <select id="period-filter" name="period" aria-label="Period" class="validate">
-                        <option value="" selected>Period</option>
-                        {% for period in periods %}
-                        <option value="{{ period.period_name }}">{{ period.period_name }}</option>
-                        {% endfor %}
-                    </select>
-                    
-                    <label for="site_type_filter" class="active">Site type</label>
-                    <select id="site_type_filter" name="site_type" aria-label="Site Type" class="validate">
-                        <option value="" selected>Site type</option>
-                        {% for site_type in site_types %}
-                        <option value="{{ site_type.site_type }}">{{ site_type.site_type }}</option>
-                        {% endfor %}
-                    </select>
-                    
-                    <label for="monument_type_filter" class="active">Monument type</label>
-                    <select id="monument_type_filter" name="monument_type" aria-label="Monument Type" class="validate">
-                        <option value="" selected>Monument type</option>
-                    </select>
-                    
-                    <button id="reset-filters-btn" class="tertiary-btn btn" type="button">Reset</button>  
-                </div>
-            </div>
-        </div>
-    </section>
-
+   
     <!-- Signin -->
     <div class="signin">
         <div class="sign-in-textbox">

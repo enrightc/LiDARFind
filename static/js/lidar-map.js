@@ -64,6 +64,9 @@ fetch("/fetch_user_records")
         displayRecords(data.all_records, data.current_user);
     });
 
+// Get the isAdmin value from the data attribute
+var isAdmin = document.querySelector('.col.s12').getAttribute('data-is-admin') === 'true';
+
 // Function to display all records on the map
 // data = records to be displayed
 // currentUSer = The username of the logged in user

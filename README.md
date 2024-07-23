@@ -551,7 +551,7 @@ Cloning a repository allows you to create a local copy on your computer. Here’
 | Music for Intro Video                              | UPPBEAT                                                                                        | [UPPBEAT](https://uppbeat.io/browse/artist/qube) found at [UPPBEAT Music Inspiring](https://uppbeat.io/browse/music/inspiring) | 9th July, 2024    |
 | Sticking Footer to Bottom of Page                  | The EASIEST Way To Push That Footer Down With CSS                                               | [YouTube](https://www.youtube.com/watch?v=AVPR_WuDw8o&list=PLx6XTedFrvFICl8XTWKE6mDst8FPo5ZRn&index=3)           | 16th July, 2024   |
 | Making Leaflet Layers Toggle Control Always Open   | Making Leaflet Control Open by Default                                                          | [Stack Overflow](https://gis.stackexchange.com/questions/64385/making-leaflet-control-open-by-default)            | 18th July, 2024   |
-| Creating User Flow Diagrams                        | Creating Flowcharts To Enhance Workflows With AI                                                | [OpenReplay Blog](https://blog.openreplay.com/creating-flowcharts-to-enhance-workflows/?ref=dailydev)            | 19th July, 2024   |
-
+| Creating User Flow Diagrams                        | Creating Flowcharts To Enhance Workflows With AI                                                  | [OpenReplay Blog](https://blog.openreplay.com/creating-flowcharts-to-enhance-workflows/?ref=dailydev)            | 19th July, 2024   |
+| Passing variables from HTML to JS                        | Passing variables from HTML to JS                                                | [Reddit](https://www.reddit.com/r/flask/comments/yc00z3/passing_variables_from_html_to_js/)            | 23rd July July, 2024   |
 
 
