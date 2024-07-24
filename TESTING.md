@@ -165,6 +165,67 @@ To resolve this warning `/* global L*/` is added to the directive at the top of 
 This directive informs JSHint that `L` and `bootstrap` are globally defined variables, preventing the tool from flagging them as undefined. 
 This ensures that the code is correctly validated without unnecessary warnings, while maintaining the functionality provided by these libraries.
 
+## Lighthouse Analysis
+Lighthouse in Chrome Developer Tools was used to assess the performance, accessibility, best practice and SEO rating of the website. The analysis was conducted on both mobile and desktop devices, and the scores were recorded for each page of the website. The table below illusrates the results of the analysis. 
+
+### With Map Elements
+
+| Page             | Performance       |                | Accessibility     |                | Best Practice     |                | SEO            |                |
+|------------------|-------------------|----------------|-------------------|----------------|-------------------|----------------|----------------|----------------|
+|                  | Mobile (%)        | Desktop (%)    | Mobile (%)        | Desktop (%)    | Mobile (%)        | Desktop (%)    | Mobile (%)     | Desktop (%)    |
+| Home             | 45                | 90             | !                 | !              | 100               | 100            | 100            | 100            |
+| Resources        | 72                | 94             | 98                | 93             | 100               | 100            | 100            | 100            |
+| Log in           | 84                | 97             | 96                | 96             | 100               | 100            | 100            | 100            |
+| Register         | 73                | 98             | 96                | 96             | 100               | 100            | 100            | 100            |
+| Profile          | 83                | 98             | 95                | 95             | 100               | 100            | 100            | 100            |
+| Record           | 73                | 90             | !                 | !              | 96                | 96             | 100            | 100            |
+| Edit record      | 73                | 95             | !                 | !              | 96                | 96             | 100            | 100            |
+| Log out          | 83                | 98             | 95                | 95             | 100               | 100            | 100            | 100            |
+| Admin Dashboard  | 81                | 96             | 100               | 100            | 100               | 100            | 100            | 100            |
+
+From the table above it is evidence that pages containing maps displayed significantly lower performance and accesibility scores, particularly on mobile devices. It seems plausible to suggest that the presence of the leaflet maps was contributing to the reduced scores.
+
+To test this hypothesis a comparative analysis was carried out, this time removing the map elements from the affected pages. The results are recorded in the table below:
+
+### Without Map
+
+| Page             | Performance       |                | Accessibility     |                | Best Practice     |                | SEO            |                |
+|------------------|-------------------|----------------|-------------------|----------------|-------------------|----------------|----------------|----------------|
+|                  | Mobile (%)        | Desktop (%)    | Mobile (%)        | Desktop (%)    | Mobile (%)        | Desktop (%)    | Mobile (%)     | Desktop (%)    |
+| Home             | 60                | 93             | 95                | 95             | 100               | 96             | 100            | 100            |
+| Record           | 88                | 97             | 95                | 95             | 96                | 96             | 100            | 100            |
+| Edit record      | 83                | 99             | 95                | 96             | 96                | 100            | 100            | 100            |
+
+The performance scores for mobile devices show a marked improvement when the leaflet map is removed from the pages. For example, the Home page perforamnce incrases from 45% to 60% on mobile.
+The difference is less pronounced for desktop performancce scores, which are generally higher with or without the map. 
+The accessibility scores are not consistently reported when the map elements were present. Once removed the scores are unoformly higher. 
+The best practice and SEO scores are consistently high with and without map elements, indicting they are not affected by the leaflet map. 
+
+By running the Lighthouse analysis twice - first with the maps included and then with the maps removed - it is possible to identify that the performance and accessibility are impacted by leaflet maps. This method provided a concrete basis for understanding how dynamic, interactive elements like maps can affect web page metrics, particularly on mobile devices. The inclusion of the Leaflet map appears to introduce performance bottlenecks, particularly affecting the mobile experience. This is likely due to the additional JavaScript and rendering required to display and interact with the map. By deferring the loading of non-essential scripts and styles or optimising the map integration, it might be possible to mitigate some of these performance impacts. However, the map provides significant functionality and value to the user experience, so these trade-offs need careful consideration.
+
+In a final effort to increase performance and accessibility of the home page, particularly on mobile devices, "Lazy Loading" using intersection Observer was implemented to defer the loading of the map element on the home page until it enters viewport.
+
+### With Lazy Loading using Intersection Observation
+
+| Page             | Performance       |                | Accessibility     |                | Best Practice     |                | SEO            |                |
+|------------------|-------------------|----------------|-------------------|----------------|-------------------|----------------|----------------|----------------|
+|                  | Mobile (%)        | Desktop (%)    | Mobile (%)        | Desktop (%)    | Mobile (%)        | Desktop (%)    | Mobile (%)     | Desktop (%)    |
+| Home             | 48                | 91             | 95                | 95             | 75               | 100            | 100            | 100            |
+
+
+By implementing lazy loading for the map element using the intersection observer it was possible to mitigate some of the performance and accessibility impacts. This approach defers the loading time of the map until it enters the viewport, thus reducing the intial load time. 
+
+In hindsight, I realise that including an interactive element such as a map on the home page may not have been the best decision. For a marketing website, this could potentially lead to a significant bounce rate as the performance and accessibility impacts might deter users from staying on the page.
+
+However, given that this website is map-oriented and heavily relies on displaying geographical data, the inclusion of a map on the home page serves an essential purpose. It aligns with the primary functionality and user expectations of the site. Therefore, under these specific circumstances, the performance trade-offs are justified and likely not to cause significant issues.
+
+Additionally, I tested other websites that rely heavily on maps, including Google Maps and Rightmove, and observed that they also have low scores for performance. This observation suggests that the inclusion of interactive maps inherently impacts performance metrics, yet these websites still provide significant value and usability despite the lower scores
+
+### Other Notable Observations From Lighthouse Analysis
+During the Lighthouse analysis of the Home Page, several warnings were flagged in the console, indicating "Third party cookie is blocked in Chrome as part of Privacy Sandbox." These warnings appear to be related to external libraries rather than being part of my own codebase. When running Lighthouse in incognito mode, these warnings were not flagged, suggesting that these third-party cookies are blocked due to Chrome's enhanced privacy settings in regular browsing mode. 
+
+These warnings do not direcly impact the core functionality of the website.
+
 # MANUAL TESTING
 
 ### Feature Testing:

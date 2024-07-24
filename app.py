@@ -312,7 +312,7 @@ def home():
 def admin_dashboard():
     """
     Renders admin dashboard template
-    Only accessible to admin userse
+    Only accessible to admin users
 
     This function handles requests to the admin dashboard
     URL ("/admin_dashboard").
@@ -526,7 +526,8 @@ def edit_record(record_id):
         abort(404)  # Record not found
 
     # Check if the logged-in user is the creator of the record or an admin
-    if record["created_by"] != session["user"] and not session.get("is_admin", False):
+    if record["created_by"] != session["user"] and not session.get(
+            "is_admin", False):
         abort(403)  # User is not authorised to edit this record
 
     # Handle post request when the user submits the edited record form
@@ -543,7 +544,8 @@ def edit_record(record_id):
         }
 
         # Update the record in the MongoDB collection with the new data
-        mongo.db.records.update_one({"_id": ObjectId(record_id)}, {"$set": updated_record})
+        mongo.db.records.update_one({"_id": ObjectId(record_id)},
+            {"$set": updated_record})
         flash("Record successfully updated", "success")
 
         # Determine where to redirect based on the referrer
@@ -563,12 +565,13 @@ def edit_record(record_id):
     # Retrieve monument types for the selected site type
     selected_site_type = record['site_type']
     site = mongo.db.site_types.find_one({"site_type": selected_site_type})
-    monument_types = [monument['monument_type'] for monument in site['monument_types']] 
+    monument_types = [monument['monument_type']
+        for monument in site['monument_types']]
 
-    return render_template("edit-record.html", 
-                            record=record, 
-                            site_types=site_types, 
-                            periods=periods, 
+    return render_template("edit-record.html",
+                            record=record,
+                            site_types=site_types,
+                            periods=periods,
                             monument_types=monument_types)
 
 
@@ -593,11 +596,11 @@ def delete_record(record_id):
         record_id (str): The unique identifier of the record to be deleted.
 
     Returns:
-        Redirect: Redirects to the profile page, admin dashboard, 
+        Redirect: Redirects to the profile page, admin dashboard,
     """
     # Check if the user is logged in
     if "user" not in session:
-        abort(403) # Forbidden access if the user is not logged in
+        abort(403)  # Forbidden access if the user is not logged in
 
     # Fetch the record from the database using the record_id
     record = mongo.db.records.find_one({"_id": ObjectId(record_id)})
@@ -607,8 +610,9 @@ def delete_record(record_id):
         abort(404)  # Record not found
 
     # Check if the logged-in user is the creator of the record or an admin
-    if record["created_by"] != session["user"] and not session.get("is_admin", False):
-        abort(403) # Forbidden access if the user is not authorised to delete this record
+    if record["created_by"] != session["user"] and not session.get(
+            "is_admin", False):
+        abort(403)  # Forbidden access if the user is not authorised
 
     # Delete the record from the database
     mongo.db.records.delete_one({"_id": ObjectId(record_id)})
@@ -616,7 +620,8 @@ def delete_record(record_id):
 
     # Fetch necessary data to render the record page again
     username = session["user"]
-    user_records = list(mongo.db.records.find({"created_by": username}))  # Correct query
+    user_records = list(mongo.db.records.find(
+            {"created_by": username}))
     site_types = list(mongo.db.site_types.find().sort("site_type", 1))
     periods = list(mongo.db.periods.find())
 
@@ -626,7 +631,7 @@ def delete_record(record_id):
     if ref == 'profile':
         return redirect(url_for("profile", username=session["user"]))
     elif ref == 'admin_dashboard':
-            return redirect(url_for('admin_dashboard'))
+        return redirect(url_for('admin_dashboard'))
     else:
         return redirect(url_for('add_record'))
 
@@ -635,7 +640,7 @@ def delete_record(record_id):
 def delete_user(user_id):
     """
     Handle the deletion of a user by their unique identifier (_id).
-    Only Admin can perform this function. 
+    Only Admin can perform this function.
 
     Process:
     - Verify if the current session belongs to an admin user.
