@@ -334,8 +334,8 @@ def admin_dashboard():
         users and records.
     """
     # check if the user in session is admin
-    if "user" not in session or not session.get("is_admin", False):
-        abort(403)  # Forbidden access
+    if not session.get("is_admin"):
+        abort(403)   # Forbidden access
 
     # If admin, retrieve all records and users from the database
     records = list(mongo.db.records.find())

@@ -450,3 +450,26 @@ Expected: Site should render appropriately on various devices with different scr
 |------------|---------------|------------|--------|
 | 4.1: Manage discoveries | Verify management | 1. Log in as admin<br>2. Go to admin dashboard<br>3. Add/edit/delete discoveries and users ensuring they are removed from the database | PASS |
 
+## Defensive Coding
+
+| Route             | Defensive Coding Practice                           | Purpose                                        | Example                                                                                                            |
+|-------------------|-----------------------------------------------------|------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| Register          | Check if username already exists                    | Prevent duplicate usernames in the database    | ```python existing_user = mongo.db.users.find_one({"username": request.form.get("username").lower()}) if existing_user: flash("Username already exists") return redirect(url_for("register"))``` |
+|                   | Hash and store passwords                            | Secure user passwords                          | ```python hashed_password = generate_password_hash(request.form.get("password"))```                                 |
+|                   | Validate matching passwords                         | Ensure users confirm their password accurately | ```python if password != confirm_password: flash("Passwords must match", "danger") return redirect(url_for("register"))```                              |
+| Login             | Validate user existence                             | Ensure only registered users can log in        | ```existing_user = mongo.db.users.find_one({"username": request.form.get("username").lower()})``` |
+|                   | Store user in session                               | Maintain user session for authentication       | ```python session["user"] = user["username"]```                                                                   |
+| Profile           | Validate user existence                             | Ensure the user exists before accessing profile| ```python user = mongo.db.users.find_one({"username": username}) if not user: abort(404) # User not found``` |
+|                   | Check user session                                  | Ensure only logged-in users can access profiles| ```python if "user" not in session: flash("You must be logged in to view that page", "warning") return redirect(url_for("login"))``` |
+|                   | Validate profile ownership                          | Ensure users can only view their own profiles  | ```python if username != session["user"]: abort(403) # Forbidden access``` |
+| Logout            | Remove user from session                            | Securely log out user and remove session data  | ```python session.pop("user", None) session.pop("is_admin", None)```                                               |
+| Admin Dashboard   | Validate admin privileges                           | Ensure only admins can access admin dashboard  | ```if not session.get("is_admin"): abort(403)   # Forbidden access``` |
+| Edit Record       | Check user session                                  | Ensure only logged-in users can edit records   | `python if "user" not in session: flash("You must be logged in to view that page", "warning") return redirect(url_for("login"))` |
+|                   | Validate record existence                           | Ensure the record exists before editing        | ```python if not record: abort(404)``` |
+|                   | Validate record ownership or admin privileges       | Ensure only the record owner or an admin can edit the record | ```if record["created_by"] != session["user"] and not session.get("is_admin", False): abort(403)``` |
+| Delete Record     | Check user session                                  | Ensure only logged-in users can delete records | ```if "user" not in session: abort(403)``` |
+|                   | Validate record existence                           | Ensure the record exists before deleting       | ```record = mongo.db.records.find_one({"_id": ObjectId(record_id)}) if not record: abort(404)``` |
+|                   | Validate record ownership or admin privileges       | Ensure only the record owner or an admin can delete the record | ```if record["created_by"] != session["user"] and not session.get("is_admin", False): abort(403)``` |
+| Delete User       | Check user session                                  | Ensure only logged-in users with admin privilege can delete user accounts | ```if not session.get("is_admin"): abort(403)``` |
+|                   | Validate user existence                             | Ensure the user exists before deleting         | ```user = mongo.db.users.find_one({"_id": ObjectId(user_id)}) if not user: abort(404)``` |
+
