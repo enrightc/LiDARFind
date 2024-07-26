@@ -26,22 +26,16 @@
             <h3 class="d-flex justify-content-center align-items-center"><span>Log in</span></h3>
           </div>
           <div class="p-4 mb-3">
-            <form class="needs-validation" novalidate method="POST" action="{{ url_for('login') }}">
+            <form method="POST" action="{{ url_for('login') }}">
               <div class="mb-5 position-relative">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" name="username" minlength="5" 
                   maxlength="15" pattern="^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,15}$" required aria-label="Username">
-                <div class="invalid-tooltip">
-                  Please provide a valid username.
-                </div>
               </div>
               <div class="mb-5 position-relative">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control mb-3" id="password" name="password" minlength="5" maxlength="15"
                       pattern="^[a-zA-Z0-9!@#\$%\^\&*_=+-]{5,15}$" required aria-label="Password">
-                <div class="invalid-tooltip">
-                  Please provide a valid password.
-                </div>
               </div>
               <div class="d-flex justify-content-center">
                 <button type="submit" class="btn primary-btn" aria-label="Log in">

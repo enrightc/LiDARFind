@@ -304,8 +304,8 @@ def home():
 
     # Render the home page template with the retrieved periods and site types
     return render_template("index.html",
-                            site_types=site_types,
-                            periods=periods)
+                           site_types=site_types,
+                           periods=periods)
 
 
 @app.route("/admin_dashboard")
@@ -348,8 +348,8 @@ def admin_dashboard():
 
     # Render the admin dashboard template with the retrieved data
     return render_template("admin-dashboard.html",
-                            all_records=records,
-                            all_users=users)
+                           all_records=records,
+                           all_users=users)
 
 
 @app.route("/resources")
@@ -545,7 +545,7 @@ def edit_record(record_id):
 
         # Update the record in the MongoDB collection with the new data
         mongo.db.records.update_one({"_id": ObjectId(record_id)},
-            {"$set": updated_record})
+                                    {"$set": updated_record})
         flash("Record successfully updated", "success")
 
         # Determine where to redirect based on the referrer
@@ -566,13 +566,13 @@ def edit_record(record_id):
     selected_site_type = record['site_type']
     site = mongo.db.site_types.find_one({"site_type": selected_site_type})
     monument_types = [monument['monument_type']
-        for monument in site['monument_types']]
+                      for monument in site['monument_types']]
 
     return render_template("edit-record.html",
-                            record=record,
-                            site_types=site_types,
-                            periods=periods,
-                            monument_types=monument_types)
+                           record=record,
+                           site_types=site_types,
+                           periods=periods,
+                           monument_types=monument_types)
 
 
 @app.route("/delete_record/<record_id>")

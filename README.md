@@ -36,22 +36,22 @@ LiDARFind is designed with inclusivity in mind, catering to both newcomers and s
 5. **Track Personal Discoveries:** Users want to keep a personal log of the sites they have discovered and documented, allowing them to track their contributions over time.
 
 ### User Stories
-1. **As a user:**
-1.1: I want to quickly grasp the essence of LiDARFind and understand how it caters to me. 
-1.2: I want to navigate the website effortlessly, ensuring a positive and enjoyable experience and find relevant information.
-1.3: I want the website to be accessible on any device and have a responsive design.
-2. **As a visitor without an account:**
-2.1: I want to understand the purpose of the website immediately upon arrival.
-2.2: I want to browse and explore documented archaeological discoveries made through LiDAR data analysis.
-2.3: I want to browse and search for documented archaeological discoveries based on various criteria.
-2.4: I want to be able to register for an account to contribute my own discoveries.
-3. **As a registered user:**
-3.1: I want to be able to log in to my account securely.
-3.2: I want to be able to submit my own archaeological discoveries to the database.
-3.3: I want to be able to edit or delete the discoveries I have submitted.
-3.4: I want to easily log out of my account when needed.
-4. **As an administrator of the site:**
-4.1: I want to manage the database of archaeological discoveries, including adding, editing, or deleting entries.
+1. **As a user:**<br>
+1.1: I want to quickly grasp the essence of LiDARFind and understand how it caters to me.<br>
+1.2: I want to navigate the website effortlessly, ensuring a positive and enjoyable experience and find relevant information.<br>
+1.3: I want the website to be accessible on any device and have a responsive design.<br>
+2. **As a visitor without an account:**<br>
+2.1: I want to understand the purpose of the website immediately upon arrival.<br>
+2.2: I want to browse and explore documented archaeological discoveries made through LiDAR data analysis.<br>
+2.3: I want to browse and search for documented archaeological discoveries based on various criteria.<br>
+2.4: I want to be able to register for an account to contribute my own discoveries.<br>
+3. **As a registered user:**<br>
+3.1: I want to be able to log in to my account securely.<br>
+3.2: I want to be able to submit my own archaeological discoveries to the database.<br>
+3.3: I want to be able to edit or delete the discoveries I have submitted.<br>
+3.4: I want to easily log out of my account when needed.<br>
+4. **As an administrator of the site:**<br>
+4.1: I want to manage the database of archaeological discoveries, including adding, editing, or deleting entries.<br>
 
 ## Scope
 ### Features:

@@ -228,15 +228,225 @@ These warnings do not direcly impact the core functionality of the website.
 
 # MANUAL TESTING
 
-### Feature Testing:
+## Feature Testing:
 
 For each feature the expected outcomes and actual outcomes are clearly defined for each feature, making it easy to assess whether the application meets the requirements. This process makes it easier to identify and address any issues or discrepancies that may arise and also serves as a reference point for other developers to understand the expected behaviour of a feature. The results are recorded in the following tables:
 
-### Browser Compatibility:
+<details>
+  <summary>Common Features</summary>
+
+  | Feature                | Expected Outcome                                                              | Testing Procedure                                                                 | Actual Outcome                                                                                   |
+  |------------------------|-------------------------------------------------------------------------------|----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+  | Favicon                | The favicon should be visible in the browser tab.                             | Checked the visibility of the favicon in various browsers.                        | The favicon appeared as expected, ensuring brand consistency and recognition in the browser tab. |
+  | Responsive Design      | The website should be accessible and usable on any device (mobile, tablet, desktop). | Tested the website on various devices and screen sizes.                          | The website was responsive and usable on all tested devices.                                      |
+  | Navigation             | Users should be able to navigate the website effortlessly.                    | Tested the navigation by clicking through all links and buttons.                  | Navigation was smooth and all links/buttons worked as expected.                                   |
+  | Brand Logo             | Clicking the brand logo should take the user back to the home page.           | Clicked on the brand logo from various pages.                                      | Clicking the brand logo redirected to the home page as expected.                                  |
+  | Social Media Links     | Social media links in the footer should open the respective platform in a new tab. | Clicked on the social media links in the footer.                                  | Social media links opened the respective platforms in a new tab as expected.                      |
+</details>
+
+<details>
+  <summary>Home Page Features</summary>
+
+| Feature                  | Expected                                          | Testing                                                              | Outcome                                                             |
+|--------------------------|---------------------------------------------------|----------------------------------------------------------------------|---------------------------------------------------------------------|
+| Hero Section             | Displays the title and tagline prominently.       | Verify the hero section's visibility and text content.               | Hero section is visible with correct title and tagline.             |
+| Registration and Login   | Buttons for registration and login are functional.| Click on "Register" and "Log In" buttons to ensure they work.        | Buttons navigate to registration and login pages respectively.      |
+| What is LiDAR Section    | Provides information about LiDAR technology.      | Read the content and check for correct information.                  | Information about LiDAR is correct and informative.                 |
+| About Section            | Describes the purpose and functionality of LiDARFind.| Read the content and verify its relevance.                           | About section provides clear and relevant information.              |
+| Getting Started Section  | Three cards for Register, Explore, and Record.    | Hover on each card and observe transition effect and verify the icons and text.                    | Each card displays correct icon and text, providing relevant info.  |
+| Tutorial Video           | Embeds a tutorial video for user guidance.        | Play the video to ensure it loads and plays correctly.               | Tutorial video loads and plays without issues.                      |
+| Interactive Map          | Displays the map with filtering options.          | Interact with the map, apply filters, and reset filters.             | Map displays correctly, filters work as expected.                   |
+| Filter Popup             | Opens and closes the filter popup correctly.      | Click on the filter button and close button to verify functionality. | Filter popup opens and closes as expected.                          |
+| Lazy Loading map      | map loads lazily to improve performance.        | Scroll through the page and observe map loading behavior.          | map loads as they come into the viewport, improving performance.  |
+</details>
+
+<details>
+  <summary>Resource Page Features</summary>
+
+| Feature                     | Expected                                                           | Testing                                                                                              | Outcome                                                                         |
+|-----------------------------|---------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| Resources Section           | Section displays a title and introductory text                     | Verify that the title "Resources" and introductory text are displayed                                | The title and introductory text are displayed correctly                        |
+| Resource Links              | Each resource card contains an image, title, description, and link | Check that each resource card displays the correct image, title, description, and link               | Each resource card displays the correct information                            |
+| Resource Link Navigation    | Links open in a new tab                                            | Click on each "Visit" button and ensure it opens the respective resource in a new tab                | Each resource link opens the correct resource in a new tab                     |                    |
+| Card Hover Effect           | Cards have a hover effect that slightly elevates the card          | Hover over each card and check for the elevation effect                                               | The card elevation effect occurs as expected                                   |
+</details>
+
+
+<details>
+  <summary>Log In Page Features</summary>
+
+
+| Feature            | Expected                                                          | Testing                                                                 | Outcome                                                                 |
+|--------------------|-------------------------------------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| Flash Messages     | Display error messages if login fails                             | Attempt to log in with incorrect credentials and observe error messages | Error messages are displayed correctly, informing users of login issues |
+| Log In Button      | Button should be visible and clickable                            | Check the visibility and functionality of the login button              | The login button is visible and functional, allowing users to attempt login |
+| Username Field     | Accepts alphanumeric characters and special characters with validation | Enter various inputs to test validation rules                            | The username field accepts valid inputs and shows validation errors for invalid ones |
+| Password Field     | Accepts alphanumeric characters and special characters with validation | Enter various inputs to test validation rules                            | The password field accepts valid inputs and shows validation errors for invalid ones |
+| Register Prompt    | Link should navigate to the registration page                     | Click the "Need to Register?" link and observe the navigation           | Clicking the link navigates to the registration page, facilitating new user registration |
+</details>
+
+<details>
+  <summary>Registration Page Features</summary>
+| Feature               | Expected                                                                 | Testing                                                             | Outcome                                                                 |
+|-----------------------|--------------------------------------------------------------------------|---------------------------------------------------------------------|-------------------------------------------------------------------------|
+| Flash Messages        | Display error messages if registration fails                             | Attempt to register with invalid inputs and observe error messages  | Error messages are displayed correctly, informing users of registration issues |
+| Register Button       | Button should be visible and clickable                                   | Check the visibility and functionality of the register button       | The register button is visible and functional, allowing users to attempt registration |
+| Username Field        | Accepts alphanumeric characters and shows validation for invalid inputs  | Enter various inputs to test validation rules                       | The username field accepts valid inputs and shows validation errors for invalid ones |
+| Password Field        | Accepts alphanumeric and special characters with validation              | Enter various inputs to test validation rules                       | The password field accepts valid inputs and shows validation errors for invalid ones |
+| Confirm Password Field| Matches the password field and shows validation if passwords do not match| Enter different passwords in the password and confirm password fields | Validation error is displayed if passwords do not match |
+| Skill Level Dropdown  | Accepts selection from predefined skill levels                           | Select various skill levels to ensure dropdown functionality        | The skill level dropdown accepts and shows the selected skill levels correctly |
+| Log In Prompt         | Link should navigate to the login page                                   | Click the "Already Registered? Log in here." link and observe the navigation | Clicking the link navigates to the login page, facilitating user login |
+</details>
+
+<details>
+  <summary>Profile Page Features</summary>
+
+| Feature              | Expected                                                               | Testing                                                             | Outcome                                                                 |
+|----------------------|------------------------------------------------------------------------|---------------------------------------------------------------------|-------------------------------------------------------------------------|
+| Flash Messages       | Display success messages for user actions                              | Perform actions that trigger flash messages and observe their display | Success messages are displayed correctly, informing users of the action results (succesful login, edit & delete record) |
+| Profile Details      | Display user profile details including username, member since, and total records | View the profile page and verify the display of user details        | User details are displayed correctly, showing accurate profile information |
+| Edit Record Button   | Button should be visible and clickable                                 | Check the visibility and functionality of the edit record button    | The edit record button is visible and functional, allowing users to edit their records |
+| Delete Record Button | Button should be visible and clickable                                 | Check the visibility and functionality of the delete record button  | The delete record button is visible and functional, allowing users to delete their records |
+| Delete Confirmation  | Display confirmation modal before deleting a record                    | Attempt to delete a record and observe the confirmation modal       | The confirmation modal is displayed correctly, asking users to confirm the deletion |
+| Accordion for Records| Expand and collapse individual records                                 | Click on each record's header to expand and collapse the details    | The accordion expands and collapses correctly, showing and hiding record details |
+| Create a Record Button | Button should be visible and clickable                               | Check the visibility and functionality of the create a record button | The create a record button is visible and functional, allowing users to create new records |
+</details>
+
+
+<details>
+  <summary>Record Page Features</summary>
+
+| Feature                | Expected                                                                                     | Testing                                                             | Outcome                                                                 |
+|------------------------|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------|-------------------------------------------------------------------------|
+| Flash Messages         | Display success messages for actions such as record create, edit & delete                                 | Perform actions that trigger flash messages and observe their display | Success messages are displayed correctly, informing users of the action results |
+| Map Display            | Display a map centred on a specific location with layers and markers                         | View the map and verify the correct display of layers and markers   | The map is displayed correctly with the specified layers and markers    |
+| Create Record Button   | Button should be visible and clickable                                                       | Check the visibility and functionality of the create record button  | The create record button is visible and functional, allowing users to create new records |
+| Filter Button          | Button should be visible and clickable                                                       | Check the visibility and functionality of the filter button         | The filter button is visible and functional, allowing users to apply filters on records |
+| Create Record Form     | Form should be visible and functional when create button is clicked                          | Click the create record button and verify the form display and functionality | The form is displayed correctly and functional, allowing users to enter and save new records |
+| Filter Form            | Form should be visible and functional when filter button is clicked                          | Click the filter button and verify the form display and functionality | The form is displayed correctly and functional, allowing users to apply filters |
+| Title Field            | Accepts a valid title input with validation                                                  | Enter various inputs to test validation rules                       | The title field accepts valid inputs and shows validation errors for invalid ones |
+| PRN Field              | Accepts a valid PRN input with validation                                                    | Enter various inputs to test validation rules                       | The PRN field accepts valid inputs and shows validation errors for invalid ones |
+| Site Type Dropdown     | Accepts selection from predefined site types                                                 | Select various site types to ensure dropdown functionality          | The site type dropdown accepts and shows the selected site types correctly |
+| Monument Type Dropdown | Accepts selection from predefined monument types                                             | Select various monument types to ensure dropdown functionality      | The monument type dropdown accepts and shows the selected monument types correctly |
+| Description Field      | Accepts a valid description input with validation                                            | Enter various inputs to test validation rules                       | The description field accepts valid inputs and shows validation errors for invalid ones |
+| Period Dropdown        | Accepts selection from predefined historical periods                                         | Select various periods to ensure dropdown functionality             | The period dropdown accepts and shows the selected periods correctly    |
+| Location Field         | Accepts a valid location input with validation when map is clicked                           | Click on the map to enter a location and verify the input validation | The location field accepts valid inputs from the map click and shows validation errors for invalid ones |
+| Reset Filters Button   | Resets all filter inputs to default values                                                   | Apply filters and click reset to verify functionality               | The reset filters button resets all filters to their default values and shows all records |
+| Delete Confirmation    | Display confirmation modal before deleting a record                                          | Attempt to delete a record and observe the confirmation modal       | The confirmation modal is displayed correctly, asking users to confirm the deletion |
+</details>
+
+
+
+<details>
+  <summary>Edit Record Page Features</summary>
+
+| Feature                | Expected                                                                                     | Testing                                                             | Outcome                                                                 |
+|------------------------|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------|-------------------------------------------------------------------------|
+| Flash Messages         | After editing a record user is returned to the referring page and a success flash message is displayed                                  | Edit a record from the profile and record page to check user is returned to same page and flash message is displayed |Users are returned to the referring page and a success message is displayed |
+| Map Display            | Display a map centred on the current record location with layers and markers                 | View the map and verify the correct display of layers and markers   | The map is displayed correctly with the specified layers and markers    |
+| Edit Record Form       | Form should be visible and functional                                                        | View the form and verify its functionality                          | The form is displayed correctly and functional, allowing users to edit the record |
+| Title Field            | Displays current title and accepts valid title input with validation                         | View the title field and enter various inputs to test validation rules | The title field displays the current title, accepts valid inputs, and shows validation errors for invalid ones |
+| PRN Field              | Displays current PRN and accepts valid PRN input with validation                             | View the PRN field and enter various inputs to test validation rules | The PRN field displays the current PRN, accepts valid inputs, and shows validation errors for invalid ones |
+| Site Type Dropdown     | Displays current site type and accepts selection from predefined site types                  | View the site type dropdown and select various site types           | The site type dropdown displays the current site type and shows the selected site types correctly |
+| Monument Type Dropdown | Displays current monument type and accepts selection from predefined monument types          | View the monument type dropdown and select various monument types   | The monument type dropdown displays the current monument type and shows the selected monument types correctly |
+| Description Field      | Displays current description and accepts valid description input with validation             | View the description field and enter various inputs to test validation rules | The description field displays the current description, accepts valid inputs, and shows validation errors for invalid ones |
+| Period Dropdown        | Displays current period and accepts selection from predefined historical periods             | View the period dropdown and select various periods                 | The period dropdown displays the current period and shows the selected periods correctly |
+| Location Field         | Displays current location and updates when map is clicked                                    | View the location field and click on the map to update the location | The location field displays the current location and updates correctly when the map is clicked |
+| Cancel Button          | Navigates back to the previous page without saving changes                                   | Click the cancel button and verify the navigation                   | The cancel button navigates back to the previous page without saving any changes |
+| Save Changes Button    | Saves the changes made to the record and displays success message                            | Click the save changes button and verify the functionality          | The save changes button saves the changes made to the record and displays a success message |
+</details>
+
+<details>
+  <summary>Log Out Page Features</summary>
+
+| Feature             | Expected                                                                 | Testing                                             | Outcome                                                                |
+|---------------------|--------------------------------------------------------------------------|-----------------------------------------------------|------------------------------------------------------------------------|
+| Logout Confirmation | Display a message confirming successful logout                           | Log out and observe the confirmation message        | Confirmation message is displayed correctly, informing users of successful logout |
+| Log In Button       | Button should be visible and clickable                                   | Check the visibility and functionality of the log in button | The log in button is visible and functional, allowing users to navigate to the login page |
+| Return to Home Button | Button should be visible and clickable                                 | Check the visibility and functionality of the return to home button | The return to home button is visible and functional, allowing users to navigate to the home page |
+</details>
+
+<details>
+  <summary>Admin Dashboard Features</summary>
+
+| Feature                | Expected                                                                                     | Testing                                                             | Outcome                                                                 |
+|------------------------|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------|-------------------------------------------------------------------------|
+| Flash Messages         | Display success messages for admin actions such as deleting users and editing and deleting records                                                  | Perform actions that trigger flash messages and observe their display | Success messages are displayed correctly, informing users of the action results |
+| Admin Dashboard Header | Display the admin dashboard header correctly                                                 | View the header and verify the display                              | The admin dashboard header is displayed correctly                       |
+| User Accordion         | Display a list of all users with collapsible details                                         | View the user list and expand/collapse user details                 | The user list is displayed correctly, with details expanding and collapsing as expected |
+| User Details           | Display user details including username, skill level, member since, and admin status         | View user details and verify accuracy                               | User details are displayed correctly and accurately                      |
+| Delete User Button     | Button should be visible and clickable                                                       | Check the visibility and functionality of the delete user button    | The delete user button is visible and functional, allowing admins to delete users |
+| Confirm Delete User Modal | Display confirmation modal before deleting a user                                         | Attempt to delete a user and observe the confirmation modal         | The confirmation modal is displayed correctly, asking admins to confirm the deletion |
+| User Records Accordion | Display a list of all records created by a user with collapsible details                     | View the records list and expand/collapse record details            | The records list is displayed correctly, with details expanding and collapsing as expected |
+| Record Details         | Display record details including title, site type, monument type, description, period, location, and created on | View record details and verify accuracy                             | Record details are displayed correctly and accurately                    |
+| Edit Record Button     | Button should be visible and clickable                                                       | Check the visibility and functionality of the edit record button    | The edit record button is visible and functional, allowing admins to edit records |
+| Delete Record Button   | Button should be visible and clickable                                                       | Check the visibility and functionality of the delete record button  | The delete record button is visible and functional, allowing admins to delete records |
+| Confirm Delete Record Modal | Display confirmation modal before deleting a record                                     | Attempt to delete a record and observe the confirmation modal       | The confirmation modal is displayed correctly, asking admins to confirm the deletion |
+</details>
+
+<details>
+  <summary>404 Error Page Features</summary>
+
+| Feature             | Expected                                                                | Testing                                                             | Outcome                                                                 |
+|---------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------|-------------------------------------------------------------------------|
+| Error Message       | Display a 404 error message                                             | Navigate to a non-existent page and observe the error message       | Error message "404 Error" is displayed correctly, indicating the page is not found |
+| Sorry Message       | Display a message informing the user that the page was not found         | View the message and verify the content                              | Message "Sorry.... We couldn't find the page you're looking for. It might have been moved or removed." is displayed correctly |
+| Home Page Link      | Link should navigate to the home page                                   | Click the "Click Here" link and observe the navigation              | Clicking the link navigates to the home page                            |
+| Register Link       | Link should navigate to the registration page                           | Click the "Need to Register?" link and observe the navigation       | Clicking the link navigates to the registration page                    |
+</details>
+
+
+<details>
+  <summary>403 Error Page Features</summary>
+
+| Feature             | Expected                                                                | Testing                                                             | Outcome                                                                 |
+|---------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------|-------------------------------------------------------------------------|
+| Error Message       | Display a 403 error message                                             | Attempt to access a restricted page and observe the error message   | Error message "403 Error" is displayed correctly, indicating the user does not have permission to view the page |
+| Sorry Message       | Display a message informing the user that they do not have permission    | View the message and verify the content                              | Message "Sorry.... You do not have permission to view this page." is displayed correctly |
+| Home Page Link      | Link should navigate to the home page                                   | Click the "Click Here" link and observe the navigation              | Clicking the link navigates to the home page                            |
+| Register Link       | Link should navigate to the registration page                           | Click the "Need to Register?" link and observe the navigation       | Clicking the link navigates to the registration page                    |
+</details>
+
+## Browser Compatibility:
 - Expected: Consistent appearance and functionality across major browsers.
 - Testing: Test site on Chrome, Mozilla, Safari, and Edge browsers.
 - Outcome: The site renders as expected with good responsiveness and compatibility across different browsers.
 
-### Responsiveness Test:
+## Responsiveness Test:
 Expected: Site should render appropriately on various devices with different screen sizes. Testing: Test responsiveness on iPhone 12, iPad 12, and desktop (1024px). Outcome: The site displays responsively across different devices, maintaining functionality and appearance as intended.
+
+
+## Testing User Stories
+
+#### 1. As a User
+
+| User Story | Test Scenario | Test Steps | Result |
+|------------|---------------|------------|--------|
+| 1.1: Grasp essence of LiDARFind | Verify homepage content | 1. Open homepage<br>2. Check for clear explanation<br>3. Ensure benefits are highlighted | PASS |
+| 1.2: Navigate website effortlessly | Verify navigation | 1. Open homepage<br>2. Navigate through pages<br>3. Ensure links and menus work | PASS |
+| 1.3: Accessible on any device | Verify responsiveness | 1. Open on various devices<br>2. Resize browser<br>3. Ensure layout adjusts | PASS |
+
+#### 2. As a Visitor Without an Account
+
+| User Story | Test Scenario | Test Steps | Result |
+|------------|---------------|------------|--------|
+| 2.1: Understand website purpose | Verify homepage introduction | 1. Open homepage<br>2. Check for introductory message | PASS |
+| 2.2: Browse discoveries | Verify browsing without login | 1. Navigate to map on home page page<br>2. Interact with map<br>3. Ensure entries viewable | PASS |
+| 2.3: Search discoveries | Verify search/filter functions | 1. Go to map on home page<br>2. Use search/filter<br>3. Check results | PASS |
+| 2.4: Register for an account | Verify registration | 1. Open Registration page<br>2. complete form<br>3. Ensure account creation | PASS |
+
+#### 3. As a Registered User
+
+| User Story | Test Scenario | Test Steps | Result |
+|------------|---------------|------------|--------|
+| 3.1: Secure login | Verify secure login | 1. Open Login page<br>2. Enter credentials<br>3. Ensure successful login | PASS |
+| 3.2: Submit discoveries | Verify submission | 1. Log in<br>2. Go to create record<br>3. Fill details and submit | PASS |
+| 3.3: Edit/delete discoveries | Verify editing/deleting | 1. Log in<br>2. Go to profile or record<br>3. Edit and save<br>4. Delete and confirm | PASS |
+| 3.4: Easy logout | Verify logout | 1. Log in<br>2. Click "Logout"<br>3. Ensure redirection | PASS |
+
+#### 4. As an Administrator of the Site
+
+| User Story | Test Scenario | Test Steps | Result |
+|------------|---------------|------------|--------|
+| 4.1: Manage discoveries | Verify management | 1. Log in as admin<br>2. Go to admin dashboard<br>3. Add/edit/delete discoveries and users ensuring they are removed from the database | PASS |
 
