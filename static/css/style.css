@@ -208,13 +208,13 @@ footer a {
 }
 
 .primary-btn {
-    background-color: #4CAF50 !important;
+    background-color: #2b60fd!important;
     color: white !important;
     border:none !important;
 }
 
 .primary-btn:hover {
-    background-color: #45a049 !important;
+    background-color: #0056b3 !important;
 }
 
 .secondary-btn {
