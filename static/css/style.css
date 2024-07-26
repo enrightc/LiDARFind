@@ -334,56 +334,92 @@ footer a {
 }
 
 /* Index.html------------------------------ */
+/* Hero Section */
 .hero {
-    background-image: url(../images/hero-image.webp);
+    position: relative;
+    background-image: url('../images/hero-image.webp');
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    color: white;
-    place-content: center;
-    text-align: center;
-    transition: all 0.3s ease;
-    max-width: 1180px;
-    margin: 32px auto;
-    border-radius: 20px;
     height: 500px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    text-align: center;
+    margin: 32px auto;
+    max-width: 1180px;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-.hero-header-container {
-    max-width: 740px;
-  }
-  
+/* Hero Content */
+.hero-content {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)); /* Gradient background */
+    color: white;
+    text-align: center;
+    padding: 30px 50px; 
+    border-radius: 15px; 
+    margin: 20px;
+    max-width: 80%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 1s ease-in-out;
+}
+
+/* Title Text */
 .title-text {
-    font-size: 56px;
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0 0 20px;
+    animation: fadeInUp 1s ease-in-out;
 }
 
-  /* Media Queries */
-@media (max-width: 570px) {
+/* Tagline */
+.tagline {
+    font-size: 24px;
+    margin: 0;
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        height: 400px;
+        border-radius: 0;
+    }
+
     .title-text {
         font-size: 36px;
     }
+
+    .tagline {
+        font-size: 18px;
+    }
 }
 
-.hero-text-container {
-    max-width: 780px;;
-    padding: 20px;
-    border-radius: 10px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 18px;
-}
-
-@media screen and (max-width: 835px) {
+@media (max-width: 480px) {
     .hero {
-        padding: 20px 0;
+        height: 300px;
+        border-radius: 0;
     }
 
-    .hero-text-container {
-        margin-left: auto;
-        margin-right: auto;
+    .title-text {
+        font-size: 28px;
+    }
+
+    .tagline {
+        font-size: 16px;
     }
 }
 
