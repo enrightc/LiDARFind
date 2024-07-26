@@ -473,3 +473,23 @@ Expected: Site should render appropriately on various devices with different scr
 | Delete User       | Check user session                                  | Ensure only logged-in users with admin privilege can delete user accounts | ```if not session.get("is_admin"): abort(403)``` |
 |                   | Validate user existence                             | Ensure the user exists before deleting         | ```user = mongo.db.users.find_one({"_id": ObjectId(user_id)}) if not user: abort(404)``` |
 
+## Defensive Coding
+LiDARFind employs Role-Based Access Control (RBAC) to manage user permissions effectively. There are two types of users on the website: standard users and admins. RBAC ensures that only admins have access to restricted pages and functionalities. During the registration process, a hidden boolean field `is_admin` is set to `false` by default, designating the new user as a standard user. This field can be manually updated to `true` to grant administrative privileges to the user.
+
+To confirm that each user type had the appropriate level of access, various scenarios were tested for both standard users and admins. The following table documents the test cases and results:
+
+
+| Test Case | Objective | Process | Outcome |
+|------------|---------------|------------|--------|
+| Administrator Access     | Confirm that administrators have unrestricted access to all sections of the site.    | 1. Log in as an Administrator.<br>2. Navigate through all sections of the website, including the admin dashboard.<br>3. Verify the ability to access and perform administrative tasks such as editing/deleting records of any user and deleting users.   | Administrators had full access to all sections and functionalities, performing administrative tasks without any restrictions. |
+| Standard User Access     | Ensure that standard users are limited to accessing only their own profile and are restricted from administrative areas. | 1. Log in as a Standard User.<br>2. Access the user’s profile.<br>3. Attempt to navigate to the admin dashboard.                                                                                                             | Standard users were correctly restricted to their own profiles and were denied access to the admin dashboard.        |
+| URL Manipulation Checks  | Detect unauthorised access attempts through direct URL manipulation.                 | 1. Log in as one user type and note accessible URLs.<br>2. Log out and switch to a different user role.<br>3. Attempt to access the noted URLs directly by typing them into the browser.                                    | Unauthorised access attempts were effectively blocked, ensuring that users could not bypass role restrictions through URL manipulation. |
+| Admin Role Protection    | Ensure that the 'Administrator' role cannot be selected or assigned during the user registration process. | 1. Navigate to the registration page.<br>2. Verify that the 'Administrator' role is not available for selection.<br>3. Attempt to manually set the role to 'Administrator' using form manipulation techniques. | The 'Administrator' role was not available for assignment during registration, ensuring that only designated users could become admins. |
+
+
+### Conclusion
+
+These tests confirm that our RBAC implementation is effective in restricting access based on user roles, thereby maintaining the security and integrity of the website. Each role functions as intended, with administrators having full access and standard users being appropriately limited.
+
+
+
