@@ -306,110 +306,44 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
 
 # FEATURES
 
-# BUGS
-## Fixed Bugs
 
-### Conflict Between Materialize and Leaflet Layer Controls
-
-**Issue:** When integrating the Materialize CSS framework and Leaflet for interactive maps into the application, radio buttons for toggling base layers in the Leaflet layer control were not visible. This made it impossible for users to switch between different base map layers.
-
-**Solution:** The root cause was identified as a CSS conflict between Materialize and Leaflet frameworks, where Materialize's default styles were interfering with Leaflet controls. Using Dev Inspector Tools, the class selector for the layer controls was identified. Custom CSS was then implemented to properly display radio buttons. Materialize CSS sets the opacity of radio buttons to "0", so this was changed to "1" to ensure the Leaflet layer controls displayed correctly.
-
-![Custom CSS to display layer controls](readme-images/code-snippets/custom-leaflet-css.png)
-
-**Outcome:** After applying these CSS rules, the radio buttons for base layers and checkboxes for overlay layers in the Leaflet layer control were displayed correctly and were fully functional. This solution ensured that users could interact with the map layers as intended, providing a consistent and intuitive user experience.
-
-### MongoDB '_id' Field Cannot be Directly Used in JSON
-
-**Issue:** When retrieving data from a MongoDB database and attempting to return it as a JSON response, an error occurred due to the presence of the _id field. The _id field in MongoDB is an ObjectId type, which cannot be directly represented in JSON.
-
-**Solution:** To resolve the issue, the '_id' field needs to be either excluded from the retrieved data or converted to a string representation before returning it as a JSON response.
-
-**Outcome:** By excluding the _id field the application can successfully return the retrieved data as a JSON response without encountering errors related to the ObjectId type used by MongoDB for the _id field.
-
-### Data Fetching Issue with MongoDB Cursor
-
-**Issue** When fetching data from MongoDB and using it multiple times within the same template, the data did not render correctly. This issue arose because the data was retrieved as a cursor, which can only be iterated over once. After the first use, the cursor was exhausted, making the data unavailable for subsequent uses within the template. This problem particularly impacted the rendering of dropdown options on the record page, where the same data was needed for both the "Create Record" form and the search filters. As a result, the data was only available for the first use, and subsequent attempts to access it resulted in no data being rendered.
-
-**Solution** Convert the cursor to a list immediately after fetching the data. This ensures that the data is fully retrieved and can be used multiple times within the template.
-
-![Converting Cursor to List](readme-images/code-snippets/converting-cursor-list.png)
-
-**Outcome** The data can now be used in more than one dropdown, resolving the issue and ensuring consistent data rendering across the template.
-
-### Prefilling Input Texts
-
-**Issue** When dynamically entering adding coordinate data to the record form the placeholder labels were overlapping the prefilled text. 
-
-**Solution** Call the function M.updateTextFields(); to reinitialize all the Materialize the labels on the page (source: Materailize).
-
-![Converting Cursor to List](readme-images/code-snippets/updateTextFields-code-snippet.png)
-
-**Outcome** When the input field is auto-populated with the coordinates the placeholder text moves in to the active state and no longer overlaps the input. 
-
-### Navbar Pushed Page Content Down on Smaller Screens
-
-**Issue** When the navbar is expanded on smaller screens, it pushes the page content down instead of overlaying it. This causes the layout to shift unexpectedly, affecting the user experience.
-
-**Solution** To resolve the issue, the CSS for the navbar was updated to use position: absolute, ensuring the navbar overlays the page content instead of pushing it down. Additionally, padding was added to the body to prevent content from being hidden behind the navbar. The following CSS was added:
-
-![CSS to prevent navbar pushing page content down](readme-images/code-snippets/navbar-css.png)
-
-**Outcome**  By applying the position: absolute property to the navbar and adding padding-top to the body, the navbar now overlays the page content when expanded on smaller screens. This prevents the content from being pushed down and ensures it is not hidden behind the navbar, maintaining a consistent layout and improving the overall user experience.
-
-### Referrer Parameter Not Carried Over in Form Submission
-
-**Issue:** When editing a record, the referrer parameter (`ref`) was not being carried over during the form submission, causing the application to redirect to the wrong page after saving or canceling the edit. The `ref` parameter, included in the query string, was not available in the POST request.
-
-**Solution:** To resolve this issue, the `ref` parameter needs to be included as a hidden input field within the form. This ensures that the `ref` value is part of the form data sent during the POST request. The `edit_record` route was updated to retrieve the `ref` value from the form data instead of the query string.
-
-**Outcome:** By adding the `ref` parameter as a hidden input field in the form and retrieving it from the form data in the `edit_record` route, the application can correctly determine the referrer and redirect users to the appropriate page (profile or add_record) after editing a record. This ensures that users are redirected back to the page they originated from, improving the user experience.
-
-### Location Field Editable After Validation Causes Map Rendering Issues
-
-**Issue:** When creating a new record, the location field is required as it is essential for creating a marker. However, after the form is validated, users were able to edit the location field, including removing it completely, and then submit the form. This causes the record to lack a marker due to missing location information, and subsequent records, even with valid locations, did not display on the map. Deleting the record with the missing location information from the database restored the map rendering for subsequent records.
-
-**Solution:** To resolve the issue, JavaScript was used to make the location field 'read-only' after the location information had been entered. This prevents users from removing the location after form validation.
-
-**Outcome:** By making the location field read-only after entry, users can no longer remove essential location information post-validation, ensuring that all records display their markers correctly on the map and maintaining the integrity of the map rendering process.
 
 
 # TECHNOLOGY USED
 ### Languages
-- HTML
-- CSS
-- JavaScript
-- Python
+- HTML: For structuring the content on the web pages.
+- CSS: For styling and layout of the web pages.
+- JavaScript: For interactive elements and client-side logic.
+- Python: The main programming language used for server-side logic.
 
 ### Frameworks
-- Flask
-- Materialize (initially used, later switched to Bootstrap)
-- Bootstrap
+- Flask: A micro web framework for Python used to build the web application.
+- Bootstrap: A responsive, mobile-first CSS framework used for faster and easier web development.
+
+Note: The project initially used Materialize CSS for the frontend framework. However, due to several issues encountered with Materialize CSS, including conflicts with other libraries and inadequate support for some required features, the decision was made to switch to Bootstrap. Bootstrap provided better compatibility for the LiDARFind website.
 
 ### Libraries
-- jQuery
-- Font Awesome
-- Google Fonts
-- Jinja
-- JS Hint
+- Leaflet: An open-source JavaScript library used for mobile-friendly interactive maps.
+- jQuery: A fast, small, and feature-rich JavaScript library that simplifies HTML document traversal and manipulation, event handling, and animation.
+- Font Awesome: : A popular icon set and toolkit used to add scalable vector icons that can be customized with CSS.
+- Google Fonts: : A library of free licensed fonts that can be used on websites.
+- Jinja: A templating engine for Python, used to dynamically generate HTML pages.
 
 ### Programs
-- Figma
-- Chrome Dev Tools
-- Gitpod
-- Heroku
+- Figma: A web-based design tool used for UI/UX design and prototyping.
+- Chrome Dev Tools: A set of web developer tools built directly into the Google Chrome browser, used for inspecting and debugging web pages.
+- Gitpod: An online Integrated Development Environment (IDE) that provides a ready-to-code environment.
+- Heroku: : A cloud platform that allows developers to build, run, and operate applications entirely in the cloud.
 
 ### Tools/Services
-- Elevanlabs
-- Squoosh
-- Responsinator
-- W3C
-- GitHub Pages
-- Wistia
-
+- Elevanlabs: Tools and services for text-to-speech and voice synthesis.
+- Squoosh: An image compression web app that reduces image file sizes while maintaining quality.
+- Responsinator: A tool for testing how responsive web pages look on various devices.
+- GitHub Pages: A static site hosting service that takes HTML, CSS, and JavaScript files straight from a GitHub repository.
+- Wistia: A video hosting platform specifically designed for businesses.
 
 ### Databases
-- MongoDB
+- MongoDB: : A NoSQL database used for storing application data.
 
 # TESTING
 Please see [TESTING.md](TESTING.md).
