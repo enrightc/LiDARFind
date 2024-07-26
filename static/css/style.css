@@ -22,6 +22,10 @@ body {
     background-color: #e1eaec;
 }
 
+a {
+    color: black; 
+}
+
 .text-wrap-balance {
     text-wrap: balance;
 }
@@ -76,6 +80,10 @@ body {
 
 footer {
     background-color: #263238 !important;
+    color: white;
+}
+
+footer a {
     color: white;
 }
 
