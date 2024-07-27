@@ -669,7 +669,12 @@ def delete_user(user_id):
 
     # Delete the user from the database
     mongo.db.users.delete_one({"_id": ObjectId(user_id)})
-    flash("User Deleted", "Success")
+
+    # Delete all records created by this user
+    mongo.db.records.delete_many({"created_by": user["username"]})
+
+
+    flash("User and all associated records have been deleted", "Success")
 
     # Redirect to the admin dashboard
     return redirect(url_for('admin_dashboard'))
