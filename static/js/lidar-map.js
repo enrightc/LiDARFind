@@ -2,10 +2,22 @@
 /* global L, bootstrap, isAdmin */
 /* exported openDeleteModal */
 
-// Initialise the map with the specified initial view and zoom level (centered over Wales)
-var initialView = [52.4814, -3.9797];
-var initialZoom = 8;
-var map = L.map('mapid').setView(initialView, initialZoom);
+// Create the LatLngBounds object for Wales
+// Source: https://stackoverflow.com/questions/22155017/can-i-prevent-panning-leaflet-map-out-of-the-worlds-edge
+var southWest = L.latLng(51.3, -5.3), // Southwest corner of Wales
+    northEast = L.latLng(53.4, -2.8), // Northeast corner of Wales
+    walesBounds = L.latLngBounds(southWest, northEast);
+
+// Initialize the map with the Wales bounds
+var map = L.map('mapid', {
+    maxBounds: walesBounds,
+    maxBoundsViscosity: 1.0, // Makes the bounds completely solid
+    maxZoom: 18,
+    minZoom: 7
+});
+
+// Set the initial view to the center of Wales
+map.setView([52.4814, -3.9797], 8);
 
 // Base Map Layer: OpenStreetMap
 var openStreetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -14,11 +26,9 @@ var openStreetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png'
 }).addTo(map);
 
 // Bing Maps Satellite Layer
-/*
 var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8oCT-n-CeUQLRutNJJXLhpY', {
-    type: 'Aerial'  // Use 'AerialWithLabels' if you want satellite images with labels
+    type: 'Aerial'  
 });
-*/
 
 // Adding the WMS layer for LiDAR DSM (hillshade) data. provided by Welsh Gov on an Open Government Licence.
 var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
@@ -26,7 +36,7 @@ var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
 });
 
 /**
- * Custom icons for fir different types of map markers
+ * Custom icons for for different types of map markers
  * Adapted from: https://leafletjs.com/examples/custom-icons/
  */
 
@@ -218,9 +228,7 @@ L.control.resetView({
 // Base Maps
 var baseMaps = {
     "OpenStreetMap": openStreetMap,
-    /* uncomment if using 
     "Bing Satellite": bingSatellite
-    */
 };
 
 // Overlay Maps

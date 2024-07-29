@@ -6,8 +6,21 @@ document.addEventListener("DOMContentLoaded", function() {
     const recordLocation = document.getElementById('location').value;
     const [lat, lng] = recordLocation.split(',').map(parseFloat);
 
+    // Define the bounds for Wales
+    // Source: https://stackoverflow.com/questions/22155017/can-i-prevent-panning-leaflet-map-out-of-the-worlds-edge
+    const walesBounds = L.latLngBounds(
+        L.latLng(51.3776, -5.5590), // Southwest corner of Wales
+        L.latLng(53.4308, -2.6800)  // Northeast corner of Wales
+    );
+
     // Initialize the map centered on the record location
-    var map = L.map('edit-record-map').setView([lat, lng], 14);
+    var map = L.map('edit-record-map', {
+        center: [lat, lng],
+        zoom: 14,
+        minZoom: 8,
+        maxBounds: walesBounds, // Set the map bounds to Wales
+        maxBoundsViscosity: 1.0 // Prevent panning outside the bounds
+    });
 
     // Base Map Layer: OpenStreetMap
     var openStreetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -16,11 +29,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }).addTo(map);
 
     //Bing Maps Satellite Layer
-    /*
     var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8oCT-n-CeUQLRutNJJXLhpY', {
         type: 'Aerial'  // Use 'AerialWithLabels' if you want satellite images with labels
     });
-    */
 
     // Adding the WMS layer for LiDAR DSM (hillshade) data
     var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
@@ -52,8 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Layer control to toggle between base maps and overlays
     var baseMaps = {
         "OpenStreetMap": openStreetMap,
-        // Uncomment the following line if using Bing Satellite
-        // "Bing Satellite": bingSatellite
+        "Bing Satellite": bingSatellite
     };
 
     var overlayMaps = {
