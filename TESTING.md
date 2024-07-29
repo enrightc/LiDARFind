@@ -258,8 +258,8 @@ However, given that this website is map-oriented and heavily relies on displayin
 Additionally, I tested other websites that rely heavily on maps, including Google Maps and Rightmove, and observed that they also have low scores for performance. This observation suggests that the inclusion of interactive maps inherently impacts performance metrics, yet these websites still provide significant value and usability despite the lower scores
 
 ### Other Notable Observations From Lighthouse Analysis
-During the Lighthouse analysis of the Home Page, several warnings were flagged in the console, indicating "Third party cookie is blocked in Chrome as part of Privacy Sandbox." These warnings appear to be related to external libraries rather than being part of my own codebase. When running Lighthouse in incognito mode, these warnings were not flagged, suggesting that these third-party cookies are blocked due to Chrome's enhanced privacy settings in regular browsing mode. 
-
+During the Lighthouse analysis of the Home Page, several warnings were flagged in the console, indicating "Third party cookie is blocked in Chrome as part of Privacy Sandbox." These warnings appear to be related to external libraries associated with wistia rather than being part of my own codebase. When running Lighthouse in incognito mode, these warnings were not flagged, suggesting that these third-party cookies are blocked due to Chrome's enhanced privacy settings in regular browsing mode. 
+These warnings were not logged in the console when viewing the site using safari browser. 
 These warnings do not direcly impact the core functionality of the website.
 
 # MANUAL TESTING
@@ -446,6 +446,16 @@ For each feature the expected outcomes and actual outcomes are clearly defined f
 | Register Link       | Link should navigate to the registration page                           | Click the "Need to Register?" link and observe the navigation       | Clicking the link navigates to the registration page                    |
 </details>
 
+<details>
+  <summary>Back Button Navigation</summary>
+| Feature                       | Expected                                              | Testing                                                                | Outcome                                                                        |
+|-------------------------------|-------------------------------------------------------|------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| Prevent Back to Login         | Prevent user from navigating back to the login page once logged in | Log in and use the browser's back button to attempt to return to the login page | User is redirected to the profile page, preventing access to the login page    |
+| Prevent Back to Cached Profile| Prevent access to cached profile page after logging out | Log out and use the browser's back button to attempt to return to the profile page | User is redirected to the login page, preventing access to the cached profile page |
+
+
+</details>
+
 ## Browser Compatibility:
 - Expected: Consistent appearance and functionality across major browsers.
 - Testing: Test site on Chrome, Mozilla, Safari, and Edge browsers.
@@ -511,6 +521,7 @@ Expected: Site should render appropriately on various devices with different scr
 |                   | Validate record ownership or admin privileges       | Ensure only the record owner or an admin can delete the record | ```if record["created_by"] != session["user"] and not session.get("is_admin", False): abort(403)``` |
 | Delete User       | Check user session                                  | Ensure only logged-in users with admin privilege can delete user accounts | ```if not session.get("is_admin"): abort(403)``` |
 |                   | Validate user existence                             | Ensure the user exists before deleting         | ```user = mongo.db.users.find_one({"_id": ObjectId(user_id)}) if not user: abort(404)``` |
+| General       | Prevent back button navigation to login and cached profile                                 | Ensure correct session handling and page navigation | ```def add_header(response): response.cache_control.no_store = True return response``` |
 
 ## Role-Based Access Control
 LiDARFind employs Role-Based Access Control (RBAC) to manage user permissions effectively. There are two types of users on the website: standard users and admins. RBAC ensures that only admins have access to restricted pages and functionalities. During the registration process, a hidden boolean field `is_admin` is set to `false` by default, designating the new user as a standard user. This field can be manually updated to `true` to grant administrative privileges to the user.
@@ -648,3 +659,23 @@ User feedback was sought to help enhance the website and tailor it to meet user 
 **Solution:** To resolve the issue, JavaScript was used to make the location field 'read-only' after the location information had been entered. This prevents users from removing the location after form validation.
 
 **Outcome:** By making the location field read-only after entry, users can no longer remove essential location information post-validation, ensuring that all records display their markers correctly on the map and maintaining the integrity of the map rendering process.
+
+### Browser Back Button Cache Issue
+
+**Issue:** Issue: If a user logs in and then uses the back button of the browser, they are returned to the login page. If they try to log in as someone else at this point, it will fail, and they will continue to the profile page of the first login. Additionally, if a user logs out and then uses the back button on the browser, they are taken to a cached version of their profile. It may appear as if the user is logged in, but functionality such as edit and delete is not available.
+
+**Solution:** To prevent users from navigating back to the login page once logged in using the URL, the following line of code was added:
+
+`if "user" in session:
+    return redirect(url_for("profile", username=session["user"]))`
+
+To prevent users from using the back button to return to the login page or a cached profile after logging out, the following code was added:
+
+`def add_header(response):
+    response.cache_control.no_store = True
+    return response
+`
+
+This function ensures that the browser does not store cache for the logged-out state, preventing the display of a cached profile page.
+
+**Outcome:** After implementing these changes, users are redirected correctly based on their session status. If a user attempts to navigate back to the login page after logging in, they are redirected to their profile page. Additionally, after logging out, users cannot use the back button to access a cached version of their profile, ensuring that the application behaves securely and as expected.

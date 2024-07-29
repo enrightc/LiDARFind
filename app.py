@@ -14,6 +14,7 @@ if os.path.exists("env.py"):
 
 app = Flask(__name__)
 
+
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
@@ -21,6 +22,18 @@ app.config["BING_API_KEY"] = os.environ.get("BING_API_KEY")
 
 
 mongo = PyMongo(app)
+
+
+@app.after_request
+def add_header(response):
+    """
+    Prevent users from using the back button to return to the login page
+    or a cached profile after logging out.
+    source: https://stackoverflow.com/questions/20652784/flask-back
+        -button-returns-to-session-even-after-logout/48358008
+    """
+    response.cache_control.no_store = True
+    return response
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -104,7 +117,9 @@ def login():
                 redirect to the login page.
     3. If the request method is GET Render the login template.
     """
-
+    if "user" in session:
+        return redirect(url_for("profile", username=session["user"]))
+        
     # Check that the user is not already logged in
     if "user" not in session:
 
