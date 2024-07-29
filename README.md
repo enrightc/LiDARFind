@@ -323,15 +323,35 @@ To illustrate the structure and relationships of the collections in the MongoDB 
 [Return to Top](#contents)
 
 ## Skeleton Plane
-Prior to commencing the website coding process, comprehensive wireframes were produced for each page using Figma - a design tool used for creating user interfaces, prototypes, and wireframes. These wireframes served as the initial blueprints, providing a visual roadmap for the website's layout and structure on both desktop and mobile devices.
+Prior to commencing the website coding process,  wireframes were produced for each page using Figma - a design tool used for creating user interfaces, prototypes, and wireframes. These wireframes served as the initial blueprints, providing a visual roadmap for the website's layout and structure.
 
-It's important to note that while the final web pages evolved from these early plans, some deviations were intentionally made to enhance the user experience and align better with the project's goals. The website design relied heavily on using Leaflet frames, and much of the development involved adapting and optimizing these frames to meet the site's objectives. This required significant modifications and iterations as the project progressed.
+It's important to note that while the final web pages evolved from these early plans, some deviations were intentionally made to enhance the user experience and align better with the project's goals. The website design relied heavily on using Leaflet frames, and much of the development involved adapting and optimising these frames to meet the site's objectives. This required significant modifications and iterations as the project progressed.
 
 This iterative process allowed for flexibility in adapting to evolving project requirements, ultimately contributing to the development of a more refined and user-friendly website.
 
 <details>
-  <summary>Home (Desktop)</summary>
-  <img src="" alt="Introduction (Desktop)">
+  <summary>Home</summary>
+  <img src="readme-images/wireframes/home-page-wireframe.png" alt="Home page">
+</details>
+
+<details>
+  <summary>Record page</summary>
+  <img src="readme-images/wireframes/record-page.png" alt="Record page">
+</details>
+
+<details>
+  <summary>Profile page</summary>
+  <img src="readme-images/wireframes/profile-page.png" alt="Profile page">
+</details>
+
+<details>
+  <summary>Profile page</summary>
+  <img src="readme-images/wireframes/login.png" alt="Log in page">
+</details>
+
+<details>
+  <summary>Profile page</summary>
+  <img src="readme-images/wireframes/register.png" alt="Register page">
 </details>
 
 [Return to Top](#contents)
