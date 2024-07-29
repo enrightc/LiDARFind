@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-/* global L, bootstrap, isAdmin */
+/* global L, bootstrap */
 /* exported openDeleteModal */
 
 // Create the LatLngBounds object for Wales

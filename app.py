@@ -119,7 +119,7 @@ def login():
     """
     if "user" in session:
         return redirect(url_for("profile", username=session["user"]))
-        
+
     # Check that the user is not already logged in
     if "user" not in session:
 
@@ -689,7 +689,6 @@ def delete_user(user_id):
 
     # Delete all records created by this user
     mongo.db.records.delete_many({"created_by": user["username"]})
-
 
     flash("User and all associated records have been deleted", "Success")
 

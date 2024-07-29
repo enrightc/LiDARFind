@@ -61,7 +61,6 @@ a {
     border: 0;
   }
 
-
 /* Flash messages */
 .flashes {
     display: flex;
@@ -104,7 +103,6 @@ footer a {
     display: grid;
     grid-template-rows: auto auto 1fr auto;
 }
-
 
 /* nav bar------------------------------ */
 .bg-body-tertiary {
@@ -168,7 +166,6 @@ footer a {
     }
 }
 
-
 #homePageMap { 
     height: 500px;
     width: 100%;
@@ -180,7 +177,6 @@ footer a {
         height: 50svh; 
     }
 }
-
 
 /* Buttons------------------------------ */
 .btn {
@@ -717,7 +713,6 @@ opacity: 1;
         width: 100%;
     }
 
-
 /* Leaflet popup containers*/
 .leaflet-popup-content-wrapper {
     background-color: #3f565f !important; 
@@ -790,7 +785,6 @@ opacity: 1;
 }
 
 /* Logout.html----------------------- */
-
 .successful-logout {
     background-color: #d1e7dd;
 }
@@ -839,4 +833,3 @@ opacity: 1;
         width: 100%;
     }
 }
-
