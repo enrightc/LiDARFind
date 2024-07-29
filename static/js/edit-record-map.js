@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var welshMap = L.tileLayer('https://openstreetmap.cymru/osm_tiles/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href=”https://www.openstreetmap.cymru” target=”_blank”>openstreetmap.cymru</a>. Data ar y map &#x24BD Cyfranwyr <a href=”https://openstreetmap.org” target=”_blank”>osm.org</a>'
-    }).addTo(map);
+    });
 
     //Bing Maps Satellite Layer
     var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8oCT-n-CeUQLRutNJJXLhpY', {
