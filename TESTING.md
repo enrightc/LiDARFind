@@ -501,6 +501,8 @@ Expected: Site should render appropriately on various devices with different scr
 
 ## Defensive Coding
 
+The following safeguards are used to ensure the reliability and security of the website. These measures handle unexpected inputs or actions, prevent potential vulnerabilities, and ensure the website behaves correctly even under adverse conditions.
+
 | Route             | Defensive Coding Practice                           | Purpose                                        | Example                                                                                                            |
 |-------------------|-----------------------------------------------------|------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | Register          | Check if username already exists                    | Prevent duplicate usernames in the database    | ```python existing_user = mongo.db.users.find_one({"username": request.form.get("username").lower()}) if existing_user: flash("Username already exists") return redirect(url_for("register"))``` |
