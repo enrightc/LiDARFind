@@ -1,6 +1,42 @@
 # LiDARFIND TESTING
 
+## Overview
+**LiDARFind** is a web application designed for enthusiasts and professionals to explore and discover archaeological sites in Wales using LiDAR data. The platform allows users to view, interact with, and edit LiDAR data on an interactive map interface.  The live website can be found here [LiDARFind: The Welsh LiDAR Portal](https://lidarfind-a137ffb9e451.herokuapp.com/)
+
+![LiDARFind Am I Responsive Image](readme-images/amiresponsive.png)
+
  Back to [README.md](ReadME.md).
+
+ # Contents
+
+1. [LiDARFind Testing](#lidarfind-testing)
+2. [Overview](#overview)
+3. [Automated Testing](#automated-testing)
+    - [HTML](#html)
+    - [CSS Validation](#css-validation)
+    - [JSHint](#jshint)
+    - [Lighthouse Analysis](#lighthouse-analysis)
+4. [Manual Testing](#manual-testing)
+    - [Feature Testing](#feature-testing)
+    - [Browser Compatibility](#browser-compatibility)
+    - [Responsiveness Test](#responsiveness-test)
+5. [Testing User Stories](#testing-user-stories)
+    - [As a User](#1-as-a-user)
+    - [As a Visitor Without an Account](#2-as-a-visitor-without-an-account)
+    - [As a Registered User](#3-as-a-registered-user)
+    - [As an Administrator of the Site](#4-as-an-administrator-of-the-site)
+6. [Defensive Coding](#defensive-coding)
+7. [Role-Based Access Control](#role-based-access-control)
+8. [User Feedback](#user-feedback)
+9. [Bugs](#bugs)
+    - [Fixed Bugs](#fixed-bugs)
+        - [Conflict Between Materialize and Leaflet Layer Controls](#conflict-between-materialize-and-leaflet-layer-controls)
+        - [MongoDB '_id' Field Cannot be Directly Used in JSON](#mongodb-_id-field-cannot-be-directly-used-in-json)
+        - [Data Fetching Issue with MongoDB Cursor](#data-fetching-issue-with-mongodb-cursor)
+        - [Prefilling Input Texts](#prefilling-input-texts)
+        - [Navbar Pushed Page Content Down on Smaller Screens](#navbar-pushed-page-content-down-on-smaller-screens)
+        - [Referrer Parameter Not Carried Over in Form Submission](#referrer-parameter-not-carried-over-in-form-submission)
+        - [Location Field Editable After Validation Causes Map Rendering Issues](#location-field-editable-after-validation-causes-map-rendering-issues)
 
  LiDARFind underwent comprehensive testing to ensure functionality, user engagement, and compatibility across various platforms. Both manual and automated testing methods were employed to scrutinise every aspect of the website and has been documented here.
 
@@ -258,6 +294,7 @@ For each feature the expected outcomes and actual outcomes are clearly defined f
 | Interactive Map          | Displays the map with filtering options.          | Interact with the map, apply filters, and reset filters.             | Map displays correctly, filters work as expected.                   |
 | Filter Popup             | Opens and closes the filter popup correctly.      | Click on the filter button and close button to verify functionality. | Filter popup opens and closes as expected.                          |
 | Lazy Loading map      | map loads lazily to improve performance.        | Scroll through the page and observe map loading behavior.          | map loads as they come into the viewport, improving performance.  |
+| Load indicator    | Display an unobtrusive loading indicator when tiles are loading                                          | Trigger map tile loading by navigating to different map areas or layers and observe the indicator      | The loading indicator is displayed correctly during tile loading and disappears once loading is complete |
 </details>
 
 <details>
@@ -333,6 +370,7 @@ For each feature the expected outcomes and actual outcomes are clearly defined f
 | Location Field         | Accepts a valid location input with validation when map is clicked                           | Click on the map to enter a location and verify the input validation | The location field accepts valid inputs from the map click and shows validation errors for invalid ones |
 | Reset Filters Button   | Resets all filter inputs to default values                                                   | Apply filters and click reset to verify functionality               | The reset filters button resets all filters to their default values and shows all records |
 | Delete Confirmation    | Display confirmation modal before deleting a record                                          | Attempt to delete a record and observe the confirmation modal       | The confirmation modal is displayed correctly, asking users to confirm the deletion |
+| Load indicator    | Display an unobtrusive loading indicator when tiles are loading                                          | Trigger map tile loading by navigating to different map areas or layers and observe the indicator      | The loading indicator is displayed correctly during tile loading and disappears once loading is complete |
 </details>
 
 
@@ -354,6 +392,7 @@ For each feature the expected outcomes and actual outcomes are clearly defined f
 | Location Field         | Displays current location and updates when map is clicked                                    | View the location field and click on the map to update the location | The location field displays the current location and updates correctly when the map is clicked |
 | Cancel Button          | Navigates back to the previous page without saving changes                                   | Click the cancel button and verify the navigation                   | The cancel button navigates back to the previous page without saving any changes |
 | Save Changes Button    | Saves the changes made to the record and displays success message                            | Click the save changes button and verify the functionality          | The save changes button saves the changes made to the record and displays a success message |
+| Load indicator    | Display an unobtrusive loading indicator when tiles are loading                                          | Trigger map tile loading by navigating to different map areas or layers and observe the indicator      | The loading indicator is displayed correctly during tile loading and disappears once loading is complete |
 </details>
 
 <details>

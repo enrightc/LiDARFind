@@ -13,7 +13,10 @@ const initializeMap = () => {
         maxBounds: walesBounds,
         maxBoundsViscosity: 1.0, // Makes the bounds completely solid
         maxZoom: 18,
-        minZoom: 7
+        minZoom: 7,
+        // Tell the map to use a loading control
+        // leaflet loader source: https://github.com/ebrelsford/Leaflet.loading?tab=readme-ov-file
+        loadingControl: true
     });
 
     // Set the initial view to the center of Wales

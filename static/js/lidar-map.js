@@ -13,8 +13,13 @@ var map = L.map('mapid', {
     maxBounds: walesBounds,
     maxBoundsViscosity: 1.0, // Makes the bounds completely solid
     maxZoom: 18,
-    minZoom: 7
+    minZoom: 7,
+    // Tell the map to use a loading control
+    // leaflet loader source: https://github.com/ebrelsford/Leaflet.loading?tab=readme-ov-file
+    loadingControl: true
 });
+
+
 
 // Set the initial view to the center of Wales
 map.setView([52.4814, -3.9797], 8);
@@ -25,6 +30,12 @@ var openStreetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png'
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+// Welsh Langage map
+var welshMap = L.tileLayer('https://openstreetmap.cymru/osm_tiles/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href=”https://www.openstreetmap.cymru” target=”_blank”>openstreetmap.cymru</a>. Data ar y map &#x24BD Cyfranwyr <a href=”https://openstreetmap.org” target=”_blank”>osm.org</a>'
+}).addTo(map);
+
 // Bing Maps Satellite Layer
 var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8oCT-n-CeUQLRutNJJXLhpY', {
     type: 'Aerial'  
@@ -33,6 +44,7 @@ var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8o
 // Adding the WMS layer for LiDAR DSM (hillshade) data. provided by Welsh Gov on an Open Government Licence.
 var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
+    attribution: '&copy; <a href="">DataMap Wales</a>'
 });
 
 /**
@@ -228,7 +240,8 @@ L.control.resetView({
 // Base Maps
 var baseMaps = {
     "OpenStreetMap": openStreetMap,
-    "Bing Satellite": bingSatellite
+    "Bing Satellite": bingSatellite,
+    "Cymraeg": welshMap
 };
 
 // Overlay Maps

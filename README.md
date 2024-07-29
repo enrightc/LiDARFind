@@ -1,18 +1,82 @@
 # LiDARFind
 ## Overview
-**LiDARFind** is a web application designed for enthusiasts and professionals to explore and discover archaeological sites using LiDAR data. The platform allows users to view, interact with, and edit LiDAR data on an interactive map interface.  The live website can be found here.
+**LiDARFind** is a web application designed for enthusiasts and professionals to explore and discover archaeological sites in Wales using LiDAR data. The platform allows users to view, interact with, and edit LiDAR data on an interactive map interface.  You can explore the live website here: [LiDARFind: The Welsh LiDAR Portal](https://lidarfind-a137ffb9e451.herokuapp.com/)
+
+![LiDARFind Am I Responsive Image](readme-images/amiresponsive.png)
+
+# Contents
+
+1. [LiDARFind](#lidarfind)
+2. [Overview](#overview)
+3. [Introduction](#introduction)
+4. [User Experience (UX)](#user-experience-ux)
+    - [Strategy](#strategy)
+      - [Project Rationale](#project-rationale)
+      - [Target Audience](#target-audience)
+      - [Website Owners Goals](#website-owners-goals)
+      - [External User Goals](#external-user-goals)
+      - [User Stories](#user-stories)
+5. [Scope](#scope)
+    - [Features](#features)
+        - [General](#general)
+        - [All Users](#all-users)
+        - [Registered Users](#registered-users)
+        - [Administrators](#administrators)
+6. [Structure](#structure)
+    - [Site Structure](#site-structure)
+    - [Database Structure](#database-structure)
+        - [Collections](#collections)
+        - [Relationships](#relationships)
+        - [Example Use Case](#example-use-case)
+        - [Why MongoDB](#why-mongodb)
+        - [Entity-Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
+7. [Skeleton Plane](#skeleton-plane)
+8. [Design](#design)
+    - [Colour Scheme](#colour-scheme)
+    - [Fonts](#fonts)
+    - [Accessibility](#accessibility)
+9. [Features](#features)
+10. [Future Enhancements](#future-enhancements)
+11. [Technology Used](#technology-used)
+12. [Testing](#testing)
+13. [Deployment](#deployment)
+    - [MongoDB Non-Relational Database](#mongodb-non-relational-database)
+    - [Deploying on Heroku](#deploying-on-heroku)
+    - [Local Deployment](#local-deployment)
+    - [How to Fork](#how-to-fork)
+    - [How to Clone](#how-to-clone)
+14. [Resources](#resources)
+
 
 ## Introduction
-LiDARFind is a web application dedicated to documenting and sharing archaeological discoveries made through LiDAR data analysis. Our platform provides a collaborative space for users to contribute their findings, engage with the community, and contribute to the preservation and understanding of the historic environment through citizen science.
+LiDARFind is a web application designed to document and share archaeological discoveries using LiDAR data analysis in Wales. Our platform offers a collaborative space where users can share their findings, engage with the community, and help preserve and understand the historic environment through citizen science.
 
-Whether you're an archaeology enthusiast, a hobbyist, or a professional researcher, LiDARFind offers a user-friendly interface to explore and document archaeological sites discovered using LiDAR technology. our database aims to showcase the rich heritage of Wales hidden beneath the surface.
+Whether you're an archaeology enthusiast, a hobbyist, or a professional researcher, LiDARFind offers a user-friendly interface to explore and document archaeological sites discovered using LiDAR technology. our database aims to showcase the rich heritage of Wales, providing detailed insights into its historic landscape.
+
+**Unique Features of LiDARFind:**
+
+- Interactive Mapping: Users can view and interact with archaeological sites on an interactive map.
+- Personalised Profiles: Users can save and manage their discoveries, accessing them at any time.
+- Community Engagement: The platform encourages collaboration and knowledge sharing among users.
+!
+**Why LiDARFind?**
+
+Exclusive Coverage: While other UK websites offer platforms for recording archaeological discoveries, none focus exclusively on Wales despite its extensive LiDAR coverage.
+Active Participation: Unlike platforms that offer only passive exploration, LiDARFind empowers users to actively record and contribute to a growing database of archaeological sites.
 
 ## User Experience UX
 ### Strategy
-#### Project Rationale
-The LiDARFind project was conceived to address the need for a more engaging platform that encourages the exploration and redocumentation of archaeological sites using the extensive LiDAR coverage available for Wales. While there are several websites that allow users to view LiDAR data, they typically offer limited engagement beyond passive exploration. LiDARFind addresses this gap by  empowering users to actively record their own archaeological sites in a database, facilitating their personal research and contributing to collective knowledge.
+This section outlines the fundamental reasons behind the creation of LiDARFind and how it aims to address specific needs within the archaeological community. It delves into the rationale for the project, identifying the gaps and opportunities within existing platforms. This section also highlights the target audience, their goals, and the broader objectives of the website. By understanding these strategic elements, users can better appreciate the purpose and intended impact of LiDARFind.
+
+### Project Rationale
+While various UK websites offer platforms for recording archaeological discoveries, none focus exclusively on Wales, despite its comprehensive LiDAR coverage.
+
+The LiDARFind project was conceived to address the need for a more engaging platform that encourages the exploration and documentation of archaeological sites using the extensive LiDAR coverage available for Wales. While several websites allow users to view LiDAR data, they typically offer limited engagement beyond passive exploration. LiDARFind addresses this gap by empowering users to actively record their own archaeological sites in a database, facilitating their personal research and contributing to collective knowledge.
+
+Additionally, these other websites do not offer the facility for users to record and save their discoveries to their own profiles, where they can access and manage them whenever they want. LiDARFind provides this capability, allowing users to have a personalised experience and a repository of their findings.
 
 LiDAR data is an invaluable resource for archaeologists, providing detailed insights into the historic environment of Wales. By leveraging this open-source resource, LiDARFind enables anyone to access and engage with the data, fostering a community of citizen scientists dedicated to uncovering and preserving our shared heritage. Through this platform, users can collaboratively document findings, enhance their understanding of the past, and contribute to the preservation of archaeological sites across Wales.
+
 
 LiDARFind has significant real-world applications, including:
 - **Enhanced Archaeological Research:** Accelerating the identification and study of archaeological sites, contributing to academic research and historical knowledge.
@@ -21,7 +85,7 @@ LiDARFind has significant real-world applications, including:
 - **Policy and Planning:** Assisting in land management and planning decisions by providing detailed records of archaeological assets.
 
 ### Target Audience
-LiDARFind is designed with inclusivity in mind, catering to both newcomers and seasoned experts. Whether you are an archaeology enthusiast just starting out or a professional researcher with years of experience, LiDARFiind offers intuitive features that make it accessible and valuable to all users.
+LiDARFind is designed with inclusivity in mind, catering to both newcomers and seasoned experts. Whether you are an archaeology enthusiast just starting out or a professional researcher with years of experience, LiDARFind offers intuitive features that make it accessible and valuable to all users.
 
 ### Website Owners Goals
 1. To provide a platform for users to document and share archaeological discoveries made through LiDAR data analysis.
@@ -53,7 +117,11 @@ LiDARFind is designed with inclusivity in mind, catering to both newcomers and s
 4. **As an administrator of the site:**<br>
 4.1: I want to manage the database of archaeological discoveries, including adding, editing, or deleting entries.<br>
 
+[Return to Top](#contents)
+
+
 ## Scope
+To Ensure LiDARFind is able to meet the needs of its audience a variety of features designed to enhance user experience, engagement and functionality have been considered. At a minimum the following features have been deemed essential to meet the needs of different types of users and ensure the website is comprehensive and user friendly. 
 ### Features:
 #### General:
   - Responsive Design
@@ -74,6 +142,8 @@ LiDARFind is designed with inclusivity in mind, catering to both newcomers and s
 #### Administrators
 - Ability to edit and delete records of any user
 - An admin dashboard to display a lsit of all users and their records
+
+[Return to Top](#contents)
 
 ## Structure
 ### Site Structure
@@ -96,7 +166,7 @@ This section outlines a typical user experience through the website, from landin
 
 **Exploring the Profile Page:**
 - On the profile page, users can view their details and records.
-The profile page might displays any user-specific records they have created, listed with details like title, period, site type, etc.
+- The profile page displays any user-specific records they have created, listed with details like title, period, site type, etc.
 
 **Creating a New Record:**
 - Users can click on the "Create a Record" button.
@@ -129,8 +199,6 @@ The user flow diamgram below illustrates the typical path a user may take throug
 
 ![User Flow Diagram](readme-images/user-flow-diagram.png)
 
-
-
 ### Database Structure
 #### Collections
 **1. Users**
@@ -154,7 +222,7 @@ The user flow diamgram below illustrates the typical path a user may take throug
 }
 
 **3. Site_types**
-  - Stores different types of information along with related monument types.
+  - Stores various site types along with their related monument types..
   - Fields:
     - `_id`: Unique identifier for each site type.
     - `site_type`: The type of the site (e.g. "Bank").
@@ -240,7 +308,7 @@ The record is then stored in the Records collection with references to the selec
 The user can view records they created by fetching documents from the Records collection where the `created_by` field matches their username.
 
 #### Why MongoDB
-MongoDB, a non-relational database, was chosen for this project because of its flexibility and scalability. Unlike traditional relational databases, MondoFB allows for a flexible schema design, which is particularly beneficial for handling varied and evolving data structures like archaeological records. 
+LiDARFind uses MongoDB, a non-relational database, for its flexibility and scalability. Unlike traditional relational databases, MongoDB offers a flexible schema design, ideal for managing varied and evolving data structures such as archaeological records.
   - Flexible Schema: MongoDB allows for a flexible schema design, meaning new fields can be added to documents without affecting existing ones. This is useful for dealing with diverse and evolving data types.
   - Document-Based Model: MongoDB's document-based model allows related data to be stored together in a single document, which simplifies data retrieval and improves performance. For example, site types and their associated monument types are stored together.
   - Scalability: MongoDB can handle large volumes of data and supports horizontal scaling, which is beneficial as the project grows and more records are added.
@@ -252,6 +320,7 @@ To illustrate the structure and relationships of the collections in the MongoDB 
 
 ![Entity-relationship Diagram](readme-images/databse-diagram.png)
 
+[Return to Top](#contents)
 
 ## Skeleton Plane
 Prior to commencing the website coding process, comprehensive wireframes were produced for each page using Figma - a design tool used for creating user interfaces, prototypes, and wireframes. These wireframes served as the initial blueprints, providing a visual roadmap for the website's layout and structure on both desktop and mobile devices.
@@ -264,6 +333,8 @@ This iterative process allowed for flexibility in adapting to evolving project r
   <summary>Home (Desktop)</summary>
   <img src="" alt="Introduction (Desktop)">
 </details>
+
+[Return to Top](#contents)
 
 ## Design
 ### Colour Scheme
@@ -304,6 +375,8 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
 
 **Font Selection:** Emphasising simplicity and readability, the fonts chosen are clear and easy to read. This choice ensures that the content remains legible for users with different visual abilities, fostering an inclusive user experience.
 
+[Return to Top](#contents)
+
 # FEATURES
 <details>
   <summary>Favicon</summary>
@@ -312,10 +385,10 @@ Accessibility is a fundamental aspect of the LidarFind project, ensuring that al
   <img src="readme-images/features/logo.png" alt="Favicon images">
 </details>
 
-details>
+<details>
   <summary>Interactive Maps</summary>
 
-Interactive maps feature prominently on the website, allowing users to interact with records and create new ones. These maps were created using Leaflet, a powerful JavaScript library for mobile-friendly interactive maps.
+Interactive maps feature prominently on the website, allowing users to interact with records and create new ones. These maps were created using [Leaflet](https://leafletjs.com/), a powerful JavaScript library for mobile-friendly interactive maps.
 
 ## Map Layers
 
@@ -323,28 +396,54 @@ The interactive maps on the website offer two primary base layers:
 
 - **OpenStreetMap (OSM)**: A free, editable map of the world that is continually updated by a large community of contributors.
 - **Bing Satellite Image**: A high-resolution satellite imagery layer provided by Microsoft Bing.
+- **Cymrage**: A OSM map in the Welsh language. This supports bilingual users and promotes the use of Welsh language. It improves website acccessibility and inclusivity for Welsh-speaking users. 
 
-To integrate Bing Maps into the Leaflet application, I used a Leaflet plugin developed by [Shramov](https://github.com/shramov/leaflet-plugins/blob/master/layer/tile/Bing.js). This plugin facilitates the connection to the Microsoft Bing Maps API, allowing the use of Bing’s satellite imagery. The API key for Bing Maps is essential for authenticating and authorising requests to the Bing Maps service. It is obtained by registering for a Bing Maps account and generating an API key in the Bing Maps Dev Center. This key must be included in the application’s configuration to enable access to the satellite imagery. It’s important to note that the Bing API key comes with usage limits, which means there is a cap on the number of requests that can be made within a given period. Exceeding these limits may result in additional charges or throttling of service.
+Integrating Bing Maps into the Leaflet application required a Bing Maps API. This was obtained by signing into a Bing Maps account and creating an API key. The API key is then used in LiDARFind to authenticate requests to the Bing Map services. I used a Leaflet plugin developed by [Shramov](https://github.com/shramov/leaflet-plugins/blob/master/layer/tile/Bing.js) to facilitate the connection to the Microsoft Bing Maps API, allowing the use of Bing’s satellite imagery. 
+
+## Secruity
+The referrer security feature in the Bing Dev Center lets you define a list of authorised referrers that can use your key.
+
+When you enable at least one referrer rule, any requests without a referrer or from unapproved referrers will be blocked. This ensures that others cannot use your key for unauthorised requests.
+
+To test this, I attempted to implement the API key for LiDARFind on another web application with an interactive map. When the page loaded, the Bing Satellite imagery layer failed to render because this web application was not included in the application key security settings of LiDARFind's API.
+
+Initially, I was concerned that I might also need to hide the generated API key in my env.py file, but I did not know how to allow JavaScript access to it if I did so. Code Institute Student Support confirmed that the restriction settings would be sufficient for security. In the future, I would like to enhance security by also hiding the key.
+
+## Bing Maps Basic API
+LiDARFind is using a Bing Maps Basic API, this allows for a limited number of transactions per year (125,000 transactions).
+
+A transaction includes any request made to the Bing Maps service:
+
+Map Tile Requests: When a user views a map, each tile that loads counts as a transaction.
+Geocoding Requests: Converting addresses into geographic coordinates (latitude and longitude) or vice versa.
+Routing Requests: Calculating directions between locations.
+Search Requests: Looking up points of interest, addresses, or other entities on the map.
+Static Map Requests: Requests for a static image of a map.
+Traffic Requests: Accessing traffic information for a given area.
+Spatial Data Services: Operations like spatial queries or data uploads.
+
+Each of these actions typically counts as a single transaction. Some operations, especially those involving multiple steps or large datasets, may count as multiple transactions. 
+
+To limit the number of transactions made by LiDARFind, the map view has been restricted to Wales. By limiting the map view to Wales, fewer map tiles will be requested compared to a map of the entire world, which should help reduce the number of transactions.
+
+## Interactive map Features
+**Zoom Controls:** Easily zoom in and out of the map to explore different areas and levels of detail.
+**Layer Toggle:** Switch between different map layers (OpenStreetMap, Bing Satellite, and Cymraeg) to view the data in various formats.
+**Reset Map View:** (Available only on the record map) Quickly reset the map to its default view, focusing on Wales.
+**Loader Indicator:** An unobtrusive loading indicator appears below the zoom control when tiles are loading, ensuring users are aware of loading processes without interrupting their experience.
+**Interactive Elements:** Users can create, edit, and delete records directly on the map, enhancing the interactivity and functionality of the application.
+**Responsive Design:** The maps are designed to be mobile-friendly, ensuring a seamless experience across all devices.
 
 ## LiDAR Data Overlay
 
 The LiDAR data is added as an overlay on the map, providing detailed topographic information that enhances the interactive experience. This data is made available through a Web Map Service (WMS) under an Open Government Licence.
 
-## Understanding WMS
-
 A Web Map Service (WMS) is a standard protocol developed by the Open Geospatial Consortium (OGC) for serving georeferenced map images over the internet. These images are generated by a map server using data from a geographic information system (GIS) database. WMS enables the dynamic combination of layers from multiple sources, making it a versatile tool for geospatial data visualisation.
-
-## Key Features
-
-- **Layer Control**: Users can switch between the OSM and Bing Satellite layers using the layer control feature in Leaflet.
-- **Interactive Elements**: Users can create, edit, and delete records directly on the map, enhancing the interactivity and functionality of the application.
-- **Responsive Design**: The maps are designed to be mobile-friendly, ensuring a seamless experience across all devices.
-
 </details>
 
 <details>
   <summary>Navbar</summary>
-  The website features a fully responsive navigation bar located at the top of each page. To the left, is a discreet site logo serviing as a direct link to the home page when clicked from any other page. 
+  The website features a fully responsive navigation bar located at the top of each page. To the left, is a discreet site logo serving as a direct link to the home page when clicked from any other page. 
   The navigation bar is designed to be fully responsive, collapsing into a hamburger menu on smaller devices whilst maintaining the visibility of the website logo. Activating the hamburger menu expands the navigation options, ensuring a user-friendly experience across all device sizes. Bootstrap is utilised to achieve the responsive and user-friendly navigation elements.
 
   The navigation options vary based on the type of user:
@@ -448,12 +547,16 @@ The map includes several features to enhance user experience:
 Users can toggle between two base maps using the layers control located in the top right corner:
 - **OpenStreetMap**
 - **Bing Satellite**
+- **Cymraeg**
 
 ## Overlay Map
 This layer contains the LiDAR data and can be switched on or off as needed.
 
 ## Zoom Controls and Reset Button
 Located in the top left corner, these controls allow users to zoom in and out and reset the map view to its initial state.
+
+## Load indicator 
+Positioned beneath the zoom controls and visible whilst tiles are loading.
 
 ## Create and Filter Buttons
 Found in the bottom left corner, these buttons provide additional functionality:
@@ -559,13 +662,15 @@ Click the image above to watch a demonstration of the admin dashboard.
   <img src="readme-images/features/Admin-Dashboard.png" alt="Admin dashboard images">
 </details>
 
+[Return to Top](#contents)
+
 # FUTURE ENHANCEMENTS
 It is hoped that LiDARFind will continue to be expanded upon with several exciting features already planned:
 
 **Record Sites by Polygons**
 Currently, users can record sites using point data. In the future, we plan to enable recording by polygons. This feature will allow users to draw the boundaries and extent of archaeological sites, providing a more accurate and detailed representation than point data.
 
-#**Expand Profile**
+**Expand Profile**
 We aim to enhance user profiles by:
 - Allowing users to update their skill level as they gain more proficiency in identifying archaeological finds.
 - Adding profile pictures to provide a more personal touch and foster a sense of community.
@@ -590,6 +695,7 @@ To improve account security and user convenience, we will introduce a password r
 **Moderation**
 To maintain a safe and friendly environment, we will introduce content moderation. Posts containing explicit language or inappropriate content will need to be approved by an admin before they become visible. This will help ensure a respectful and constructive community.
 
+[Return to Top](#contents)
 
 # TECHNOLOGY USED
 ### Languages
@@ -602,7 +708,7 @@ To maintain a safe and friendly environment, we will introduce content moderatio
 - Flask: A micro web framework for Python used to build the web application.
 - Bootstrap: A responsive, mobile-first CSS framework used for faster and easier web development.
 
-Note: The project initially used Materialize CSS for the frontend framework. However, due to several issues encountered with Materialize CSS, including conflicts with other libraries and inadequate support for some required features, the decision was made to switch to Bootstrap. Bootstrap provided better compatibility for the LiDARFind website.
+Note: Initially, this project used Materialize CSS for the frontend framework. However, due to several issues, including conflicts with other libraries and inadequate support for some required features, we switched to Bootstrap. Bootstrap offers better compatibility for the LiDARFind website.
 
 ### Libraries
 - Leaflet: An open-source JavaScript library used for mobile-friendly interactive maps.
@@ -627,8 +733,12 @@ Note: The project initially used Materialize CSS for the frontend framework. How
 ### Databases
 - MongoDB: : A NoSQL database used for storing application data.
 
+[Return to Top](#contents)
+
 # TESTING
 Please see [TESTING.md](TESTING.md).
+
+[Return to Top](#contents)
 
 # DEPLOYMENT
 ### MongoDB Non-Relational Database
@@ -734,13 +844,15 @@ Cloning a repository allows you to create a local copy on your computer. Here’
 `git clone https://github.com/Melody-Lisa/blissboost.git`
 7. Press Enter to create your local clone.
 
-
+[Return to Top](#contents)
 
 # RESOURCES
 ### Resources
 
 | Topic                                              | Description                                                                                     | Source                                                                                                           | Accessed          |
 |----------------------------------------------------|-------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|-------------------|
+| Mini Project Putting it all together          | Code Institute learning resource                                                       |          |    |
+| DataMap Wales          | Source for Welsh LiDAR data                                                       | [DataMap Wales](https://datamap.gov.wales/maps/lidar-viewer/)         |    |
 | Overriding Materialize CSS for Checkboxes          | Materialize CSS Radio buttons not visible                                                       | [Stack Overflow](https://stackoverflow.com/questions/49757521/materialize-css-radio-buttons-not-visible)         | 8th June, 2024    |
 | Prefilling Input Texts                             | Text Inputs                                                                                     | [Materialize](https://pixinvent.com/materialize-material-design-admin-template/documentation/text-inputs.html)    | 24th June, 2024   |
 | Using Leaflet Map Framework                        | Leaflet: an open-source JavaScript library for mobile-friendly interactive maps                 | [Leaflet](https://leafletjs.com/)                                                                                | 8th June, 2024    |
@@ -771,5 +883,7 @@ Cloning a repository allows you to create a local copy on your computer. Here’
 | Passing variables from HTML to JS                        | Passing variables from HTML to JS                                                | [Reddit](https://www.reddit.com/r/flask/comments/yc00z3/passing_variables_from_html_to_js/)            | 23rd July, 2024   |
 | Lazy Loading                        | Lazy Loading Images using Intersection Observer API                                                | [OpenReplay](https://blog.openreplay.com/lazy-loading-in-javascript/)            | 24th July, 2024   |
 | CSS animations                        | How to Add a CSS Fade-in Transition Animation to Text, Images, Scroll & Hover                                                | [Hubspot](https://blog.hubspot.com/website/css-fade-in#scroll-transition)            | 26th July, 2024   |
-
-
+| Can I prevent panning Leaflet map out of the world's edge?                       | How to restrict the map view to reduce unnecessary API calls and focus the map on Wales                                              | [StackOverFlow](https://stackoverflow.com/questions/22155017/can-i-prevent-panning-leaflet-map-out-of-the-worlds-edge)            | 29th July, 2024   |
+| Open Street Map layer in Welsh language                       |                                              | [Tag:Leaflet.js](https://mapio.cymru/en/tag/leaflet-js/)            | 29th July, 2024   |
+| Leaflet Loading                        | How to add a loading indicator as tiles load on a map                                               | [Github](https://github.com/ebrelsford/Leaflet.loading?tab=readme-ov-file)            | 26th July, 2024   |
+[Return to Top](#contents)

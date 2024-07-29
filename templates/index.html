@@ -4,7 +4,10 @@
 <!-- Linking Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <!-- Include the loading control -->
+    <link rel="stylesheet" href="https://rawgithub.com/ebrelsford/Leaflet.loading/master/src/Control.Loading.css">
 {% endblock %}
+
 {% block content %}
     <!-- Hero -->
     <div class="hero">
@@ -52,7 +55,7 @@
                 </div>
                 <div class="col-12 col-md-6 text-center">
                     <img class="lidarfind-image homepage-img shadow-lg rounded" src="static/images/lidar-enclosure.webp" 
-                        alt="An image of a LiDAR data plot show a circuar enclosure." loading="lazy">
+                        alt="An image of a LiDAR data plot showing a circuar enclosure." loading="lazy">
                 </div>
             </div> 
         </div>
@@ -101,7 +104,7 @@
                                 <i class="panel-icon fa-regular fa-user"></i>
                                 <span class="sr-only">User Icon</span>
                             </p>
-                            <h5 class="card-subtitle mb-2">Register</h5>
+                            <h3 class="card-subtitle mb-2">Register</h3>
                             <p class="card-text">Join our community of archaeology enthusiasts and professionals. 
                                 Sign up today to start exploring and contributing to our extensive database of LiDAR discoveries.</p>
                         </div>
@@ -114,7 +117,7 @@
                                 <i class="panel-icon fa-solid fa-magnifying-glass"></i>
                                 <span class="sr-only">Magnifying Glass Icon</span>
                             </p>
-                            <h5 class="card-subtitle mb-2">Explore</h5>
+                            <h3 class="card-subtitle mb-2">Explore</h3>
                             <p class="card-text">Dive into our comprehensive collection of archaeological sites uncovered through LiDAR technology. 
                                 Discover hidden histories and expand your knowledge.</p>
                         </div>
@@ -127,7 +130,7 @@
                                 <i class="fa-regular fa-map"></i>
                                 <span class="sr-only">Map Icon</span>
                             </p>
-                            <h5 class="card-subtitle mb-2">Record</h5>
+                            <h3 class="card-subtitle mb-2">Record</h3>
                             <p class="card-text">Contribute your own findings and expand our knowledge on this historic environment. 
                                 Record and share new archaeological sites with the community using our easy-to-use platform.</p>
                         </div>
@@ -278,5 +281,6 @@
 <script src="https://fast.wistia.com/embed/medias/xp5ce1ltgc.jsonp" async></script>
 <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
 <script src="{{ url_for('static', filename='js/bing.js') }}"></script>
+<script src="https://rawgithub.com/ebrelsford/Leaflet.loading/master/src/Control.Loading.js"></script>
 <script src="{{ url_for('static', filename='js/homepage-map.js') }}"></script>
 {% endblock %}

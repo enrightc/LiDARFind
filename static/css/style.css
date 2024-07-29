@@ -22,6 +22,10 @@ body {
     background-color: #e1eaec;
 }
 
+.modal {
+    z-index: 999999;
+}
+
 a {
     color: black; 
 }

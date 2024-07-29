@@ -19,13 +19,22 @@ document.addEventListener("DOMContentLoaded", function() {
         zoom: 14,
         minZoom: 8,
         maxBounds: walesBounds, // Set the map bounds to Wales
-        maxBoundsViscosity: 1.0 // Prevent panning outside the bounds
+        maxBoundsViscosity: 1.0, // Prevent panning outside the bounds
+        // leaflet loader source: https://github.com/ebrelsford/Leaflet.loading?tab=readme-ov-file
+        // Tell the map to use a loading control
+        loadingControl: true
     });
 
     // Base Map Layer: OpenStreetMap
     var openStreetMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    // Welsh Langage map
+    var welshMap = L.tileLayer('https://openstreetmap.cymru/osm_tiles/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href=”https://www.openstreetmap.cymru” target=”_blank”>openstreetmap.cymru</a>. Data ar y map &#x24BD Cyfranwyr <a href=”https://openstreetmap.org” target=”_blank”>osm.org</a>'
     }).addTo(map);
 
     //Bing Maps Satellite Layer
@@ -36,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Adding the WMS layer for LiDAR DSM (hillshade) data
     var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
         layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
+        attribution: '&copy; <a href="">DataMap Wales</a>'
     });
 
     // Add the marker for the record being edited
@@ -63,7 +73,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Layer control to toggle between base maps and overlays
     var baseMaps = {
         "OpenStreetMap": openStreetMap,
-        "Bing Satellite": bingSatellite
+        "Bing Satellite": bingSatellite,
+        "Cymraeg": welshMap
     };
 
     var overlayMaps = {
