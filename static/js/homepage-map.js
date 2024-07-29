@@ -25,6 +25,12 @@ const initializeMap = () => {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
+    // Welsh Langage map
+    var welshMap = L.tileLayer('https://openstreetmap.cymru/osm_tiles/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href=”https://www.openstreetmap.cymru” target=”_blank”>openstreetmap.cymru</a>. Data ar y map &#x24BD Cyfranwyr <a href=”https://openstreetmap.org” target=”_blank”>osm.org</a>'
+    });
+
     // Bing Maps Satellite Layer
     var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8oCT-n-CeUQLRutNJJXLhpY', {
         type: 'Aerial'  // Use 'AerialWithLabels' if you want satellite images with labels
@@ -33,6 +39,7 @@ const initializeMap = () => {
     // Adding the WMS layer for LiDAR DSM (hillshade) data
     var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
         layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
+        attribution: '&copy; <a href="">DataMap Wales</a>'
     });
 
     // Custom icon for current marker
@@ -145,7 +152,8 @@ const initializeMap = () => {
     // Base Maps
     var baseMaps = {
         "OpenStreetMap": openStreetMap,
-        "Bing Satellite": bingSatellite
+        "Bing Satellite": bingSatellite,
+        "Cymraeg": welshMap
     };
 
     // Overlay Maps
