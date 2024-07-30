@@ -345,12 +345,12 @@ This iterative process allowed for flexibility in adapting to evolving project r
 </details>
 
 <details>
-  <summary>Profile page</summary>
+  <summary>Log in page</summary>
   <img src="readme-images/wireframes/login.png" alt="Log in page">
 </details>
 
 <details>
-  <summary>Profile page</summary>
+  <summary>Registration page</summary>
   <img src="readme-images/wireframes/register.png" alt="Register page">
 </details>
 

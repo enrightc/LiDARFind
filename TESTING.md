@@ -324,6 +324,7 @@ For each feature the expected outcomes and actual outcomes are clearly defined f
 
 <details>
   <summary>Registration Page Features</summary>
+  
 | Feature               | Expected                                                                 | Testing                                                             | Outcome                                                                 |
 |-----------------------|--------------------------------------------------------------------------|---------------------------------------------------------------------|-------------------------------------------------------------------------|
 | Flash Messages        | Display error messages if registration fails                             | Attempt to register with invalid inputs and observe error messages  | Error messages are displayed correctly, informing users of registration issues |
@@ -448,10 +449,12 @@ For each feature the expected outcomes and actual outcomes are clearly defined f
 
 <details>
   <summary>Back Button Navigation</summary>
-| Feature                       | Expected                                              | Testing                                                                | Outcome                                                                        |
-|-------------------------------|-------------------------------------------------------|------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| Prevent Back to Login         | Prevent user from navigating back to the login page once logged in | Log in and use the browser's back button to attempt to return to the login page | User is redirected to the profile page, preventing access to the login page    |
-| Prevent Back to Cached Profile| Prevent access to cached profile page after logging out | Log out and use the browser's back button to attempt to return to the profile page | User is redirected to the login page, preventing access to the cached profile page |
+
+| Feature                        | Expected                                               | Testing                                                                | Outcome                                                                                      |
+|--------------------------------|--------------------------------------------------------|------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| Prevent Back to Login          | Prevent user from navigating back to the login page once logged in | Log in and use the browser's back button to attempt to return to the login page | User is redirected to the profile page, preventing access to the login page                  |
+| Prevent Back to Cached Profile | Prevent access to cached profile page after logging out | Log out and use the browser's back button to attempt to return to the profile page | User is redirected to the login page, preventing access to the cached profile page           |
+
 
 
 </details>
