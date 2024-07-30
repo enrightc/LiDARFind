@@ -45,7 +45,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Adding the WMS layer for LiDAR DSM (hillshade) data
     var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
         layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
-        attribution: '&copy; <a href="">DataMap Wales</a>'
+        attribution: '&copy; <a href="">DataMap Wales</a>',
+        loadingControl: true
     });
 
     // Add the marker for the record being edited

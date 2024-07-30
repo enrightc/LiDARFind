@@ -58,10 +58,10 @@ Whether you're an archaeology enthusiast, a hobbyist, or a professional research
 - Interactive Mapping: Users can view and interact with archaeological sites on an interactive map.
 - Personalised Profiles: Users can save and manage their discoveries, accessing them at any time.
 - Community Engagement: The platform encourages collaboration and knowledge sharing among users.
-!
+
 **Why LiDARFind?**
 
-Exclusive Coverage: While other UK websites offer platforms for recording archaeological discoveries, none focus exclusively on Wales despite its extensive LiDAR coverage.
+Exclusive Coverage: While other UK websites offer platforms for recording archaeological discoveries, none focus exclusively on Wales despite its extensive LiDAR coverage.<br>
 Active Participation: Unlike platforms that offer only passive exploration, LiDARFind empowers users to actively record and contribute to a growing database of archaeological sites.
 
 ## User Experience UX

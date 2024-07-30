@@ -42,7 +42,8 @@ var bingSatellite = new L.BingLayer('AjH7Kmd8nydYW5bYUgAmdOD0g7hZzlMdu5tlFLvVT8o
 // Adding the WMS layer for LiDAR DSM (hillshade) data. provided by Welsh Gov on an Open Government Licence.
 var wmsLayer = L.tileLayer.wms("https://datamap.gov.wales/geoserver/ows", {
     layers: 'geonode:wales_lidar_dsm_1m_hillshade_cog',
-    attribution: '&copy; <a href="">DataMap Wales</a>'
+    attribution: '&copy; <a href="">DataMap Wales</a>',
+    loadingControl: true
 });
 
 /**
