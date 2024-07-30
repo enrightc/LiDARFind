@@ -122,7 +122,7 @@ LiDARFind is designed with inclusivity in mind, catering to both newcomers and s
 
 ## Scope
 To Ensure LiDARFind is able to meet the needs of its audience a variety of features designed to enhance user experience, engagement and functionality have been considered. At a minimum the following features have been deemed essential to meet the needs of different types of users and ensure the website is comprehensive and user friendly. 
-### Features:
+
 #### General:
   - Responsive Design
   - Database to store records
@@ -447,12 +447,17 @@ Each of these actions typically counts as a single transaction. Some operations,
 To limit the number of transactions made by LiDARFind, the map view has been restricted to Wales. By limiting the map view to Wales, fewer map tiles will be requested compared to a map of the entire world, which should help reduce the number of transactions.
 
 ## Interactive map Features
-**Zoom Controls:** Easily zoom in and out of the map to explore different areas and levels of detail.
-**Layer Toggle:** Switch between different map layers (OpenStreetMap, Bing Satellite, and Cymraeg) to view the data in various formats.
-**Reset Map View:** (Available only on the record map) Quickly reset the map to its default view, focusing on Wales.
-**Loader Indicator:** An unobtrusive loading indicator appears below the zoom control when tiles are loading, ensuring users are aware of loading processes without interrupting their experience.
-**Interactive Elements:** Users can create, edit, and delete records directly on the map, enhancing the interactivity and functionality of the application.
-**Responsive Design:** The maps are designed to be mobile-friendly, ensuring a seamless experience across all devices.
+**Zoom Controls:** Easily zoom in and out of the map to explore different areas and levels of detail.<br>
+**Layer Toggle:** Switch between different map layers (OpenStreetMap, Bing Satellite, and Cymraeg) to view the data in various formats.<br>
+**Reset Map View:** (Available only on the record map) Quickly reset the map to its default view, focusing on Wales.<br>
+**Loader Indicator:** An unobtrusive loading indicator appears below the zoom control when tiles are loading, ensuring users are aware of loading processes without interrupting their experience.<br>
+**Interactive Elements:** Users can create, edit, and delete records directly on the map, enhancing the interactivity and functionality of the application.<br>
+**Responsive Design:** The maps are designed to be mobile-friendly, ensuring a seamless experience across all devices.<br>
+
+[![Watch the video](https://fast.wistia.com/embed/medias/kdsb2lcpv9/swatch)](https://fast.wistia.net/embed/iframe/kdsb2lcpv9)
+
+Click the image above to a demonstration of the loading indicator (Note: The indicator is in the top left corner below the zoom controls).
+
 
 ## LiDAR Data Overlay
 
