@@ -681,3 +681,8 @@ To prevent users from using the back button to return to the login page or a cac
 This function ensures that the browser does not store cache for the logged-out state, preventing the display of a cached profile page.
 
 **Outcome:** After implementing these changes, users are redirected correctly based on their session status. If a user attempts to navigate back to the login page after logging in, they are redirected to their profile page. Additionally, after logging out, users cannot use the back button to access a cached version of their profile, ensuring that the application behaves securely and as expected.
+
+[![Watch the video](https://fast.wistia.com/embed/medias/lyr8u51gs1/swatch)](https://fast.wistia.net/embed/iframe/lyr8u51gs1)
+
+Click the image above to watch a demonstration.
+
